@@ -1,0 +1,15 @@
+%!TEX encoding = UTF-8 Unicode
+\section{Conclusion}
+\label{sec:Conclusion}
+%Fazer o resumo do trabalho efectuado, retomando a idea, as contribuicoes definidas e a forma como estas se materializam.
+
+Intrusion recovery services restore the system integrity when intrusions happen, instead of trying to prevent them from happening. We have presented a detailed overview of various intrusion recovery services for operating systems, databases and web applications. However, none of these projects provide a scalable service for applications deployed in multiple servers and backed by one or more databases.
+
+Having the above in mind, we proposed Shuttle, an intrusion recovery service for PaaS, that aims to make PaaS applications operational despite intrusions. Shuttle recovers from software flaws, corrupted requests and unknown intrusions. It also supports application corrective and preventive maintenance. The major challenges are the implementation of a concurrent and consistent database snapshot, establish accurate requests dependencies, perform parallel actions replay, contain the damage spreading, repair the system state in time, avoid application downtime and keep the application source code unmodified as much as possible.
+
+Shuttle removes the intrusion effects in PaaS applications and restores the application to a correct state recreating an intrusion-free state. We propose, to the best of our knowledge, the first intrusion recovery service for PaaS with support to NoSQL databases.
+ 
+
+\vspace{8mm}
+
+\textbf{Acknowledgments} We are grateful to Professor Miguel Pupo Correia for the discussion and comments during the preparation of this report. This work was partially supported by Fundação para a Ciência e Tecnologia (FCT) via INESC-ID annual funding through the RC-Clouds - Resilient Computing in Clouds - Program fund grant (PTDC/EIA-EIA/115211/2009).

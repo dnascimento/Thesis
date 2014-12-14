@@ -1,0 +1,1171 @@
+{
+    "Reservations": [
+        {
+            "OwnerId": "407162488522", 
+            "ReservationId": "r-daf93934", 
+            "Groups": [], 
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    }, 
+                    "PublicDnsName": null, 
+                    "State": {
+                        "Code": 16, 
+                        "Name": "running"
+                    }, 
+                    "EbsOptimized": false, 
+                    "LaunchTime": "2014-11-26T11:09:42.000Z", 
+                    "PublicIpAddress": "54.85.116.210", 
+                    "PrivateIpAddress": "192.168.1.225", 
+                    "ProductCodes": [], 
+                    "VpcId": "vpc-3fa61e5a", 
+                    "StateTransitionReason": null, 
+                    "InstanceId": "i-eb0a4f0a", 
+                    "ImageId": "ami-22cb574a", 
+                    "PrivateDnsName": "ip-192-168-1-225.ec2.internal", 
+                    "KeyName": "dario-mac-shuttl", 
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "shuttle", 
+                            "GroupId": "sg-c386b0a6"
+                        }
+                    ], 
+                    "ClientToken": "cUjxq1417000181365", 
+                    "SubnetId": "subnet-be9e8696", 
+                    "InstanceType": "c3.large", 
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use", 
+                            "MacAddress": "12:b0:be:02:42:23", 
+                            "SourceDestCheck": true, 
+                            "VpcId": "vpc-3fa61e5a", 
+                            "Description": "Primary network interface", 
+                            "Association": {
+                                "PublicIp": "54.85.116.210", 
+                                "PublicDnsName": null, 
+                                "IpOwnerId": "amazon"
+                            }, 
+                            "NetworkInterfaceId": "eni-baa2ff90", 
+                            "PrivateIpAddresses": [
+                                {
+                                    "Association": {
+                                        "PublicIp": "54.85.116.210", 
+                                        "PublicDnsName": null, 
+                                        "IpOwnerId": "amazon"
+                                    }, 
+                                    "Primary": true, 
+                                    "PrivateIpAddress": "192.168.1.225"
+                                }
+                            ], 
+                            "Attachment": {
+                                "Status": "attached", 
+                                "DeviceIndex": 0, 
+                                "DeleteOnTermination": true, 
+                                "AttachmentId": "eni-attach-392f4f44", 
+                                "AttachTime": "2014-11-26T11:09:42.000Z"
+                            }, 
+                            "Groups": [
+                                {
+                                    "GroupName": "shuttle", 
+                                    "GroupId": "sg-c386b0a6"
+                                }
+                            ], 
+                            "SubnetId": "subnet-be9e8696", 
+                            "OwnerId": "407162488522", 
+                            "PrivateIpAddress": "192.168.1.225"
+                        }
+                    ], 
+                    "SourceDestCheck": true, 
+                    "Placement": {
+                        "Tenancy": "default", 
+                        "GroupName": "dario", 
+                        "AvailabilityZone": "us-east-1b"
+                    }, 
+                    "Hypervisor": "xen", 
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/sda1", 
+                            "Ebs": {
+                                "Status": "attached", 
+                                "DeleteOnTermination": true, 
+                                "VolumeId": "vol-68ef6470", 
+                                "AttachTime": "2014-11-26T11:09:45.000Z"
+                            }
+                        }
+                    ], 
+                    "Architecture": "x86_64", 
+                    "RootDeviceType": "ebs", 
+                    "RootDeviceName": "/dev/sda1", 
+                    "VirtualizationType": "hvm", 
+                    "Tags": [
+                        {
+                            "Value": null, 
+                            "Key": "Name"
+                        }
+                    ], 
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        }, 
+        {
+            "OwnerId": "407162488522", 
+            "ReservationId": "r-520dcdbc", 
+            "Groups": [], 
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    }, 
+                    "PublicDnsName": null, 
+                    "State": {
+                        "Code": 16, 
+                        "Name": "running"
+                    }, 
+                    "EbsOptimized": false, 
+                    "LaunchTime": "2014-11-26T11:38:29.000Z", 
+                    "PublicIpAddress": "54.85.154.166", 
+                    "PrivateIpAddress": "192.168.1.83", 
+                    "ProductCodes": [], 
+                    "VpcId": "vpc-3fa61e5a", 
+                    "StateTransitionReason": null, 
+                    "InstanceId": "i-3f3570de", 
+                    "ImageId": "ami-22cb574a", 
+                    "PrivateDnsName": "ip-192-168-1-83.ec2.internal", 
+                    "KeyName": "dario-mac-shuttl", 
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "shuttle", 
+                            "GroupId": "sg-c386b0a6"
+                        }
+                    ], 
+                    "ClientToken": "JjoOJ1417001908368", 
+                    "SubnetId": "subnet-be9e8696", 
+                    "InstanceType": "c3.large", 
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use", 
+                            "MacAddress": "12:a9:76:f7:3a:f1", 
+                            "SourceDestCheck": true, 
+                            "VpcId": "vpc-3fa61e5a", 
+                            "Description": "Primary network interface", 
+                            "Association": {
+                                "PublicIp": "54.85.154.166", 
+                                "PublicDnsName": null, 
+                                "IpOwnerId": "amazon"
+                            }, 
+                            "NetworkInterfaceId": "eni-81d18cab", 
+                            "PrivateIpAddresses": [
+                                {
+                                    "Association": {
+                                        "PublicIp": "54.85.154.166", 
+                                        "PublicDnsName": null, 
+                                        "IpOwnerId": "amazon"
+                                    }, 
+                                    "Primary": true, 
+                                    "PrivateIpAddress": "192.168.1.83"
+                                }
+                            ], 
+                            "Attachment": {
+                                "Status": "attached", 
+                                "DeviceIndex": 0, 
+                                "DeleteOnTermination": true, 
+                                "AttachmentId": "eni-attach-6f3a5a12", 
+                                "AttachTime": "2014-11-26T11:38:29.000Z"
+                            }, 
+                            "Groups": [
+                                {
+                                    "GroupName": "shuttle", 
+                                    "GroupId": "sg-c386b0a6"
+                                }
+                            ], 
+                            "SubnetId": "subnet-be9e8696", 
+                            "OwnerId": "407162488522", 
+                            "PrivateIpAddress": "192.168.1.83"
+                        }
+                    ], 
+                    "SourceDestCheck": true, 
+                    "Placement": {
+                        "Tenancy": "default", 
+                        "GroupName": "dario", 
+                        "AvailabilityZone": "us-east-1b"
+                    }, 
+                    "Hypervisor": "xen", 
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/sda1", 
+                            "Ebs": {
+                                "Status": "attached", 
+                                "DeleteOnTermination": true, 
+                                "VolumeId": "vol-23fd763b", 
+                                "AttachTime": "2014-11-26T11:38:33.000Z"
+                            }
+                        }
+                    ], 
+                    "Architecture": "x86_64", 
+                    "RootDeviceType": "ebs", 
+                    "RootDeviceName": "/dev/sda1", 
+                    "VirtualizationType": "hvm", 
+                    "Tags": [
+                        {
+                            "Value": null, 
+                            "Key": "Name"
+                        }
+                    ], 
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        }, 
+        {
+            "OwnerId": "407162488522", 
+            "ReservationId": "r-20b474ce", 
+            "Groups": [], 
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    }, 
+                    "PublicDnsName": null, 
+                    "State": {
+                        "Code": 16, 
+                        "Name": "running"
+                    }, 
+                    "EbsOptimized": false, 
+                    "LaunchTime": "2014-11-26T09:33:28.000Z", 
+                    "PublicIpAddress": "54.173.176.226", 
+                    "PrivateIpAddress": "192.168.1.47", 
+                    "ProductCodes": [], 
+                    "VpcId": "vpc-3fa61e5a", 
+                    "StateTransitionReason": null, 
+                    "InstanceId": "i-119be1f0", 
+                    "ImageId": "ami-22cb574a", 
+                    "PrivateDnsName": "ip-192-168-1-47.ec2.internal", 
+                    "KeyName": "dario-mac-shuttl", 
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "shuttle", 
+                            "GroupId": "sg-c386b0a6"
+                        }
+                    ], 
+                    "ClientToken": "MDuqP1416994406786", 
+                    "SubnetId": "subnet-be9e8696", 
+                    "InstanceType": "c3.large", 
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use", 
+                            "MacAddress": "12:38:b1:60:35:e8", 
+                            "SourceDestCheck": true, 
+                            "VpcId": "vpc-3fa61e5a", 
+                            "Description": "Primary network interface", 
+                            "Association": {
+                                "PublicIp": "54.173.176.226", 
+                                "PublicDnsName": null, 
+                                "IpOwnerId": "amazon"
+                            }, 
+                            "NetworkInterfaceId": "eni-7a8fd250", 
+                            "PrivateIpAddresses": [
+                                {
+                                    "Association": {
+                                        "PublicIp": "54.173.176.226", 
+                                        "PublicDnsName": null, 
+                                        "IpOwnerId": "amazon"
+                                    }, 
+                                    "Primary": true, 
+                                    "PrivateIpAddress": "192.168.1.47"
+                                }
+                            ], 
+                            "Attachment": {
+                                "Status": "attached", 
+                                "DeviceIndex": 0, 
+                                "DeleteOnTermination": true, 
+                                "AttachmentId": "eni-attach-16caab6b", 
+                                "AttachTime": "2014-11-26T09:33:28.000Z"
+                            }, 
+                            "Groups": [
+                                {
+                                    "GroupName": "shuttle", 
+                                    "GroupId": "sg-c386b0a6"
+                                }
+                            ], 
+                            "SubnetId": "subnet-be9e8696", 
+                            "OwnerId": "407162488522", 
+                            "PrivateIpAddress": "192.168.1.47"
+                        }
+                    ], 
+                    "SourceDestCheck": true, 
+                    "Placement": {
+                        "Tenancy": "default", 
+                        "GroupName": "dario", 
+                        "AvailabilityZone": "us-east-1b"
+                    }, 
+                    "Hypervisor": "xen", 
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/sda1", 
+                            "Ebs": {
+                                "Status": "attached", 
+                                "DeleteOnTermination": true, 
+                                "VolumeId": "vol-5222aa4a", 
+                                "AttachTime": "2014-11-26T09:33:30.000Z"
+                            }
+                        }
+                    ], 
+                    "Architecture": "x86_64", 
+                    "RootDeviceType": "ebs", 
+                    "RootDeviceName": "/dev/sda1", 
+                    "VirtualizationType": "hvm", 
+                    "Tags": [
+                        {
+                            "Value": "database2", 
+                            "Key": "Name"
+                        }
+                    ], 
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        }, 
+        {
+            "OwnerId": "407162488522", 
+            "ReservationId": "r-333b5a1f", 
+            "Groups": [], 
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    }, 
+                    "PublicDnsName": null, 
+                    "State": {
+                        "Code": 16, 
+                        "Name": "running"
+                    }, 
+                    "EbsOptimized": false, 
+                    "LaunchTime": "2014-11-26T09:31:42.000Z", 
+                    "PublicIpAddress": "54.174.95.191", 
+                    "PrivateIpAddress": "192.168.1.185", 
+                    "ProductCodes": [], 
+                    "VpcId": "vpc-3fa61e5a", 
+                    "StateTransitionReason": null, 
+                    "InstanceId": "i-ad142a43", 
+                    "ImageId": "ami-9eaa1cf6", 
+                    "PrivateDnsName": "ip-192-168-1-185.ec2.internal", 
+                    "KeyName": "dario-mac-shuttl", 
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "shuttle", 
+                            "GroupId": "sg-c386b0a6"
+                        }
+                    ], 
+                    "ClientToken": "oTGoE1413890924660", 
+                    "SubnetId": "subnet-be9e8696", 
+                    "InstanceType": "c3.xlarge", 
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use", 
+                            "MacAddress": "12:fa:74:8e:d0:6d", 
+                            "SourceDestCheck": true, 
+                            "VpcId": "vpc-3fa61e5a", 
+                            "Description": "Primary network interface", 
+                            "Association": {
+                                "PublicIp": "54.174.95.191", 
+                                "PublicDnsName": null, 
+                                "IpOwnerId": "amazon"
+                            }, 
+                            "NetworkInterfaceId": "eni-1765de3d", 
+                            "PrivateIpAddresses": [
+                                {
+                                    "Association": {
+                                        "PublicIp": "54.174.95.191", 
+                                        "PublicDnsName": null, 
+                                        "IpOwnerId": "amazon"
+                                    }, 
+                                    "Primary": true, 
+                                    "PrivateIpAddress": "192.168.1.185"
+                                }
+                            ], 
+                            "Attachment": {
+                                "Status": "attached", 
+                                "DeviceIndex": 0, 
+                                "DeleteOnTermination": true, 
+                                "AttachmentId": "eni-attach-9a54f1e7", 
+                                "AttachTime": "2014-10-21T11:28:45.000Z"
+                            }, 
+                            "Groups": [
+                                {
+                                    "GroupName": "shuttle", 
+                                    "GroupId": "sg-c386b0a6"
+                                }
+                            ], 
+                            "SubnetId": "subnet-be9e8696", 
+                            "OwnerId": "407162488522", 
+                            "PrivateIpAddress": "192.168.1.185"
+                        }
+                    ], 
+                    "SourceDestCheck": true, 
+                    "Placement": {
+                        "Tenancy": "default", 
+                        "GroupName": "dario", 
+                        "AvailabilityZone": "us-east-1b"
+                    }, 
+                    "Hypervisor": "xen", 
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/sda1", 
+                            "Ebs": {
+                                "Status": "attached", 
+                                "DeleteOnTermination": true, 
+                                "VolumeId": "vol-db051bc2", 
+                                "AttachTime": "2014-10-21T11:28:50.000Z"
+                            }
+                        }
+                    ], 
+                    "Architecture": "x86_64", 
+                    "RootDeviceType": "ebs", 
+                    "RootDeviceName": "/dev/sda1", 
+                    "VirtualizationType": "hvm", 
+                    "Tags": [
+                        {
+                            "Value": "manager", 
+                            "Key": "Name"
+                        }
+                    ], 
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        }, 
+        {
+            "OwnerId": "407162488522", 
+            "ReservationId": "r-b762a259", 
+            "Groups": [], 
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    }, 
+                    "PublicDnsName": null, 
+                    "State": {
+                        "Code": 16, 
+                        "Name": "running"
+                    }, 
+                    "EbsOptimized": false, 
+                    "LaunchTime": "2014-11-26T13:32:30.000Z", 
+                    "PublicIpAddress": "54.174.20.244", 
+                    "PrivateIpAddress": "192.168.1.246", 
+                    "ProductCodes": [], 
+                    "VpcId": "vpc-3fa61e5a", 
+                    "StateTransitionReason": null, 
+                    "InstanceId": "i-e7befb06", 
+                    "ImageId": "ami-22cb574a", 
+                    "PrivateDnsName": "ip-192-168-1-246.ec2.internal", 
+                    "KeyName": "dario-mac-shuttl", 
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "shuttle", 
+                            "GroupId": "sg-c386b0a6"
+                        }
+                    ], 
+                    "ClientToken": "Clxed1417008748924", 
+                    "SubnetId": "subnet-be9e8696", 
+                    "InstanceType": "c3.large", 
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use", 
+                            "MacAddress": "12:51:06:46:7c:fc", 
+                            "SourceDestCheck": true, 
+                            "VpcId": "vpc-3fa61e5a", 
+                            "Description": "Primary network interface", 
+                            "Association": {
+                                "PublicIp": "54.174.20.244", 
+                                "PublicDnsName": null, 
+                                "IpOwnerId": "amazon"
+                            }, 
+                            "NetworkInterfaceId": "eni-4719456d", 
+                            "PrivateIpAddresses": [
+                                {
+                                    "Association": {
+                                        "PublicIp": "54.174.20.244", 
+                                        "PublicDnsName": null, 
+                                        "IpOwnerId": "amazon"
+                                    }, 
+                                    "Primary": true, 
+                                    "PrivateIpAddress": "192.168.1.246"
+                                }
+                            ], 
+                            "Attachment": {
+                                "Status": "attached", 
+                                "DeviceIndex": 0, 
+                                "DeleteOnTermination": true, 
+                                "AttachmentId": "eni-attach-8e6808f3", 
+                                "AttachTime": "2014-11-26T13:32:30.000Z"
+                            }, 
+                            "Groups": [
+                                {
+                                    "GroupName": "shuttle", 
+                                    "GroupId": "sg-c386b0a6"
+                                }
+                            ], 
+                            "SubnetId": "subnet-be9e8696", 
+                            "OwnerId": "407162488522", 
+                            "PrivateIpAddress": "192.168.1.246"
+                        }
+                    ], 
+                    "SourceDestCheck": true, 
+                    "Placement": {
+                        "Tenancy": "default", 
+                        "GroupName": "dario", 
+                        "AvailabilityZone": "us-east-1b"
+                    }, 
+                    "Hypervisor": "xen", 
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/sda1", 
+                            "Ebs": {
+                                "Status": "attached", 
+                                "DeleteOnTermination": true, 
+                                "VolumeId": "vol-0e4ac116", 
+                                "AttachTime": "2014-11-26T13:32:34.000Z"
+                            }
+                        }
+                    ], 
+                    "Architecture": "x86_64", 
+                    "RootDeviceType": "ebs", 
+                    "RootDeviceName": "/dev/sda1", 
+                    "VirtualizationType": "hvm", 
+                    "Tags": [
+                        {
+                            "Value": null, 
+                            "Key": "Name"
+                        }
+                    ], 
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        }, 
+        {
+            "OwnerId": "407162488522", 
+            "ReservationId": "r-c625e528", 
+            "Groups": [], 
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    }, 
+                    "PublicDnsName": null, 
+                    "State": {
+                        "Code": 16, 
+                        "Name": "running"
+                    }, 
+                    "EbsOptimized": false, 
+                    "LaunchTime": "2014-11-26T12:08:31.000Z", 
+                    "PublicIpAddress": "54.86.175.149", 
+                    "PrivateIpAddress": "192.168.1.240", 
+                    "ProductCodes": [], 
+                    "VpcId": "vpc-3fa61e5a", 
+                    "StateTransitionReason": null, 
+                    "InstanceId": "i-075613e6", 
+                    "ImageId": "ami-22cb574a", 
+                    "PrivateDnsName": "ip-192-168-1-240.ec2.internal", 
+                    "KeyName": "dario-mac-shuttl", 
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "shuttle", 
+                            "GroupId": "sg-c386b0a6"
+                        }
+                    ], 
+                    "ClientToken": "WAhTY1417003692957", 
+                    "SubnetId": "subnet-be9e8696", 
+                    "InstanceType": "c3.large", 
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use", 
+                            "MacAddress": "12:6e:e1:28:6c:06", 
+                            "SourceDestCheck": true, 
+                            "VpcId": "vpc-3fa61e5a", 
+                            "Description": "Primary network interface", 
+                            "Association": {
+                                "PublicIp": "54.86.175.149", 
+                                "PublicDnsName": null, 
+                                "IpOwnerId": "amazon"
+                            }, 
+                            "NetworkInterfaceId": "eni-33c19c19", 
+                            "PrivateIpAddresses": [
+                                {
+                                    "Association": {
+                                        "PublicIp": "54.86.175.149", 
+                                        "PublicDnsName": null, 
+                                        "IpOwnerId": "amazon"
+                                    }, 
+                                    "Primary": true, 
+                                    "PrivateIpAddress": "192.168.1.240"
+                                }
+                            ], 
+                            "Attachment": {
+                                "Status": "attached", 
+                                "DeviceIndex": 0, 
+                                "DeleteOnTermination": true, 
+                                "AttachmentId": "eni-attach-4706663a", 
+                                "AttachTime": "2014-11-26T12:08:31.000Z"
+                            }, 
+                            "Groups": [
+                                {
+                                    "GroupName": "shuttle", 
+                                    "GroupId": "sg-c386b0a6"
+                                }
+                            ], 
+                            "SubnetId": "subnet-be9e8696", 
+                            "OwnerId": "407162488522", 
+                            "PrivateIpAddress": "192.168.1.240"
+                        }
+                    ], 
+                    "SourceDestCheck": true, 
+                    "Placement": {
+                        "Tenancy": "default", 
+                        "GroupName": "dario", 
+                        "AvailabilityZone": "us-east-1b"
+                    }, 
+                    "Hypervisor": "xen", 
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/sda1", 
+                            "Ebs": {
+                                "Status": "attached", 
+                                "DeleteOnTermination": true, 
+                                "VolumeId": "vol-89810a91", 
+                                "AttachTime": "2014-11-26T12:08:34.000Z"
+                            }
+                        }
+                    ], 
+                    "Architecture": "x86_64", 
+                    "RootDeviceType": "ebs", 
+                    "RootDeviceName": "/dev/sda1", 
+                    "VirtualizationType": "hvm", 
+                    "Tags": [
+                        {
+                            "Value": null, 
+                            "Key": "Name"
+                        }
+                    ], 
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        }, 
+        {
+            "OwnerId": "407162488522", 
+            "ReservationId": "r-821bb8ae", 
+            "Groups": [], 
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    }, 
+                    "PublicDnsName": null, 
+                    "State": {
+                        "Code": 16, 
+                        "Name": "running"
+                    }, 
+                    "EbsOptimized": false, 
+                    "LaunchTime": "2014-11-26T09:31:42.000Z", 
+                    "PublicIpAddress": "54.174.96.242", 
+                    "PrivateIpAddress": "192.168.1.87", 
+                    "ProductCodes": [], 
+                    "VpcId": "vpc-3fa61e5a", 
+                    "StateTransitionReason": null, 
+                    "InstanceId": "i-c6ef8e28", 
+                    "ImageId": "ami-0070c468", 
+                    "PrivateDnsName": "ip-192-168-1-87.ec2.internal", 
+                    "KeyName": "dario-mac-shuttl", 
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "shuttle", 
+                            "GroupId": "sg-c386b0a6"
+                        }
+                    ], 
+                    "ClientToken": "CIWaO1412337077563", 
+                    "SubnetId": "subnet-be9e8696", 
+                    "InstanceType": "c3.xlarge", 
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use", 
+                            "MacAddress": "12:d1:48:a8:74:25", 
+                            "SourceDestCheck": true, 
+                            "VpcId": "vpc-3fa61e5a", 
+                            "Description": "Primary network interface", 
+                            "Association": {
+                                "PublicIp": "54.174.96.242", 
+                                "PublicDnsName": null, 
+                                "IpOwnerId": "amazon"
+                            }, 
+                            "NetworkInterfaceId": "eni-e367bbc9", 
+                            "PrivateIpAddresses": [
+                                {
+                                    "Association": {
+                                        "PublicIp": "54.174.96.242", 
+                                        "PublicDnsName": null, 
+                                        "IpOwnerId": "amazon"
+                                    }, 
+                                    "Primary": true, 
+                                    "PrivateIpAddress": "192.168.1.87"
+                                }
+                            ], 
+                            "Attachment": {
+                                "Status": "attached", 
+                                "DeviceIndex": 0, 
+                                "DeleteOnTermination": true, 
+                                "AttachmentId": "eni-attach-0e37f173", 
+                                "AttachTime": "2014-10-03T11:51:18.000Z"
+                            }, 
+                            "Groups": [
+                                {
+                                    "GroupName": "shuttle", 
+                                    "GroupId": "sg-c386b0a6"
+                                }
+                            ], 
+                            "SubnetId": "subnet-be9e8696", 
+                            "OwnerId": "407162488522", 
+                            "PrivateIpAddress": "192.168.1.87"
+                        }
+                    ], 
+                    "SourceDestCheck": true, 
+                    "Placement": {
+                        "Tenancy": "default", 
+                        "GroupName": "dario", 
+                        "AvailabilityZone": "us-east-1b"
+                    }, 
+                    "Hypervisor": "xen", 
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/sda1", 
+                            "Ebs": {
+                                "Status": "attached", 
+                                "DeleteOnTermination": true, 
+                                "VolumeId": "vol-9544698c", 
+                                "AttachTime": "2014-10-03T11:51:21.000Z"
+                            }
+                        }
+                    ], 
+                    "Architecture": "x86_64", 
+                    "RootDeviceType": "ebs", 
+                    "RootDeviceName": "/dev/sda1", 
+                    "VirtualizationType": "hvm", 
+                    "Tags": [
+                        {
+                            "Value": "database", 
+                            "Key": "Name"
+                        }
+                    ], 
+                    "AmiLaunchIndex": 0
+                }, 
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    }, 
+                    "PublicDnsName": null, 
+                    "State": {
+                        "Code": 16, 
+                        "Name": "running"
+                    }, 
+                    "EbsOptimized": false, 
+                    "LaunchTime": "2014-11-26T09:31:42.000Z", 
+                    "PublicIpAddress": "54.173.19.72", 
+                    "PrivateIpAddress": "192.168.1.89", 
+                    "ProductCodes": [], 
+                    "VpcId": "vpc-3fa61e5a", 
+                    "StateTransitionReason": null, 
+                    "InstanceId": "i-c4ef8e2a", 
+                    "ImageId": "ami-0070c468", 
+                    "PrivateDnsName": "ip-192-168-1-89.ec2.internal", 
+                    "KeyName": "dario-mac-shuttl", 
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "shuttle", 
+                            "GroupId": "sg-c386b0a6"
+                        }
+                    ], 
+                    "ClientToken": "CIWaO1412337077563", 
+                    "SubnetId": "subnet-be9e8696", 
+                    "InstanceType": "c3.xlarge", 
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use", 
+                            "MacAddress": "12:71:c6:b4:c6:ac", 
+                            "SourceDestCheck": true, 
+                            "VpcId": "vpc-3fa61e5a", 
+                            "Description": "Primary network interface", 
+                            "Association": {
+                                "PublicIp": "54.173.19.72", 
+                                "PublicDnsName": null, 
+                                "IpOwnerId": "amazon"
+                            }, 
+                            "NetworkInterfaceId": "eni-e167bbcb", 
+                            "PrivateIpAddresses": [
+                                {
+                                    "Association": {
+                                        "PublicIp": "54.173.19.72", 
+                                        "PublicDnsName": null, 
+                                        "IpOwnerId": "amazon"
+                                    }, 
+                                    "Primary": true, 
+                                    "PrivateIpAddress": "192.168.1.89"
+                                }
+                            ], 
+                            "Attachment": {
+                                "Status": "attached", 
+                                "DeviceIndex": 0, 
+                                "DeleteOnTermination": true, 
+                                "AttachmentId": "eni-attach-0f37f172", 
+                                "AttachTime": "2014-10-03T11:51:18.000Z"
+                            }, 
+                            "Groups": [
+                                {
+                                    "GroupName": "shuttle", 
+                                    "GroupId": "sg-c386b0a6"
+                                }
+                            ], 
+                            "SubnetId": "subnet-be9e8696", 
+                            "OwnerId": "407162488522", 
+                            "PrivateIpAddress": "192.168.1.89"
+                        }
+                    ], 
+                    "SourceDestCheck": true, 
+                    "Placement": {
+                        "Tenancy": "default", 
+                        "GroupName": "dario", 
+                        "AvailabilityZone": "us-east-1b"
+                    }, 
+                    "Hypervisor": "xen", 
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/sda1", 
+                            "Ebs": {
+                                "Status": "attached", 
+                                "DeleteOnTermination": true, 
+                                "VolumeId": "vol-c24469db", 
+                                "AttachTime": "2014-10-03T11:51:22.000Z"
+                            }
+                        }
+                    ], 
+                    "Architecture": "x86_64", 
+                    "RootDeviceType": "ebs", 
+                    "RootDeviceName": "/dev/sda1", 
+                    "VirtualizationType": "hvm", 
+                    "Tags": [
+                        {
+                            "Value": "web", 
+                            "Key": "Name"
+                        }
+                    ], 
+                    "AmiLaunchIndex": 1
+                }, 
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    }, 
+                    "PublicDnsName": null, 
+                    "State": {
+                        "Code": 16, 
+                        "Name": "running"
+                    }, 
+                    "EbsOptimized": false, 
+                    "LaunchTime": "2014-11-26T09:31:42.000Z", 
+                    "PublicIpAddress": "54.174.96.11", 
+                    "PrivateIpAddress": "192.168.1.88", 
+                    "ProductCodes": [], 
+                    "VpcId": "vpc-3fa61e5a", 
+                    "StateTransitionReason": null, 
+                    "InstanceId": "i-c2ef8e2c", 
+                    "ImageId": "ami-0070c468", 
+                    "PrivateDnsName": "ip-192-168-1-88.ec2.internal", 
+                    "KeyName": "dario-mac-shuttl", 
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "shuttle", 
+                            "GroupId": "sg-c386b0a6"
+                        }
+                    ], 
+                    "ClientToken": "CIWaO1412337077563", 
+                    "SubnetId": "subnet-be9e8696", 
+                    "InstanceType": "c3.xlarge", 
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use", 
+                            "MacAddress": "12:57:ec:2a:cc:78", 
+                            "SourceDestCheck": true, 
+                            "VpcId": "vpc-3fa61e5a", 
+                            "Description": "Primary network interface", 
+                            "Association": {
+                                "PublicIp": "54.174.96.11", 
+                                "PublicDnsName": null, 
+                                "IpOwnerId": "amazon"
+                            }, 
+                            "NetworkInterfaceId": "eni-e067bbca", 
+                            "PrivateIpAddresses": [
+                                {
+                                    "Association": {
+                                        "PublicIp": "54.174.96.11", 
+                                        "PublicDnsName": null, 
+                                        "IpOwnerId": "amazon"
+                                    }, 
+                                    "Primary": true, 
+                                    "PrivateIpAddress": "192.168.1.88"
+                                }
+                            ], 
+                            "Attachment": {
+                                "Status": "attached", 
+                                "DeviceIndex": 0, 
+                                "DeleteOnTermination": true, 
+                                "AttachmentId": "eni-attach-1037f16d", 
+                                "AttachTime": "2014-10-03T11:51:18.000Z"
+                            }, 
+                            "Groups": [
+                                {
+                                    "GroupName": "shuttle", 
+                                    "GroupId": "sg-c386b0a6"
+                                }
+                            ], 
+                            "SubnetId": "subnet-be9e8696", 
+                            "OwnerId": "407162488522", 
+                            "PrivateIpAddress": "192.168.1.88"
+                        }
+                    ], 
+                    "SourceDestCheck": true, 
+                    "Placement": {
+                        "Tenancy": "default", 
+                        "GroupName": "dario", 
+                        "AvailabilityZone": "us-east-1b"
+                    }, 
+                    "Hypervisor": "xen", 
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/sda1", 
+                            "Ebs": {
+                                "Status": "attached", 
+                                "DeleteOnTermination": true, 
+                                "VolumeId": "vol-9a446983", 
+                                "AttachTime": "2014-10-03T11:51:30.000Z"
+                            }
+                        }
+                    ], 
+                    "Architecture": "x86_64", 
+                    "RootDeviceType": "ebs", 
+                    "RootDeviceName": "/dev/sda1", 
+                    "VirtualizationType": "hvm", 
+                    "Tags": [
+                        {
+                            "Value": "proxy", 
+                            "Key": "Name"
+                        }
+                    ], 
+                    "AmiLaunchIndex": 3
+                }, 
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    }, 
+                    "PublicDnsName": null, 
+                    "State": {
+                        "Code": 16, 
+                        "Name": "running"
+                    }, 
+                    "EbsOptimized": false, 
+                    "LaunchTime": "2014-11-26T09:31:42.000Z", 
+                    "PublicIpAddress": "54.174.96.93", 
+                    "PrivateIpAddress": "192.168.1.90", 
+                    "ProductCodes": [], 
+                    "VpcId": "vpc-3fa61e5a", 
+                    "StateTransitionReason": null, 
+                    "InstanceId": "i-c3ef8e2d", 
+                    "ImageId": "ami-0070c468", 
+                    "PrivateDnsName": "ip-192-168-1-90.ec2.internal", 
+                    "KeyName": "dario-mac-shuttl", 
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "shuttle", 
+                            "GroupId": "sg-c386b0a6"
+                        }
+                    ], 
+                    "ClientToken": "CIWaO1412337077563", 
+                    "SubnetId": "subnet-be9e8696", 
+                    "InstanceType": "c3.xlarge", 
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use", 
+                            "MacAddress": "12:77:36:c6:3a:3b", 
+                            "SourceDestCheck": true, 
+                            "VpcId": "vpc-3fa61e5a", 
+                            "Description": "Primary network interface", 
+                            "Association": {
+                                "PublicIp": "54.174.96.93", 
+                                "PublicDnsName": null, 
+                                "IpOwnerId": "amazon"
+                            }, 
+                            "NetworkInterfaceId": "eni-e667bbcc", 
+                            "PrivateIpAddresses": [
+                                {
+                                    "Association": {
+                                        "PublicIp": "54.174.96.93", 
+                                        "PublicDnsName": null, 
+                                        "IpOwnerId": "amazon"
+                                    }, 
+                                    "Primary": true, 
+                                    "PrivateIpAddress": "192.168.1.90"
+                                }
+                            ], 
+                            "Attachment": {
+                                "Status": "attached", 
+                                "DeviceIndex": 0, 
+                                "DeleteOnTermination": true, 
+                                "AttachmentId": "eni-attach-1137f16c", 
+                                "AttachTime": "2014-10-03T11:51:18.000Z"
+                            }, 
+                            "Groups": [
+                                {
+                                    "GroupName": "shuttle", 
+                                    "GroupId": "sg-c386b0a6"
+                                }
+                            ], 
+                            "SubnetId": "subnet-be9e8696", 
+                            "OwnerId": "407162488522", 
+                            "PrivateIpAddress": "192.168.1.90"
+                        }
+                    ], 
+                    "SourceDestCheck": true, 
+                    "Placement": {
+                        "Tenancy": "default", 
+                        "GroupName": "dario", 
+                        "AvailabilityZone": "us-east-1b"
+                    }, 
+                    "Hypervisor": "xen", 
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/sda1", 
+                            "Ebs": {
+                                "Status": "attached", 
+                                "DeleteOnTermination": true, 
+                                "VolumeId": "vol-8744699e", 
+                                "AttachTime": "2014-10-03T11:51:21.000Z"
+                            }
+                        }
+                    ], 
+                    "Architecture": "x86_64", 
+                    "RootDeviceType": "ebs", 
+                    "RootDeviceName": "/dev/sda1", 
+                    "VirtualizationType": "hvm", 
+                    "Tags": [
+                        {
+                            "Value": "client", 
+                            "Key": "Name"
+                        }
+                    ], 
+                    "AmiLaunchIndex": 2
+                }
+            ]
+        }, 
+        {
+            "OwnerId": "407162488522", 
+            "ReservationId": "r-695c9b87", 
+            "Groups": [], 
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    }, 
+                    "PublicDnsName": null, 
+                    "State": {
+                        "Code": 16, 
+                        "Name": "running"
+                    }, 
+                    "EbsOptimized": false, 
+                    "LaunchTime": "2014-11-26T09:31:42.000Z", 
+                    "PublicIpAddress": "54.174.97.136", 
+                    "PrivateIpAddress": "192.168.1.142", 
+                    "ProductCodes": [], 
+                    "VpcId": "vpc-3fa61e5a", 
+                    "StateTransitionReason": null, 
+                    "InstanceId": "i-e3d1af02", 
+                    "ImageId": "ami-22cb574a", 
+                    "PrivateDnsName": "ip-192-168-1-142.ec2.internal", 
+                    "KeyName": "dario-mac-shuttl", 
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "shuttle", 
+                            "GroupId": "sg-c386b0a6"
+                        }
+                    ], 
+                    "ClientToken": "yidNh1416946869248", 
+                    "SubnetId": "subnet-be9e8696", 
+                    "InstanceType": "c3.large", 
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use", 
+                            "MacAddress": "12:a7:be:e1:8c:74", 
+                            "SourceDestCheck": true, 
+                            "VpcId": "vpc-3fa61e5a", 
+                            "Description": "Primary network interface", 
+                            "Association": {
+                                "PublicIp": "54.174.97.136", 
+                                "PublicDnsName": null, 
+                                "IpOwnerId": "amazon"
+                            }, 
+                            "NetworkInterfaceId": "eni-74fead5e", 
+                            "PrivateIpAddresses": [
+                                {
+                                    "Association": {
+                                        "PublicIp": "54.174.97.136", 
+                                        "PublicDnsName": null, 
+                                        "IpOwnerId": "amazon"
+                                    }, 
+                                    "Primary": true, 
+                                    "PrivateIpAddress": "192.168.1.142"
+                                }
+                            ], 
+                            "Attachment": {
+                                "Status": "attached", 
+                                "DeviceIndex": 0, 
+                                "DeleteOnTermination": true, 
+                                "AttachmentId": "eni-attach-5f553322", 
+                                "AttachTime": "2014-11-25T20:21:10.000Z"
+                            }, 
+                            "Groups": [
+                                {
+                                    "GroupName": "shuttle", 
+                                    "GroupId": "sg-c386b0a6"
+                                }
+                            ], 
+                            "SubnetId": "subnet-be9e8696", 
+                            "OwnerId": "407162488522", 
+                            "PrivateIpAddress": "192.168.1.142"
+                        }
+                    ], 
+                    "SourceDestCheck": true, 
+                    "Placement": {
+                        "Tenancy": "default", 
+                        "GroupName": "dario", 
+                        "AvailabilityZone": "us-east-1b"
+                    }, 
+                    "Hypervisor": "xen", 
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/sda1", 
+                            "Ebs": {
+                                "Status": "attached", 
+                                "DeleteOnTermination": true, 
+                                "VolumeId": "vol-58038d40", 
+                                "AttachTime": "2014-11-25T20:21:13.000Z"
+                            }
+                        }
+                    ], 
+                    "Architecture": "x86_64", 
+                    "RootDeviceType": "ebs", 
+                    "RootDeviceName": "/dev/sda1", 
+                    "VirtualizationType": "hvm", 
+                    "Tags": [
+                        {
+                            "Value": "server1", 
+                            "Key": "Name"
+                        }
+                    ], 
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        }
+    ]
+}

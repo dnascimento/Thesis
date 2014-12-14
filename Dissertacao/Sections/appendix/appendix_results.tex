@@ -1,0 +1,32 @@
+%!TEX root = ../../tese.tex
+%!TEX encoding = UTF-8 Unicode
+\chapter{Measurements}
+
+\section{Recovery performance}\label{appendix:results}
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrr|R{3cm}R{3cm}R{3cm}}
+\bf{App}& \bf{Replay}&\bf{DB}&\bf{Cassandra}&\bf{Duration to Replay (secs)} & \bf{Duration of First Execution (secs)} &\bf{Latency of First Execution (ms)} \\ \hline
+1 		& 1 	& 1 	& 1 		& 947 {[}1055{]}        & 1171{[}853{]}        & 27.5 {[}54.09{]}     \\
+\\
+2 		& 1 	& 1 	& 1 		& 602 {[}1658{]} 		& 655 {[}1525{]}       & 15.15 {[}26.68{]}     \\
+2 		& 2 	& 2 	& 2 		& 575{[}1739{]} 		& 777 {[}1286{]}       & 18.14 {[}36.36{]}     \\
+\\
+3 		& 1 	& 1 	& 1 		& 417 {[}2392{]} 		& 586 {[}1705{]}       & 13.46 {[}24.18{]}     \\
+3 		& 2 	& 2 	& 2 		& 380 {[}2631{]} 		& 541 {[}1848{]}       & 15.21 {[}26.12{]}     \\%
+\\
+4 		& 1 	& 1 	& 1 		& 337 {[}2959{]} 		& 473 {[}2112{]}       & 10.68 {[}17.85{]}     \\
+4 		& 2 	& 2 	& 2 		& 335 {[}2985{]} 		& 452 {[}2212{]}       & 11.12 {[}15.54{]}     \\%
+\\
+5 		& 1 	& 1 	& 1 		& 342 {[}2921{]} 		& 447 {[}2235{]}       & 10.06 {[}16.95{]}     \\
+5 		& 1 	& 1 	& 2 		& 315 {[}3164{]} 		& 493 {[}2025{]}       & 11.18 {[}18.80{]}     \\
+5 		& 2 	& 2 	& 2 		& 297 {[}3367{]} 		& 505 {[}1980{]}       & 12.21 {[}17.22{]}     \\%
+\\
+6 		& 1 	& 1 	& 2 		& 291 {[}3434{]} 		& 453 {[}2005{]}       & 10.18 {[}16.73{]}     \\ 
+6 		& 2 	& 1 	& 2 		& 259 {[}3861{]} 		& 436 {[}2293{]}       & 9.65  {[}16.24{]}     \\
+6 		& 2 	& 2 	& 2 		& 305 {[}3278{]} 		& 493 {[}2026{]}       & 11.16 {[}18.77{]}     \\
+\end{tabular}
+  \caption[Recovery duration]{Recovery duration (request throughput between parenthesis). Duration and latency on first execution (request throughput and 95th percentile between parenthesis, respectively). %considering variable number of database and web-server instances.
+  }
+  \label{tab:appendix:performance}
+\end{table}

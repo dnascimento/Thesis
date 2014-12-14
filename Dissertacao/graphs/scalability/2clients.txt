@@ -1,0 +1,8 @@
+#App 		#DB	 #time to recover  #2cassandra todos
+1 			2 	  				   
+2 	 		2 	 575 		
+3 	 		2 	 380 
+4 	 		2 	 335 
+5 	 		2 	 297 
+6 	 		2 	 305 
+6 	 		1 	 259 

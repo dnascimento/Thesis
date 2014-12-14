@@ -1,0 +1,15 @@
+set terminal epslatex solid
+set output 'grafico.tex'
+
+set xlabel "Number of requests"
+set ylabel "Recovery time (ms)"
+
+set style function linespoints
+set style line 1 lw 4 lc rgb "black" ps 2 pt 3
+set style line 2 lw 3 lc rgb "black" ps 2 pt 5
+set style line 3 lw 3 lc rgb "black" ps 2 pt 4
+set style line 4 lw 4 lc rgb "black" ps 2 pt 1
+set style line 5 lw 4 lc rgb "black" ps 2 pt 9
+
+
+plot '1.txt' with linespoints title '1 Cluster' ls 1,  '2.txt' with linespoints title '2 Clusters' ls 2,  '3.txt' with linespoints title '3 Cluster' ls 3,  '4.txt' with linespoints title '4 Clusters' ls 4, '5.txt' with linespoints title '5 Clusters' ls 5

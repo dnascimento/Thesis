@@ -1,0 +1,75 @@
+%---------------------------------------------------------------------
+\section{Proposed Solution}
+\begin{frame}[t]{Problems}
+	\begin{itemize}
+		\item \textbf{Scalability}
+		\begin{itemize}
+		  \item Single database and server
+		\end{itemize}
+		\item \textbf{Integration}
+		\begin{itemize}
+		  \item Lack of generic application support
+		  \item Configuration per application
+		\end{itemize}
+		\item \textbf{Application downtime}
+	\end{itemize}
+\note{
+Contudo as soluções actuais não têm em conta o novo paradigma de cloud. As soluções visam apenas sistemas constituidos por uma unica maquina no caso do OS, uma base de dados transacional ou no caso das webapps apenas um servidor e uma database transacional. Isto não só não é escalável para as novas aplicações web como também incorre do problema de que caso o sistema seja atacado, o sistema de recuperação está vulnerável. Mais, as soluções actuais exigem que os administradores de sistema instalem e configurem o sistema para cada aplicação. Visto que os administradores de sistemas, enquanto humanos, cometem erros e que estes sistemas raramente são testados, configurar um serviço de recuperação para cada aplicação é um risco.
+A maioria das soluções actuais requer que a aplicação seja desligada para que o sistema possa recuperar das intrusões e isso pode ter custos elevados.
+} 
+\end{frame}
+
+%---------------------------------------------------------------------------
+
+%----------------------
+\subsection{Goals}
+\begin{frame}[t]{Project Goals}
+	\textbf{Shuttle: Intrusion recovery service for PaaS}
+	\vspace{10pt}
+	\begin{itemize}
+	\item PaaS Integration
+		\begin{itemize}
+		\setlength{\wideitemsep}{0.3cm}
+		\item Standard architecture for Web Applications  
+		\item Service-oriented database access through provided libraries
+		\item Service available without setup and configuration 
+		\end{itemize}
+	\item NoSQL databases
+	\end{itemize}
+	\note{
+	Tendo em conta estes problemas, apresentamos Shuttle. Shuttle é um serviço para Platform as a Service que permite aos developers recuperar as suas applicações sem terem de criar, instalar e configurar um sistema de recuperação de intrusões. Mais, dado o ambiente de Platform as a Service, este serviço suporta multiplas instâncias aplicacionais ou de bases de dados, resolvendo os problemas de escalabilidade das soluções actuais. As capacidades computacionais e de storage da Cloud são uma excelente opção para recuperar as aplicações porque disponibiliza um número virtualmente ilimitado de instâncias para executar o processo de recuperação e que são pagas apenas durante a sua utilização.
+
+	Mais, o modelo PaaS tem uma arquitectura padrão que é partilhada pelas várias aplicações e as bases de dados são acedidas através de bibliotecas disponibilizadas pelos providers.
+
+	Outro objectivo, é integrar o Shuttle numa base de dados NoSQL para que possa escalar e servir várias aplicações em simultanêo.
+
+}
+\end{frame}
+
+%----------------------
+\begin{frame}[t]{Project Goals}
+	Remove the effects of:    \\
+	\vspace{2ex}
+	\begin{itemize}
+	\item Software flaws
+	\item Corrupted requests and data
+	\item Intrusions in PaaS instances
+	\end{itemize}
+	\note{
+	O Shuttle irá portanto remover os efeitos de falhas de software, pedidos e dados corrompidos e ainda remover as intrusões que existem dentro dos containers de PaaS em que o software corre, por exemplo: máquinas virtuais.
+	}
+\end{frame}
+
+%----------------------
+\begin{frame}[t]{Project Goals}
+	\begin{itemize}
+	\item Support software updates
+	\item Low runtime overhead
+	\item NoSQL database snapshot
+	\item Recover without stopping the application
+	\end{itemize}
+	\note{
+	Para isso, a nossa proposta irá ainda suportar actualizações de software, por exemplo para corrigir vulnerabilidades. Para que seja utilizável, irá ter um overhead minimo na execução do sistema, realizar snapshots da base de dados para reduzir o número de acções a re-executar e conseguir recuperar sem ter de parar a execução da aplicação.
+	}
+\end{frame}
+

@@ -1,0 +1,38 @@
+
+Shuttle obtains the set of malicious requests from the set of corrupted data items using a Backtracking \cite{backtracker} like mechanism or tracking the invoked code files per-request on interpreted languages \cite{poirot,warp}. 
+
+
+
+While previous works aimed to perform intrusion recovery in applications with a single database, Shuttle targets PaaS applications which are deployed in multiple containers and backed by SQL or NoSQL databases. Since typical PaaS applications are designed to support high usage loads, our main contribution is a scalable intrusion recovery service which is transparent for application developers.
+
+
+Shuttle does not concern the dependencies on client browser, i.e., users can not change their request during the recovery phase if the response is different. The request must be updated by the system administrator a priori.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%!TEX root = ../paper.tex
+%!TEX encoding = UTF-8 Unicode
+
+\section{Evaluation}
+
+
+%TODO: Deployment conditions
+
+
+\subsection{Application Example: Ask}
+
+
+
+\subsection{Normal Execution}
+Usar NoSQL storages permite que os recursos extra necessários para fazer o tracking dos acessos impliquem apenas mais X\% de instancias, o que pode ter um custo negligenciavel.

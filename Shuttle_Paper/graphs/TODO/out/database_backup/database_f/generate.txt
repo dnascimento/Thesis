@@ -1,0 +1,26 @@
+set terminal epslatex
+
+
+set style function linespoints
+set style line 1 lw 4 lc rgb "black" ps 3 pt 3
+set style line 2 lw 3 lc rgb "black" ps 3 pt 4
+set xlabel "Throughput (ops/sec)"
+
+
+
+
+set output 'read_modify_write.tex'
+set ylabel "Read Modify Write latency (us)"
+plot 'with_read_modify_write.txt' with linespoints title 'Shuttle' ls 1, 'without_read_modify_write.txt' with linespoints title 'No Shuttle'  ls 2
+
+
+
+set output 'read.tex'
+set ylabel "Read latency (us)"
+plot 'with_read.txt' with linespoints title 'Shuttle' ls 1, 'without_read.txt' with linespoints title 'No Shuttle'  ls 2
+
+
+
+set output 'update.tex'
+set ylabel "Update latency (us)"
+plot 'with_update.txt' with linespoints title 'Shuttle' ls 1, 'without_update.txt' with linespoints title 'No Shuttle'  ls 2

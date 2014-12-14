@@ -1,0 +1,144 @@
+%!TEX program = pdflatex
+%
+%  $Description: INESC ID
+%
+%  $Author: Dario Nascimento $
+%  $Date: 7 Mar 2013
+%  $Revision: 1 $
+%
+%%%%%% ACM %%%%
+%\documentclass[preprint,10pt]{sigplanconf}
+% preprint      Remove this option only once the paper is in final form.
+% 10pt          To set in 10-point type instead of 9-point.
+% authoryear    To obtain author/year citation style instead of numeric.
+%%%%%% ACM END %%%%
+
+%\documentclass[10pt, conference]{IEEEtran}
+\documentclass[10pt,conference]{IEEEtran}
+
+%\addtolength{\topmargin}{-1mm}
+%\addtolength{\topskip}{-1mm}
+%\addtolength{\textheight}{+5mm}
+%\addtolength{\textwidth}{+2mm}
+%\addtolength{\textfloatsep}{-3mm}
+%\addtolength{\columnsep}{-1mm}
+%\addtolength{\topsep}{-1mm}
+%\addtolength{\textfloatsep}{-3mm}
+
+
+
+\usepackage{amsmath}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage{aeguill}
+\usepackage{multirow}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tabu}
+\usepackage{eurosym} %euro symbol
+\usepackage{color} %required to highlight
+\usepackage{soulutf8} %Highlight for teacher
+\usepackage{amsmath} %math symbols
+\usepackage[nolist]{acronym}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage{sidecap} %caption on side of figure
+
+%-------------------------------------------------------------------------
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+%--------------------------------------------------------------------------
+
+\newcommand{\LONG}[1]{}
+
+\begin{document}
+
+%%%%%% ACM
+%\special{papersize=8.5in,11in}
+%\setlength{\pdfpageheight}{\paperheight}
+%\setlength{\pdfpagewidth}{\paperwidth}
+
+% \conferenceinfo{EUROSYS '15}{April 21-24, 2015, Bordeaux, France} 
+% \copyrightyear{2015} 
+% \copyrightdata{978-1-nnnn-nnnn-n/yy/mm} 
+% \doi{nnnnnnn.nnnnnnn}
+
+% Uncomment one of the following two, if you are not going for the traditional copyright transfer agreement.
+%\exclusivelicense                % ACM gets exclusive license to publish, you retain copyright
+%\permissiontopublish             % ACM gets nonexclusive license to publish (paid open-access papers, short abstracts)
+%\titlebanner{banner above paper title}        % These are ignored unless
+%\preprintfooter{Shuttle: Intrusion Recovery for PaaS}   % 'preprint' option specified.
+%%%%%  ACM END
+
+
+
+
+\title{Shuttle: Intrusion Recovery for PaaS}
+%\subtitle{Subtitle Text, if any}
+%a%%%% ACM START %%%%%%%%%%
+%\authorinfo{}
+%\authorinfo{Dario Nascimento, Miguel Correia}
+%           {INESC-ID - Instituto Superior Técnico\\Universidade de Lisboa}
+%           {dario.nascimento,miguel.p.correia@tecnico.ulisboa.pt}
+%%%% ACM end %%%%%%%%
+\author{
+	\IEEEauthorblockN{Dário Nascimento, Miguel Correia}\\
+	\IEEEauthorblockA{INESC-ID, Instituto Superior Técnico, Universidade de Lisboa\\
+	%Lisboa, Portugal\\
+	\{dario.nascimento,miguel.p.correia\}@tecnico.ulisboa.pt}
+	}
+
+\maketitle
+
+% For peer review papers, you can put extra information on the cover page as needed:
+\ifCLASSOPTIONpeerreview
+\begin{center} \bfseries Regular Paper \end{center}
+\fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+\input{./acronim_abreviaturas.tex}
+
+\input{./chapters/0.abstract.tex}
+%\input{./chapters/0.meta.tex}
+\input{./chapters/0.meta_ieee.tex}
+\input{./chapters/1.introduction.tex}
+\input{./chapters/2.formalization.tex}
+\input{./chapters/3.architecture.tex}
+\input{./chapters/4.recovery.tex}
+\input{./chapters/5.evaluation.tex}
+\input{./chapters/6.related_work.tex}
+\input{./chapters/7.conclusion.tex}
+
+%-------------------------------------------------------------------------
+%\appendix
+%\section{Appendix Title}
+%This is the text of the appendix, if you need one.
+
+% \acks
+% This work was supported by INESC-ID - Distributed Systems group and part of RC-Clouds - Resilient Computing in Clouds - research project funded by FCT- Fundação para a Ciência e a Tecnologia (PTDC/EIA-EIA/115211/2009). 
+
+%ACM: \bibliographystyle{abbrvnat}
+\bibliographystyle{IEEEtran}
+
+{\footnotesize
+\bibliography{refs/ALL.bib,refs/manual.bib}
+}
+%\begin{thebibliography}{}
+%\softraggedright
+%\bibitem[Smith et~al.(2009)Smith, Jones]{smith02}
+%P. Q. Smith, and X. Y. Jones. ...reference text...
+%\end{thebibliography}
+
+
+\end{document}
+
+
+
+

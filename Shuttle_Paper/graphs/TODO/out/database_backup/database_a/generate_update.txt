@@ -1,0 +1,11 @@
+set terminal epslatex dashed
+set output 'update.tex'
+
+set xlabel "Throughput (ops/sec)"
+set ylabel "Update latency (us)"
+
+set style function linespoints
+set style line 1 lw 4 lc rgb "black" ps 3 pt 3
+set style line 2 lw 3 lc rgb "black" ps 3 pt 4
+
+plot 'with_update.txt' with linespoints title 'Shuttle' ls 1, 'without_update.txt' with linespoints title 'No Shuttle'  ls 2

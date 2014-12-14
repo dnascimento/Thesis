@@ -1,0 +1,1598 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"re",
+				"sec:recovery:runtime_recovery"
+			],
+			[
+				"arch",
+				"sec:architecture:snapshot"
+			],
+			[
+				"data",
+				"data Akkus2010a: Data recovery for web applications"
+			],
+			[
+				"d",
+				"sec:dependencies"
+			],
+			[
+				"font-h",
+				"font-weight"
+			],
+			[
+				"co",
+				"collapse"
+			],
+			[
+				"V",
+				"VOLDEMORT_EXECUTABLE"
+			],
+			[
+				"INSTA",
+				"instance_info	statement"
+			],
+			[
+				"run",
+				"run_instances"
+			],
+			[
+				"istance",
+				"instances"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"c_menu",
+				"c_menu_gray_text"
+			],
+			[
+				"c_mnu",
+				"c_menu_foreground"
+			],
+			[
+				"c_me",
+				"c_menu_gray_text"
+			],
+			[
+				"dia",
+				"dialog_border"
+			],
+			[
+				"c_",
+				"c_menu_gray_text"
+			],
+			[
+				"backg",
+				"background_img"
+			],
+			[
+				"min-",
+				"min-width"
+			],
+			[
+				"file",
+				"filename	statement"
+			],
+			[
+				"md5",
+				"md5_returned"
+			],
+			[
+				"ope",
+				"openMenu"
+			],
+			[
+				"pad",
+				"padPercentage"
+			],
+			[
+				"margin-",
+				"margin-bottom"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"spo",
+				"sponsors_popup"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"audio",
+				"audioPlayer"
+			],
+			[
+				"con",
+				"content	statement"
+			],
+			[
+				"addContent",
+				"addContentToTop	function"
+			],
+			[
+				"top",
+				"top_entries	statement"
+			],
+			[
+				"News",
+				"Newsletter	class"
+			],
+			[
+				"subca",
+				"subcategory_name"
+			],
+			[
+				"save",
+				"saveFile	function"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"media",
+				"mediaelementplayer"
+			],
+			[
+				"ma",
+				"margin-right"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"pa",
+				"padding-right"
+			],
+			[
+				"bac",
+				"background-size"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"cl",
+				"clear"
+			],
+			[
+				"h",
+				"height"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"curr",
+				"current_user	import"
+			],
+			[
+				"profile",
+				"profile_pictures"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"backgrou",
+				"background-image"
+			],
+			[
+				"adv",
+				"adv_links"
+			],
+			[
+				"p",
+				"padding-right"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"font-",
+				"font-weight"
+			],
+			[
+				"in",
+				"input"
+			],
+			[
+				"margi",
+				"margin"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"marg",
+				"margin-left"
+			],
+			[
+				"inl",
+				"inline"
+			],
+			[
+				"fo",
+				"font-size"
+			],
+			[
+				"toggle",
+				"toggleClass"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"mari",
+				"margin-top"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"background",
+				"background-image"
+			],
+			[
+				"b",
+				"background"
+			],
+			[
+				"i",
+				"italic"
+			],
+			[
+				"marin",
+				"margin-bottom"
+			],
+			[
+				"res",
+				"resizeButtons"
+			],
+			[
+				"fl",
+				"float"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"l",
+				"left"
+			],
+			[
+				"backgroun",
+				"background-size"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"li",
+				"line-height"
+			],
+			[
+				"a",
+				"autoplay"
+			],
+			[
+				"po",
+				"popup"
+			],
+			[
+				"pop",
+				"popupVideo"
+			],
+			[
+				"popu",
+				"popupVideo"
+			],
+			[
+				"arti",
+				"article"
+			],
+			[
+				"arc",
+				"article"
+			],
+			[
+				"hash",
+				"hashed_password"
+			],
+			[
+				"use",
+				"userSaveFailed"
+			],
+			[
+				"user",
+				"userSaved"
+			],
+			[
+				"e",
+				"encryptPassword"
+			],
+			[
+				"mongoStore",
+				"mongoStoreConnectionArgs"
+			],
+			[
+				"find",
+				"findById"
+			],
+			[
+				"pro",
+				"prototype"
+			],
+			[
+				"cu",
+				"customersList"
+			],
+			[
+				"cus",
+				"customers"
+			],
+			[
+				"cs",
+				"customers"
+			],
+			[
+				"userS",
+				"userSaveFailed"
+			],
+			[
+				"ti",
+				"title"
+			],
+			[
+				"docu",
+				"documents"
+			],
+			[
+				"app",
+				"application"
+			],
+			[
+				"for",
+				"format"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"soc",
+				"socket"
+			],
+			[
+				"sock",
+				"sockets"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"name",
+				"name"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"unique",
+				"Permute Lines: Unique"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"list",
+				"SimpleTODO: List TODO"
+			],
+			[
+				"pakckage",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"package in",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"snippet ",
+				"Snippet: if …"
+			],
+			[
+				"snippet: ",
+				"Snippet: <?php echo … ?>"
+			],
+			[
+				"mini",
+				"View: Toggle Minimap"
+			],
+			[
+				"minim",
+				"View: Toggle Minimap"
+			],
+			[
+				"side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"sidebar",
+				"View: Toggle Side Bar"
+			],
+			[
+				"java",
+				"Set Syntax: Java"
+			],
+			[
+				"set syntax Py",
+				"Set Syntax: Python"
+			]
+		],
+		"width": 462.0
+	},
+	"console":
+	{
+		"height": 51.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/darionascimento/Tese/Shuttle_Paper",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters"
+	],
+	"file_history":
+	[
+		"/Users/darionascimento/Tese/review.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/4.recovery.tex",
+		"/Users/darionascimento/Desktop/p.txt",
+		"/Users/darionascimento/Desktop/jobs.txt",
+		"/Users/darionascimento/Desktop/server.txt",
+		"/Users/darionascimento/Desktop/carta_mana.txt",
+		"/Users/darionascimento/Downloads/backup-senhoranazareencarnacao.pt-12-9-2014/mail/senhoranazareencarnacao.pt/comissao/subscriptions",
+		"/Users/darionascimento/Downloads/backup-senhoranazareencarnacao.pt-12-9-2014/mail/senhoranazareencarnacao.pt/comissao/cur/1382986967.H742457P477314.hosting11.serverhs.org,S=6557:2,RS",
+		"/Users/darionascimento/Downloads/postfixadmin-2.92/INSTALL.TXT",
+		"/Users/darionascimento/Desktop/erros texto.txt",
+		"/Users/darionascimento/Desktop/visita.txt",
+		"/Users/darionascimento/Tese/quotes.txt",
+		"/Users/darionascimento/Downloads/api.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/paper.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/0.abstract.tex",
+		"/Users/darionascimento/Downloads/IEEEtran2/bare_adv.tex",
+		"/Users/darionascimento/Downloads/IEEEtran2/bare_conf.tex",
+		"/Users/darionascimento/Downloads/ccece06sample.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/proxy/throughput.eps",
+		"/Users/darionascimento/Tese/Shuttle_Paper/acronim_abreviaturas.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/5.evaluation.tex",
+		"/Users/darionascimento/Desktop/mae/receipts/sopas.tex",
+		"/Users/darionascimento/Desktop/mae/receipts/entradas.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/3.architecture.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/6.related_work.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/images/replayExecution.graffle",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain/serial_paper.tex",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain/generate.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/restrain/data_serial.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/scalability/serial.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/restrain/serial.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/restrain/serial.eps",
+		"/Users/darionascimento/Tese/Shuttle_Paper/images/sets.graffle",
+		"/Users/darionascimento/Tese/Shuttle_Paper/sigplanconf.cls",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/7.conclusion.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/refs/ALL.bib",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/1.introduction.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/2.formalization.tex",
+		"/Users/darionascimento/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/4.implementation.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/6.performance.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/7.conclusion.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/5.accuracy.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/3.architecture.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/4.Abstract.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/2.formalization.complex.tex",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/replay/generate.txt",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/scalability/generate.txt",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/requests/generate.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/refs/manual.bib",
+		"/Volumes/DataDisk/Documents/moradaVanessa.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/texput.log",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/replay/data.txt",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain/data_serial.txt",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain/data_clustered.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/scalability/recovery_time_paper.eps",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/replay/grafico_paper.tex",
+		"/Users/darionascimento/Desktop/lexicum.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/IEEEtran.cls",
+		"/Users/darionascimento/Downloads/IEEEtran5/bare_conf.tex",
+		"/usr/local/texlive/2012/texmf-dist/tex/latex/algorithms/algorithmic.sty",
+		"/Users/darionascimento/Tese/Shuttle_Paper/chapters/5.evaluation.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/restrain/data/parallel/1server/200/manager.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/TODO/out/scalability_old/servers.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/images/inconsistency_serial.graffle",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain_serial/data/1_server/originalEx200.txt",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain_serial/data/1_server/replayer.txt",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain_serial/data/1_server/client.txt",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/15fa945f-f8c6-48f8-adbd-24fc1f4b221c/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/replay/core/AssyncExecutionArray.java",
+		"/Users/darionascimento/Tese/Paper_India/Chapters/2.formalization.tex",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain_serial/data/1_server/client_error.txt",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain_serial/data/1_server/replayer_error.txt",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain_serial/data/1_server/originalExecution.txt",
+		"/Users/darionascimento/Desktop/dicasTese.txt",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a9cd1c06-2aea-4682-bddb-79ae4eb8fbb1/home/ubuntu/data/data/dock/undoManager/start.sh",
+		"/Users/darionascimento/git/voldemort/src/proto/to-manager.proto",
+		"/Users/darionascimento/git/voldemort/src/proto/voldemort-client.proto",
+		"/Users/darionascimento/git/voldemort/src/proto/AskProto.proto",
+		"/Users/darionascimento/git/undo/src/main/resources/to-manager.proto",
+		"/Users/darionascimento/Desktop/voldemort.proto",
+		"/Users/darionascimento/Desktop/undo.proto",
+		"/Users/darionascimento/git/undo/src/main/resources/from-manager.proto",
+		"/Users/darionascimento/git/undo/undo.properties",
+		"/Users/darionascimento/git/AppEvaluation/commands.txt",
+		"/Users/darionascimento/Desktop/h.txt",
+		"/Users/darionascimento/git/AppEvaluation/master/perTopic1Million95.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/database/d_insert.eps",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/recovery_time/clusters.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/images/cap.graffle",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/01d0a925-76f2-42a0-8dfd-7524f4b9afe8/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/replay/core/ReplayWorker.java",
+		"/Users/darionascimento/Tese/Shuttle_Paper/images/architectureTiers.graffle",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/ex1/answers_to_repeat_per_day.eps",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/database_d/insert.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/outs.tex",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/0efe799e-edb4-40f9-b37c-edb2ef05cc7e/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/schedulers/AccessSchedule.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/0efe799e-edb4-40f9-b37c-edb2ef05cc7e/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/DBProxy.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/0efe799e-edb4-40f9-b37c-edb2ef05cc7e/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/ServiceDBNode.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/0efe799e-edb4-40f9-b37c-edb2ef05cc7e/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/map/Op.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/0efe799e-edb4-40f9-b37c-edb2ef05cc7e/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/map/RedoIterator.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/0efe799e-edb4-40f9-b37c-edb2ef05cc7e/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/schedulers/CommitScheduler.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/0efe799e-edb4-40f9-b37c-edb2ef05cc7e/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/schedulers/RedoScheduler.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/0efe799e-edb4-40f9-b37c-edb2ef05cc7e/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/map/OpMultimap.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/0efe799e-edb4-40f9-b37c-edb2ef05cc7e/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/map/commits/CommitList.java",
+		"/Users/darionascimento/git/askJava/ask-war/pom.xml",
+		"/Users/darionascimento/git/askJava/ask-war/repo/com/voldemort/voldemort/3.0.0/voldemort-3.0.0.pom",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/0efe799e-edb4-40f9-b37c-edb2ef05cc7e/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/map/OpMultimapEntry.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/6c317d13-ee99-4aa6-9056-4caea9b77ff1/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/save/Saver.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/8f0f6134-7535-4f84-9f7e-3a677f4bf0da/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/map/OpMultimapEntry.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/6c317d13-ee99-4aa6-9056-4caea9b77ff1/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/ProxyWorker.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/dock/undo/src/main/java/pt/inesc/proxy/save/Saver.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/dock/undo/src/main/java/pt/inesc/proxy/ProxyWorker.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/8f0f6134-7535-4f84-9f7e-3a677f4bf0da/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/map/RedoIterator.java",
+		"/Users/darionascimento/Desktop/remote.java",
+		"/Users/darionascimento/Desktop/local.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/DirectBufferPool.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/save/Saver.java",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/ProxyWorker.java",
+		"/Users/darionascimento/git/testKit/setupTestServers.sh",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/clustering_time/2.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/refs/before_compression/ALL.bib",
+		"/Users/darionascimento/Tese/Dissertacao/refs/ALL.bib",
+		"/Users/darionascimento/Tese/Shuttle_Paper/images/branches.graffle",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/database_backup/database_a/generate_read.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/change_branch/throughput.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/requests/votes.eps",
+		"/Users/darionascimento/Tese/Presentation_thesis/sections/E-Architecture.tex",
+		"/Users/darionascimento/Tese/Presentation_thesis/sections/D-solution.tex",
+		"/Users/darionascimento/Tese/Dissertacao/tese.tex"
+	],
+	"find":
+	{
+		"height": 78.0
+	},
+	"find_in_files":
+	{
+		"height": 95.0,
+		"where_history":
+		[
+			"/Users/darionascimento/Tese/Shuttle_Paper/Chapters",
+			"/Users/darionascimento/Tese/Shuttle_Paper/Chapters,/Users/darionascimento/Tese/Dissertacao/Sections",
+			"/Users/darionascimento/Tese/Shuttle_Paper/Chapters",
+			"<open folders>",
+			"/Users/darionascimento/git/appscale,/Users/darionascimento/git/appscale-tools",
+			"/Users/darionascimento/git/appscale",
+			"<open folders>",
+			"/Users/darionascimento/git/flybox/",
+			"/Users/darionascimento/git/flybox/app/",
+			"/Users/darionascimento/git/flybox/app/app",
+			"/Users/darionascimento/git/flybox/app/app/",
+			"/Users/darionascimento/git/flybox/app/",
+			"/Users/darionascimento/git/flybox/app/app/",
+			"/Users/darionascimento/git/flybox/",
+			"/Users/darionascimento/git/flybox/app/app/templates",
+			"/Users/darionascimento/git/flybox",
+			"/Library/WebServer/Documents/",
+			"/Library/WebServer/Documents/backend/",
+			"/Library/WebServer/Documents/backend/app/",
+			"/Library/WebServer/Documents/backend/app/templates",
+			"/Library/WebServer/Documents/backend/",
+			"*\n",
+			"\n",
+			"/Library/WebServer/Documents/backend/app/templates",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			" it leverages",
+			" More,",
+			"gmail",
+			"example",
+			"crepe",
+			"Tree model:",
+			"Tree model",
+			"Tree model:",
+			"(ops/sec) and response latency (ms)",
+			"memory-measurer",
+			"The [a-z]*s ",
+			"The [a-z]s ",
+			"Performance overhead on database",
+			"Appscale: Scalable and open",
+			"This process can be used in a proactive manner to renew",
+			"LZ4",
+			"Proceedings of",
+			"Proceedings",
+			"the First Workshop ",
+			"dump",
+			"A break in the clouds: towards a cloud definition",
+			"branch",
+			"contains",
+			"path",
+			"tree path",
+			"however th",
+			"legenda",
+			"then making a copy of eac",
+			"thousands of",
+			"millions of",
+			"million",
+			"consider that",
+			"suggested that",
+			"suggest that",
+			"observed that",
+			"founded that",
+			"found that",
+			"showed that",
+			"show that",
+			"important that",
+			"showed that",
+			"The [a-z]+s",
+			"There is",
+			"It is",
+			"tab:accuracy",
+			"dependen",
+			"transve",
+			"depende",
+			"ycsb",
+			"highly ava",
+			"Appscale",
+			"Highly available intrusion-tolerant services with",
+			"Disaster Rec",
+			"Disaster ",
+			"DisasterRecoveryasaCloudService",
+			"Tree model",
+			"tree",
+			"accuracy",
+			"belowcaptionskip",
+			"Replay two requests with different re-execution",
+			"tab:restarin",
+			"tab:scalability",
+			"scalability",
+			"recovery_time",
+			"percent",
+			"(Section \\ref{sec:arch:image_recovery})",
+			"{BS}",
+			"{SRD}",
+			"{BS}",
+			"block",
+			"entry",
+			"entries",
+			"selective",
+			"consistency",
+			"remove unknown intrusions",
+			"data entrie",
+			"tab:scalability",
+			"images/snapshots",
+			"instantiate",
+			"instantiated",
+			"instantiate",
+			"compute instance",
+			"access list",
+			"35",
+			"execution mode",
+			"replay mode",
+			"original execution",
+			"original",
+			"execution",
+			"dependen",
+			"$D",
+			"requests",
+			"- ",
+			"peerreview",
+			"acronym",
+			"amsmath",
+			"tabu",
+			"algorithmic",
+			"algorithm2e",
+			"graphicx",
+			"  ",
+			"total: ",
+			":rate: ",
+			"pendent: ",
+			"total: ",
+			"delay: ",
+			"targetRate: ",
+			",\\d* WARN  \\[pool-2-thread-1\\]\\[ReplayWorker.java:237\\]: Real written rate:",
+			"^\\d*:",
+			",\\d* WARN  \\[pool-2-thread-1\\]\\[ReplayWorker.java:237\\]: Real written rate: ",
+			"15:",
+			" 15:35:12,000 WARN  [pool-2-thread-1][ReplayWorker.java:237]: Real written rate: 1253 targetRate: 800 delay: 1 total: 1253 pendent: 1170",
+			" 15:35:12,000 WARN  [pool-2-thread-1][ReplayWorker.java:237]: Real written rate: 1253 targetRate: 800 delay: 1 total: 1253 pendent: 1170\n",
+			" Transactions:",
+			"	\n",
+			"writeUnlock",
+			"Real written rate:",
+			"SRD",
+			"nodeRegistry",
+			"getNodeRegistry",
+			"1416829",
+			"1416829561548001",
+			"storage",
+			"code",
+			"written by tainted requests",
+			"clustering",
+			"trusted",
+			"lock"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			" Moreover,",
+			"Proc. of",
+			"data items",
+			"launch",
+			"launched",
+			"launch",
+			"application instance",
+			"operation list",
+			"execution phase",
+			"first execution",
+			"$O",
+			"",
+			" ",
+			"",
+			"  ",
+			"",
+			"goel",
+			"\\caption{",
+			"\\textit{full replay}",
+			"\\textit{selective replay}",
+			"",
+			" ",
+			"branch path",
+			"data item",
+			"data items",
+			"application server",
+			"",
+			"full replay",
+			"version",
+			"",
+			"memory",
+			"bdb",
+			"memory",
+			"",
+			" ",
+			"",
+			"\n",
+			"Update=",
+			"",
+			" ",
+			"\n",
+			"",
+			"<answer Delete=\"True\" ",
+			"<question Delete=\"True\" ",
+			"<comment Delete=\"True\" ",
+			"",
+			"\n",
+			"",
+			"69 &",
+			"69",
+			"69 &",
+			"",
+			" \\ac{SRD} ",
+			"\\ac{SRD}",
+			"instance",
+			":",
+			"=",
+			" \\ac{SID} ",
+			" \\ac{CTS} ",
+			" \\ac{RID} ",
+			" \\ac{SID} ",
+			"\\ac{SID}",
+			"\\ac{PaaS}",
+			"PaaS",
+			"CTS",
+			"CTS}",
+			"RID",
+			"",
+			"PaaS",
+			"\\ac{IDS}",
+			"\\ac{PaaS}",
+			"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+			"",
+			"CONFIGURATION_DIR",
+			"",
+			"OpenStack",
+			"  ",
+			"",
+			"print (",
+			"AppScaleLogger.log",
+			"",
+			"#}",
+			"{#",
+			"btnShuffle",
+			"divContainer",
+			"divPlayer",
+			"divInfoMusic",
+			"fnPlay",
+			"labelLapsed",
+			"labelDuration",
+			"lblSinger",
+			"labelMusic",
+			"divBar",
+			"divProgress",
+			"btnRepeat",
+			"btnPrevious",
+			"btnNext",
+			"btnPause",
+			"btnPlay",
+			"musicList",
+			"countMusics",
+			"currentMusic",
+			"audioObj",
+			"controls",
+			"@tile_right_box",
+			"@c_title_over_gray",
+			"@c_selected_top",
+			"@c_menu_gray_text",
+			"cfcfcf",
+			"@black",
+			"@white",
+			"",
+			";",
+			" 0 ",
+			"0 ",
+			"#FFF",
+			"#000",
+			"#}",
+			"{#",
+			"<li>",
+			"",
+			"#}",
+			"{#",
+			"#}",
+			"{#",
+			"#}",
+			"/content/pub/",
+			"/static/"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 36.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 409.0
+	},
+	"output.find_results":
+	{
+		"height": 102.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"project": "paper.sublime-project",
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"pap",
+				"paper.tex"
+			],
+			[
+				"abstra",
+				"Chapters/0.abstract.tex"
+			],
+			[
+				"5",
+				"Chapters/5.evaluation.tex"
+			],
+			[
+				"4",
+				"Chapters/4.recovery.tex"
+			],
+			[
+				"3",
+				"Chapters/3.architecture.tex"
+			],
+			[
+				"relat",
+				"Chapters/6.related_work.tex"
+			],
+			[
+				"serial.txt",
+				"graphs/restrain/data_serial.txt"
+			],
+			[
+				"2",
+				"Chapters/2.formalization.tex"
+			],
+			[
+				"all",
+				"refs/ALL.bib"
+			],
+			[
+				"1",
+				"Chapters/1.introduction.tex"
+			],
+			[
+				"7",
+				"Chapters/7.conclusion.tex"
+			],
+			[
+				"6",
+				"Chapters/6.related_work.tex"
+			],
+			[
+				"pape",
+				"paper.tex"
+			],
+			[
+				"p",
+				"paper.tex"
+			],
+			[
+				"pa",
+				"paper.tex"
+			],
+			[
+				"ma",
+				"refs/manual.bib"
+			],
+			[
+				"0",
+				"Chapters/0.abstract.tex"
+			],
+			[
+				"abr",
+				"acronim_abreviaturas.tex"
+			],
+			[
+				"arch",
+				"Chapters/3.architecture.tex"
+			],
+			[
+				"int",
+				"Chapters/1.introduction.tex"
+			],
+			[
+				"intro",
+				"Chapters/1.introduction.tex"
+			],
+			[
+				"abs",
+				"Chapters/0.abstract.tex"
+			],
+			[
+				"paper",
+				"paper.tex"
+			],
+			[
+				"abst",
+				"Chapters/0.abstract.tex"
+			],
+			[
+				"5.",
+				"Chapters/5.evaluation.tex"
+			],
+			[
+				"introd",
+				"Chapters/1.introduction.tex"
+			],
+			[
+				"2.",
+				"Chapters/2.formalization.tex"
+			],
+			[
+				"3.",
+				"Chapters/3.architecture.tex"
+			],
+			[
+				"manua",
+				"refs/manual.bib"
+			],
+			[
+				"ab",
+				"acronim_abreviaturas.tex"
+			],
+			[
+				"4.",
+				"Chapters/4.recovery.tex"
+			],
+			[
+				"acr",
+				"acronim_abreviaturas.tex"
+			],
+			[
+				"1.",
+				"Chapters/1.introduction.tex"
+			],
+			[
+				"tex",
+				"paper.tex"
+			],
+			[
+				"e",
+				"Chapters/5.evaluation.tex"
+			],
+			[
+				"eva",
+				"Chapters/5.evaluation.tex"
+			],
+			[
+				"7.",
+				"Chapters/7.future.tex"
+			],
+			[
+				"",
+				"Chapters/4.recovery.tex"
+			],
+			[
+				"rela",
+				"Chapters/6.related_work.tex"
+			],
+			[
+				"a",
+				"acronim_abreviaturas.tex"
+			],
+			[
+				"cocn",
+				"Chapters/8.conclusion.tex"
+			],
+			[
+				"rec",
+				"Chapters/4.recovery.tex"
+			],
+			[
+				"meta",
+				"Chapters/0.meta.tex"
+			],
+			[
+				"in",
+				"Chapters/1.introduction.tex"
+			],
+			[
+				"paper.t",
+				"paper.tex"
+			],
+			[
+				"aba",
+				"Chapters/0.abstract.tex"
+			],
+			[
+				"arc",
+				"Sections/3.architecture.tex"
+			],
+			[
+				"pack",
+				"definitions/packages.tex"
+			],
+			[
+				"tese.tx",
+				"tese.tex"
+			],
+			[
+				"archi",
+				"Sections/3.architecture.tex"
+			],
+			[
+				"ac",
+				"Sections/0.begin/7.Acronim_abreviaturas.tex"
+			],
+			[
+				"acronim_abreviaturas",
+				"Sections/0.begin/7.Acronim_abreviaturas.tex"
+			],
+			[
+				"pac",
+				"definitions/packages.tex"
+			],
+			[
+				"im",
+				"Sections/4.implementation.tex"
+			],
+			[
+				"abre",
+				"Sections/0.begin/7.Acronim_abreviaturas.tex"
+			],
+			[
+				"con",
+				"Sections/6.conclusion.tex"
+			],
+			[
+				"coc",
+				"Sections/6.conclusion.tex"
+			],
+			[
+				"ar",
+				"Sections/3.architecture.tex"
+			],
+			[
+				"res",
+				"Sections/0.begin/5.Resumo.tex"
+			],
+			[
+				"user_app_client.py",
+				"appscale-tools/lib/user_app_client.py"
+			],
+			[
+				"build.xm",
+				"appscale/AppServer_Java/build.xml"
+			],
+			[
+				"appscale_build",
+				"appscale-tools/debian/appscale_build.sh"
+			],
+			[
+				"boot",
+				"appscale/bootstrap.sh"
+			],
+			[
+				"parseargs",
+				"appscale-tools/lib/parse_args.py"
+			],
+			[
+				"appscale-run-instances",
+				"appscale-tools/bin/appscale-run-instances"
+			],
+			[
+				"appscaletools",
+				"appscale-tools/lib/appscale_tools.py"
+			],
+			[
+				"appscale",
+				"appscale-tools/lib/appscale.py"
+			],
+			[
+				"appscaletoo",
+				"appscale-tools/lib/appscale_tools.py"
+			],
+			[
+				"app",
+				"appscale-tools/bin/appscale"
+			],
+			[
+				"parse_",
+				"appscale-tools/lib/parse_args.py"
+			],
+			[
+				"voldemo",
+				"appscale/AppDB/voldemort/voldemort_helper.rb"
+			],
+			[
+				"appscale_install.sh",
+				"appscale/debian/appscale_install.sh"
+			],
+			[
+				"appscale_build.sh",
+				"appscale/debian/appscale_build.sh"
+			],
+			[
+				"appscale_install_functions.sh",
+				"appscale-tools/debian/appscale_install_functions.sh"
+			],
+			[
+				"appscae_insta_fu",
+				"appscale/debian/appscale_install_functions.sh"
+			],
+			[
+				"ec2",
+				"appscale-tools/lib/agents/ec2_agent.py"
+			],
+			[
+				"infran",
+				"appscale/InfrastructureManager/infrastructure_manager.py"
+			],
+			[
+				"infrastrc",
+				"appscale/AppController/lib/infrastructure_manager_client.rb"
+			],
+			[
+				"dj",
+				"appscale/AppController/djinn.rb"
+			],
+			[
+				"appcontro",
+				"appscale-tools/lib/appcontroller_client.py"
+			],
+			[
+				"appscla",
+				"appscale-tools/lib/appscale_tools.py"
+			],
+			[
+				"appscale.py",
+				"appscale-tools/lib/appscale.py"
+			],
+			[
+				"appscale_tools.py",
+				"appscale-tools/lib/appscale_tools.py"
+			],
+			[
+				"remote_helper.py",
+				"appscale-tools/lib/remote_helper.py"
+			],
+			[
+				"remotehelper",
+				"appscale-tools/lib/remote_helper.py"
+			],
+			[
+				"appsclaetools",
+				"appscale-tools/lib/appscale_tools.py"
+			],
+			[
+				"apps",
+				"appscale-tools/lib/appscale.py"
+			],
+			[
+				"opes",
+				"appscale-tools/lib/agents/openstack_agent.py"
+			],
+			[
+				"ec2_",
+				"appscale-tools/lib/agents/ec2_agent.py"
+			],
+			[
+				"ec2_agent.py",
+				"appscale/InfrastructureManager/agents/ec2_agent.py"
+			],
+			[
+				"user_app_",
+				"appscale-tools/lib/user_app_client.py"
+			],
+			[
+				"appcontroller",
+				"appscale-tools/lib/appcontroller_client.py"
+			],
+			[
+				"remote",
+				"appscale-tools/lib/remote_helper.py"
+			],
+			[
+				"opens",
+				"appscale-tools/lib/agents/openstack_agent.py"
+			],
+			[
+				"ec",
+				"appscale-tools/lib/agents/ec2_agent.py"
+			],
+			[
+				"ope",
+				"appscale-tools/lib/agents/openstack_agent.py"
+			],
+			[
+				"infrastructureagentfactory",
+				"appscale/InfrastructureManager/agents/factory.py"
+			],
+			[
+				"parse_args",
+				"appscale-tools/lib/parse_args.py"
+			],
+			[
+				"appscale_tools",
+				"appscale-tools/lib/appscale_tools.py"
+			],
+			[
+				"index.js",
+				"app/static/js/index.js"
+			],
+			[
+				".js",
+				"app/static/admin/index.js"
+			],
+			[
+				"conf",
+				"app/config.py"
+			],
+			[
+				"mod",
+				"app/app/models.py"
+			],
+			[
+				".less",
+				"app/static/css/style.less"
+			],
+			[
+				"sty",
+				"app/static/css/style.less"
+			],
+			[
+				"alb",
+				"app/app/templates/album_page.html"
+			],
+			[
+				"vid",
+				"app/app/templates/video_page.html"
+			],
+			[
+				"base",
+				"app/app/templates/bases/base.html"
+			],
+			[
+				".css",
+				"app/static/metroPlayer/css/style.css"
+			],
+			[
+				"albu",
+				"app/app/templates/album_page.html"
+			],
+			[
+				"functions",
+				"app/static/metroPlayer/js/functions.js"
+			],
+			[
+				"media",
+				"app/static/js/mediaelement/mediaelement.js"
+			],
+			[
+				"album",
+				"app/app/templates/album_page.html"
+			],
+			[
+				"breadcump",
+				"app/app/templates/snippets/breadcump.html"
+			],
+			[
+				"video",
+				"app/app/templates/video_page.html"
+			],
+			[
+				"regis",
+				"app/app/templates/snippets/register.html"
+			],
+			[
+				"style",
+				"app/static/css/style.css"
+			],
+			[
+				"me",
+				"app/app/templates/snippets/menu.html"
+			],
+			[
+				"sta",
+				"app/app/templates/snippets/staticAdvTemplate.html"
+			],
+			[
+				"pop",
+				"app/app/templates/snippets/popup.html"
+			],
+			[
+				"st",
+				"app/static/css/style.css"
+			],
+			[
+				"ba",
+				"app/app/templates/bases/base.html"
+			],
+			[
+				"ind",
+				"app/app/templates/index.html"
+			],
+			[
+				"menu",
+				"app/app/templates/snippets/menu.html"
+			],
+			[
+				"videoadv",
+				"app/app/templates/snippets/videoAdv.html"
+			],
+			[
+				"stati",
+				"app/app/templates/snippets/staticAdvTemplate.html"
+			],
+			[
+				"staticadvtemplate",
+				"app/app/templates/snippets/staticAdvTemplate.html"
+			],
+			[
+				"snippets/staticadv.html",
+				"app/app/templates/snippets/staticAdv.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"~/Tese/Dissertacao/sublime.sublime-project"
+			],
+			[
+				"t",
+				"~/Tese/Shuttle_Paper/paper.sublime-project"
+			],
+			[
+				"dis",
+				"~/Tese/Dissertacao/sublime.sublime-project"
+			],
+			[
+				"tese",
+				"~/Tese/Dissertacao/tese.sublime-project"
+			],
+			[
+				"tes",
+				"~/Tese/Dissertacao/tese.sublime-project"
+			],
+			[
+				"TES",
+				"~/Tese/Dissertacao/tese.sublime-project"
+			],
+			[
+				"te",
+				"~/Tese/Dissertacao/tese.sublime-project"
+			],
+			[
+				"TESE",
+				"~/Tese/Dissertacao/tese.sublime-project"
+			],
+			[
+				"fly",
+				"~/git/flybox/web.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+		],
+		"width": 651.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 221.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

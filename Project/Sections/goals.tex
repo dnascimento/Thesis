@@ -1,0 +1,22 @@
+%!TEX encoding = UTF-8 Unicode
+\section{Goals}
+\label{sec:Goals}
+This work addresses the problem of providing an intrusion recovery system for applications deployed in Platform as a Service clouds. Our overall goal is to \textit{make PaaS applications operational despite intrusions}. More precisely, our service aims to help the administrators to recover from the following problems:
+\begin{itemize}
+  \item \textit{Software flaws:} Application containers or database instances have been compromised due to software vulnerabilities.
+  \item \textit{Malicious or accidentally corrupted requests:} Accidentally or malicious user, attacker or administrator requests that perform undesired operations and corrupt the application data.
+\end{itemize} 
+
+In order to achieve these goals, Shuttle shall meet the following requirements: 
+\begin{itemize}
+  \item \textit{Remove intrusion effects:} Remove corrupted data at operating system, database and application levels in the application containers and update affected legitimate actions.
+  \item \textit{Remove selected malicious actions:} Help administrator to track the intrusion producing the set of actions affected by an externally provided list of malicious actions.
+  \item \textit{Support software update:} After recovery, the application state has to be compliant with the new version of the software.
+  \item \textit{Recover without stopping the application:} Recover the application without exposing users to application downtime.
+  \item \textit{Determinism:} Despite parallel execution of requests, the result of re-execution is the same as the result of original execution if the application source code and requests remain equal.
+  \item \textit{Low runtime overhead:} The recording of operations or state for recovery purposes should have a negligible impact in the runtime performance.
+  \item \textit{NoSQL database snapshot:} NoSQL databases will have to be extended to support database snapshots, in order to reduce the recovery time.
+  \item \textit{PaaS integration:} The source code of the application shall remains unmodified as much as possible. PaaS developers do not need to install or configure Shuttle. Shuttle is built in a generic manner and it is reused in each deployed application.
+\end{itemize}
+
+Shuttle \textit{supports software updates} to prevent future intrusions and allows operators to try new configurations or software versions without effects in the application behavior perceived by users.

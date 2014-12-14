@@ -1,0 +1,897 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"eval",
+				"sec:eval:storage"
+			],
+			[
+				"proxy",
+				"sec:eval:performance:proxy"
+			],
+			[
+				"rejun",
+				"sec:arch:image_rejuvenation"
+			],
+			[
+				"ar",
+				"sec:arch:selective_replay"
+			],
+			[
+				"be",
+				"beforeSize	statement"
+			],
+			[
+				"to",
+				"toString"
+			],
+			[
+				"foot",
+				"footPrint"
+			],
+			[
+				"DA",
+				"DATA_DIRECTORY	statement"
+			],
+			[
+				"OU",
+				"OUTPUT_DIRECTORY	statement"
+			],
+			[
+				"on",
+				"onlyfiles	statement"
+			],
+			[
+				"ti",
+				"timeParts"
+			],
+			[
+				"out",
+				"outputDir	statement"
+			],
+			[
+				"fNa",
+				"fNameParts	statement"
+			],
+			[
+				"json",
+				"json_file	statement"
+			],
+			[
+				"pr",
+				"println"
+			],
+			[
+				"item",
+				"itemize"
+			],
+			[
+				"er",
+				"enumerate"
+			],
+			[
+				"enu",
+				"enumerate"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/darionascimento/Tese/compare_last.sh",
+			"settings":
+			{
+				"buffer_size": 55,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"uni",
+				"Permute Lines: Unique"
+			],
+			[
+				"uniq",
+				"Permute Lines: Unique"
+			],
+			[
+				"",
+				"About"
+			]
+		],
+		"width": 462.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/darionascimento/Tese/Dissertacao",
+		"/Users/darionascimento/Tese/Dissertacao/Sections",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/appendix"
+	],
+	"file_history":
+	[
+		"/Users/darionascimento/Desktop/beaches.txt",
+		"/Users/darionascimento/Desktop/mana.txt",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/4.implementation.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/3.architecture.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/5.accuracy.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/6.performance.tex",
+		"/Users/darionascimento/Desktop/review_cv.txt",
+		"/Users/darionascimento/Desktop/p.txt",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/7.conclusion.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/4.Abstract.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/2.related_work.tex",
+		"/Users/darionascimento/Desktop/mae/project.sublime-project",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/1.introduction.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/7.Acronim_abreviaturas.tex",
+		"/Users/darionascimento/Desktop/ubahn_party.txt",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/replay/data.txt",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/scalability/generate.txt",
+		"/Users/darionascimento/Tese/Dissertacao/images/inconsistency_conflict.graffle",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/requests/comments.eps",
+		"/Users/darionascimento/Tese/Dissertacao/images/cap.graffle",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/replay/generate.txt",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain/generate.txt",
+		"/Users/darionascimento/Tese/Dissertacao/tese.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/appendix/appendix_results.tex",
+		"/Users/darionascimento/Tese/Dissertacao/tese.aux",
+		"/Users/darionascimento/Desktop/mae/main.tex",
+		"/Users/darionascimento/Tese/Dissertacao/arch/operation_database.graffle",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/7.Acronim_abreviaturas.log",
+		"/Users/darionascimento/Tese/Dissertacao/images/inconsistency_unlock.graffle",
+		"/Users/darionascimento/Tese/Dissertacao/arch/scheduler_uml.graffle",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/TODO/out/database_backup/database_f/read_modify_write.eps",
+		"/Users/darionascimento/Tese/Dissertacao/images/replayExecution.graffle",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/appendix/appendix_interface.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/1.cover.tex",
+		"/Users/darionascimento/Tese/Dissertacao/refs/ALL.bib",
+		"/Users/darionascimento/Tese/Dissertacao/refs/manual.bib",
+		"/Users/darionascimento/Tese/Dissertacao/tese.bbl",
+		"/Users/darionascimento/Tese/Dissertacao/images/normalExecution.graffle",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/requests/views.eps",
+		"/Users/darionascimento/Tese/Dissertacao/images/selectiveDependency_legended.graffle",
+		"/Users/darionascimento/Desktop/metroparty.txt",
+		"/Users/darionascimento/Tese/Dissertacao/mathtext.sty",
+		"/Users/darionascimento/Tese/Dissertacao/refs/before_compression/ALL.bib",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/database/b_read.eps",
+		"/Users/darionascimento/Tese/Dissertacao/bbm.sty",
+		"/Users/darionascimento/Tese/thread_pool_hell.txt",
+		"/Users/darionascimento/git/voldemort/src/java/voldemort/undoTracker/map/VersionList.java",
+		"/Users/darionascimento/git/voldemort/src/proto/to-manager.proto",
+		"/Users/darionascimento/git/voldemort/src/java/voldemort/undoTracker/SRD.java",
+		"/Users/darionascimento/git/undo/src/main/resources/from-manager.proto",
+		"/Users/darionascimento/git/undo/src/main/java/pt/inesc/replay/core/AssyncExecutionArray.java",
+		"/Users/darionascimento/git/voldemort/src/proto/voldemort-client.proto",
+		"/Users/darionascimento/Tese/Dissertacao/IEEEtran.bst",
+		"/Users/darionascimento/Tese/Dissertacao/definitions/packages.tex",
+		"/Users/darionascimento/Tese/Dissertacao/definitions/packages.log",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/appendix/1app.tex",
+		"/Users/darionascimento/git/undo/src/main/resources/AskProto.proto",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/appendix/1app.log",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/appendix/appendix_results.log",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/5.Resumo.tex",
+		"/Users/darionascimento/Tese/Dissertacao/00.listofsymbols.sty",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain/data_clustered.txt",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain/data_serial.txt",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/2.Acknowledgments.tex",
+		"/Users/darionascimento/Desktop/mae/receipts/petitegato.txt",
+		"/Users/darionascimento/Desktop/manager/manager2.txt",
+		"/Users/darionascimento/Desktop/manager/manager2servers_2clients.txt",
+		"/Users/darionascimento/Desktop/manager/manager3.txt",
+		"/Users/darionascimento/Desktop/manager/manager4.txt",
+		"/Users/darionascimento/Desktop/manager/manager.txt",
+		"/Users/darionascimento/Desktop/manager/manager5.txt",
+		"/Users/darionascimento/Desktop/manager/manager7.txt",
+		"/Users/darionascimento/Desktop/manager/manager8.txt",
+		"/Users/darionascimento/Desktop/manager/managerFinal6servers.txt",
+		"/Users/darionascimento/Desktop/manager/managerFinal6server2.txt",
+		"/Users/darionascimento/Desktop/manager/sortingCorrect.txt",
+		"/Volumes/DataDisk/Torrents/Mr Turner 2014 720p BluRay x264-P2P/ReadMe.txt",
+		"/Volumes/DataDisk/Torrents/Fury 2014 720p BluRay x264-P2P/ReadMe.txt",
+		"/Users/darionascimento/Desktop/mae/receipts/receipts.tex",
+		"/Users/darionascimento/Desktop/mae/receipts.tex",
+		"/Users/darionascimento/Desktop/lexicum.txt",
+		"/Users/darionascimento/Tese/Project/Project.tex",
+		"/Users/darionascimento/Desktop/visita.txt",
+		"/Users/darionascimento/Tese/Dissertacao/words/lombada.docx",
+		"/Users/darionascimento/Tese/Dissertacao/tese.out",
+		"/Users/darionascimento/Desktop/memory/versions.txt",
+		"/Users/darionascimento/Desktop/memory/voldemort.txt",
+		"/Users/darionascimento/Desktop/memory/cassandra.txt",
+		"/Users/darionascimento/Desktop/memory/graph.txt",
+		"/Users/darionascimento/study/Numbers Everyone Should Know.txt",
+		"/Users/darionascimento/Desktop/memory/raw.txt",
+		"/Users/darionascimento/Desktop/memory/process.py",
+		"/Users/darionascimento/Desktop/data.txt",
+		"/Users/darionascimento/Desktop/memory/voldmort2.txt",
+		"/Users/darionascimento/Tese/Dissertacao/[no file]",
+		"/Users/darionascimento/Desktop/database.txt",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/51ee0db3-815a-4d40-ac8d-d72c4bac464b/home/ubuntu/data/data/dock/undoManager/src/main/java/pt/inesc/manager/graph/GraphShuttle.java",
+		"/Users/darionascimento/Desktop/manager.txt",
+		"/Users/darionascimento/Desktop/manager2.txt",
+		"/Users/darionascimento/Desktop/manager2servers_2clients.txt",
+		"/Users/darionascimento/Desktop/manager3.txt",
+		"/Users/darionascimento/Desktop/manager4.txt",
+		"/Users/darionascimento/Desktop/manager5.txt",
+		"/Users/darionascimento/Desktop/manager7.txt",
+		"/Users/darionascimento/Desktop/manager8.txt",
+		"/Users/darionascimento/Desktop/managerFinal6server2.txt",
+		"/Users/darionascimento/Desktop/managerFinal6servers.txt",
+		"/Users/darionascimento/Tese/Dissertacao/graphs_usage/plot.py",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/usage/cpu_app.tex",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/usage/cpu_shuttle.tex",
+		"/Users/darionascimento/Tese/Dissertacao/graphs_usage/graphs/Maximum_CPUUtilization.tex",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/scalability/latencia.tex",
+		"/Users/darionascimento/Tese/Dissertacao/graphs_usage/metrics.txt",
+		"/Users/darionascimento/Desktop/statistics/process.py",
+		"/Users/darionascimento/Desktop/statistics/generate.txt",
+		"/Users/darionascimento/Desktop/statistics/plot.py",
+		"/Users/darionascimento/Downloads/gnuplot-py-1.8/demo.py",
+		"/Users/darionascimento/Desktop/statistics/data/during/CPUUtilization_Average_i-3f3570de_web2.txt",
+		"/Users/darionascimento/Desktop/statistics/data/during/process.py",
+		"/Users/darionascimento/Desktop/statistics/proxy.txt",
+		"/Users/darionascimento/Tese/Dissertacao/arch/proxy.graffle",
+		"/Users/darionascimento/Tese/Dissertacao/arch/database_proxy_logic_replay.graffle",
+		"/Users/darionascimento/Desktop/statistics/all/process.py",
+		"/Users/darionascimento/git/AppEvaluation/out.txt",
+		"/Users/darionascimento/git/AppEvaluation/in.txt",
+		"/Users/darionascimento/Desktop/statistics/average/CPUUtilization_Average_i-3f3570de_web2.txt",
+		"/Users/darionascimento/Desktop/statistics/max/process.py",
+		"/Users/darionascimento/Desktop/statistics/max/CPUUtilization_Maximum_CPUUtilization_Maximum_i-ad142a43_manager.txt"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 95.0,
+		"where_history":
+		[
+			"/Users/darionascimento/Tese/Dissertacao/Sections",
+			"<open folders>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			" More,",
+			"More,",
+			"\ncomissao@senhoranazareencarnacao.pt 	",
+			"to	",
+			",[a-z]",
+			"full replay",
+			"HashTable ",
+			"Aire creates a new branch",
+			"showed that",
+			"The [a-z]+s ",
+			"The [a-z]+s",
+			"There is",
+			"It is",
+			"comparison",
+			"EBS",
+			"shuttle scala",
+			"proxy ove",
+			"proxy overhead",
+			"Numberofrequestsperday ",
+			"Dependency graph",
+			"service arch",
+			"Set diagram of the application execution",
+			"replay is consistent",
+			"user action replay is consistent",
+			"DMBS",
+			"RAM",
+			"c",
+			" Shuttle also supports",
+			" {HTTPS}",
+			"\\ac {HTTPS}",
+			" \\ac {HTTPS}",
+			" [A-Z]{2,}",
+			"RAM",
+			" [A-Z]{2,}",
+			" SQL ",
+			" [A-Z]{2,}",
+			" API ",
+			" [A-Z]{2,}",
+			" HTTPS ",
+			" HTTP ",
+			" [A-Z]{2,}",
+			" SQL ",
+			" [A-Z]{2,}",
+			"[^{].[A-Z]{2,}",
+			"[^{]*[A-Z]{2,}",
+			"[^{][A-Z]{2,}",
+			" [A-Z]{2,}",
+			"[A-Z].",
+			"VPC",
+			"BDB",
+			"QA",
+			"Questions",
+			"DAG",
+			"\\SID|SID\\s",
+			"\\sRID|RID\\s",
+			"[ ].RID||RID[ ].",
+			"[ ]RID||RID[ ]",
+			"[ ]*RID[ ]*",
+			"RID ",
+			" RID",
+			" SRD",
+			"SRD ",
+			"clusters",
+			"sec:eval:storage",
+			"\\subsection",
+			"protobuff",
+			"TCP",
+			"Brown2003a",
+			"Toward",
+			"lz4",
+			"REST",
+			"weighttp",
+			"Browna",
+			"mapreduce",
+			"redis",
+			"wildfly",
+			"SQL",
+			"cloudify",
+			"google GoogleAppEngine",
+			"soap",
+			"actors",
+			"CSPs",
+			"Thrift",
+			"haproxy",
+			"Brown2003a",
+			"Castro2002",
+			"Practical",
+			"pratical ",
+			"Castro2002",
+			"Undo for ",
+			"Browna",
+			"necessary",
+			"checkpoint-survey",
+			"checkpoint",
+			"global-checkpoint",
+			"Akkus2010",
+			"Data recovery for web applications",
+			"Akkus2010",
+			"Disaster Recovery as a Cloud Service",
+			"cata",
+			"Wood2010",
+			"CSP",
+			"azure",
+			"Next",
+			"iteratorNext",
+			"keymap",
+			"start_end_full_replay",
+			"operation_types",
+			"UML",
+			"KeyMap",
+			"replay",
+			"branch",
+			"database client",
+			"stub",
+			"we assume the replication mechanisms to be disabled.",
+			"font",
+			"\\usepackage{lmodern}",
+			" = \\d;",
+			"nodeRegistry",
+			"	",
+			"multicol",
+			"GetRequest",
+			"HTTP",
+			"TCP",
+			"\\acf{\\ac",
+			"\\ac{\\ac",
+			"\\ac{\\acs",
+			"NoSQL"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			" Moreover,",
+			", ",
+			"",
+			"hash table",
+			"\\ac",
+			" \\ac{SQL} ",
+			" \\ac{SQL}  ",
+			" \\ac{API} ",
+			" \\ac{HTTPS} ",
+			" \\ac{HTTP} ",
+			" \\ac{SQL} ",
+			"\\ac{SQL}",
+			"goel",
+			"  ",
+			"\\acs{NoSQL}",
+			" sec:eval:storage",
+			" \\ac{AWS} ",
+			"\\ac{AWS}",
+			"data item",
+			"database operation",
+			"database operations",
+			"database operation",
+			"",
+			"º",
+			"data item",
+			"launch",
+			"Launch",
+			"Shuttle Storage",
+			"Pedro",
+			"Maria",
+			"São",
+			"de",
+			"Igreja de ",
+			"Igreja de",
+			"Ponte de",
+			"application instance",
+			"operation list",
+			"execution phase",
+			"first execution",
+			"$O$",
+			"$O_",
+			" \\ac{PaaS} ",
+			"",
+			"\n",
+			"",
+			"// ",
+			"",
+			"//",
+			"",
+			"\n",
+			"",
+			"192.168.1.89",
+			"",
+			"\n",
+			"+",
+			"",
+			"pool-2-thread-09]",
+			"pool-2-thread-08]",
+			"pool-2-thread-07]",
+			"pool-2-thread-06]",
+			"pool-2-thread-05]",
+			"pool-2-thread-04]",
+			"pool-2-thread-03]",
+			"pool-2-thread-02]",
+			"pool-2-thread-01]",
+			"pool-2-thread-06",
+			"",
+			" ",
+			"           ",
+			" ",
+			"",
+			",",
+			"",
+			"operation list",
+			"operation",
+			"traverse",
+			"KeyMapEntry",
+			"keyMapEntry",
+			"Replay",
+			"replay",
+			"Replay",
+			"replay",
+			"Replay",
+			"replay",
+			"Snapshot",
+			"snapshot",
+			"KeyMap",
+			"}{",
+			"sid",
+			"BranchPath",
+			"proxy",
+			"}{",
+			" ",
+			"\\Letv{",
+			"\\;",
+			";\\",
+			"Tainting \\newline via replay",
+			"chose",
+			"{req.~2}",
+			"{req.~1}",
+			"",
+			"best.tecnico.ulisboa.pt",
+			"http://best.tecnico.ulisboa.pt",
+			"http://best.tecnico.ulisboa.pt/",
+			",\n(",
+			"best.tecnico.ulisboa.pt",
+			"@best.tecnico.ulisboa.pt",
+			"http://best.tecnico.ulisboa.pt",
+			"best.tecnico.ulisboa.pt",
+			",\n(",
+			",(\n",
+			"best.tecnico.ulisboa.pt"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/darionascimento/Tese/compare_last.sh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 55,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 36.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 207.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"project": "sublime.sublime-project",
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"6",
+				"Sections/6.performance.tex"
+			],
+			[
+				"7",
+				"Sections/7.conclusion.tex"
+			],
+			[
+				"4",
+				"Sections/4.implementation.tex"
+			],
+			[
+				"5",
+				"Sections/5.accuracy.tex"
+			],
+			[
+				"arch",
+				"Sections/3.architecture.tex"
+			],
+			[
+				"3",
+				"Sections/3.architecture.tex"
+			],
+			[
+				"2",
+				"Sections/2.related_work.tex"
+			],
+			[
+				"abstra",
+				"Sections/0.begin/4.Abstract.tex"
+			],
+			[
+				"1",
+				"Sections/1.introduction.tex"
+			],
+			[
+				"conc",
+				"Sections/7.conclusion.tex"
+			],
+			[
+				"tese.tex",
+				"tese.tex"
+			],
+			[
+				"apre",
+				"Sections/appendix/appendix_results.tex"
+			],
+			[
+				"tese.e",
+				"tese.tex"
+			],
+			[
+				"abre",
+				"Sections/0.begin/7.Acronim_abreviaturas.tex"
+			],
+			[
+				"abr",
+				"Sections/0.begin/7.Acronim_abreviaturas.tex"
+			],
+			[
+				"appen",
+				"Sections/appendix/appendix_interface.tex"
+			],
+			[
+				"acc",
+				"Sections/5.accuracy.tex"
+			],
+			[
+				"related_work.tex",
+				"Sections/2.related_work.tex"
+			],
+			[
+				"manua",
+				"refs/manual.bib"
+			],
+			[
+				"all",
+				"refs/ALL.bib"
+			],
+			[
+				"tese.te",
+				"tese.tex"
+			],
+			[
+				"appendix_interface",
+				"Sections/appendix/appendix_interface.tex"
+			],
+			[
+				"pac",
+				"definitions/packages.tex"
+			],
+			[
+				"packa",
+				"definitions/packages.tex"
+			],
+			[
+				"appendix",
+				"Sections/appendix/1app.tex"
+			],
+			[
+				"res",
+				"Sections/0.begin/5.Resumo.tex"
+			],
+			[
+				"",
+				"Sections/6.performance.tex"
+			],
+			[
+				"absta",
+				"Sections/0.begin/4.Abstract.tex"
+			],
+			[
+				"1.",
+				"Sections/1.introduction.tex"
+			],
+			[
+				"2.",
+				"Sections/2.related_work.tex"
+			],
+			[
+				"ab",
+				"Sections/0.begin/4.Abstract.tex"
+			],
+			[
+				"abs",
+				"Sections/0.begin/4.Abstract.tex"
+			],
+			[
+				"app",
+				"Sections/appendix/appendix_results.tex"
+			],
+			[
+				"gene",
+				"graphs/generate.sh"
+			],
+			[
+				"app_",
+				"Sections/appendix/appendix_results.tex"
+			],
+			[
+				"perfe",
+				"Sections/6.performance.tex"
+			],
+			[
+				"intro",
+				"Sections/1.introduction.tex"
+			],
+			[
+				"int",
+				"Sections/1.introduction.tex"
+			],
+			[
+				"abst",
+				"Sections/0.begin/4.Abstract.tex"
+			],
+			[
+				"4.",
+				"Sections/4.implementation.tex"
+			],
+			[
+				"pak",
+				"definitions/packages.tex"
+			],
+			[
+				"5.a",
+				"Sections/5.accuracy.tex"
+			],
+			[
+				"tese.t",
+				"tese.tex"
+			],
+			[
+				"packag",
+				"definitions/packages.tex"
+			],
+			[
+				"packages",
+				"definitions/packages.log"
+			],
+			[
+				"pa",
+				"definitions/packages.log"
+			],
+			[
+				"manu",
+				"refs/manual.bib"
+			],
+			[
+				"abrev",
+				"Sections/0.begin/7.Acronim_abreviaturas.tex"
+			],
+			[
+				"pack",
+				"definitions/packages.tex"
+			],
+			[
+				"package",
+				"definitions/packages.tex"
+			],
+			[
+				"3.",
+				"Sections/3.architecture.tex"
+			],
+			[
+				"introdu",
+				"Sections/1.introduction.tex"
+			],
+			[
+				"resu",
+				"Sections/0.begin/5.Resumo.tex"
+			],
+			[
+				"ma",
+				"mathtext.sty"
+			],
+			[
+				"tes",
+				"tese.aux"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"~/Tese/Shuttle_Paper/paper.sublime-project"
+			],
+			[
+				"pa",
+				"~/Tese/Shuttle_Paper/paper.sublime-project"
+			],
+			[
+				"paper",
+				"~/Tese/Shuttle_Paper/paper.sublime-project"
+			],
+			[
+				"t",
+				"~/Tese/Shuttle_Paper/paper.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

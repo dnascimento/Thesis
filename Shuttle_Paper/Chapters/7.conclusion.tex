@@ -1,0 +1,13 @@
+%!TEX root = ../paper.tex
+%!TEX encoding = UTF-8 Unicode
+
+\section{Conclusion}
+\label{sec:conclusion}
+The paper presented Shuttle, an intrusion recovery service for PaaS. We described the design of a new architecture where a snapshot-based recovery system is provided as a service for PaaS tenants. Shuttle relies on a distributed database and the resource elasticity of PaaS environments to reduce the recovery time and costs. We introduce a novel dependency mechanism based on request start and end instants and list of accesses to order the requests during replay. 
+%We also propose to use semantic reconciliation to resolve inconsistencies during the replay process and a mechanism to perform a globally transaction-consistent snapshot of NoSQL databases. 
+Shuttle uses a branching mechanism to avoid service downtime during the recovery phase and permits to undo a recovery process.  
+Our evaluation shows that Shuttle can replay 1 million requests in 10 minutes, costing less than \$1. 
+
+%In future, we aim to explore the dependencies established by various applications and asset their impact on the recovery process.
+
+% We propose a new approach in which requests are sorted by their start-end (Section \ref{sec:recovery:dependencies}). Shuttle does not require generating a dependency graph in non-clustered full replay mode. The dependency graph is required in the case of clustered full replay to identify the independent clusters of requests and on selective replay to determine the tainted requests. We use the database operation lists to create the dependency graph and to order the execution of parallel requests without knowledge of the application protocol.

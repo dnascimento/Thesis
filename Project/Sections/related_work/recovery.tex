@@ -1,0 +1,21 @@
+%!TEX encoding = UTF-8 Unicode
+
+\subsection{Intrusion Recovery}
+\label{sec:Recovery}
+
+The main focus of this work are intrusion recovery mechanisms which accept intrusions but detect, process and recover from their effects. These mechanisms remove all actions related to the intrusion, their effects on legitimate actions and return the application to a correct state. These mechanisms can be used to tolerate intrusions or to recover from system failures. In order to recover from intrusions and restore a consistent application behavior, the system administrator detects the intrusion, manages the exploited vulnerabilities and removes the intrusion effects. This process should change the application state to an intrusion-free state.\\
+
+%Detection
+The first phase of intrusion recovery, out of the scope of this work, concerns the intrusion detection. Automated intrusion detection systems (IDS) are used to detect intrusions or suspicious behaviors. This phase may need human intervention to prevent false positives, which trigger recovery mechanisms and can result in legitimate data losses. Thus the detection phase can be a significant delay. The detection delay should be minimized because intrusion effects spread in the meantime between intrusion achievement and detection. More, intrusion recovery services should provide tools to help administrators to review the application behavior and determine which weaknesses were exploited. \\
+
+%Correction: Vulnerability repair
+The second phase, also out of the scope of this work, is vulnerability management. Vulnerabilities are identified, classified and mitigated after their detection by a group of persons which the NIST names as the patch and vulnerability group \cite{Mell2005}. Vulnerabilities are fixed by configuration adjustments or applying a security software patch, i.e., by inserting a piece of code developed to address a specific problem in an existing piece of software. \\
+
+%Eliminar os efeitos: dependence ficheiros afectados, etc
+%- dizer o que o sistema nao faz: lidar com violacoes da confidencialidade
+%- dizer que o sistema tambem nao tem que ver com availability, mas que procuramos que o proprio sistema ao recuperar o estado nao tenha impacto na availability
+The third phase, and the one that this work is about, consists in removing the intrusion effects. Intrusions affect the application integrity, confidentiality and/or availability. To recover from availability or confidentiality violations is out of the scope of this document. However, we argue that the design of the applications should encompass cryptography techniques which may reduce data relevance and protect the data secrecy \cite{Maheshwari2000}.
+
+Intrusion removal processes recover from integrity violations recreating an intrusion-free state. Due to the fact that the system availability is result of the integrity of each system component \cite{Wang2007}, these processes contribute to recover the system availability. More, the removal processes should not reduce the system availability. We argue that intrusion recovery services should avoid the system downtime and support the execution of recovery processes in background without externalization to users. Intrusion recovery mechanisms can accomplish some of the goals of intrusion tolerance if they keep providing a, possibly degraded but adequate, service during and after an intrusion recovery.
+
+The following sections explain distinct recover processes where the application integrity is restored by determining the effects of the detected intrusion actions, reverting them and recreating a correct state. 

@@ -1,0 +1,36 @@
+%!TEX root = ../../tese.tex
+%!TEX encoding = UTF-8 Unicode
+
+\begin{abstract}
+%We introduce a novel service for \acf{PaaS} systems that gives cloud providers the capability to allow their customers to recover their applications from intrusions. The motivation for this work is the increasing number of intrusions and critical applications in the cloud and the emergence of the \ac{PaaS} model. We introduce a new service, named Shuttle, where security intrusions in \ac{PaaS} applications are removed and tolerated. The proposed architecture supports the removal of intrusions due to software flaws or corrupted user requests and supports system corrective and preventive maintenance.
+
+
+The number of applications being deployed using the \acf{PaaS} cloud computing model is increasing. Despite the security controls implemented by cloud service providers, we expect intrusions to harm these applications. We present Shuttle, a novel intrusion recovery service where security intrusions in \ac{PaaS} applications are removed and tolerated. \ac{PaaS} providers are capable to allow their customers to recover from intrusions in their applications using Shuttle.
+
+% In order to recover the application integrity, it loads a previous database snapshot and replays the requests in parallel using multiple clients. Shuttle leverages the elasticity and pay-per-usage model of \ac{PaaS} systems to launch new application and database instances to attend the flow of requests due to replay, reducing the recovery period. Moreover, it uses \ac{PaaS} to deploy new application versions to fix previous software flaws and remove corrupted instances. Shuttle does not require application downtime during the recovery because it uses a branching mechanism.
+
+Our approach allows undoing changes to the state of \ac{PaaS} applications due to intrusions, without loosing the effect of legitimate operations performed after the intrusions took place. We combine a record-and-replay approach with the elasticity provided by cloud offerings to recover applications deployed on various instances and backed by distributed databases. To recover applications from intrusions, the service loads a database snapshot taken before the intrusion and replays the subsequent requests, in concurrently as possible, while continuing to execute incoming requests. Shuttle is available without setup and configuration to the \ac{PaaS} application developers. The proposed service removes security intrusions due to software flaws or corrupted user requests and supports corrective and preventive maintenance of applications deployed in \ac{PaaS} cloud computing platform. 
+%Shuttle not only avoids application downtime during recovery, but also allows customers to deploy new application versions to fix previous software flaws.
+
+We present an experimental evaluation of Shuttle on Amazon Web Services (AWS). We show Shuttle can replay 1 million requests in around 10 minutes and that it is possible to duplicate the number of requests replayed per second by increasing the number of application servers from 1 to 3. 
+
+%%Through our evaluation, we demonstrate that Shuttle incurs negligible \hl{acceptable?} performance overhead and that performing parallel replay using \hl{XXX} client instances and \hl{XXX} new application instances and \hl{XXX} database instances can reduce the recovery period by \hl{XXX}\%. We also show Shuttle can recover an application with \hl{XXX} requests, storing \hl{XXX} of metadata and replaying the requests in \hl{xxx} seconds using \hl{xxx} cloud instances.
+
+%\hl{Max 250 palavras}
+
+\end{abstract}
+\vspace{-2cm}
+\begin{keywords}
+\begin{itemize}
+\vspace{-1cm}
+\item Intrusion Recovery
+\item Intrusion Tolerance
+\item Dependability
+\item Cloud Computing
+\item Platform as a Service
+\item Distributed Database Systems
+\end{itemize}
+\end{keywords}
+\clearpage
+\thispagestyle{empty}
+\cleardoublepage

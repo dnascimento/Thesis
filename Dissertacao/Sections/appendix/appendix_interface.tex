@@ -1,0 +1,174 @@
+%!TEX root = ../../tese.tex
+%!TEX encoding = UTF-8 Unicode
+\chapter{Messages}
+
+%\ttfamily,
+
+\lstset{language=Protobuff,basicstyle=\small}
+
+\section{Voldemort Client API}\label{appendix:voldemort_api}
+
+\begin{multicols}{2}[]
+\begin{lstlisting}
+message KeyedVersions {
+  required bytes key  
+  repeated Versioned versions  
+  optional MsgToManager.SRD srd  
+}
+
+message GetRequest {
+  optional bytes key  
+  optional bytes transforms  
+  optional MsgToManager.SRD srd  
+}
+
+message GetResponse {
+  repeated Versioned versioned  
+  optional Error error  
+  optional MsgToManager.SRD srd  
+}
+\end{lstlisting}
+
+\columnbreak
+\begin{lstlisting}
+message PutRequest {
+  required bytes key  
+  required Versioned versioned  
+  optional bytes transforms  
+  optional MsgToManager.SRD srd  
+}
+
+message PutResponse {
+  optional Error error  
+}
+
+message UnlockRequest {
+  repeated bytes key  
+  optional MsgToManager.SRD srd  
+}
+
+message UnlockResponse {
+  repeated KeyStatus status  
+  optional Error error  
+}
+\end{lstlisting}
+\end{multicols}
+
+
+\clearpage
+\section{Shuttle messages}\label{appendix:shuttle_api}
+\begin{multicols}{2}[]
+\begin{lstlisting}
+// From manager to database instances
+message ToDatabaseInstance{
+  optional int64 newSnapshot  
+  optional bool replayOver  
+  repeated int32 pathBranch  
+  repeated int64 pathSnapshot  
+}
+
+
+// From manager to replay instances
+message ExecList{
+  repeated int64 rid  
+  required int32 branch  
+  required bool start  
+  required string replayMode  
+  required string targetHost  
+  required int32 targetPort  
+}
+
+
+// From manager to proxy
+message ProxyMsg{
+  optional int32 branch  
+  optional bool restrain  
+  optional int64 timeTravel  
+  optional int64 snapshot  
+}
+
+
+// To Manager
+message MsgToManager{ 
+  optional TrackMsg trackMsg  
+  optional StartEndMsg startEndMsg  
+  optional NodeRegistryMsg registry  
+  optional AckMsg ack  
+  repeated EntryAccessList accesses  
+  optional AckProxy ackProxy  
+
+  // From database nodes
+  message TrackMsg{
+    repeated TrackEntry entry  
+    optional string nodeId  
+
+    message TrackEntry {
+      required int64 rid  
+      repeated int64 dependency  
+    }
+  }
+
+  
+
+
+\end{lstlisting}
+
+\columnbreak
+\begin{lstlisting}
+
+  // From proxy
+  message StartEndMsg{
+    repeated int64 data  
+  }
+
+
+  message SRD{
+    optional int64 rid  
+    optional int32 branch  
+    optional bool restrain  
+    optional bool replay  
+  }
+
+
+  // From Replay Nodes
+  message AckMsg{
+    optional int32 port  
+    optional string hostname  
+    repeated string exception  
+  }
+
+
+  message AckProxy{
+    required int64 currentId  
+  }
+
+
+  // From any instance
+  message NodeRegistryMsg{
+    enum NodeGroup{
+      PROXY  
+      DB_NODE  
+      REDO_NODE  
+    }
+    required NodeGroup group  
+    required int32 port  
+    required string hostname  
+  }
+
+  message EntryAccessList{
+    required bytes key  
+    repeated int64 rid  
+  }
+
+}
+
+enum RequestType {
+  GET  
+  GET_ALL  
+  PUT  
+  DELETE  
+  GET_VERSION  
+  UNLOCK  
+}
+\end{lstlisting}
+\end{multicols}

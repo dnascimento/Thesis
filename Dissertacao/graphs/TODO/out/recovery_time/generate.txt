@@ -1,0 +1,14 @@
+set terminal epslatex solid
+set output 'grafico.tex'
+
+#set terminal pngcairo
+#set output 'grafico.png'
+
+set xlabel "Number of clusters"
+set ylabel "Time to recovery (seconds)"
+set yrange [0:900]
+
+set style function linespoints
+set style line 1 lw 4 lc rgb "black" ps 2 pt 3
+
+plot 'clusters.txt' with linespoints title '' ls 1

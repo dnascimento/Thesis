@@ -1,0 +1,65 @@
+%!TEX root = ../tese.tex
+%!TEX encoding = UTF-8 Unicode
+\chapter{Introduction}\label{chapter:introduction}
+%What is PaaS?
+\ac{PaaS} is a cloud computing model that supports automated configuration and deployment of applications \cite{Vaquero2008,Vaquero2011,Armbrust,Mell}. While the \ac{IaaS} model is being much used to obtain computation resources and services on demand \cite{Lenk2009,Armbrust2009}, \ac{PaaS} aims to reduce the cost of software deployment and maintenance abstracting the underlying infrastructure. The model defines a well tested and integrated environment in which the clients (\textit{tenants}) design, implement, deploy and run their applications on a managed cloud infrastructure through a set of middleware services. Examples of these services are load-balancing, automatic server configuration and storage \ac{API}s. These services are paid-per-usage and turn the application easy to deploy and scale.
+\ac{PaaS} platforms are provided either by cloud providers, such as Windows Azure \cite{azure}, Google App Engine \cite{GoogleAppEngine}, Heroku \cite{Heroku}, Openshift \cite{OpenShift} and Amazon \cite{AmazonElasticBeanstalk}, or by open source projects \cite{Appscale,Cloudfoundry,ApacheStratos}. Besides natural metrics such as cost and performance, the success of \ac{PaaS} systems will also be established by their features, for instance capability to recover from intrusions.
+
+
+\section{Problem Statement}\label{sec:introduction:problem}
+%Intrusions happening more and more
+The number of applications running in cloud computing platforms, including those based on the \ac{PaaS} model, is increasing rapidly. 
+Many of these applications are critical for their companies and contain valuable informations, so the exploitation of vulnerabilities is attractive and profitable. Consequently, the risk of intrusion is high. An intrusion happens when an attacker exploits a vulnerability successfully. Intrusions are considered faults. Faults may cause system failure and, consequently, application downtime which has significant business losses \cite{Patterson2002a}. The recent case of the cloud-based Code Spaces service is conspicuous: hackers deleted most of its data and backups, leading to the termination of the service \cite{McAllister:14}. 
+
+%Problems
+\acf{CSP} implement several security controls. Most of these controls aim to prevent and detect intrusions: access control, firewalls, intrusion detection and prevention systems, network access control, vulnerability scanning, etc. Despite the importance of these mechanisms, applications often contain design or configuration vulnerabilities that let intrusions happen \cite{Williams2013,Hubbard2010}. Complexity and budget/time constraints \cite{Charette2005}, weak users passwords or bad security policies are known causes of these problems. The recent case of the bash bug (or Shellshock) shows that there are other reasons such as legacy software being used in ways that were unpredictable when it was developed \cite{Sidhpurwala:14}. Attackers can spend years developing new ingenious and unanticipated attack methods having access to what protects the application. On the opposite side, guardians have to predict new methods to mitigate vulnerabilities and to solve attacks in few minutes to prevent intrusions.
+
+%Fault tolerance does not work
+Much research has been done on mechanisms to tolerate Byzantine faults, including intrusions \cite{Castro2002,Verissimo2003,Gupta:03}. However, most of these techniques do not prevent application level attacks or user mistakes. For instance, if attackers steal legitimate user credentials, they are able to modify the state of the applications violating their security policy. In summary, there are several paths for intrusions to happen, even if mechanisms to prevent or tolerate them are used.\\ %Therefore, the application integrity can be compromised and the intrusion reaches its goal bringing the system down to repair. \\
+
+%Manual recovery is error prone
+We shall assume that intrusions can happen and their effects need to be removed from the applications' state. This removal is often done manually by system administrators. Administrators have to detect the intrusion, understand the parts of the state compromised directly by the intrusion or contaminated by operations that used compromised state, and clean the state manually. For instance, most of full-backup solutions revert the intrusion effects but require extensive system administrator effort to replay the legitimate actions. This process is error-prone, often takes long and causes application downtime \cite{Brown2001}. Intrusion recovery systems aim to automate these steps and mitigate these issues.
+
+%what is the problem of related works?
+Previous intrusion recovery systems targeted operating systems \cite{taser,retro}, databases \cite{itdb,phoenix}, web applications \cite{goel,warp,aire} and other services \cite{undoForOperators}. Yet, none of them was designed for cloud applications, which are often deployed in multiple servers and use background databases. Furthermore, most cause downtime, which is undesirable in online services.
+ 
+\section{Goals and Main Contributions}\label{sec:introduction:goals}
+%Recovery in Cloud
+The primary goal of this thesis is to design, develop and evaluate a system to recover from security intrusions in cloud computing. In particular, the system shall support \ac{CSP} to keep \ac{PaaS} applications operational despite intrusions. The system shall accept that intrusions can happen, remove their effects from the application's state and restore the state's integrity. 
+
+%Recovery instead of preventing
+The approach followed in this dissertation consists in recovering the applications state when intrusions happen, instead of trying to prevent them from happening. Intrusion recovery systems do not aim to substitute prevention but to be an additional security mechanism. Similarly to fault tolerance, they accept that faults occur and have to be processed. Namely, we aim to decrease the applications' Mean Time to Repair (MTTR), not the Mean Time to Failure (MTTF). Doing so, we expect to increase the applications' availability, which is given by $Availability=MTTF/(MTTF+MTTR)$. \\
+
+%Recovery in PaaS using a service: goals of the contribution
+The main contribution of this dissertation is a novel \emph{intrusion recovery service} for \ac{PaaS} systems, named \emph{Shuttle}. Shuttle is a service that aims to make \ac{PaaS} applications operational despite intrusions, helping tenants to recover their applications from software flaws and malicious, or accidental, corrupted user requests without requiring application downtime during the process. When an intrusion is detected, tenants can use this service, which is offered by \ac{CSP}, to remove intrusions' effects and recover the integrity of their applications. In this dissertation, we concern the applications' availability and the integrity of their state, not their confidentiality. Consequently, the proposed service does not aim to avoid information leaks.
+
+
+
+%How it works summary
+Shuttle assumes a client-server model in which clients communicate with the servers in the cloud using \ac{HTTP}/\ac{HTTPS}. For each application deployed in the \ac{PaaS} system, Shuttle records the requests issued by clients and creates periodic snapshots of the application database. 
+
+After detection of the intrusion, Shuttle loads the snapshot that precedes the beginning of the intrusion and replays only the legitimate requests to recreate an intrusion-free application state. Requests are replayed asynchronously, perhaps also concurrently, on same order as on their first execution. Even so, the recovery process is deterministic because operations to each data item must have the same order as on first execution. 
+
+Dependencies established at database level during the requests' first execution are used to create independent clusters of requests that can be replayed concurrently. We propose a branching mechanism to maintain the service available continuing to execute incoming requests while replaying the requests. 
+
+We introduce a novel approach to remove the intrusion effects in which the \ac{PaaS} removes the current application instances and deploys an update software version, which may fix previous flaws, in new instances.
+
+
+
+%why PaaS?
+Unlike previous intrusion recovery systems, Shuttle is provided as a service to applications deployed in \ac{PaaS}. Consequently, it can be well tested and available without depending on being correctly setup by the application developers. We also leverage the elasticity of \ac{PaaS} infrastructures to reduce the service costs and the recovery period. Specifically, Shuttle is designed to allocate more servers during recovery period to accommodate the throughput of requests being replayed, and release them when at the end, with a proportional impact on service costs. The rapid and continuous decline in computation and storage costs in public cloud providers makes affordable to store user requests, to use database snapshots and to replay previous user requests.
+
+%Contributions
+We propose, to the best of our knowledge, the first intrusion recovery service for \ac{PaaS} applications. The main contributions of this dissertation are the following:
+\begin{itemize}
+\item a new intrusion recovery approach provided as a service integrated in a \ac{PaaS} system and taking into consideration applications running in various instances backed by distributed databases;
+\item a method to order the replayed user requests considering their accesses to databases;
+\item accomplishing intrusion recovery without service downtime using a branching mechanism;
+\item leveraging the resource elasticity and pay-per-use model in \ac{PaaS} environments to record and launch multiple clients to replay previous non-malicious user requests as concurrently as possible to reduce the recovery time and costs;
+\item a mechanism to do a globally transaction-consistent snapshot of \acs{NoSQL} databases;
+\item an approach to remove intrusions by redeploy the applications;
+\end{itemize}
+
+
+\section{Thesis Structure}\label{sec:introduction:structure}
+This document is structured as follows. In Chapter \ref{chapter:related_work}, we present the fundamental concepts and previous intrusion recovery proposals. In Chapter \ref{chapter:architecture}, we describe briefly the architecture of \ac{PaaS} systems and the proposed architecture for intrusion recovery service. In Chapter \ref{chapter:implementation}, we describe the platform and components of the prototype of Shuttle. The work is evaluated in Chapter \ref{chapter:evaluation} and concluded in Chapter \ref{chapter:conclusion}.

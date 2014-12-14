@@ -1,0 +1,23 @@
+Access Key ID: AKIAJJAV6MYTONGQMIIQ
+Secret Access Key: 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
+
+
+
+
+
+
+aws cloudwatch get-metric-statistics --metric-name CPUUtilization --start-time 2014-11-26T00:00:00 --end-time 2014-11-26T23:59:59 --period 3600 --namespace AWS/EC2 --statistics "Average" "SampleCount"
+
+
+aws cloudwatch get-metric-statistics --metric-name CPUUtilization --start-time 2014-11-26T00:00:00 --end-time 2014-11-26T23:59:59 --period 300 --namespace AWS/EC2 --statistics Maximum --dimensions Name=InstanceId,Value=i-eb0a4f0a
+
+
+"DiskReadOps","DiskReadBytes","NetworkOut","NetworkIn","DiskWriteOps","DiskWriteBytes"
+
+
+
+Instances
+
+
+i-eb0a4f0a,i-3f3570de,i-119be1f0,i-ad142a43,i-e7befb06,i-075613e6,i-c6ef8e28,i-c4ef8e2a,i-c2ef8e2c,i-c3ef8e2d,i-e3d1af02,
+

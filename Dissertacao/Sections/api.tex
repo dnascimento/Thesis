@@ -1,0 +1,94 @@
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[language=java,firstnumber=1,backgroundcolor=\color{grey},mathescape,caption={Class of the operations multimap (pseudo-code)},label={code:multimap}]
+class OpMultimap:
+	SnapBranch trackReadAccess(ByteArray key, Long requestId,TreePath path){
+		OpMultimapEntry entry = map.get(key);
+		entry.lockRead();
+		return entry.trackReadAccess(requestId,path);
+	}
+	SnapBranch trackWriteAccess(ByteArray key, Long requestId,TreePath path);
+	void endReadAccess(ByteArray key);
+	void endWriteAccess(ByteArray key);
+
+	boolean updateDependencies(Multimap<Long, Long> dependencyPerRid);
+\end{lstlisting}
+\end{minipage}
+
+%OpEntry functions
+public synchronized Op getLastWrite();
+public synchronized ArrayList<Op> getAll();
+public synchronized ArrayList<Op> extractAll();
+public void lockWrite();
+public void lockRead();
+public void unlockWrite();
+public void unlockRead();
+public boolean isLocked();
+public synchronized int updateDependencies(HashMultimap<Long, Long> dependencyMap); //explicar algoritmo
+public synchronized ArrayList<Op> getAccesses(long baseRid);
+public synchronized StsBranchPair getVersionToPut(RUD rud, BranchPath path); //explicar algoritmo
+public synchronized StsBranchPair trackReadAccess(RUD rud, BranchPath path); //explicar algoritmo
+public synchronized StsBranchPair trackWriteAccess(OpType type, RUD rud, BranchPath path); //explicar algoritmo
+public synchronized boolean isModified(short redoBranch); //
+private synchronized void startRedoOp(Op op, RUD rud, long baseCommit) //Explicar
+public synchronized void endRedoOp(OpType type, RUD rud, BranchPath path) //Explicar
+public synchronized boolean ignore(RUD rud, BranchPath path) //Explicar
+
+public StsBranchPair redoRead(RUD rud, BranchPath path);
+public StsBranchPair redoWrite(OpType opType, RUD rud, BranchPath path);
+public synchronized void addLast(Op op);
+
+
+
+%redo iterator
+/**
+    * A reference to the full execution list
+    */
+   private final ArrayList<Op> fullList;
+
+   /**
+    * Allowed operations to execute now
+    */
+   private final ArrayList<Op> allowed = new ArrayList<Op>();
+
+   /**
+    * Allowed operations which are executing
+    */
+   private final ArrayList<Op> executing = new ArrayList<Op>();
+
+   /**
+    * Allowed operations which are sleeping
+    */
+   private final ArrayList<Op> sleeping = new ArrayList<Op>();
+
+   /**
+    * Operations to ignore (different execution), the request was processed
+    */
+   private final HashSet<Long> ignoring = new HashSet<Long>();
+
+   /**
+    * Position to fetch the next allowed operations, always on the 1st element
+    */
+   private int nextPosition = 0;
+
+   /**
+    * Each branch has an iterator = an execution of redo
+    */
+   private final short branch;
+
+   /**
+    * The snapshot which the redo is based on
+    */
+   private long baseRid;
+
+   public boolean allows(Op op) //explicar algoritm
+   private void fetchNextAllowed() //explicar algoritm
+   private void removeIgnored() //explicar algoritmo
+   public boolean endOp(Op op) //explicar algoritmo
+   public boolean ignore(long rid) 
+
+
+
+
+
+
+

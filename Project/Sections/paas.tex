@@ -1,0 +1,38 @@
+%!TEX encoding = UTF-8 Unicode
+\section{Architecture}
+\label{sec:Architecture}
+In the following sections, we first present a generic Platform as a Service (PaaS) architecture. Afterwards, we sketch the architecture of Shuttle and discuss its main design choices.\\
+
+\subsection{Platform as a Service}
+\label{sec:PaaS}
+%Section goal: Zoom-in approach to PaaS
+%Goals
+Platform as a Service (PaaS) is a cloud computing model for automated configuration and deployment of applications onto the cloud infrastructure \cite{Vaquero2008,Vaquero2011,Armbrust,Mell}. The objective is to provide an abstracted, generic and well-tested set of programming and middleware services where developers can design, implement, deploy and maintain their applications written in the high-level languages supported by the PaaS system. PaaS provides a service-oriented access to data storage, middleware solutions and other services hiding lower level details and providing access to a pay-per-usage scalable infrastructure. \\
+
+
+%Bottom-layer: IaaS, VMs
+PaaS applications are deployed in one or more \emph{containers} \cite{Lenk2009}. The word container is often used to refer to lightweight in-kernel resource (CPU, memory and device) accounting, allocation and isolation mechanisms like the Linux control groups \cite{Menage2007}. These mechanisms isolate the process, network and file system used by applications which share the same operating system. They can run either directly on the host operating system or in a virtual machine. In this document, we use the word container to describe an isolated deployment unit which can be allocated from a resource pool. Therefore, our concept of container includes bare metal servers and guest operating systems running on top of hypervisors, e.g., Xen \cite{xen}, KVM \cite{kvm}. The containers are managed directly or through an IaaS system (e.g., OpenStack \cite{openstack}, AWS EC2 \cite{aws}, Eucalyptus \cite{eucalyptus}). Most of the applications deployed in PaaS are designed to scale horizontally, i.e., to scale adding more containers. The application state is often maintained by the database and/or the session cookies.
+
+%Components
+A base PaaS system is composed of the following components (Fig. \ref{paasArchitecture}):
+\begin{itemize}
+  \item \textbf{Load balancer:} Route user requests based on application location and container load.
+  \item \textbf{Instance controller:} Collects the container metering data and performs the configuration, tear-up and tear-down of containers in the instance.
+  \item \textbf{Cloud controller:} Manages the tear-up and tear-down of containers.
+  \item \textbf{Metering and billing}: Retrieve the metering data from each container. The load balancer uses this information to perform request routing while the cloud controller automatically decides when to scale.
+  \item \textbf{Containers:} The isolated environment where applications run.
+  \item \textbf{Cloud Instances:} The guest operating systems or bare-metal machine where the containers run.
+  \item \textbf{Authentication manager:} Provides user and system authentication.
+  \item \textbf{Database instance:} A single DBMS shared, or not, between multiple applications. Most of database middleware are built-on multiple instances to provide scalability and replication.
+  \item \textbf{Authentication manager:} Provides user and system authentication.
+\end{itemize}
+The PaaS systems are often integrated with code repositories and software development tools.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=90mm]{images/paas}
+  \caption{Generic PaaS architecture}
+  \label{paasArchitecture}
+\end{figure}
+
+

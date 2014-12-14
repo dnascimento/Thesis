@@ -1,0 +1,76 @@
+%!TEX program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[defaultstyle,10pt,master]{01.thesis}
+% Helvetica is a similar font to Arial, with small differences.
+
+\usepackage[default,scale=0.95]{opensans} %% Alternatively
+\usepackage[T1]{fontenc}
+
+
+%% Packages
+\input{definitions/packages.tex}
+%% Page formatting
+\input{definitions/pagesetup.tex}
+
+\newdateformat{monthYearDate}{\monthname[\THEMONTH] \THEYEAR}
+
+\begin{document}
+\pagestyle{begin}
+
+\raggedbottom
+\pagenumbering{arabic}
+
+
+\input{Sections/0.begin/1.cover.tex} 
+\input{Sections/0.begin/2.Acknowledgments.tex}
+\input{Sections/0.begin/3.Dedication.tex}
+\input{Sections/0.begin/4.Abstract}
+\input{Sections/0.begin/5.Resumo}
+\input{Sections/0.begin/6.Tables.tex}
+\acresetall
+
+
+\pdfbookmark[1]{List of Acronyms}{loac}
+\chapter*{Abbreviations}
+ \input{Sections/0.begin/7.Acronim_abreviaturas.tex}
+\clearpage
+\thispagestyle{empty}
+\cleardoublepage
+
+\pagestyle{documentsimple}%Simple head
+\pagenumbering{arabic}
+\input{Sections/1.introduction}
+\cleardoublepage
+\phantomsection
+\input{Sections/2.related_work}
+\cleardoublepage
+\phantomsection
+\input{Sections/3.architecture}
+\cleardoublepage
+\phantomsection
+\input{Sections/4.implementation}
+\cleardoublepage
+\phantomsection
+\input{Sections/5.accuracy}
+\input{Sections/6.performance}
+\cleardoublepage
+\phantomsection
+\input{Sections/7.conclusion}
+\cleardoublepage
+\phantomsection
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{IEEEtran}
+\bibliography{refs/all.bib,refs/manual.bib}
+\cleardoublepage
+
+\begin{appendix}
+	\pagenumbering{bychapter}
+	\input{Sections/appendix/appendix_interface.tex}
+	\input{Sections/appendix/appendix_results.tex}
+	\cleardoublepage
+\end{appendix}
+
+
+\end{document}

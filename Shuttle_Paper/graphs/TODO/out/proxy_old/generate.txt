@@ -1,0 +1,16 @@
+#set terminal epslatex dashed
+#set output 'grafico.tex'
+
+set terminal pngcairo
+set output 'grafico.png'
+
+set xlabel "Concurrent clients"
+set ylabel "Requests per second"
+
+set style function linespoints
+set style line 1 lw 4 lc rgb "black" ps 2 pt 3 pointinterval 10
+set style line 2 lw 3 lc rgb "black" ps 2 pt 5 pointinterval 10
+set style line 3 lw 3 lc rgb "black" ps 2 pt 4 pointinterval 10
+set style line 4 lw 4 lc rgb "black" ps 2 pt 1 pointinterval 10
+
+plot 'no_proxy.txt' with line title 'Without Proxy' ls 1, 'ha_proxy.txt' with line title 'HA Proxy' ls 2, 'shuttle.txt' with line title 'Shuttle' ls 3, 'shuttle_no_record.txt' with line title 'Shuttle not recording' ls 4, 'shuttle_direct.txt' with line title 'No HAProxy' ls 5

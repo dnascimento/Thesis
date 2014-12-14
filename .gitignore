@@ -1,0 +1,34 @@
+Auxiliares/
+Outras\ teses/
+Dissertacao/graphs/**/*.tex
+*.mlf*
+*.mtc*
+*.blg
+**.toc
+*.yml
+*.eps
+*.blg
+*.lof
+*.out
+*.aux
+*.mp3
+*.toc
+*.log
+*.synctex.gz
+*.bbl
+*.blg
+*.lof
+*.lot
+*.maf
+*.mlt*
+*.pdf
+INESC
+Texnicle-User-Manual.pdf
+Project/old\ versions
+Arquitectura/stuff/OpenStack/
+Arquitectura/stuff/stuff/Intrusion\ types
+Dissertacao/versions/
+Dados/Arquitectura/SQL/
+Shuttle_Paper/versions/
+Dissertacao/tese.pdf
+recordar/

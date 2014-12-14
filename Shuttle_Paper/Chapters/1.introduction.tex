@@ -1,0 +1,44 @@
+%!TEX root = ../paper.tex
+%!TEX encoding = UTF-8 Unicode
+
+\section{Introduction}
+\label{sec:introduction}
+
+\acf{PaaS} is a cloud computing model that supports automated configuration and deployment of applications \cite{Vaquero2008,Vaquero2011} \LONG{Armbrust,Mell}. \ac{PaaS} offerings, such as Windows Azure, Google App Engine, and Force.com, provide an environment \LONG{model aims to provide an environment} in which clients (\textit{tenants}) build and run their application on a managed cloud infrastructure through a set of services. These services are paid-per-usage and turn the application easy to deploy and scale.
+
+%Motivation
+The number of applications running in cloud computing platforms, including those based on the \ac{PaaS} model, is increasing rapidly. Many of these applications are critical for their companies, so the risk of intrusion is high. The recent case of the cloud-based Code Spaces service is conspicuous: hackers deleted most of its data and backups, leading to the termination of the service \cite{McAllister:14}.
+
+
+%alternatives
+Cloud service providers (CSPs) implement several security controls. Most of these controls aim to prevent intrusions: access control, firewalls, intrusion detection and prevention systems, network access control, vulnerability scanning, etc. Despite the importance of these mechanisms, applications often contain design or configuration vulnerabilities that let intrusions happen \cite{Williams2013} \LONG{Hubbard2010}. Complexity and budget/time constraints\LONG{Charette2005}, weak users passwords or bad security policies are known causes of these problems. The recent case of the bash bug (or Shellshock) shows that there are other reasons such as legacy software being used in ways that were unpredictable when it was developed \cite{Sidhpurwala:14}.
+Much research has been done on mechanisms to tolerate Byzantine faults, including intrusions \cite{Verissimo2003}\LONG{Castro2002,Gupta:03}. However, most of these techniques do not prevent application level attacks or user mistakes. For instance, if attackers steal legitimate user credentials, they are able to modify the state of the applications violating their security policy. \LONG{In summary, there are several paths for intrusions to happen, even if mechanisms to prevent or tolerate them are used.}
+
+
+%what is intrusion recovery? what the problem they solve?
+We  assume intrusions can happen and their effects need to be removed from the applications' state. This removal is often done manually by system administrators who have to understand the parts of the state compromised directly by the intrusion or contaminated by operations that used compromised state, and clean the state manually. This process is error-prone, often takes long and causes application unavailability \cite{Brown2001}. Intrusion recovery systems aim to automate these steps and mitigate these issues.
+
+%what is the problem of related works?
+Previous intrusion recovery systems targeted operating systems \cite{taser,retro,dare}, databases \cite{itdb,phoenix}, web applications \cite{goel,warp,aire} and other services \cite{undoForOperators}. Yet, none of them was designed for cloud applications, which are often deployed in multiple servers and use background databases. Furthermore, most cause downtime, which is undesirable in online services.
+
+%Goals, what is the paper about? Why is new?
+We present a novel \emph{intrusion recovery} service for \ac{PaaS} systems. Shuttle aims to make \ac{PaaS} applications operational despite intrusions, helping tenants to recover their applications from software flaws and malicious or accidentally corrupted user requests without requiring application downtime during the process. When an intrusion is detected, tenants can use Shuttle, that is provided as a service by \ac{CSP}, to remove intrusions' effects and recover the integrity of their applications. This paper concerns application availability and state integrity, not confidentiality.
+
+%How it works summary
+Shuttle assumes a client-server model in which clients communicate with the servers in the cloud using HTTP / HTTPS. For each application deployed in the \ac{PaaS} system, Shuttle records the requests issued by clients and creates periodic snapshots of the application database. 
+After detection of the intrusion, Shuttle loads the snapshot that precedes the beginning of the intrusion and replays only the legitimate requests to recreate an intrusion-free application state. Requests are replayed asynchronously and, whenever possible, concurrently. The recovery process is deterministic because accesses to each data item are performed in the original order of execution.
+
+Dependencies established at database level during the requests' first execution are used to create independent clusters of requests that can be replayed concurrently. We propose a branching mechanism to maintain the service available continuing to execute incoming requests while doing replay.
+
+%main novelty
+Unlike previous intrusion recovery systems, Shuttle aims to be provided as a service to applications deployed in \ac{PaaS}. Consequently, it can be well-tested and available without depending on being correctly setup by the application developers. We also leverage the elasticity of \ac{PaaS} infrastructures to reduce the service costs and the recovery period. Specifically, Shuttle is designed to allocate more servers during the recovery period to accommodate the throughput of requests being replayed, and release them at the end, with a proportional impact on service costs. The rapid and continuous decline in computation and storage costs in CSPs makes affordable to store user requests, to use database snapshots and to replay previous user requests.
+
+%Main contributions summary
+The contributions of this paper are the following: 
+(1) a new intrusion recovery approach provided as a service integrated in a \ac{PaaS} system and taking into consideration applications running in various instances backed by distributed databases;
+(2) a method to order the replayed user requests considering their accesses to databases;
+(3) accomplishing intrusion recovery without service downtime using a branching mechanism;
+(4) leveraging the resource elasticity and pay-per-use model in \ac{PaaS} environments to record and launch multiple clients to replay previous non-malicious user requests as concurrently as possible to reduce the recovery time and costs;
+(5) a mechanism to do a globally transaction-consistent snapshot of NoSQL databases.
+
+%The remainder of the paper is structured as follows. In Section \ref{sec:formalization} we analyze the application recover process. In Section \ref{sec:architecture}, we present the Shuttle design. In Section \ref{sec:implementation}, we describe its implementation. The work is evaluated in terms of performance and accuracy in Section \ref{sec:results}. Section \ref{sec:future} discusses future challenges and Section \ref{sec:conclusion} concludes.

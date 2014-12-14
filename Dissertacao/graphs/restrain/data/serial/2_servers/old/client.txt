@@ -1,0 +1,281 @@
+#sudo java -jar target/AppEvaluation-1.0-SNAPSHOT-jar-with-dependencies.jar proxy:9000 --fileParallel .*.noisy --perTopic --readPercentage 0.5  Files in parallel .*.noisy  Read percentage 0.5
+Rate: 371 total: 5255
+Rate: 284 total: 5256
+Rate: 107 total: 8854
+Rate: 80 total: 8856
+Rate: 114 total: 11650
+Rate: 133 total: 11651
+Rate: 104 total: 14421
+Rate: 116 total: 14422
+Rate: 185 total: 17512
+Rate: 144 total: 17513
+Rate: 294 total: 21053
+Rate: 289 total: 21054
+Rate: 318 total: 28053
+Rate: 293 total: 28054
+Rate: 347 total: 35086
+Rate: 291 total: 35088
+Rate: 322 total: 42335
+Rate: 333 total: 42336
+Rate: 322 total: 49232
+Rate: 287 total: 49235
+Rate: 359 total: 55895
+Rate: 260 total: 55901
+^Cubuntu@ip-192-168-1-90:~/data/data/dock/AppEvaluatio sudo java -jar target/AppEvaluation-1.0-SNAPSHOT-jar-with-dependencies.jar proxy:9000 --fileParallel .*.noisy --perTopic --readPercentage 0.5
+Files in parallel .*.noisy
+Read percentage 0.5
+Starting Master client:9999....
+log4j:WARN No appenders could be found for logger (pt.inesc.slave.Slave).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Total         Rate       avg          95th percentil   90th percentil     Data Received (Bytes)
+Rate: 355 total: 5412
+Rate: 281 total: 5413
+Rate: 268 total: 11678
+Rate: 270 total: 11684
+Rate: 294 total: 17752
+Rate: 262 total: 17753
+Rate: 286 total: 24175
+Rate: 320 total: 24176
+Rate: 320 total: 30436
+Rate: 265 total: 30438
+Rate: 293 total: 36777
+Rate: 290 total: 36778
+Rate: 286 total: 43311
+Rate: 292 total: 43312
+Rate: 258 total: 49407
+Rate: 278 total: 49408
+Rate: 335 total: 55556
+Rate: 216 total: 55557
+Rate: 302 total: 61438
+Rate: 236 total: 61440
+Rate: 261 total: 66859
+Rate: 200 total: 66871
+Rate: 226 total: 72485
+Rate: 303 total: 72487
+Rate: 239 total: 78428
+Rate: 285 total: 78429
+Rate: 307 total: 84290
+Rate: 240 total: 84291
+Rate: 274 total: 90240
+Rate: 220 total: 90243
+Rate: 194 total: 95517
+Rate: 276 total: 95518
+Rate: 269 total: 100761
+Rate: 185 total: 100764
+Rate: 261 total: 105907
+Rate: 234 total: 105908
+Rate: 222 total: 110278
+Rate: 218 total: 110279
+Rate: 214 total: 115266
+Rate: 244 total: 115267
+Rate: 243 total: 120213
+Rate: 213 total: 120214
+Rate: 307 total: 126032
+Rate: 252 total: 126033
+Rate: 257 total: 131990
+Rate: 285 total: 131992
+Rate: 281 total: 137532
+Rate: 235 total: 137542
+Rate: 285 total: 142906
+Rate: 210 total: 142908
+Rate: 367 total: 148699
+Rate: 210 total: 148700
+Rate: 362 total: 155401
+Rate: 221 total: 155405
+Rate: 314 total: 161223
+Rate: 237 total: 161230
+Rate: 279 total: 167392
+Rate: 336 total: 167393
+Rate: 381 total: 174734
+Rate: 307 total: 174737
+Rate: 317 total: 182166
+Rate: 313 total: 182168
+Rate: 222 total: 188987
+Rate: 313 total: 188988
+Rate: 217 total: 194518
+Rate: 237 total: 194519
+Rate: 277 total: 200503
+Rate: 316 total: 200504
+Rate: 352 total: 207349
+Rate: 291 total: 207350
+Rate: 280 total: 213867
+Rate: 330 total: 213868
+Rate: 309 total: 220533
+Rate: 283 total: 220536
+Rate: 320 total: 227118
+Rate: 309 total: 227120
+Rate: 309 total: 233774
+Rate: 286 total: 233775
+Rate: 276 total: 240102
+Rate: 294 total: 240104
+Rate: 322 total: 246172
+Rate: 270 total: 246173
+Rate: 330 total: 253189
+Rate: 348 total: 253190
+Rate: 275 total: 260023
+Rate: 316 total: 260025
+Rate: 310 total: 266297
+Rate: 305 total: 266299
+Rate: 255 total: 273007
+Rate: 356 total: 273008
+Rate: 293 total: 278885
+Rate: 219 total: 278887
+Rate: 296 total: 284496
+Rate: 193 total: 284502
+Rate: 271 total: 290740
+Rate: 352 total: 290741
+Rate: 321 total: 297529
+Rate: 271 total: 297536
+Rate: 351 total: 304089
+Rate: 301 total: 304091
+Rate: 328 total: 310629
+Rate: 279 total: 310632
+Rate: 286 total: 316991
+Rate: 270 total: 316992
+Rate: 283 total: 323359
+Rate: 316 total: 323360
+Rate: 300 total: 329936
+Rate: 277 total: 329937
+Rate: 313 total: 336553
+Rate: 328 total: 336554
+Rate: 213 total: 342759
+Rate: 316 total: 342762
+Rate: 337 total: 349185
+Rate: 318 total: 349186
+Rate: 294 total: 356135
+Rate: 310 total: 356136
+Rate: 288 total: 362530
+Rate: 282 total: 362532
+Rate: 285 total: 368902
+Rate: 297 total: 368903
+Rate: 297 total: 375199
+Rate: 234 total: 375204
+Rate: 226 total: 381523
+Rate: 342 total: 381524
+Rate: 244 total: 387660
+Rate: 294 total: 387663
+Rate: 245 total: 393312
+Rate: 252 total: 393313
+Rate: 325 total: 399442
+Rate: 233 total: 399452
+Rate: 302 total: 405824
+Rate: 289 total: 405828
+Rate: 327 total: 412450
+Rate: 223 total: 412451
+Rate: 212 total: 418056
+Rate: 290 total: 418057
+Rate: 277 total: 424460
+Rate: 327 total: 424465
+Rate: 245 total: 430617
+Rate: 298 total: 430618
+Rate: 309 total: 436725
+Rate: 278 total: 436727
+Rate: 279 total: 442954
+Rate: 285 total: 442955
+Rate: 334 total: 449438
+Rate: 257 total: 449439
+Rate: 283 total: 455488
+Rate: 230 total: 455489
+Rate: 256 total: 461274
+Rate: 273 total: 461275
+Rate: 253 total: 467326
+Rate: 290 total: 467327
+Rate: 293 total: 473633
+Rate: 310 total: 473634
+Rate: 250 total: 480010
+Rate: 307 total: 480011
+Rate: 280 total: 485770
+Rate: 255 total: 485774
+Rate: 267 total: 491737
+Rate: 259 total: 491738
+Rate: 226 total: 497216
+Rate: 267 total: 497218
+Rate: 390 total: 502692
+Rate: 196 total: 502696
+Rate: 305 total: 509677
+Rate: 285 total: 509678
+Rate: 352 total: 516544
+Rate: 281 total: 516545
+Rate: 285 total: 523477
+Rate: 284 total: 523479
+Rate: 292 total: 530287
+Rate: 338 total: 530288
+Rate: 351 total: 536894
+Rate: 264 total: 536895
+Rate: 294 total: 543180
+Rate: 262 total: 543183
+Rate: 323 total: 549100
+Rate: 239 total: 549101
+Rate: 272 total: 555376
+Rate: 367 total: 555379
+Rate: 306 total: 562221
+Rate: 249 total: 562222
+Rate: 318 total: 568892
+Rate: 297 total: 568894
+Rate: 363 total: 575735
+Rate: 269 total: 575736
+Rate: 386 total: 582681
+Rate: 292 total: 582682
+Rate: 274 total: 589364
+Rate: 286 total: 589367
+Rate: 261 total: 596200
+Rate: 369 total: 596201
+Rate: 350 total: 603333
+Rate: 265 total: 603335
+Rate: 273 total: 610981
+Rate: 378 total: 610982
+Rate: 367 total: 614912
+Rate: 329 total: 618815
+Rate: 417 total: 623118
+Rate: 340 total: 627073
+Rate: 293 total: 630510
+Rate: 308 total: 633706
+
+ Host: localhost
+ Transactions: 637303
+Success: 637303
+Fail: 0
+Success Rate: 100.0% 
+Wront transactins (Exception): 1
+
+Transaction Rate: 552.11 req/sec 
+
+Total time: 
+Transfering: 1863705ms 
+Execution: 1154297ms 
+
+Response latency:
+- Average: 2.9243625088850984ms 
+- Longest 1142.0ms 
+- Shortest 1.0ms 
+- 95th 1.307932 ms 
+- 90th 1.307932 ms 
+
+Received: 3194270733 bytes
+New report from host: localhost
+
+ Host: localhost
+ Transactions: 637303
+Success: 637303
+Fail: 0
+Success Rate: 100.0% 
+Wront transactins (Exception): 1
+
+Transaction Rate: 552.11 req/sec 
+
+Total time: 
+Transfering: 1863705ms 
+Execution: 1154297ms 
+
+Response latency:
+- Average: 2.9243625088850984ms 
+- Longest 1142.0ms 
+- Shortest 1.0ms 
+- 95th 1.307932 ms 
+- 90th 1.307932 ms 
+
+Received: 3194270733 bytes
+637303 552.1135375037793 2.9243625088850984 1.307932 1.307932 3194270733
+TERMINATED
+ubuntu@ip-192-168-1-90:~/data/data/dock/AppEvaluation$ 

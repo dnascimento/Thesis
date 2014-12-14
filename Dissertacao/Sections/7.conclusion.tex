@@ -1,0 +1,56 @@
+%!TEX root = ../tese.tex
+%!TEX encoding = UTF-8 Unicode
+\chapter{Conclusion}\label{chapter:conclusion}
+This dissertation described Shuttle, the first intrusion recovery system for \acf{PaaS} that uses a record-and-replay approach. We aim to define a generic architecture that allows \acf{CSP} to offer an intrusion recovery system as a service to their tenants. This service is available without setup and can be provided in a pay-per-usage manner. Our research focused on developing a scalable service to meet the intrusion recovery needs of small and enterprise applications. The success of Shuttle will be measured mostly by the impact of two of this dissertation's main contributions: a service integrated in \ac{PaaS} that leverages the resource elasticity and pay-per-use model and a new process to establish the requests' order during the replay process.
+
+This chapter reflects on these contributions, discusses future work and concludes.
+
+\section{Conclusion}\label{sec:conclusion:conclusion}
+%Contributions to related work
+Our approach to develop an intrusion recovery system for cloud computing focus on restore the applications integrity when intrusions happen, instead of trying to prevent them from happening. Previous works address this problem on operating system level \cite{taser,retro} or distributed systems \cite{aire}. These systems can be adapted to recover from intrusions on \acf{IaaS} model. Other works target aim to recover databases \cite{itdb,phoenix} and web services \cite{warp,goel,aire}, so they can be adapted to recover services delivered on \acf{SaaS} model. The closest research to ours is Undo for Operators (UO) \cite{undoForOperators}. Both works address the problem of providing a generic intrusion recovery system. However, UO requires tenants to configure the dependencies and order for each possible operation of the application's protocol. Our approach does not require configuration. Nevertheless, none of the previous works does recovery in cloud environments. Since \ac{CSP} are responsible for managing the \ac{PaaS} applications and ensure their security, we consider an intrusion recovery system to be a significant asset for \acf{CSP}. The \ac{PaaS} model imposes novel challenges because its applications scale and run in various instances backed by distributed databases. \\
+
+Having the above in mind, we proposed Shuttle, an intrusion recovery service for \ac{PaaS}, that aims to make \ac{PaaS} applications operational despite intrusions. Shuttle recovers from software flaws and corrupted requests. As consequence of its architecture, our solution also supports preventive maintenance and to test the application with real user requests. Shuttle loads database snapshots to remove the intrusion effects and replays the legitimate user requests to recover the application integrity.
+
+%Remove
+In order to remove the intrusion effects, we proposed a novel method to perform snapshots of \acs{NoSQL} databases. This method, which is based on copy-on-write, performs globally transaction-consistent and incremental snapshots without system downtime. We also proposed a novel process that redeploys tenants' application in new application instances to remove all intrusions in the previous instances and update their software versions to fix previous flaws or prevent future vulnerability exploitations.\\
+
+%Restore
+In order to restore the application integrity, we proposed a new method to re-executes requests. This method supports that the requests have been executed concurrently. It replays the requests on the same order than on their first execution and constrains the execution order using the list of operations performed on each database item. Since database items are independent, our replay algorithm is scalable. In addition, we proposed a semantic-reconciliation mechanism to solve conflicts during the recovery process.
+
+Previous works use the dependency graph to establish the requests order. Instead, we use it to create independent clusters of requests that can be re-executed concurrently. We evaluated that this technique reduces the recovery period considerably.
+
+We accomplish intrusion recovery without service downtime using a branching mechanism.
+
+In summary, the proposed architecture is capable of leveraging the resource elasticity and pay-per-use model in \ac{PaaS} environments to record and launch multiple clients to replay previous non-malicious user requests as concurrently as possible to reduce the recovery time and costs.
+
+Thus, we have achieved the goal we set out at the beginning of this dissertation: help \acf{CSP} customers to recover from intrusions in their applications deployed in \acf{PaaS}.
+
+\section{Future Work}\label{sec:conclusion:future_work}
+The following directions are proposed as a development of the present research:
+\begin{itemize}
+\item Consider the dependencies and result on client's browser: a considerable trend in web-application development is moving the application code to the client's browser. How this will affect the dependencies between requests? How will be the consistency of the replay process?
+\item Consider more database schemas and operations operations: several operations such as \emph{scan} and \emph{append}. What applications can be build using idempotent operations? How the replay algorithms can encompass them?
+\item Consider the user sessions in the dependency algorithms
+\item Fault-tolerance: how to handle when the recovery process fails? How to handle database replication?
+\item Research about how the instance rejuvenation can be used in \ac{PaaS} to prevent attackers from compromise a quorum of replicas.
+\item Extend the evaluation scenarios tests to more complex intrusions
+\item Evaluate the dependencies created by several types of applications
+\item Propose mechanisms to prevent intrusions from spreading
+\item Propose a pricing model to deliver a intrusion recovery system on a pay-per-usage manner.
+\end{itemize}
+
+In addition, we propose to develop an user interface for tenants and evaluate their experience. A distinct research direction can evaluate how intrusion recover system for cloud, such as Shuttle, can be integrated and affect the recovery procedures of companies. In particular, how these systems can be integrated and used by the practices, for instance, defined in the Service Design and Service Operation aspects of ITIL \cite{itil} \hl{que referencia coloco ao ITIL?}. By doing so, we expect to analyze the advantages and disadvantages of using these services.
+
+The major challenges to implement the current prototype were: concurrent and consistent database snapshot, establish accurate requests dependencies, perform parallel actions replay, repair the system state in time, avoid application downtime and keep the application source code unmodified as much as possible.
+
+As future work, we would like to improve the implementation by:
+\begin{itemize}
+\item Optimize the concurrency mechanisms serial replay in the replay instances
+\item Migrate the dependency graph to a distributed database
+\item Improve the clustering algorithm
+\item Integrate the proxy in a load-balancer implementation
+\item Analyze compression mechanisms to reduce the memory and storage footprint
+\end{itemize}
+
+
+Shuttle removes intrusions' effects in \ac{PaaS} applications and restores their state to an intrusion-free state. We propose, to the best of our knowledge, the first intrusion recovery service for \ac{PaaS} and the first to support \acs{NoSQL} databases.
