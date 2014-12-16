@@ -138,7 +138,7 @@ The first function allows tenants to perform a set of actions before the beginni
 The second function takes as input the operation that caused the inconsistency as well as the response and keys accessed during the normal execution and during the recovery process. It also takes as argument the action to take. Currently we consider three possible actions: 1) ignore the inconsistency; 2) notify the user of the inconsistency; 3) execute another request. 
 Using the \textit{postRecover} function, the tenant has access not only to the statistics of the recovery process but also to an interface to compare the database values before and after the recovery process and the application responses, before exposing the data to the users. 
 
-Besides its users, an application may also interact with external services. We simplify the problem by considering that applications only obtain inputs from external services, disregarding the issue of outputs. The problem is treated in \cite{aire,undoForOperators}. 
+Besides its users, an application may also interact with external services. \LONG{We simplify the problem by considering that applications only obtain inputs from external services, disregarding the issue of outputs.}The problem is treated in \cite{aire,undoForOperators}. 
 
 
 
