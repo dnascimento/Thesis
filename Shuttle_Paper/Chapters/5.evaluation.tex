@@ -24,15 +24,15 @@ At intrusion moment, Sep.~2nd, the database contains 4338 questions, 18286 answe
 \begin{table}
 \footnotesize
 \begin{tabular}{l|rrrr}
-    & \#intrusion & \#tainted & \#replayed (sr) & \#replayed (fr) \\ \hline
-1a       & 106          & 0          & < 605           & > 38 620  \\
-1b       & 58           & 14         & < 379           & > 38 620  \\
-1c       & 48           & 52         & < 253           & > 38 620  \\
-2a       & 4 338        & 0          &  -              & > 38 620  \\
-2b       & 18 286       & 1 278      &  -              & > 38 620  \\
-3        & 2 000        & -          &  -              & > 38 620  \\
+    & \#intrusion & \#tainted & \#replayed (sr)     & \#replayed (fr) \\ \hline
+1a       & 110          & 0          & $[0, 605]$   & $> 38 620$  \\
+1b       & 58           & 14         & $[0, 379]$   & $> 38 620$  \\
+1c       & 48           & 52         & $[0, 253]$   & $> 38 620$  \\
+2a       & 4 338        & 0          &  -           & $> 38 620$  \\
+2b       & 18 286       & 1 278      &  -           & $> 38 620$  \\
+3        & 2 000        & -          &  -           & $> 38 620$  \\
 \end{tabular}
-  \caption{Accuracy of the recovery process (Number of requests)}
+  \caption{Number of requests replayed during the recovery process}
   \label{tab:accuracy}
   \vspace{-5mm}
 \end{table}
