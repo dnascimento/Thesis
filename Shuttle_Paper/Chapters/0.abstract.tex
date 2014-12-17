@@ -2,12 +2,12 @@
 %!TEX encoding = UTF-8 Unicode
 
 \begin{abstract}
-The number of applications being deployed using the Platform as a Service (PaaS) cloud computing model is increasing. Despite  the security controls implemented by cloud service providers, we expect intrusions to harm such applications. We present Shuttle, a novel intrusion recovery service. Shuttle recovers from intrusions in applications deployed in PaaS platforms.
+The number of applications being deployed using the Platform as a Service (PaaS) cloud computing model is increasing. Despite  the security controls implemented by cloud service providers, we expect intrusions to strike such applications. We present Shuttle, a novel intrusion recovery service. Shuttle recovers from intrusions in applications deployed in PaaS platforms.
 %
 Our approach allows undoing changes to the state of PaaS applications due to intrusions, without loosing the effect of legitimate operations performed after the intrusions take place. We combine a record-and-replay approach with the elasticity provided by cloud offerings to recover applications deployed on various instances and backed by distributed databases. The service loads a database snapshot taken before the intrusion and replays subsequent requests, in parallel as much as possible, while continuing to execute incoming requests. 
 %Shuttle not only avoids application downtime during recovery, but also allows customers to deploy new application versions to fix previous software flaws.
 %
-We present an experimental evaluation of Shuttle on Amazon Web Services. We show Shuttle can replay 1 million requests in 10 minutes and that it is possible to duplicate the number of requests replayed per second by increasing the number of application servers from 1 to 3. 
+We present an experimental evaluation of Shuttle on Amazon Web Services. We show Shuttle can replay 1 million requests in 10 minutes and that it can duplicate the number of requests replayed per second by increasing the number of application servers from 1 to 3. 
 
 %The increasing number of intrusions and critical applications deployed in cloud systems requires an approach to recover from intrusions. We present Shuttle, a novel service \hl{approach?} for \acf{PaaS} systems that gives cloud providers the capability to allow their customers to recover their applications from intrusions. Through exploiting the novel \ac{PaaS} architecture \hl{model?}, the proposed service removes security intrusions due to software flaws or corrupted user requests and supports corrective and preventive maintenance of applications deployed in \ac{PaaS}.
 

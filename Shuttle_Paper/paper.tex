@@ -16,14 +16,14 @@
 %\documentclass[10pt, conference]{IEEEtran}
 \documentclass[10pt,conference]{IEEEtran}
 
-%\addtolength{\topmargin}{-1mm}
-%\addtolength{\topskip}{-1mm}
-%\addtolength{\textheight}{+5mm}
-%\addtolength{\textwidth}{+2mm}
-%\addtolength{\textfloatsep}{-3mm}
-%\addtolength{\columnsep}{-1mm}
-%\addtolength{\topsep}{-1mm}
-%\addtolength{\textfloatsep}{-3mm}
+\addtolength{\topmargin}{-1mm}
+\addtolength{\topskip}{-1mm}
+\addtolength{\textheight}{+5mm}
+\addtolength{\textwidth}{+2mm}
+\addtolength{\textfloatsep}{-3mm}
+\addtolength{\columnsep}{-1mm}
+\addtolength{\topsep}{-1mm}
+\addtolength{\textfloatsep}{-3mm}
 
 
 
@@ -93,6 +93,10 @@
 
 \maketitle
 
+%insert page numbers:
+\thispagestyle{plain}
+\pagestyle{plain}
+
 % For peer review papers, you can put extra information on the cover page as needed:
 \ifCLASSOPTIONpeerreview
 \begin{center} \bfseries Regular Paper \end{center}
@@ -113,7 +117,7 @@
 \input{./chapters/3.architecture.tex}
 \input{./chapters/4.recovery.tex}
 \input{./chapters/5.evaluation.tex}
-\input{./chapters/6.related_work.tex}
+%\input{./chapters/6.related_work.tex}
 \input{./chapters/7.conclusion.tex}
 
 %-------------------------------------------------------------------------
