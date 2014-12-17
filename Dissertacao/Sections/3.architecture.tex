@@ -497,12 +497,13 @@ At recovery time, the manager sends the new \emph{branch path} to every database
 
 At some point, when the recovery is finishing, the user requests have to start being issued to the new branch. To do so, after replaying the requests, the proxy flag \emph{restraining} is set and every new request is marked with the \emph{restrain} flag. Database accesses marked with \emph{restrain} are delayed. After replaying the requests retrieved during the recovery process, the proxy sets the new branch in the subfield \emph{branch} of \ac{SRD} of the new requests, the \emph{restrain} flag is disabled and the database nodes are notified to proceed the accesses. This mechanism delays the processing of some requests, but this has typically a duration of seconds, compared with a recovery process that may take many minutes or even hours. \hl{são detalhes a mais que deviam estar no implementation?}
 
+\hl{podemos fazer replay dos pedidos recebidos durante o recovery process sem o restrain. O restrain apenas tem de acontecer no final. É um erro. Nada impede que isso seja feito assim. O texto acima tem de ser corrigido.}
+
 
 
 Inactive snapshots and branches, for instance snapshot $D$ and branch 2 in Figure \ref{fig:branches}, can be deleted to reduce the used storage resources. \\
 
 If an intrusion happens during the replay phase, then its effects are stored in the branch of incoming requests. If the intrusion is detected before the restraining flag is set, then the malicious requests are not replayed in the new branch. Otherwise, tenants shall start another recovery process.
-
 
 
 

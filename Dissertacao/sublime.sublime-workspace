@@ -79,14 +79,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/Users/darionascimento/Tese/compare_last.sh",
-			"settings":
-			{
-				"buffer_size": 55,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -133,12 +125,14 @@
 	],
 	"file_history":
 	[
-		"/Users/darionascimento/Desktop/beaches.txt",
-		"/Users/darionascimento/Desktop/mana.txt",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/6.performance.tex",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/4.implementation.tex",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/3.architecture.tex",
+		"/Users/darionascimento/Downloads/trabalho çenas/(2) Clube da Abstinência!.htm",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/5.accuracy.tex",
-		"/Users/darionascimento/Tese/Dissertacao/Sections/6.performance.tex",
+		"/Users/darionascimento/Tese/compare_last.sh",
+		"/Users/darionascimento/Desktop/beaches.txt",
+		"/Users/darionascimento/Desktop/mana.txt",
 		"/Users/darionascimento/Desktop/review_cv.txt",
 		"/Users/darionascimento/Desktop/p.txt",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/7.conclusion.tex",
@@ -258,9 +252,7 @@
 		"/Users/darionascimento/Desktop/statistics/all/process.py",
 		"/Users/darionascimento/git/AppEvaluation/out.txt",
 		"/Users/darionascimento/git/AppEvaluation/in.txt",
-		"/Users/darionascimento/Desktop/statistics/average/CPUUtilization_Average_i-3f3570de_web2.txt",
-		"/Users/darionascimento/Desktop/statistics/max/process.py",
-		"/Users/darionascimento/Desktop/statistics/max/CPUUtilization_Maximum_CPUUtilization_Maximum_i-ad142a43_manager.txt"
+		"/Users/darionascimento/Desktop/statistics/average/CPUUtilization_Average_i-3f3570de_web2.txt"
 	],
 	"find":
 	{
@@ -280,6 +272,9 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"restrain",
+			"\nrestrain",
+			"restrain",
 			" More,",
 			"More,",
 			"\ncomissao@senhoranazareencarnacao.pt 	",
@@ -404,10 +399,7 @@
 			"GetRequest",
 			"HTTP",
 			"TCP",
-			"\\acf{\\ac",
-			"\\ac{\\ac",
-			"\\ac{\\acs",
-			"NoSQL"
+			"\\acf{\\ac"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -537,38 +529,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/Users/darionascimento/Tese/compare_last.sh",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 55,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -627,6 +589,14 @@
 		"selected_items":
 		[
 			[
+				"3",
+				"Sections/3.architecture.tex"
+			],
+			[
+				"4",
+				"Sections/4.implementation.tex"
+			],
+			[
 				"6",
 				"Sections/6.performance.tex"
 			],
@@ -635,19 +605,11 @@
 				"Sections/7.conclusion.tex"
 			],
 			[
-				"4",
-				"Sections/4.implementation.tex"
-			],
-			[
 				"5",
 				"Sections/5.accuracy.tex"
 			],
 			[
 				"arch",
-				"Sections/3.architecture.tex"
-			],
-			[
-				"3",
 				"Sections/3.architecture.tex"
 			],
 			[

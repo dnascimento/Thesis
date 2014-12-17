@@ -1,4 +1,0 @@
-#servers #time to recovery
-1	863
-2	603
-3	456

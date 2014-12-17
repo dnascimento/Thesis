@@ -126,7 +126,7 @@ We propose two approaches for intrusion recovery: full replay and selective repl
 
 \begin{figure}
   \centering
-  \includegraphics[width=\linewidth]{images/selectiveDependency_paper}
+  \includegraphics[width=0.8\linewidth]{images/selectiveDependency_paper}
   \caption{{Dependency graph:} $R.1$ precedes snapshot $A$; $R.3$ depends on $R.2$, which is replayed to get the read values; $R.4$ is a malicious request; $R.5,R.6,R.7$ are tainted.}
   \label{fig:selectiveGraph}
 \end{figure}
@@ -174,15 +174,15 @@ Shuttle is capable of doing recovery on runtime, i.e., without making the applic
 
 \begin{SCfigure}
   \centering
-  \includegraphics[width=40mm]{images/branches}
-  \caption{\footnotesize{Tree model:} 3 branches and 5 snapshots: branch 1 contains snapshots A,B,C;\newline Branch 2 contains D;\newline Branch 3 contains E.}
+  \includegraphics[width=35mm]{images/branches_paper}
+  \caption{\footnotesize{Tree model:} 2 branches and 4 snapshots: branch 1 contains snapshots A,B,C; Branch 2 contains snapshots A,B,D.} %;\newline Branch 3 contains E.}
   \label{fig:branches}
 \end{SCfigure}
 
 Each recovery process creates a new branch forking a previous snapshot chosen by the tenant, either explicitly or implicitly (by indicating the initial intrusion instant, selecting implicitly the preceding snapshot). Incoming user requests access only the data of the previous branch keeping the application available, while replayed requests access the created branch without compromising the availability of the application. In addiction, tenants can use the branching mechanism to test their intrusion recovery procedures in background, i.e, without exposing users to test issues.
 
 %branch-path
-Since tenants can select previous snapshots, we define a branch as a sequence of non-tampered snapshots, named \emph{branch path}. For instance, the snapshots $D, C, B, A$ compose  branch 2 in the figure. Every database instance knows the \emph{branch path} of the previous branch and the newly created branch in use by the requests being replayed.
+Since tenants can select previous snapshots, we define a branch as a sequence of non-tampered snapshots, named \emph{branch path}. For instance, the snapshots $A,B,D$ compose  branch 2 in the figure. Every database instance knows the \emph{branch path} of the previous branch and the newly created branch in use by the requests being replayed.
 
 %How it works? 
 Since a novel data item version is created only when the data item is written for the first time during each snapshot, the data item may not have a version for each snapshot (Section \ref{sec:architecture:snapshot}). Therefore, the version to accessed by an operation is defined using the branch path and the \emph{version list} of the data item: operations read the latest version present in the \emph{version list} and in the \emph{branch path} and write the latest version in the branch path. A new version is added to the version list on the first key access to each data item during the replay. This mechanism allows mapping the request to the correct version. Since the \emph{version list} keeps a pointer to the latest version and this reference is updated, the complexity of getting the correct version is $O(1)$. 
