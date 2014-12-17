@@ -398,7 +398,7 @@ We measured the monetary cost of the intrusion recovery process using a public c
 
 We consider an execution of \emph{Ask} application with a constant arrival rate of 250 requests per second (20 million per day) and the storage usage defined in Section \ref{sec:eval:storage}. This is a common rate for an enterprise application, for instance the Portuguese Ministry of Finances (Table \ref{tab:base_throughputs}). We also define that Shuttle shall allow to recover from attacks that have occurred during the last 3 months. Therefore, Shuttle needs to store 2 billion requests. We assume that the recovery process re-executes 50 million requests, independent of the schema (full/serial replay). \\
 
-Table \ref{tab:storageScale} represents the estimated storage overhead based on the measurements introduced in Section \ref{sec:eval:storage}. %aqui arredondei os numeros, há problema? perda de rigor cientifico? 
+Table \ref{tab:storageScale} represents the estimated storage overhead based on the measurements introduced in Section \ref{sec:eval:storage}. We do not consider Shuttle to store the responses.%aqui arredondei os numeros, há problema? perda de rigor cientifico? 
 
 \begin{table}[ht]
 \centering

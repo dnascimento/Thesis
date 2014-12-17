@@ -177,7 +177,7 @@ In the current implementation, the \ac{SRD} represents a fixed overhead of 35 by
   \textbf{Manager:} & & \\ 
   Graph           & 1 million    & 718 \\  %718 486 432 old: & 200314    & 153,2 \\
   \end{tabular}            
-\caption{Storage used by Shuttle}
+\caption{Storage used by Shuttle (1 million requests)}
 \label{tab:storage_overhead}
 \vspace{-5mm}
 \end{table}
@@ -188,6 +188,6 @@ The main overhead are the responses, as we are storing them complete (the full H
 \textbf{Monetary cost.}
 %\label{sec:evaluation:cost}
 %
-Since the replay instances are allocated on demand and paid-per usage, the cost of Shuttle is dominated by the storage. For instance, the proportional overhead of generating 20 million requests per day. To store a quarter (20 billion requests) requires 1.432 TB to store the Shuttle storage, 1.436 TB for the graph and 564 GB in the database instances. We propose to combine the DynamoDB to keep the last 24h of requests and the Glacier service to archive the data. Shuttle generates an average of 35 GB per day, which costs \$8.75 per month to store in DynamoDB and \$4.83 per-month for the provisioned capacity. The Glacier stores 3.433 TB so it costs \$34.33 per month. Since Shuttle performs snapshots, tenants can remove the old snapshots tacking into account that Shuttle needs only a snapshot previous to the intrusion instant to recover the application.
+Since the replay instances are allocated on demand and paid-per usage, the cost of Shuttle is dominated by the storage. For instance, the proportional overhead of generating 20 million requests per day. To store a quarter (2 billion requests) requires 1.432 TB to store the Shuttle storage, 1.436 TB for the graph and 564 GB in the database instances. We propose to combine the DynamoDB to keep the last 24h of requests and the Glacier service to archive the data. Shuttle generates an average of 35 GB per day, which costs \$8.75 per month to store in DynamoDB and \$4.83 per-month for the provisioned capacity. The Glacier stores 3.433 TB so it costs \$34.33 per month. Since Shuttle performs snapshots, tenants can remove the old snapshots tacking into account that Shuttle needs only a snapshot previous to the intrusion instant to recover the application.
 
 Shuttle requires an extra instance to deploy the Shuttle manager. To recover the application, we used one \emph{c3.xlarge} virtual machine as replay instance and two  \emph{c3.xlarge} instances to run the application servers to replay 1 million requests during 544 seconds. Considering a full-hour, these instances have an associated cost of \$0.239 per instance-hour, which means a cost of less than \$1 for the recovery. In this manner, Shuttle leverages the elasticity and pay-per-usage model of cloud computing to provide a cost-efficient intrusion recovery solution.
