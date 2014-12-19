@@ -1,17 +1,20 @@
 %!TEX root = ../paper.tex
 %!TEX encoding = UTF-8 Unicode
 
-\section{Background}\label{sec:background}
+\section{Background and Related Work}\label{sec:background}
 %Como e que as apliccaoes sao recuperadas, de modo generico e com o related work incluido
 %and Related Work
 
-This section formalizes several approaches to perform intrusion recovery. %and presents the main related work. 
+This section formalizes several approaches to perform intrusion recovery and presents the main related work. 
 %
 An application execution is modeled as a set of actions $A$ on a set of objects $D$. Actions are described by operations (read, write, others more complex), the value(s) read/written, and a timestamp (which defines the order of the actions). Each object has a state (or value) and a set of operations that can modify it. We define $A_{intrusion}$ as the subset of actions of $A$ whereby the attacker compromises the application during the intrusion, $A_{after}$ as the subset of actions that began after the intrusion began (including the first action of the intrusion), and $A_{legal}$ as the subset of legitimate actions in $A$, i.e., $A_{legal} = A \backslash A_{intrusion}$.
 
-Intrusion recovery services aim to remove the effects of malicious actions setting the application state to a state setup only by legitimate actions. The recovered application state shall respect the application specification (correctness) \cite{Aviz}.
+Intrusion recovery services aim to remove the effects of malicious actions setting the application state to a state setup only by legitimate actions. 
+%The recovered application state shall respect the application specification (correctness) \cite{Aviz}.
 %
-A \textit{backup} mechanism is a basic recovery service that can set objects to the state they had before an intrusion began. The new state excludes the effects of the attacker's actions, but also the effects of any legitimate actions performed after the backup was done. This second aspect is undesirable, so intrusion recovery systems aim to avoid it.
+A \textit{backup} mechanism is a basic recovery service that can set objects to the state they had before an intrusion began. The new state excludes the effects of the attacker's actions, but also the effects of any legitimate actions performed after the backup was done. This second aspect is undesirable, so recent intrusion recovery systems aim to avoid it.
+%
+This is the case in the closest works to ours: Aire \cite{aire}, Warp \cite{warp}, Goel \cite{Akkus2010}, and Undo for Operators (UO) \cite{undoForOperators}. None of these works handles recovery in cloud environments.
 
 An action is considered \textit{tainted} at a certain instant if it is one of the attacker's malicious actions or if it reads an object written by a tainted action (called a \textit{tainted object}). Since actions are contaminated by malicious actions through objects, to remove the state written by tainted actions it is necessary but not sufficient to obtain the state produced by the legitimate actions. 
 
