@@ -7,7 +7,7 @@
 %Design and Implementation
 We introduce Shuttle, an intrusion recovery service for \ac{PaaS}. Our goal is to help \ac{PaaS} tenants to recover from the following problems in their applications:
 \begin{itemize}
-  \item \textit{Software vulnerabilities:} non-authorized persons compromise the state by exploiting software vulnerabilities that allow requests to be executed. For instance, a hacker does an SQL injection attack, causing the execution of otherwise invalid queries to the database.
+  \item \textit{Software vulnerabilities:} non-authorized persons compromise the state by exploiting software vulnerabilities that allow requests to be executed. For instance, a hacker does a SQL injection attack, causing the execution of otherwise invalid queries to the database.
   \item \textit{Faulty requests:} users that are somehow authorized compromise the application state accidentally or intentionally issuing valid requests. For example, a hacker steals users' credentials then uses them to access their data.
 \end{itemize} 
 
@@ -31,7 +31,7 @@ We consider a minimal \ac{PaaS} architecture to let Shuttle as generic as possib
   \item \textit{Database instances:} A set of database servers used to store the application persistent state. Shuttle includes in each instance  a \textit{database proxy} that logs the requests that accessed each data item and determines the dependencies between requests.
   \item \textit{Shuttle storage:} A scalable storage component that stores requests, responses and metadata.
   \item \textit{Manager:} Retrieves dependencies and coordinates the recovery process. 
-  \item \textit{Replay instances:} A set of HTTP clients that read previously executed requests from the Shuttle storage and invoke the application servers to re-execute the requests during the recovery process. These worker instances are coordinated by the manager.
+  \item \textit{Replay instances:} A set of instances with HTTP clients that read previously executed requests from the Shuttle storage and invoke the application servers to re-execute the requests during the recovery process. These worker instances are coordinated by the manager.
 \end{itemize}
 
 \begin{figure}
@@ -48,7 +48,7 @@ With the pay-per-usage model, these resources become a cost only when there is a
 
 
 %Database
-Unlike previous works, our design encompasses distributed databases. We assume without loss of generality that applications store their state in distributed key-value stores, such as Dynamo \cite{Decandia2007}, where the values are often accessed using a \acf{CRUD} API. The simple API reduces the performance overhead to track accesses while the independence between keys turns Shuttle into a scalable service. Shuttle can be extended to support other NoSQL stores.
+Unlike previous works, our design encompasses distributed databases. We assume without loss of generality that applications store their state in distributed key-value stores, such as Dynamo \cite{Decandia2007}, where the values are accessed using a \acf{CRUD} API. This simple API reduces the performance overhead to track accesses while the independence between keys turns Shuttle into a scalable service. Shuttle can be extended to support other NoSQL stores.
 
 %the storage
 The \emph{Shuttle storage} keeps the content of the user requests and responses. Although we do not consider this aspect in the architecture, this store can be replicated to a remote site to allow tolerating catastrophic failures in a datacenter.
@@ -67,7 +67,7 @@ Shuttle logs the data it needs to recover applications during the normal executi
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.9\linewidth]{images/normalExecution}
+  \includegraphics[width=0.7\linewidth]{images/normalExecution}
   \caption{Interaction between components during normal execution.}
   \label{fig:normal_execution}
 \end{figure}

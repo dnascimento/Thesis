@@ -14,7 +14,7 @@ The following sections explain this process in detail.
 %how the damage is fixed?
 The recovery process starts when an intrusion is detected.\footnote{The way in which this detection is specifically done is out of the scope of the work  as we focus on recovery, not detection.} Intrusions may tamper the database \LONG{, e.g., modifying data,}or the application server instances\LONG{, e.g., changing the code of the application}. In order to fix the vulnerabilities that may have lead to intrusions, Shuttle supports the following actions: 1) update the application software; 2) identify a set of tampered database items; 3) add, modify or remove logged requests; 4) launch cleaned database and application server instances.
 
-If tenants update the application software, they have to ensure that the application's interface remains compatible with the requests that will be replayed. If the database is tampered using user requests, the tenant has to identify the malicious user requests. For instance, the tenant can provide the set of suspicious database items to Shuttle and it will resolve the set of requests that accessed the suspicious items after the estimated intrusion moment. Knowing the suspicious requests, the tenants shall use Shuttle to add, modify or remove the past accidental or malicious requests. 
+If tenants update the application software, they have to ensure that the application's interface remains compatible with the requests that will be replayed. If the database is tampered using user requests,  tenants have to identify the malicious user requests. For instance, a tenant can provide the set of suspicious database items to Shuttle and it will resolve the set of requests that accessed the suspicious items after the estimated intrusion moment. Knowing the suspicious requests, the tenant shall use Shuttle to add, modify or remove the past accidental or malicious requests. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Dependency graph}
@@ -27,7 +27,7 @@ Previous solutions for relational databases extract the dependencies using a pre
 %type template: Um template que é pré-definido para cada transacção possivel. Na prática, deve ser uma classe para cada tipo de transacção que faz parsing da transacção para conseguir perceber que entradas é que vai ler ou escrever.
 
 %false positives: detected but not exist
-The above method may lead to \emph{false positives}, i.e., to flag dependencies that do not exist. For instance, a request may read a data item but not use it to compute the written value, so there is no real dependency. Although tracking variables used by each request during its execution might solve this particular case \cite{goel}, it would require modifying the code interpreter (e.g., Zend Engine for PHP), which would constrain Shuttle to a set of specific languages. As our approach uses dependencies just to group the requests that can be executed concurrently, false dependencies imply a performance penalty but do not cause data loss or inconsistent state.
+The above method may lead to \emph{false positives}, i.e., to flag dependencies that do not exist. For instance, a request may read a data item but not use it to compute the written value, so there is no real dependency. Although tracking variables used by each request during its execution might solve this particular case \cite{Akkus2010}, it would require modifying the code interpreter (e.g., Zend Engine for PHP), which would constrain Shuttle to a set of specific languages. As our approach uses dependencies just to group the requests that can be executed concurrently, false dependencies imply a performance penalty but do not cause data loss or inconsistent state.
 
 %false negatives: not detected but exist
 Complex queries on a relational database may lead to \emph{false negatives}, for instance when a read operation would have been executed on a deleted data item if this data item had not been deleted before the request execution \cite{Xie2008}. In contrast with SQL queries that access the data items that match a query, the \ac{CRUD} interface of most key-value stores specifies, in a deterministic and apriori manner, the data item that will be accessed. Shuttle logs every access, even when the data items do not exist, keeping the \emph{operation list} of the deleted data items to track further operations.
@@ -37,7 +37,7 @@ Complex queries on a relational database may lead to \emph{false negatives}, for
 \subsection{Replay}
 \label{sec:recovery:replay}
 
-Shuttle aims to support a large range of applications in which the user requests access a distributed database without using transactions. This assumption contrasts with previous recovery systems that set the order of requests based on the semantics of the application they consider (e.g., \cite{undoForOperators}) or the serialization provided by snapshot isolation (e.g., \cite{goel}). Moreover, requests executed concurrently during  normal execution, may  depend on each other (e.g., the first reads an item written by the second and the second reads an item written by the first).
+Shuttle aims to support a large range of applications in which the user requests access a distributed database without using transactions. This assumption contrasts with previous recovery systems that set the order of requests based on the semantics of the application they consider (e.g., \cite{undoForOperators}) or the serialization provided by snapshot isolation (e.g., \cite{Akkus2010}). Moreover, requests executed concurrently during  normal execution, may  depend on each other (e.g., the first reads an item written by the second and the second reads an item written by the first).
 
 %how I sort the requests?
 We propose a new approach to order the requests for replaying that consists on sorting the requests per \emph{start-end order}, instead of using a dependency graph. Requests are replayed ordered by their start instant. Moreover, if a request starts before the end of another request, then they were executed concurrently and they are also re-executed concurrently. 
@@ -52,19 +52,19 @@ Modifications to the application code or to the sequence of requests may cause t
   \centering
   \mbox{
           \subfloat[][Ordered by operation list \label{fig:inconsistency_db_order}]{
-              \includegraphics[width=0.20\linewidth]{images/inconsistency_db_order}
+              \includegraphics[width=0.17\linewidth]{images/inconsistency_db_order}
           }
 
           \subfloat[][Operation unlock \label{fig:inconsistency_unlock}]{
-              \includegraphics[width=0.20\linewidth]{images/inconsistency_unlock}
+              \includegraphics[width=0.17\linewidth]{images/inconsistency_unlock}
           }
 
           \subfloat[][Consecutive requests \label{fig:inconsistency_serial}]{
-              \includegraphics[width=0.20\linewidth]{images/inconsistency_serial}
+              \includegraphics[width=0.17\linewidth]{images/inconsistency_serial}
           }
 
           \subfloat[][Conflict \label{fig:inconsistency_conflict}]{
-              \includegraphics[width=0.20\linewidth]{images/inconsistency_conflict}
+              \includegraphics[width=0.17\linewidth]{images/inconsistency_conflict}
           }
   }
   \caption{Different re-executions of two requests.}
@@ -72,7 +72,7 @@ Modifications to the application code or to the sequence of requests may cause t
   \vspace{-5mm}
 \end{figure*}
 
-During replay there may be non-deterministic situations, whenever an access is not contained in the operation list. Consider the case of Figure \ref{fig:inconsistency}. Figure \ref{fig:inconsistency_db_order} represents the first execution of two requests. During the recovery period, the intrusion was removed hence requests access other data items than in the first execution. If \emph{req.~2} started after the end of \emph{req.~1}, the replay would be consistent with the first execution (Figure \ref{fig:inconsistency_serial}). An approach using only the dependency graph would have inconsistent results because the new dependency happens at recovery time.
+During replay there may be non-deterministic situations, whenever an access is not contained in the operation list. Consider the case of Figure \ref{fig:inconsistency}. Figure \ref{fig:inconsistency_db_order} represents the first execution of two requests. During the recovery period, the intrusion was removed hence requests access different data items than in the first execution. If \emph{req.~2} started after the end of \emph{req.~1}, the replay would be consistent with the first execution (Figure \ref{fig:inconsistency_serial}). An approach using only the dependency graph would have inconsistent results because the new dependency happens at recovery time.
 
 
 %Conflict 
@@ -92,7 +92,7 @@ Five of the main sources of non-determinism are: shared memory, thread concurren
 %Must execute some requests in parallel
 %Our preliminary experiments have shown that replaying requests concurrently can reduce the recovery period. 
 We want recovery to take a fraction of the time elapsed since the snapshot from which it starts (e.g., minutes). 
-We address this problem by grouping  requests into \emph{clusters} that can be executed concurrently. 
+We address this problem by grouping  requests in \emph{clusters} that can be executed concurrently. 
 A cluster is a set of requests that have dependencies between them but not from/to requests in other clusters. 
 
 Clusters are created when the recovery is about to start by inspecting the dependency graph. Since clusters are independent, they can be executed concurrently by different \emph{replay instances} without  synchronization between them. Requests within the same cluster, are performed in start-end order (Section \ref{sec:recovery:replay}). Given that more requests are executed concurrently, Shuttle launches more application servers and database instances to process the replayed requests. Therefore, the replay phase throughput is bigger than during first execution and the recovery time is minimized. This mechanism requires that the dependencies remain unchanged during the recovery phase.
@@ -126,7 +126,7 @@ We propose two approaches for intrusion recovery: full replay and selective repl
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\linewidth]{images/selectiveDependency_paper}
+  \includegraphics[width=0.7\linewidth]{images/selectiveDependency_paper}
   \caption{{Dependency graph:} $R.1$ precedes snapshot $A$; $R.3$ depends on $R.2$, which is replayed to get the read values; $R.4$ is a malicious request; $R.5,R.6,R.7$ are tainted.}
   \label{fig:selectiveGraph}
 \end{figure}
@@ -162,6 +162,7 @@ Using the \textit{postRecover} function, the tenant has access not only to the s
 Attackers may exploit system vulnerabilities to tamper application server or database instances, affecting the application integrity or availability. Shuttle interacts with the \ac{PaaS} controller to rejuvenate instances when they are compromised. This process terminates the instances and launches new ones. The PaaS controller initializes the new instances with updated machine images and deploys an updated version of the application code, which may include updates to fix discovered flaws or prevent future intrusions.
 
 We assume new instances to be intrusion-free as the image can be updated to fix previous flaws and their persistent state is renewed. Instances can be launched in a remote site to recover from catastrophic disasters \cite{cloud-disaster}. Tenants are responsible for ensuring that request dependencies remain correct and the updated version API is compatible, or for providing a script to update each request to the new API. Moreover, the selected snapshot has to be consistent according to the updated version specification or every request executed since the application's begin shall be replayed.
+%mpc: "Instances can be launched in a remote site to recover from catastrophic disasters" ??
 
 This process can be used in a proactive manner to renew instances to remove unknown intrusions \LONG{cite{Castro2002}}\cite{Sousa2010} or to test new application versions to compare its results against the previous version, using the branching mechanism (Section \ref{sec:recovery:runtime_recovery}).
 
@@ -170,11 +171,11 @@ This process can be used in a proactive manner to renew instances to remove unkn
 \subsection{Recovery in Runtime}
 \label{sec:recovery:runtime_recovery}
 %why?
-Shuttle is capable of doing recovery on runtime, i.e., without making the application unavailable for a period of time. To do so, each recovery process is considered to be a new branch, a model inspired in versioning systems such as \emph{git} \cite{git}. A \emph{branch} is a sequence of snapshots (akin to the commits in git). Figure \ref{fig:branches} presents an example with 2 branches and 4 snapshots.
+Shuttle is capable of doing recovery in runtime, i.e., without making the application unavailable during the recovery period. To do so, each recovery process is considered to be a new branch, a model inspired in versioning systems such as \emph{git} \cite{git}. A \emph{branch} is a sequence of snapshots (akin to commits in \emph{git}). Figure \ref{fig:branches} presents an example with 2 branches and 4 snapshots.
 
 \begin{SCfigure}
   \centering
-  \includegraphics[width=35mm]{images/branches_paper}
+  \includegraphics[width=30mm]{images/branches_paper}
   \caption{\footnotesize{Tree model:} 2 branches and 4 snapshots: branch 1 contains snapshots A,B,C; Branch 2 contains snapshots A,B,D.} %;\newline Branch 3 contains E.}
   \label{fig:branches}
 \end{SCfigure}
