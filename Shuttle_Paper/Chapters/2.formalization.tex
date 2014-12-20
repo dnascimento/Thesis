@@ -1,36 +1,42 @@
 %!TEX root = ../paper.tex
 %!TEX encoding = UTF-8 Unicode
 
-%How is possible to recover applications and related work
-\section{Background}\label{sec:background}
-%The model 
-An application execution is modeled as a set of actions $A$ on a set of objects $O$. Actions are described by operations (read, write, others more complex), the value(s) read/written, and a timestamp (which defines the order of the actions). Each object has a state (or value) and a set of operations that can modify it. We define $A_{intrusion}$ as the subset of actions of $A$ whereby the attacker compromises the application during the intrusion, $A_{after}$ as the subset of actions that began after the intrusion began (including the first action of the intrusion), and $A_{legal}$ as the subset of legitimate actions in $A$, i.e., $A_{legal} = A \backslash A_{intrusion}$.
+\section{Background and Related Work}\label{sec:background}
+%Como e que as apliccaoes sao recuperadas, de modo generico e com o related work incluido
+%This section formalizes several approaches to perform intrusion recovery and presents the main related work. 
+An application execution is modeled as a set of actions $A$ on a set of objects $D$. Actions are described by operations (read, write, others more complex), the value(s) read/written, and a timestamp (which defines the order of the actions). Each object has a state (or value) and a set of operations that can modify it. We define $A_{intrusion}$ as the subset of actions of $A$ whereby the attacker compromises the application during the intrusion and $A_{legal}$ as the subset of legitimate actions in $A$, i.e., $A_{legal} = A \backslash A_{intrusion}$.
 
+Intrusion recovery services aim to remove the effects of malicious actions setting the application state to a state set only by legitimate actions. 
+%The recovered application state shall respect the application specification (correctness) \cite{Aviz}.
+%
+A \textit{backup} mechanism is a basic recovery service that can set objects to the state they had before an intrusion began. The new state excludes the effects of the attacker's actions, but also the effects of any legitimate actions performed after the backup was done. This second aspect is undesirable, so recent intrusion recovery systems aim to avoid it. This is the case in the closest works to ours: Aire \cite{aire}, Warp \cite{warp}, Goel \cite{Akkus2010}, and Undo for Operators (UO) \cite{undoForOperators}. None of these works handles recovery in cloud environments.
 
-%goal and related works
-Intrusion recovery services aim to remove the effects of intrusions' malicious actions setting the application state to a state setup only by legitimate actions. The state of recovered applications shall respect the applications specification (correctness) \cite{Aviz}. Existing intrusions systems concern operating systems \cite{taser,retro,dare}, databases \cite{itdb,phoenix}, and web services \cite{warp,Akkus2010,aire}. The closest works to ours are Aire \cite{aire}, Warp \cite{warp}, Goel \cite{Akkus2010}, and Undo for Operators (UO) \cite{undoForOperators}, although none of them does recovery in cloud environments.\\
+%tainted
+An action is considered \textit{tainted} at a certain instant if it depends from a malicious or tainted action, i.e., it reads an object written by a malicious or tainted action (called a \textit{tainted object}). Since actions are contaminated by malicious actions through objects, to remove the state written by tainted actions it is necessary but not sufficient to obtain the state produced by the legitimate actions. The tainted actions need to be re-executed to read different values (not imposed by the attacker) and have a different execution. 
 
-%backup: removes the posterior
-A \textit{backup} mechanism is a basic recovery service that can set objects to the state they had before an intrusion began. The new state excludes the effects of the attacker's actions, but also the effects of any legitimate actions performed after the backup was done. This second aspect is undesirable, so intrusion recovery systems aim to avoid it.
-
-%Actions establish dependencies (pode sair talvez)
-Since the actions read and write objects from a shared set of objects $O$, we can establish dependencies between actions. Dependencies can be seen on an \textit{action dependency graph} in which nodes represent actions and edges indicate dependencies though shared objects.
-
-%Actions are tainted so removing the data written by malicious is not enough
-An action is considered \textit{tainted} at a certain instant if it depends from a malicious or tainted action, i.e., it reads an object written by a malicious or tainted action. Since legitimate actions are contaminated by malicious actions through objects, to remove the state written by malicious actions it is necessary but not sufficient to obtain the state produced only by the legitimate actions. If malicious actions are not executed, then tainted actions read different values (not imposed by the attacker) and have a different execution. Therefore, actions shall be re-executed.
 
 %Get previous values
-There have been different approaches to remove intrusion effects: Goel use transaction compensation to create a snapshot, Warp stores every data item version and UO uses snapshots. While the first does not remove the effects of unknown actions, the second requires a considerable storage overhead. We implemented a snapshot mechanism designed for distributed databases. While UO overwrites the current state copying an old snapshot, we use a \textit{branching} mechanism to select the accessible snapshots for a given request without copying data.
+%DN: Deixei cair a definicao de version, assumo que os leitores sabem o que e uma versao
+%A \textit{version} is a snapshot of a single object value at an instant $t$. Versions can be recorded with the sequence of actions that write the objects before the instant $t$.
+There have been different approaches to remove intrusion effects removing the object versions written by malicious actions: Goel \cite{Akkus2010} use transaction compensation (invert transactions' effects) to create snapshots, Warp loads previous data item version and UO loads snapshots. The first approach does not remove the effects of unknown actions, the second requires a considerable storage overhead. We implemented a snapshot mechanism designed for distributed databases. %While UO overwrites the current state copying an old snapshot, we use a \textit{branching} mechanism to select the accessible snapshots for a given request without copying data.
 
-%selective replay and full-replay: TODO: COLOCAR AQUI O WARP, UNDO E GOEL
-There are two distinct replay approaches to recover the application to a correct state: selective replay and full replay. The \textit{selective replay} approach loads only the versions of the tainted objects, $O_{tainted}$, previous to the intrusion, instead of loading a previous version of every object. Then, it replays only the legitimate actions, which were tainted, $A_{tainted} \backslash A_{intrusion}$, to update the objects in $O$ \cite{para taint via replay}. Propoem o taint via replay em que os pedidos são re-executados enquanto o seu input for distinto. The state of the objects in $O_{legal} \backslash D_{tainted}$ remains unmodified. 
-The other approach, \textit{full replay} \cite{undoForOperators}, loads a snapshot previous to the intrusion moment and replays every action in $A \backslash A_{snapshot}(t) \backslash A_{intrusion}$. This approach is slightly simpler than the other, but in general takes longer to execute. In contrast with previous proposals, Shuttle uses the dependency graph to create clusters of request to execute in parallel and sorts the requests using the start-end order and database accesses.
+% That generic approach is unfeasible without the use of snapshots.
+% The sequence of actions performed before the intrusion $A_{before} = A \backslash A_{after}$ can be long and each action takes non-null time to execute, so replaying $A_{before}$ may be unfeasible. Moreover, a log of all the actions executed may be too large.
+% We define the subsets $D_{snapshot}(t)$ and $A_{snapshot}(t) : A_{snapshot}(t) \subset A$ as the subsets of objects and actions executed before the begin of a snapshot operation at instant \textit{t}. 
+% %The snapshot operation copies the value of the object immediately or on the next write operation. 
+% If the intrusion happens after $t$, then $A_{after} \cap A_{snapshot}(t) = \emptyset \implies (A_{intrusion} \cup A_{tainted}) \cap A_{snapshot}(t) = \emptyset$, i.e., the snapshot is not affected by the intrusion. For that reason, the service can replay only $A \backslash A_{snapshot}(t) \backslash A_{intrusion}$ using the object set $D_{snapshot}$ as base. 
 
-%runtime recovery: (OPTIONAL)
-Warp supports recovery in runtime using two fields in the database table, whereas Aire uses a branching mechanism to permit recovery on loosely coupled web services. We use a branching mechanism to support runtime recovery allowing various recovery processes simultaneously. 
+There are two distinct replay approaches to update to a correct state (setting $D$ to $D_{recovered}$): selective replay and full replay. 
+The \textit{selective replay} approach loads only the versions of the tainted objects, $D_{tainted}$, previous to the intrusion, instead of loading a previous version of every object \cite{taser,warp,Akkus2010}. Then, it replays only $A_{tainted}$, to update the objects in $D$. Further actions are also replayed if their input is different (tainting via-replay). 
 
-%inconsistency:  (OPTIONAL)
-Goel does not address external consistency issues. Warp \cite{warp} detects inconsistencies in responses and replays the user interaction using a browser. UO uses compensating actions based on protocol-specific knowledge. We propose an API that the application developers can use to deal with inconsistencies.
+The other approach, \textit{full replay} \cite{undoForOperators}, loads a snapshot previous to the intrusion moment and replays every non-malicious action executed after the snapshot operation. This approach is slightly simpler than the other, but takes longer to execute.  
+
+
+%runtime recovery: 
+%Warp supports recovery in runtime using two fields in the database table, whereas Aire uses a branching mechanism to permit recovery on loosely coupled web services. We use a branching mechanism to support runtime recovery allowing various recovery processes simultaneously. 
+
+%inconsistency:  
+%Goel does not address external consistency issues. Warp \cite{warp} detects inconsistencies in responses and replays the user interaction using a browser. UO uses compensating actions based on protocol-specific knowledge. We propose an API that the application developers can use to deal with inconsistencies.
 
 %UO considers monolithic applications, which are instantiated in the paper as an email server. Shuttle, on the contrary, considers a \ac{PaaS} platform with both application server and database instances, supporting scalable applications of several kinds and does not require knowledge of the application protocol. 
 
@@ -49,78 +55,32 @@ Goel does not address external consistency issues. Warp \cite{warp} detects inco
 
 
 
-
-
-
-
-
-
-
-
-
-
 \LONG{
-
-
-%TODO: algum related-work que se encaixe aqui?
-%mpc: comentei pois nao percebi a mensagem que queriamos passar e nao parece exacto
-%Some intrusion recovery systems \cite{taser,itdb,phoenix} attempt to do it \textit{replacing} the value of the tainted objects by a previous value. These systems keep the objects written by legitimate actions unmodified. %rever o taser, itdb e phoenix para confirmar
-
-
-
-%Fazer rewind:
-Consider a hypothetical application execution. At a certain point in time after an intrusion, the application is stopped and the sequence of actions executed ($A$) is purged of the actions in $A_{intrusion}$. % i.e., the intrusion actions $A_{intrusion}$ are not executed. 
-
-Then, the state is rewind to the beginning of the application execution and only the actions in $A_{recovered} = A \backslash A_{intrusion} = A_{legal}$ are re-executed. That re-execution is intrusion-free as 
-%mpc: D_intrustin e D_tainted nem sequer foram definidos
-%$A \cap A_{intrusion} = \emptyset \implies D_{intrusion} = \emptyset, A_{tainted} = \emptyset \implies D_{tainted} = \emptyset$. 
-$A \cap A_{intrusion} = \emptyset \implies A_{tainted} = \emptyset$. 
-%Since the malicious actions were removed, the state, $O$, would not have values imposed by $A_{intrusion}$. 
-%For this reason, the sequence of tainted actions $A_{tainted}$ would be empty. 
-
-
-
-%Therefore, if $A_{intrusion}$ and $O_{intrusion}$ are removed, then $A_{tainted}$ should be \emph{replayed} because the actions of $A_{tainted}$ are not contaminated by malicious data during their re-execution. 
-The replay process restores the application to a correct state $O_{recovered}$, which is not compromised by the intrusion.
-
-That generic approach is unfeasible without the use of snapshots.
-The sequence of actions performed before the intrusion $A_{before} = A \backslash A_{after}$ can be long and each action takes non-null time to execute, so replaying $A_{before}$ may be unfeasible. Moreover, a log of all the actions executed may be too large.
-We define the subsets $O_{snapshot}(t)$ and $A_{snapshot}(t) : A_{snapshot}(t) \subset A$ as the subsets of objects and actions executed before the begin of a snapshot operation at instant \textit{t}. 
-%The snapshot operation copies the value of the object immediately or on the next write operation. 
-If the intrusion happens after $t$, then $A_{after} \cap A_{snapshot}(t) = \emptyset \implies (A_{intrusion} \cup A_{tainted}) \cap A_{snapshot}(t) = \emptyset$, i.e., the snapshot is not affected by the intrusion. For that reason, the service can replay only $A \backslash A_{snapshot}(t) \backslash A_{intrusion}$ using the object set $O_{snapshot}$ as base. 
-
-There are two distinct replay approaches to update the set of object $O$ to $O_{recovered}$, 
-%because of changes in the execution of $A_{tainted}$
-selective replay and full replay. 
-A \textit{version} is a snapshot of a single object value at an instant $t$. Versions can be recorded with the sequence of actions that write the objects before the instant $t$.
-
-%mpc: movi a definicao de version para o parag anterior porque fazia la' falta
-%A version is a snapshot of a single object value before the instant t. They can be recorded with the sequence of actions that read or write them before the instant t. We define a compensating action as an action that reverts the effects of a original action, for instance writing a previous value. A compensation process can obtain a previous snapshot or version. For this propose, we define the sequence Acompensation(t) as the compensation of Aposteriori(t), the sequence of actions after instant t. The compensation process applies the sequence of compensating actions Acompensation(t) on the current version of the objects, in reverse order, to obtain a previous snapshot or version.
-
-
-\LONG{
-
-%\hl{o proximo paragrafo resume todo o processo de replay mas acho que poderia ser tirado porque vai sendo explicado ao longo do paper}  %mpc: de facto e' repetido logo no inicio da seccao seguinte
 Recovery services have two distinct phases: record and recovery. The \emph{record phase} is the service usual state where the application is running and the service records the application actions. In order to perform replay, the application actions do not need to be idempotent but their re-execution must be deterministic (given the same initial state they produce the same final state). The record phase should record the actions input and the value of every non-deterministic behavior to turn their re-execution into a deterministic process. The \emph{recovery phase} can be subdivided in three: determining the affected actions and/or objects, removing these effects, and replaying the actions necessary to recover a consistent state. In this paper we present a recovery service that supports \textit{runtime recovery}, i.e., that allows the record and recovery phases to occur simultaneously.
 
 }
 
 \LONG{
 
-\hl{este explica o dependency graph. ou o related work sai e vem para aqui ou entao nao vale a pena ter um pagrafo a falar disto quando ha uma seccao} %mpc: ok, comentei
-Most intrusion recovery services record both the actions and  the objects they accessed  \cite{Akkus2010,itdb,warp}. Since the actions read and write objects from a shared set of objects $O$, we can establish dependencies between actions. Dependencies can be seen as an \textit{action dependency graph} or an \textit{object dependency graph}. The nodes of an action dependency graph represent actions and the edges indicate dependencies though shared objects. An object dependency graph establishes dependencies between objects through actions. Dependency graphs have been used to order the re-execution of actions \cite{undoForOperators}, get the sequence of actions affected by an object value change \cite{warp}, get the sequence of actions tainted by an intrusion \cite{Akkus2010} or resolve the set of objects and actions that caused the intrusion using a set of known tainted objects \cite{backtracker}. 
+% \hl{este explica o dependency graph. ou o related work sai e vem para aqui ou entao nao vale a pena ter um pagrafo a falar disto quando ha uma seccao} %mpc: ok, comentei
+% Most intrusion recovery services record both the actions and  the objects they accessed  \cite{Akkus2010,itdb,warp}. Since the actions read and write objects from a shared set of objects $D$, we can establish dependencies between actions. Dependencies can be seen as an \textit{action dependency graph} or an \textit{object dependency graph}. The nodes of an action dependency graph represent actions and the edges indicate dependencies though shared objects. An object dependency graph establishes dependencies between objects through actions. Dependency graphs have been used to order the re-execution of actions \cite{undoForOperators}, get the sequence of actions affected by an object value change \cite{warp}, get the sequence of actions tainted by an intrusion \cite{Akkus2010} or resolve the set of objects and actions that caused the intrusion using a set of known tainted objects \cite{backtracker}. 
 
-%A \textit{taint algorithm} aims to define the tainted objects $O_{tainted}$ from a set of malicious actions $A_{intrusion}$ or objects $O_{intrusion}$ using a dependency graph. This method is used by selective replay approaches. The \textit{taint propagation via replay} \cite{retro} algorithm begins with the set $O_{tainted}$ determined by the base taint algorithm \hl{o que significa?} and expands the set \hl{o que significa?} $O_{tainted}$. It is used to restore the values of $O_{intrusion} \cup D_{tainted}$ and to replay only the legal actions that output $O_{intrusion} \cup D_{tainted}$ during the original execution. Then it replays the actions dependent from $O_{intrusion} \cup D_{tainted}$, updating their output objects. While the forward actions have different input, they are also replayed and their outputs are updated. 
+%A \textit{taint algorithm} aims to define the tainted objects $D_{tainted}$ from a set of malicious actions $A_{intrusion}$ or objects $D_{intrusion}$ using a dependency graph. This method is used by selective replay approaches. The \textit{taint propagation via replay} \cite{retro} algorithm begins with the set $D_{tainted}$ determined by the base taint algorithm \hl{o que significa?} and expands the set \hl{o que significa?} $D_{tainted}$. It is used to restore the values of $D_{intrusion} \cup D_{tainted}$ and to replay only the legal actions that output $D_{intrusion} \cup D_{tainted}$ during the original execution. Then it replays the actions dependent from $D_{intrusion} \cup D_{tainted}$, updating their output objects. While the forward actions have different input, they are also replayed and their outputs are updated. 
 
+% Dependencies are established during the record phase or at recovery time using the objects and actions. The level of abstraction influences the record technique and the dependency extraction method. The abstraction level defines the recoverable intrusions: operating system \cite{taser,retro}, database \cite{itdb,phoenix}, and application \cite{Akkus2010,warp,aire}. In the next sections, we present Shuttle, an intrusion recovery service which recovers from intrusions using the dependencies established at database and application level.
 
-}
-
-
-Shuttle's full-replay approach is motivated by UO \cite{undoForOperators}. UO proposes to remove the intrusion effects using a snapshot and replaying every request posterior to the snapshot instant. \LONG{However, the primary source of difference between the two approaches is their target applications.} UO considers monolithic applications, which are instantiated in the paper as an email server. Shuttle, on the contrary, considers a \ac{PaaS} platform with both application server and database instances, supporting scalable applications of several kinds \LONG{(e.g., Q\&A, social networks, shared editors, etc.)}. UO sorts requests using knowledge of the application protocol. Developers must define, for each type of application request, the order between requests and their capability to be executed in parallel. In contrast, Shuttle uses the dependency graph to create clusters of request to execute in parallel and sorts the requests using the start-end order and database accesses.
-
-
-\emph{Goel et. all} \cite{Akkus2010} proposes a solution to recover from intrusion in web applications. It uses a modified PHP interpreter to determine the tainted requests. Goel reverts the effect of tainted requests applying compensating transactions on the current state of the database. 
-
-Warp \cite{warp} helps the administrators to retroactively patch security vulnerabilities. It stores every version of each data item and the version read by each request. It also captures the browser-side input at DOM level using a browser plugin and modifies the code interpreter to track the code files invoked by each request. Requests that invoked code files modified by the patch are considered tainted. Warp loads the version of the tainted data items and repeats these requests using a server-side browser. Forward requests are also replayed while their inputs are different from the ones at first execution. Most of previous solutions store every data item version or action input and output \cite{warp,aire}. Shuttle incurs on smaller storage overhead because it gets the data item version from a snapshot and replays every legitimate request at least until the next snapshot, where the data item value is known.
+%mpc: comentei pois nao percebi a mensagem que queriamos passar e nao parece exacto
+%Some intrusion recovery systems \cite{taser,itdb,phoenix} attempt to do it \textit{replacing} the value of the tainted objects by a previous value. These systems keep the objects written by legitimate actions unmodified. %rever o taser, itdb e phoenix para confirmar
 
 }
+
+
+
+
+\LONG{
+%mpc: juntei 2 paragrafos e limpei as varias repeticoes das mesmas ideias
+% Consider a hypothetical application execution. At a certain point in time after an intrusion, the application is stopped and the sequence of actions executed ($A$) is purged of the actions in $A_{intrusion}$. Then, the state is rewind to the beginning of the application execution and only the actions in $A_{recovered} = A \backslash A_{intrusion} = A_{legal}$ are re-executed. That re-execution is intrusion-free as $A \cap A_{intrusion} = \emptyset \implies A_{tainted} = \emptyset$. The set of tainted actions of the first execution that are not in $A_{intrusion}$ are re-executed but read different values (not imposed by the attacker) and have a different execution. The replay process restores the application to a correct state $D_{recovered}$, which is not compromised by the intrusion.
+}
+
+%mpc: movi a definicao de version para o parag anterior porque fazia la' falta
+%We define a compensating action as an action that reverts the effects of a original action, for instance writing a previous value. A compensation process can obtain a previous snapshot or version. For this propose, we define the sequence Acompensation(t) as the compensation of Aposteriori(t), the sequence of actions after instant t. The compensation process applies the sequence of compensating actions Acompensation(t) on the current version of the objects, in reverse order, to obtain a previous snapshot or version.
