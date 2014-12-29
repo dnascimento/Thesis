@@ -399,23 +399,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "Chapters/5.evaluation.tex",
-			"settings":
-			{
-				"buffer_size": 18822,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "9684+282+718 = 10684 para 1Million\n\n213gb\n\n35GB ",
-			"settings":
-			{
-				"buffer_size": 48,
-				"line_ending": "Unix",
-				"name": "9684+282+718 = 10684 para 1Million"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -530,8 +513,24 @@
 	],
 	"file_history":
 	[
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/4.recovery.tex",
+		"/Volumes/ABBYY FineReader Pro 1/SN.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/2.formalization.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/paper.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/5.evaluation.tex",
+		"/Volumes/ABBYY FineReader Pro/SN.txt",
+		"/Users/darionascimento/Downloads/gunny_rewritten/gunnyrew.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/0.abstract.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/acronim_abreviaturas.tex",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/Shuttle_Paper_Chapters_2.formalization_Before_2a50b65f763cfc22bb6814a39feb70ede05b4424.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/3.architecture.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/1.introduction.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/4.recovery.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/2.formalization.complex.tex",
+		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/Shuttle_Paper_Chapters_2.formalization_Before_9949d2b1657746e8306f6714d5dcb150451cb533.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/6.related_work.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/chapters/1.introduction.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/chapters/4.recovery.tex",
+		"/Volumes/DataDisk/Torrents/Microsoft Office ProPlus 2013 SP1 VL x64 en-US Aug2014/Office-2013-SP1-Aug2014.txt",
 		"/Users/darionascimento/Tese/review.txt",
 		"/Users/darionascimento/Desktop/p.txt",
 		"/Users/darionascimento/Desktop/jobs.txt",
@@ -544,17 +543,12 @@
 		"/Users/darionascimento/Desktop/visita.txt",
 		"/Users/darionascimento/Tese/quotes.txt",
 		"/Users/darionascimento/Downloads/api.tex",
-		"/Users/darionascimento/Tese/Shuttle_Paper/paper.tex",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/0.abstract.tex",
 		"/Users/darionascimento/Downloads/IEEEtran2/bare_adv.tex",
 		"/Users/darionascimento/Downloads/IEEEtran2/bare_conf.tex",
 		"/Users/darionascimento/Downloads/ccece06sample.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/proxy/throughput.eps",
-		"/Users/darionascimento/Tese/Shuttle_Paper/acronim_abreviaturas.tex",
 		"/Users/darionascimento/Desktop/mae/receipts/sopas.tex",
 		"/Users/darionascimento/Desktop/mae/receipts/entradas.tex",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/3.architecture.tex",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/6.related_work.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/images/replayExecution.graffle",
 		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain/serial_paper.tex",
 		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain/generate.txt",
@@ -566,8 +560,6 @@
 		"/Users/darionascimento/Tese/Shuttle_Paper/sigplanconf.cls",
 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/7.conclusion.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/refs/ALL.bib",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/1.introduction.tex",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/2.formalization.tex",
 		"/Users/darionascimento/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/4.implementation.tex",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/6.performance.tex",
@@ -575,7 +567,6 @@
 		"/Users/darionascimento/Tese/Dissertacao/Sections/5.accuracy.tex",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/3.architecture.tex",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/4.Abstract.tex",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/2.formalization.complex.tex",
 		"/Users/darionascimento/Tese/Dissertacao/graphs/replay/generate.txt",
 		"/Users/darionascimento/Tese/Dissertacao/graphs/scalability/generate.txt",
 		"/Users/darionascimento/Tese/Dissertacao/graphs/requests/generate.txt",
@@ -649,15 +640,7 @@
 		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/ProxyWorker.java",
 		"/Users/darionascimento/git/testKit/setupTestServers.sh",
 		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/clustering_time/2.txt",
-		"/Users/darionascimento/Tese/Shuttle_Paper/refs/before_compression/ALL.bib",
-		"/Users/darionascimento/Tese/Dissertacao/refs/ALL.bib",
-		"/Users/darionascimento/Tese/Shuttle_Paper/images/branches.graffle",
-		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/database_backup/database_a/generate_read.txt",
-		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/change_branch/throughput.txt",
-		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/requests/votes.eps",
-		"/Users/darionascimento/Tese/Presentation_thesis/sections/E-Architecture.tex",
-		"/Users/darionascimento/Tese/Presentation_thesis/sections/D-solution.tex",
-		"/Users/darionascimento/Tese/Dissertacao/tese.tex"
+		"/Users/darionascimento/Tese/Shuttle_Paper/refs/before_compression/ALL.bib"
 	],
 	"find":
 	{
@@ -697,9 +680,28 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"after",
+			"Aviz",
+			"$O",
+			"$D$",
+			"$O$",
+			"None of these works handles recovery in cloud environments.\n",
+			"tag",
+			"goel",
+			"$D",
+			"$",
+			"$o",
+			"$",
+			"$O$",
+			"depende",
+			"depend",
+			"compensation\ncompensation",
+			" Akkus2010",
+			" tainted object",
+			" after",
 			" 35 GB per day",
 			" it leverages",
 			" More,",
@@ -808,33 +810,16 @@
 			"total: ",
 			"delay: ",
 			"targetRate: ",
-			",\\d* WARN  \\[pool-2-thread-1\\]\\[ReplayWorker.java:237\\]: Real written rate:",
-			"^\\d*:",
-			",\\d* WARN  \\[pool-2-thread-1\\]\\[ReplayWorker.java:237\\]: Real written rate: ",
-			"15:",
-			" 15:35:12,000 WARN  [pool-2-thread-1][ReplayWorker.java:237]: Real written rate: 1253 targetRate: 800 delay: 1 total: 1253 pendent: 1170",
-			" 15:35:12,000 WARN  [pool-2-thread-1][ReplayWorker.java:237]: Real written rate: 1253 targetRate: 800 delay: 1 total: 1253 pendent: 1170\n",
-			" Transactions:",
-			"	\n",
-			"writeUnlock",
-			"Real written rate:",
-			"SRD",
-			"nodeRegistry",
-			"getNodeRegistry",
-			"1416829",
-			"1416829561548001",
-			"storage",
-			"code",
-			"written by tainted requests",
-			"clustering",
-			"trusted"
+			",\\d* WARN  \\[pool-2-thread-1\\]\\[ReplayWorker.java:237\\]: Real written rate:"
 		],
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": true,
+		"regex": false,
 		"replace_history":
 		[
+			"Akkus2010",
+			"$O",
 			" Moreover,",
 			"Proc. of",
 			"data items",
@@ -960,9 +945,7 @@
 			"{#",
 			"#}",
 			"{#",
-			"#}",
-			"/content/pub/",
-			"/static/"
+			"#}"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -973,286 +956,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "Chapters/5.evaluation.tex",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 18822,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								17565,
-								17572
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": true,
-							"WordCountSyntax": "latex",
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"sublime_auto_complete": true,
-							"synced": false,
-							"syntax": "Packages/LaTeX/LaTeX.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3794.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 48,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								41,
-								41
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": true,
-							"WordCountSyntax": "plain text",
-							"auto_name": "9684+282+718 = 10684 para 1Million",
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"incomplete_sync": null,
-							"is_xml": false,
-							"remote_loading": false,
-							"sublime_auto_complete": true,
-							"synced": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1311,11 +1016,7 @@
 		"selected_items":
 		[
 			[
-				"pap",
-				"paper.tex"
-			],
-			[
-				"abstra",
+				"abst",
 				"Chapters/0.abstract.tex"
 			],
 			[
@@ -1331,6 +1032,22 @@
 				"Chapters/3.architecture.tex"
 			],
 			[
+				"1",
+				"Chapters/1.introduction.tex"
+			],
+			[
+				"2",
+				"Chapters/2.formalization.tex"
+			],
+			[
+				"pap",
+				"paper.tex"
+			],
+			[
+				"abstra",
+				"Chapters/0.abstract.tex"
+			],
+			[
 				"relat",
 				"Chapters/6.related_work.tex"
 			],
@@ -1339,16 +1056,8 @@
 				"graphs/restrain/data_serial.txt"
 			],
 			[
-				"2",
-				"Chapters/2.formalization.tex"
-			],
-			[
 				"all",
 				"refs/ALL.bib"
-			],
-			[
-				"1",
-				"Chapters/1.introduction.tex"
 			],
 			[
 				"7",
@@ -1401,10 +1110,6 @@
 			[
 				"paper",
 				"paper.tex"
-			],
-			[
-				"abst",
-				"Chapters/0.abstract.tex"
 			],
 			[
 				"5.",
