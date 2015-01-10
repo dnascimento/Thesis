@@ -119,7 +119,7 @@ We propose two approaches for intrusion recovery: full replay and selective repl
   The set $A_{replay}$ is sorted in \emph{start-end order} (no clustering possible).
 
 {5)} \textit{Load the previous data item versions.}
-  Loads the version of the data items read by the requests in $A_{replay}$ that precedes the selected snapshot.
+  Loads the version in the selected snapshot of the data items read by the requests in $A_{replay}$ and written by $A_{malicious}$.
 
 {6)} \textit{Replay the requests.}
   Requests in $A_{replay}$ are replayed. If an access is not contained in an operation list, then a new dependency is established and the requests that accessed the data item during the first execution are also replayed as in \cite{retro}. For instance, $R.9$ is replayed if it reads an item written during recovery process but not during normal execution. 

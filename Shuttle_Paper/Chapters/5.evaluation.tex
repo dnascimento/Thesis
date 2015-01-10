@@ -19,9 +19,7 @@ The application semantics implies the following dependencies: a) questions are i
 \subsection{Accuracy}
 \label{sec:evaluation:accuracy}
 
-We evaluate Shuttle's ability to correctly recover applications in different scenarios. We consider three classes of intrusion scenarios: malicious requests, software vulnerabilities and external channels (e.g., SSH connections). The selected data subset contains 100 000 requests originally performed from 31 July until 12 Sep.~2008: 6992 questions, 28993 answers, 2220 comments, 61795 votes\LONG{ and 3062 tags}. Requests were sorted per date, establishing 92 939 dependencies.
-
-%mpc: acima quando se falou das dependencias nao foram referidas dependencias para as tags
+We evaluate Shuttle's ability to correctly recover applications in different scenarios. We consider three classes of intrusion scenarios: malicious requests, software vulnerabilities and external channels (e.g., SSH connections). The selected data subset contains 100 000 requests originally performed from 31 July until 12 Sep.~2008: 6992 questions, 28993 answers, 2220 comments, 61795 votes. Requests were sorted per date, establishing 92 939 dependencies.
 
 At intrusion moment, Sep.~2nd, the database contains 4338 questions, 18286 answers, 422 comments and 38334 votes (61380 requests). The attack is detected in Sep.~12th, assuming a pessimistic delay of 10 days. During this period, the application executed 38 620 requests. Table \ref{tab:accuracy} presents a summary of the accuracy tests. It contains the number of data items tampered by the intrusion (\emph{\#intrusion}) and the number of user requests that read data items written by  tainted requests or malicious requests (without considering the intrusion requests). Recovery using \textit{full replay} requires to replay every request from the latest snapshot before the intrusion instant until the detection instant: in this example at least 38 620 requests (\emph{\#replayed (fr)}). Selective replay only re-executes tainted requests, unless some data item versions need to be recreated. On the worst case, the system does not contain any snapshot and every data read by the tainted requests shall be recreated (\emph{\#replayed (sr)}). 
 
@@ -42,7 +40,7 @@ At intrusion moment, Sep.~2nd, the database contains 4338 questions, 18286 answe
 
 %Scenario A: tainted request
 \textbf{Malicious Requests.} 
- In the first class of scenarios, we consider three  cases in which an attacker has stolen an user credential, then: a) deleted every question created by the user; b) deleted every user answer; or c) modified every user answer.
+ In the first class of scenarios, we consider three cases in which an attacker has stolen an user credential, then: a) deleted every question created by the user; b) deleted every user answer; or c) modified every user answer.
 
 \textit{1a)} The attacker deletes the user's 4 questions, performing 4 delete requests that remove 106 associated comments and answers. The tenant identifies the malicious requests through the user session and selects a snapshot previous to the intrusion instant. Users cannot access deleted questions, so no request is tainted. If Shuttle has a snapshot containing the deleted questions, then \textit{selective replay} does not need to replay any request and merges the deleted questions on the current system state. If the latest snapshot is previous to the creation of the 4 questions, then \textit{selective replay} replays 605 requests to recreate the deleted questions, their answers and votes. The result is merged with the current branch, rebuilding the deleted questions. 
 

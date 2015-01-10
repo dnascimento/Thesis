@@ -513,18 +513,18 @@
 	],
 	"file_history":
 	[
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/5.evaluation.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/4.recovery.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/1.introduction.tex",
 		"/Volumes/ABBYY FineReader Pro 1/SN.txt",
 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/2.formalization.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/paper.tex",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/5.evaluation.tex",
 		"/Volumes/ABBYY FineReader Pro/SN.txt",
 		"/Users/darionascimento/Downloads/gunny_rewritten/gunnyrew.txt",
 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/0.abstract.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/acronim_abreviaturas.tex",
 		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/Shuttle_Paper_Chapters_2.formalization_Before_2a50b65f763cfc22bb6814a39feb70ede05b4424.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/3.architecture.tex",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/1.introduction.tex",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/4.recovery.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/2.formalization.complex.tex",
 		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/Shuttle_Paper_Chapters_2.formalization_Before_9949d2b1657746e8306f6714d5dcb150451cb533.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/6.related_work.tex",
@@ -683,6 +683,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"selective",
+			"attack_",
+			"template",
 			"after",
 			"Aviz",
 			"$O",
@@ -807,10 +810,7 @@
 			"total: ",
 			":rate: ",
 			"pendent: ",
-			"total: ",
-			"delay: ",
-			"targetRate: ",
-			",\\d* WARN  \\[pool-2-thread-1\\]\\[ReplayWorker.java:237\\]: Real written rate:"
+			"total: "
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1016,10 +1016,6 @@
 		"selected_items":
 		[
 			[
-				"abst",
-				"Chapters/0.abstract.tex"
-			],
-			[
 				"5",
 				"Chapters/5.evaluation.tex"
 			],
@@ -1028,12 +1024,16 @@
 				"Chapters/4.recovery.tex"
 			],
 			[
-				"3",
-				"Chapters/3.architecture.tex"
-			],
-			[
 				"1",
 				"Chapters/1.introduction.tex"
+			],
+			[
+				"abst",
+				"Chapters/0.abstract.tex"
+			],
+			[
+				"3",
+				"Chapters/3.architecture.tex"
 			],
 			[
 				"2",

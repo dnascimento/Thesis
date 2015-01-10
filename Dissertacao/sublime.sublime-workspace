@@ -80,10 +80,10 @@
 	"buffers":
 	[
 		{
-			"file": "Sections/6.performance.tex",
+			"file": "Sections/3.architecture.tex",
 			"settings":
 			{
-				"buffer_size": 50225,
+				"buffer_size": 82569,
 				"line_ending": "Unix"
 			}
 		}
@@ -128,27 +128,35 @@
 	"expanded_folders":
 	[
 		"/Users/darionascimento/Tese/Dissertacao",
+		"/Users/darionascimento/Tese/Dissertacao/refs",
 		"/Users/darionascimento/Tese/Dissertacao/Sections",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/appendix"
 	],
 	"file_history":
 	[
+		"/Users/darionascimento/Tese/Dissertacao/Sections/1.introduction.tex",
+		"/Users/darionascimento/Tese/Dissertacao/refs/manual.bib",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/7.Acronim_abreviaturas.tex",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/5.accuracy.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/7.conclusion.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/2.Acknowledgments.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/4.Abstract.tex",
+		"/Users/darionascimento/Tese/Dissertacao/tese.tex",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/2.related_work.tex",
+		"/Users/darionascimento/Tese/Dissertacao/tese.aux",
+		"/Users/darionascimento/Tese/Dissertacao/IEEEtran.bst",
+		"/Users/darionascimento/Tese/Dissertacao/graphs/proxy/throughput.eps",
+		"/Users/darionascimento/Tese/Dissertacao/01.thesis.cls",
+		"/Users/darionascimento/Tese/Dissertacao/Sections/3.architecture.tex",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/6.performance.tex",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/4.implementation.tex",
-		"/Users/darionascimento/Tese/Dissertacao/Sections/3.architecture.tex",
 		"/Users/darionascimento/Downloads/trabalho çenas/(2) Clube da Abstinência!.htm",
 		"/Users/darionascimento/Tese/compare_last.sh",
 		"/Users/darionascimento/Desktop/beaches.txt",
 		"/Users/darionascimento/Desktop/mana.txt",
 		"/Users/darionascimento/Desktop/review_cv.txt",
 		"/Users/darionascimento/Desktop/p.txt",
-		"/Users/darionascimento/Tese/Dissertacao/Sections/7.conclusion.tex",
-		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/4.Abstract.tex",
-		"/Users/darionascimento/Tese/Dissertacao/Sections/2.related_work.tex",
 		"/Users/darionascimento/Desktop/mae/project.sublime-project",
-		"/Users/darionascimento/Tese/Dissertacao/Sections/1.introduction.tex",
-		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/7.Acronim_abreviaturas.tex",
 		"/Users/darionascimento/Desktop/ubahn_party.txt",
 		"/Users/darionascimento/Tese/Dissertacao/graphs/replay/data.txt",
 		"/Users/darionascimento/Tese/Dissertacao/graphs/scalability/generate.txt",
@@ -157,9 +165,7 @@
 		"/Users/darionascimento/Tese/Dissertacao/images/cap.graffle",
 		"/Users/darionascimento/Tese/Dissertacao/graphs/replay/generate.txt",
 		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain/generate.txt",
-		"/Users/darionascimento/Tese/Dissertacao/tese.tex",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/appendix/appendix_results.tex",
-		"/Users/darionascimento/Tese/Dissertacao/tese.aux",
 		"/Users/darionascimento/Desktop/mae/main.tex",
 		"/Users/darionascimento/Tese/Dissertacao/arch/operation_database.graffle",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/7.Acronim_abreviaturas.log",
@@ -170,7 +176,6 @@
 		"/Users/darionascimento/Tese/Dissertacao/Sections/appendix/appendix_interface.tex",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/1.cover.tex",
 		"/Users/darionascimento/Tese/Dissertacao/refs/ALL.bib",
-		"/Users/darionascimento/Tese/Dissertacao/refs/manual.bib",
 		"/Users/darionascimento/Tese/Dissertacao/tese.bbl",
 		"/Users/darionascimento/Tese/Dissertacao/images/normalExecution.graffle",
 		"/Users/darionascimento/Tese/Dissertacao/graphs/requests/views.eps",
@@ -187,7 +192,6 @@
 		"/Users/darionascimento/git/undo/src/main/resources/from-manager.proto",
 		"/Users/darionascimento/git/undo/src/main/java/pt/inesc/replay/core/AssyncExecutionArray.java",
 		"/Users/darionascimento/git/voldemort/src/proto/voldemort-client.proto",
-		"/Users/darionascimento/Tese/Dissertacao/IEEEtran.bst",
 		"/Users/darionascimento/Tese/Dissertacao/definitions/packages.tex",
 		"/Users/darionascimento/Tese/Dissertacao/definitions/packages.log",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/appendix/1app.tex",
@@ -198,7 +202,6 @@
 		"/Users/darionascimento/Tese/Dissertacao/00.listofsymbols.sty",
 		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain/data_clustered.txt",
 		"/Users/darionascimento/Tese/Dissertacao/graphs/restrain/data_serial.txt",
-		"/Users/darionascimento/Tese/Dissertacao/Sections/0.begin/2.Acknowledgments.tex",
 		"/Users/darionascimento/Desktop/mae/receipts/petitegato.txt",
 		"/Users/darionascimento/Desktop/manager/manager2.txt",
 		"/Users/darionascimento/Desktop/manager/manager2servers_2clients.txt",
@@ -258,9 +261,7 @@
 		"/Users/darionascimento/Tese/Dissertacao/arch/proxy.graffle",
 		"/Users/darionascimento/Tese/Dissertacao/arch/database_proxy_logic_replay.graffle",
 		"/Users/darionascimento/Desktop/statistics/all/process.py",
-		"/Users/darionascimento/git/AppEvaluation/out.txt",
-		"/Users/darionascimento/git/AppEvaluation/in.txt",
-		"/Users/darionascimento/Desktop/statistics/average/CPUUtilization_Average_i-3f3570de_web2.txt"
+		"/Users/darionascimento/git/AppEvaluation/out.txt"
 	],
 	"find":
 	{
@@ -280,6 +281,9 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"operation list",
+			"approach",
+			"replay",
 			"billion",
 			"716",
 			"restrain",
@@ -404,10 +408,7 @@
 			"\\usepackage{lmodern}",
 			" = \\d;",
 			"nodeRegistry",
-			"	",
-			"multicol",
-			"GetRequest",
-			"HTTP"
+			"	"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -542,34 +543,138 @@
 			[
 				{
 					"buffer": 0,
-					"file": "Sections/6.performance.tex",
+					"file": "Sections/3.architecture.tex",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 50225,
+						"buffer_size": 82569,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								36558,
-								36565
+								42333,
+								42333
 							]
 						],
 						"settings":
 						{
 							"WordCountShouldRun": true,
 							"WordCountSyntax": "latex",
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
 							"incomplete_sync": null,
 							"remote_loading": false,
+							"sublime_auto_complete": true,
 							"synced": false,
 							"syntax": "Packages/LaTeX/LaTeX.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 8021.0,
+						"translation.y": 8958.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -633,16 +738,40 @@
 		"selected_items":
 		[
 			[
-				"6",
-				"Sections/6.performance.tex"
+				"acr",
+				"Sections/0.begin/7.Acronim_abreviaturas.tex"
 			],
 			[
 				"3",
 				"Sections/3.architecture.tex"
 			],
 			[
+				"ack",
+				"Sections/0.begin/2.Acknowledgments.tex"
+			],
+			[
+				"acknowledgments",
+				"Sections/0.begin/2.Acknowledgments.tex"
+			],
+			[
+				"tese.tex",
+				"tese.tex"
+			],
+			[
+				"intro",
+				"Sections/1.introduction.tex"
+			],
+			[
 				"4",
 				"Sections/4.implementation.tex"
+			],
+			[
+				"1",
+				"Sections/1.introduction.tex"
+			],
+			[
+				"6",
+				"Sections/6.performance.tex"
 			],
 			[
 				"7",
@@ -665,16 +794,8 @@
 				"Sections/0.begin/4.Abstract.tex"
 			],
 			[
-				"1",
-				"Sections/1.introduction.tex"
-			],
-			[
 				"conc",
 				"Sections/7.conclusion.tex"
-			],
-			[
-				"tese.tex",
-				"tese.tex"
 			],
 			[
 				"apre",
@@ -775,10 +896,6 @@
 			[
 				"perfe",
 				"Sections/6.performance.tex"
-			],
-			[
-				"intro",
-				"Sections/1.introduction.tex"
 			],
 			[
 				"int",

@@ -11,20 +11,20 @@ In order to implement the proposed work, we evaluated several technologies takin
 The first Shuttle prototype was implemented in Python. The prototype of a simple application and the proxy allowed to analyze the requirements of Shuttle. The compact code of Python was great for code readability and rapid prototyping. However, despite the stackless variants of Python, the global interpreter lock limits Python to a single active thread per process. Since all modules of Shuttle are multi-threaded and their performance is critical to support medium and large-scale systems, Python was not appropriated. The selected language needs to be likely to run faster than Python and to have better concurrency and network libraries.
 
 %C and C++
-C or C++ languages are likely to have a better performance than Python because they are compiled to assembly. However, the development time can be considerably larger due to its low level. 
+C or C++ languages are likely to have a better performance than Python because they are compiled. However, the development time can be considerably larger due to its low level. 
 Java has an higher abstraction level than C but lower than Python. To argue about the performance differences between Java and Python, we would need to develop a version of Shuttle in Python and another version in Java. However, the proxy prototype using Java has a bigger throughput and lower latency than the one implemented using Python. 
 
 %Scala, Go, Erlang
 Shuttle has a distributed architecture and each module shall process various requests concurrently. Therefore, we also considered languages, such as \emph{Erlang}, \emph{Go Lang} and \emph{Scala}. They facilitate the writing of concurrent programs that share the state by communicating. Moreover,the actors model \cite{actors}, native in Erland and available through frameworks as Akka \cite{akka} to Scala, could simplify the implementation and improve the performance. 
 
 %Java
-Since the selected database is implemented in Java (Chapter \ref{sec:impl:database_options}) and Java is still the most used language in enterprise environments and it is compatible with most of \ac{PaaS}. In addition, Java has a \acf{NIO} library that provides event-driven and asynchronous communication via network. Due to its broad usage, Java is more likely to have client libraries for distributed databases than other languages, for instance C.
+Java is still the most used language in enterprise environments and it is compatible with most of \ac{PaaS}. The selected database is implemented in Java (Chapter \ref{sec:impl:database_options}). In addition, Java has a \acf{NIO} library that provides event-driven and asynchronous communication via network. %Due to its broad usage, Java is more likely to have client libraries for distributed databases than other languages, for instance C.
 
 %Why not Java?
 We chose to implement the Shuttle prototype in Java. However, the large number of concurrent tasks and asynchronous message passing communications turned the development of the prototype using Java extremely complex. Moreover, it's concurrency model and network libraries have an abstraction level lower than desired to archive a fast development and good performance.
 
-Therefore, during the development of the prototype, we concluded that \emph{Scala} with \emph{Akka} could be a better option than Java. It would be likely to simply the development of the distributed system and improve the performance. However, rebuilding the prototype in a different language would also take too long. Therefore, we kept Java. \hl{sei que é atipico na tese dizer isto mas prefiro ser honesto... java para este tipo de coisas simplesmente não presta.}
-In addition, the proxy performance could be improved using a C or C++ implementation, such as in \cite{haproxy}. \\
+Therefore, during the development of the prototype, we concluded that \emph{Scala} with \emph{Akka} could be a better option than Java. It would be likely to simplify the development of the distributed system and improve the performance. However, rebuilding the prototype in a different language would also take too long. Therefore, we kept Java. \hl{sei que é atipico na tese dizer isto mas prefiro ser honesto... java para este tipo de coisas simplesmente não presta.}
+In addition, the proxy performance could be improved using a C or C++ implementation, such as HAProxy \cite{haproxy}. \\
 
 Despite the Java \acf{RMI} \ac{API}, we choose to use a messaging protocol because Shuttle is built of several modules that communicate and coordinate their actions by passing messages. The message passing protocol should emphasized simplicity, performance and low overhead. It should also define data structures and service interface easily. 
 
@@ -42,7 +42,7 @@ Shuttle is implemented as a service in \ac{PaaS} framework. Since we can not mod
 	\item \textit{Open-source:} to support updates and modifications
 	\item \textit{Support to add new containers (auto-scaling is not mandatory):} to add new compute, database and replay instances.
 	\item \textit{Contain a load-balancer:} to distribute the requests after the proxy
-	\item  Extensible to support a new database management system
+	\item Extensible to support a new database management system
 	\item Deployable on OpenStack and \acf{AWS}
 	\item Support for Java Applications
 \end{enumerate}
@@ -53,7 +53,7 @@ We require the \ac{PaaS} system to be deployable on OpenStack \cite{openstack} a
 
 The number of \acf{PaaS} systems that meet these requirements are rising and being actively developed. The main open-source systems are Openshift by RedHat \cite{OpenShift}, AppScale \cite{Appscale}, Apache Stratos \cite{ApacheStratos}, Cloud Foundry \cite{Cloudfoundry}, Cloudify \cite{cloudify} and Solum project of OpenStack \cite{solum}.  
 
- Solum matches the requirements but it still being actively developed. We chose AppScale \cite{Appscale} to implement our prototype. AppScale meets the requirements except it does not support OpenStack nether supports the required database (Chapter \ref{sec:impl:database_options}).  Therefore, we contributed for AppScale open-source project adding the support for both. AppScale supports auto-scaling monitoring the proxy and nodes: if one of the servers queue contains more than 5 requests or if the node usage exceeds the 90\%, then it creates a new container and deploys the application.
+Solum matches the requirements but it still being actively developed. We chose AppScale \cite{Appscale} to implement our prototype. AppScale meets the requirements except it does not support OpenStack nether supports the required database (Chapter \ref{sec:impl:database_options}).  Therefore, we contributed for AppScale open-source project adding the support for both. AppScale supports auto-scaling monitoring the proxy and nodes: if one of the servers queue contains more than 5 requests or if the node usage exceeds the 90\%, then it creates a new container and deploys the application.
 
 \subsection{Database}\label{sec:impl:database_options}
 %Database normal:	
@@ -83,24 +83,23 @@ The evaluated alternatives are summarized in Table \ref{tab:no_sql_databases}.
 \hspace*{-1cm}
 \begin{tabular}{|p{1.5cm}|p{1.8cm}|p{1.6cm}|p{1.8cm}|p{1.7cm}|p{2cm}|p{3.5cm}|}
 \hline
-\textbf{Type}  & \textbf{Name} & \textbf{Language} & \textbf{API} & \textbf{Replication}   & \textbf{Concorrency Control} & \textbf{Consistency} \\ \hline
+\textbf{Type}  & \textbf{Name} & \textbf{Language} & \textbf{API} & \textbf{Replication}  & \textbf{Consistency} \\ \hline
 
-\multirow{2}{*}{Column} & HBase & Java  & Avro, REST, Thrift & Master-Slave & & Strongly consistent for a single row within a datacenter. Across rows is eventual consistent \\ \cline{2-7}
-	& Cassandra & Java  & Cassandra Query \newline Language & Peer-to-peer  &  & Depends from the selected number of read and writes \\ \hline
-
+\multirow{2}{*}{Column} 
+	& HBase 		& Java  & Avro, REST, Thrift & Master-Slave & Strongly consistent for a single row within a datacenter. Across rows is eventual consistent \\ \cline{2-7}
+	& Cassandra 	& Java  & Cassandra Query \newline Language & Peer-to-peer  & Depends from the selected number of read and writes \\ \hline
 
 \multirow{2}{1.5cm}{Document Oriented} 
-
-	& MongoDB  & C++  & \acs{CRUD}  & Master-slave &   & Strong Consistency for a single row (default)  \\ \cline{2-7} 
-	& CouchDB & Erlang   & \acs{CRUD} & Master-slave &     & Multi-Version Concurrency Control  \\ \hline
+	& MongoDB  	& C++  		& \acs{CRUD}  	& Master-slave & Strong Consistency for a single row (default) \\ \cline{2-7} 
+	& CouchDB 	& Erlang   	& \acs{CRUD} 	& Master-slave & Multi-Version Concurrency Control \\ \hline
 
 Graph 
-	& Neo4J 	& Java  & Cypher Query \newline Language 	& Master-Slave  & Locking and transactions & ACID using master. Updates to slaves are eventual consistent by default \\ \hline
+	& Neo4J 	& Java  	& Cypher Query \newline Language  & Master-Slave & ACID using master. Updates to slaves are eventual consistent by default \\ \hline
 
 
 \multirow{2}{1.5cm}{Key value}         
-	& Memcached   & C  	& \acs{CRUD}  & None & Optimistic locking & The client selects the correct shard \\ \cline{2-7} 
-	& Voldemort  & Java		& \acs{CRUD} & Peer-to-peer & Optimistic locking & Many-writer eventually consistent system: vector clocks and versioning  \\ \hline
+	& Memcached   	& C  		& \acs{CRUD}  	& None 			& The client selects the correct shard \\ \cline{2-7} 
+	& Voldemort  	& Java		& \acs{CRUD} 	& Peer-to-peer 		& Many-writer eventually consistent system: vector clocks and versioning  \\ \hline
 \end{tabular}
 \caption{Available No \ac{SQL} databases}
 \label{tab:no_sql_databases}
@@ -135,10 +134,12 @@ The external storage should be protected, at least, against attacks to integrity
 
 
 
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Normal Execution}\label{sec:impl:normal}
-
-
 
 Shuttle can operate in one of two states: \textit{normal execution} and \textit{recovery}. During normal execution, Shuttle collects  dependencies between requests, stores the accessed keys, sets the correct branch to write the data item values and performs snapshots. Figure \ref{fig:normal:mensaging} summarizes the messages exchanged between Shuttle's modules during the normal phase. Shuttle identifies each user \ac{HTTP} request with an unique \acf{SRD} and identifies all database operations of each request with its \ac{SRD}. The database operations are logged and sent to the manager, which generates the dependency graph. 
 In this Section, we describe the normal execution phase following the path that a request takes to be processed.
@@ -161,7 +162,7 @@ The proxy retrieves all \ac{HTTP} user requests and adds the \acf{SRD} to their 
 	\item Restraint: to support branch change during the recovery phase.
 \end{enumerate}
 
-The proxy could be implemented using a current proxy implementation, e.g. HAProxy or Nginx. Their implementations are well tested in production and are implemented in C. They are likely to perform better than a prototype using a higher-level language, such as Java (Section \ref{sec:eval:performance:proxy}). However, for sake of suppose simplicity, we implemented a new \ac{HTTP} proxy using Java. Nevertheless, implementing most part of the \ac{HTTP} specification in an efficient manner using Java ended up to be a complex task.
+The proxy could be implemented using an open-source proxy, e.g. HAProxy or Nginx. They are well tested in production and implemented in C. Moreover, they are likely to perform better than a prototype using a higher-level language, such as Java (Section \ref{sec:eval:performance:proxy}). However, for sake of expected simplicity, we implemented a new \ac{HTTP} proxy using Java. Nevertheless, implementing most part of the \ac{HTTP} protocol specification in an efficient manner using Java ended up to be a complex task.
 
 
 \begin{figure}
@@ -173,9 +174,9 @@ The proxy could be implemented using a current proxy implementation, e.g. HAProx
 
 The proxy is made of three parts: the client-side module, the backend module and the asynchronous request saver (Figure \ref{fig:impl:proxy_modules}).
 
-The client side module retrieves the \ac{HTTP} requests, parses their content and modifies their headers. We used the \acf{NIO} library of Java to implement a TCP server. The server retrieves user requests and modifies their header (Algorithm \ref{code:proxy_service}). The Shuttle state is stored in the proxy but defined by the manager: \emph{branch}, \emph{restrain} and \emph{replay}. The \acf{RID} is a timestamp. Java provides timestamps with a precision of millisecond. This precision limits the proxy performance to one thousand requests per second. Therefore, we used a counter to identify the same millisecond, up to 1000 requests per millisecond (1 million requests per second). The precision of the timestamp weights on the network and storage overhead. The \ac{RID} is also used as a timestamp for the application and as a pseudorandom number generator, so the request generates always the same sequence of non-repeating numbers. The fields of \acf{SRD} represent a fixed overhead of 35 ASCII characters, corresponding to 35 bytes, in every request header.
+The client side module retrieves \ac{HTTP} requests, parses their content and modifies their headers. We used the \acf{NIO} library of Java to implement a TCP server. The server retrieves user requests and modifies their header (Algorithm \ref{code:proxy_service}). The values of \emph{branch} and \emph{restrain} are defined by the Shuttle's manager while the \acf{RID} is a timestamp of the proxy instance. Java provides timestamps with a precision of millisecond. This precision limits the proxy performance to one thousand requests per second. Therefore, we used a counter to identify the same millisecond, up to 1000 requests per millisecond (1 million requests per second). The precision of the timestamp weights on the network and storage overhead. The \ac{RID} is also used as a timestamp for the application and as a pseudorandom number generator, so the request generates always the same sequence of non-repeating numbers. The fields of \acf{SRD} represent a fixed overhead of 35 ASCII characters, corresponding to 35 bytes, in every request header.
 
-Proxy's TCP client threads send the requests to the load balancer. We use a fixed size thread pool to associate each \ac{HTTP} response to the correct \ac{HTTP} request. The thread that retrieves, processes and forwards the request to the load balancer, blocks until its response is retrieved. A future work shall implement the proxy as a fully asynchronous proxy. To do so, the application server shall include the \ac{SRD} in the responses. Since the delay of creating a new TCP connection to the load balancer is considerable, our implementation keeps the TCP session with the load balancer and implements the \ac{HTTP} keep-alive specification. \ac{HTTP} keep-alive is a standard that allows a single TCP connection to send and receive multiple \ac{HTTP} requests/responses, instead of opening a new connection for every request/response pair. 
+Proxy's TCP client threads send the requests to the load balancer. We use a fixed size thread pool to associate each \ac{HTTP} response to the correct \ac{HTTP} request. The thread that retrieves, processes and forwards the request to the load balancer, blocks until its response is retrieved. When the response is retrieved, the Proxy associates a \emph{end-timestamp}. A future work shall implement the proxy as a fully asynchronous proxy. To do so, the application server shall include the \ac{SRD} in the responses. Since the delay of creating a new TCP connection to the load balancer is considerable, our implementation keeps the TCP session with the load balancer and implements the \ac{HTTP} keep-alive specification. \ac{HTTP} keep-alive is a standard that allows a single TCP connection to send and receive multiple \ac{HTTP} requests/responses, instead of opening a new connection for every request/response pair. 
 
 \begin{algorithm}
 	\DontPrintSemicolon\SetKwProg{fn}{Function}{}{}
@@ -202,7 +203,7 @@ Proxy's TCP client threads send the requests to the load balancer. We use a fixe
 
 
 %how to store the data?
-Shuttle proxy stores $requests$, $responses$, $endTimestamps$ and $SRD$ in the Shuttle storage. If the data would be sent synchronously to the storage, then the response delay would increase. Therefore, we implemented a message queue (Figure \ref{fig:impl:proxy_modules}). The client-side and backend module add the data as a message in the queue. Worker threads dequeue the messages and store the data in Cassandra. This allows asynchronous behavior: requests can proceed before the transmission has finished. The worker threads are wake when the queue reaches a defined threshold or a timeout period expires. The message queue is implemented as a \emph{synchronized list} in Java.
+Shuttle proxy stores $requests$, $responses$, $end-timestamp$ and $SRD$ in the Shuttle storage. If the data would be sent synchronously to the storage, then the response delay would increase. Therefore, we implemented a message queue (Figure \ref{fig:impl:proxy_modules}). The client-side and backend module add the data as a message in the queue. Worker threads dequeue the messages and store the data in Cassandra. This allows asynchronous behavior: requests can proceed before the transmission has finished. The worker threads are wake when the queue reaches a defined threshold or a timeout period expires. The message queue is implemented as a \emph{synchronized list} in Java.
 
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -216,7 +217,7 @@ Shuttle architecture establishes that every database operation must include the 
 
 \begin{algorithm}
 \DontPrintSemicolon\SetKwProg{fn}{Function}{}{}
-\SetKwFunction{Put}{put}\SetKwFunction{VPut}{voldemort.put}\SetKwFunction{AddKey}{trackAccess}
+\SetKwFunction{Put}{put}\SetKwFunction{VPut}{voldemort.put}\SetKwFunction{AddKey}{trackKeyAccess}
  
  \fn{\Put{key, value, store}}{
   \Letv{srd}{\AddKey(key, store, "put")} \tcp*{get SRD and track access(Algo.\ref{code:interceptor_code_access})}
@@ -235,7 +236,7 @@ We also took into account that each request in Spring is binded to a single thre
 \begin{algorithm}
 \DontPrintSemicolon\SetKwProg{fn}{Function}{}{}
 \SetKwFunction{PreHandle}{preHandle}\SetKwFunction{MapPut}{map.put}
-\SetKwFunction{TrackAccess}{entry.trackAccess}
+\SetKwFunction{TrackAccess}{entry.trackKeyAccess}
 
 	\KwData{$map$ is a static hash table}
 	\KwIn{HTTP user request}
@@ -251,11 +252,12 @@ We also took into account that each request in Spring is binded to a single thre
 	\label{code:interceptor_code_pre}
 \end{algorithm}
 
-Before every database operation, the database client library invokes the map to log the accessed key and to resolve the current \acf{TID} to the \ac{SRD} (Algorithm \ref{code:interceptor_code_access}). The map stores associates the keys in the list associated with the current thread and returns the correct \ac{SRD}. The client library appends the \ac{SRD} in the database operation request. 
+Before every database operation, the database client library invokes the client interceptor to log the access. The interceptor resolves the \acf{TID} into the request's \ac{SRD}, adds the new key to the set of accessed keys of the \ac{SRD} and returns the \ac{SRD} (Algorithm \ref{code:interceptor_code_access}). The client library appends the \ac{SRD} in the database operation request. 
+
 
 \begin{algorithm}
 \DontPrintSemicolon\SetKwProg{fn}{Function}{}{}
-\SetKwFunction{AddKey}{addKeyAccess}\SetKwFunction{TrackAccess}{entry.trackAccess}
+\SetKwFunction{AddKey}{trackKeyAccess}\SetKwFunction{TrackAccess}{entry.addKeyAccess}
 \SetKwFunction{MapGet}{map.get}
 	
 	\fn{\AddKey{key, store name, operation type}}{
@@ -306,7 +308,7 @@ In previous section (Section \ref{sec:impl:normal:compute}), we introduced the m
 
 
 %server side: general architecture
-The Voldemort implementation has been modified to invoke the Shuttle database proxy on every \ac{API} call. The proxy architecture is based on the strategy design pattern: two operation schedulers decide how the operations shall be processed. The first scheduler is used by  operations of new incoming requests, named \emph{newScheduler}, the second, \emph{replayScheduler}, described in Section \ref{sec:impl:recovery:database}, is used by operations of requests being replayed (Figure \ref{fig:scheduler_uml}). Schedulers control the access to data items ordering the operations execution and selecting the correct version of data item to access, i.e., the snapshot and branch of the data item to be read/written by the operation. Voldemort is a key-value store, i.e., each data item is identified by an unique key. We implement the versioned storage concatenating the key with the version's snapshot (a version/snapshot can only be written in one branch).
+The Voldemort implementation has been modified to invoke the Shuttle database proxy on every \ac{API} call. The proxy architecture is based on the strategy design pattern: two operation schedulers decide how the operations shall be processed. The first scheduler, named \emph{newScheduler}, is used by operations of new incoming requests. The second, named \emph{replayScheduler} and described in Section \ref{sec:impl:recovery:database}, is used by operations of requests being replayed (Figure \ref{fig:scheduler_uml}). Schedulers control the access to data items ordering the operations execution and selecting the correct version of data item to access, i.e., the snapshot and branch of the data item to be read/written by the operation. Voldemort is a key-value store, i.e., each data item is identified by an unique key. We implement the versioned storage concatenating the key with the version's snapshot (a version/snapshot can only be written in one branch).\\
 
 \begin{figure}
   \centering
@@ -318,7 +320,7 @@ The Voldemort implementation has been modified to invoke the Shuttle database pr
 %How to distinguish between new requests and replay requests? The replay flag can be removed
 Each database proxy maintains two \emph{BranchPath}. A BranchPath of a certain branch is the sequence of non-tampered snapshots between the current snapshot and the root snapshot (Chapter \ref{sec:arch:runtime_recovery}). The first BranchPath, named \textit{current branch}, refers to the branch used by new incoming requests, while the second, named \textit{replay branch}, wraps the branch used by the requests being replayed.
 
-Before each replay process, the Shuttle manager sends the BranchPath of the new branch, in which the requests will be replayed. At the end of replay process, the database nodes are also notified and the \textit{replay branch} becomes the \textit{current branch}. If the request branch is the \textit{replay branch}, then the request is a request being replayed. Otherwise, its a new request.\\
+Before each replay process, the Shuttle manager sends the BranchPath of the new replay branch, in which the requests will be replayed. At the end of replay process, the database nodes are also notified and the \textit{replay branch} becomes the \textit{current branch}. If the branch of the request is the \textit{replay branch}, then it is being replayed. Otherwise, its a new request.\\
 
 
 %New operations
@@ -332,7 +334,7 @@ First, we consider operations of new incoming requests. Shuttle tracks operation
 \end{figure}
 
 
-Each \emph{keyMapEntry} object wraps the Shuttle metadata for one key/data-item: \emph{version list}, \emph{operation list} and \emph{read-write lock} (Figure \ref{fig:keymap}). The \emph{version list} contains the list of versions (snapshot-branch) in which the entry as been written because the data item may not be written in every snapshot (Section \ref{sec:arch:runtime_recovery}). 
+Each \emph{keyMapEntry} object wraps the Shuttle metadata for one key/data-item: \emph{version list}, \emph{operation list} and \emph{read-write lock} (Figure \ref{fig:keymap}). The \emph{version list} contains the list of versions: snapshot in which the entry as been written. A data item may not be written in every snapshot (Section \ref{sec:arch:runtime_recovery}). 
 
 \begin{figure}
   \centering
@@ -347,7 +349,7 @@ The \emph{operation list} contains the sequence of operations of a certain key (
 %Read/Write lock, add operation and get the correct version
 When \emph{newScheduler} is invoked by an operation from a new incoming request, it gets the \emph{keyMapEntry} of the key and attempts to gain the access to its \emph{read-write lock} (Algorithm \ref{code:snapshotAlgorithm}). Then, it adds the operation to the \emph{operation list}. At last, Shuttle gets the correct version to access based on the \emph{BranchPath} and the \emph{list of versions} of the key (Section \ref{sec:arch:runtime_recovery}). 
 
-If the request \ac{RID} is smaller than the current \acf{SID} (line \ref{line:snapshot:1}), then the request does not belong to the current snapshot and shall access the latest, but previous to the snapshot instant, version of the value that is in the  \textit{current BranchPath}. Otherwise, the request belongs to the current snapshot. Read operations access the latest version (line \ref{line:snapshot:2}) in the  \textit{current BranchPath}. A write request may create a new version if the version has yet not been written in the current snapshot (\ac{RID} is bigger than the \ac{SID} of the latest version) (line \ref{line:snapshot:3}). Versions are created with the current \acf{SID}. The key accessed by the request is the concatenation of the original key with the snapshot(version) returned by the Algorithm \ref{code:snapshotAlgorithm}. After the access, the \emph{read-write lock} is unlocked and the next operations proceed. We implement copy on write by creating a new key version when required. \hl{isto é talvez o mais complexo e fundamental de toda a tese, tem de ficar perceptivel}
+If the request \ac{RID} is smaller than the current \acf{SID} (line \ref{line:snapshot:1}), then the request does not belong to the current snapshot and shall access the latest, but previous to the snapshot instant, version of the value that is in the  \textit{current BranchPath}. Otherwise, the request belongs to the current snapshot. Read operations access the latest version (line \ref{line:snapshot:2}) in the  \textit{current BranchPath}. A write request may create a new version if the version has yet not been written in the current snapshot (\ac{RID} is bigger than the \ac{SID} of the latest version) (line \ref{line:snapshot:3}). Versions are created with the current \acf{SID}. The key accessed by the request is the concatenation of the original key with the version returned by the Algorithm \ref{code:snapshotAlgorithm}. After the access, the \emph{read-write lock} is unlocked and the next operations proceed. \hl{isto é talvez o mais complexo e fundamental de toda a tese, tem de ficar perceptivel}
 
 
 \begin{algorithm}
@@ -389,7 +391,7 @@ If the request \ac{RID} is smaller than the current \acf{SID} (line \ref{line:sn
 	\label{code:snapshotAlgorithm}
 \end{algorithm}
 
-Since the \emph{version list} keeps a pointer to the latest version and the pointer is updated if wrong, the average complexity of the Algorithm \ref{code:snapshotAlgorithm} is \O{1}: get the latest version and check if it belongs to the BranchPath, which is a HashSet. If the BranchPath size becomes a considerable storage overhead, the BranchPaths and version lists can be implemented as a bitmaps.
+Since the \emph{version list} keeps a pointer to the latest version and the pointer is updated if wrong, the average complexity of the Algorithm \ref{code:snapshotAlgorithm} is \O{1}: get the latest version and check if it belongs to the BranchPath, which is a HashSet. If the BranchPath size becomes a considerable storage overhead, the BranchPaths and version lists can be implemented as a bitmaps.\\
 
 \begin{figure}
   \centering
@@ -401,7 +403,7 @@ Since the \emph{version list} keeps a pointer to the latest version and the poin
 %collect dependencies
 Shuttle collects the dependencies between requests transversing the operation list of every \emph{KeyMapEntry} in the \emph{KeyMap}. Each \emph{KeyMapEntry} keeps a pointer to the latest collected dependency in the operation list, so only new operations are transversed.
 
-Algorithm \ref{code:dependency_collection} firstly lookup for the write operation previous to the latest collected operation. Then, it iterates the operations following to the latest collected operation. If an operation of request $A$ reads a data item written by an operation of request $B$, then $A$ depends from $B$. Dependencies are logged on a hash table that associates the operation \ac{RID} with the \ac{RID}s which it depends from. Every database node sends its $dependenciesTable$s to the manager periodically. 
+In order to determine the dependencies between requests, Shuttle firstly lookup for the write operation previous to the latest collected operation (Algorithm \ref{code:dependency_collection}). Then, it iterates the operations following to the latest collected operation. If an operation of request $A$ reads a data item written by an operation of request $B$, then $A$ depends from $B$. Dependencies are logged on a hash table that associates the operation \ac{RID} with the \ac{RID}s which it depends from. Every database node sends its $dependenciesTable$s to the manager periodically. 
 
  
 \begin{algorithm}[H]
@@ -429,7 +431,7 @@ Algorithm \ref{code:dependency_collection} firstly lookup for the write operatio
 
 
 %Scalability
-\acs{NoSQL} databases are designed for distributed environments. The proposed dependency tracking and snapshot mechanisms are horizontally scalable: each database node remains independent and each data item is independent from the others. The only locks shared by a sub-set of data items are the KeyMap partition lock and the KeyMapEntry lock. Adding more partitions, can improve the overall performance. Each node is responsible for logging local dependencies and communicates to a central entity (Manager) to update the  dependency graph. 
+\acs{NoSQL} databases are designed for distributed environments. The proposed dependency tracking and snapshot mechanisms are horizontally scalable: each database node remains independent and each data item is independent from the others. The only locks shared by data items are the KeyMap partition lock and the KeyMapEntry lock. Adding more partitions, can improve the overall performance. Each node is responsible for logging local dependencies and communicates to a central entity (Manager) to update the  dependency graph. 
 
 
 \subsection{Manager}\label{sec:impl:normal:manager}
@@ -440,17 +442,17 @@ The manager retrieves dependencies, orders to create new database snapshots and 
 The manager aims to retrieve database operations and generate the dependency graph. Dependencies are pushed to the manager by the database nodes. The dependency graph is updated during the normal execution. An alternative approach could pull the dependencies from each database node during the recovery phase and generate the graph during the recovery period.
 
 %Definition
-The dependency graph is a set of vertices, each one representing a request, and a collection of edges that each connect a pair of vertices. Each edge specifies an one-way dependency between two requests. Therefore, the dependency graph is a directed graph. The dependency graph is also \emph{not connected}, i.e., it consists of a set of connected subgraphs. Each vertex is uniquely identified by its key, the \ac{RID} of the request that it represents. 
+The dependency graph is a set of vertexes, each one representing a request, and a collection of edges that each connect a pair of vertexes. Each edge specifies an one-way dependency between two requests. Therefore, the dependency graph is a directed graph. The dependency graph is also \emph{not connected}, i.e., it consists of a set of connected subgraphs. Each vertex is uniquely identified by its key, the \ac{RID} of the request that it represents. 
 
 
 The dependency graph has 4 main operations: insert new dependencies, get requests sorted by start instant, get requests dependent from a certain request, get requests from which a certain request depends from.
 
-The first operation inserts new vertexes (requests) and adds edges between the new vertexes and all the vertex from which the new vertexes depends from. The second visits every vertex by the order of their key (start instant). The two latest operations visit all vertexes reachable from a certain vertex using the \emph{dependencies to} and the \emph{dependencies from} directions, respectively. Even the dependency graph is, conceptually, a directed graph, the two latest operations are easier to implement on \emph{undirected graphs}.
+The first operation inserts new vertexes (requests) and adds edges between the new vertexes and all vertexes from which new vertexes depends from. The second visits every vertex by the order of their key (start instant). The two latest operations visit all vertexes reachable from a certain vertex using the \emph{dependencies to} and the \emph{dependencies from} directions, respectively. Even the dependency graph is, conceptually, a directed graph, the two latest operations are easier to implement on \emph{undirected graphs}.
 
-Two of the main representations of graphs are: adjacent matrix and adjacent list. On a dependency graph, each insert operation requires to create several edges, one per dependency. An edge can be inserted on an adjacency matrix with complexity \O{1}. However, we consider the dependency graph to be a \emph{sparse graph} because each request is expected to be dependent from a small part of the remaining requests. Therefore, the adjacent list representation is expected to be more space efficient than the matrix.
+Two of the main representations of graphs are: adjacent matrix and adjacent list. On a dependency graph, each insert operation requires to create several edges, one per dependency. An edge can be inserted on an adjacency matrix with complexity \O{1}. However, we consider the dependency graph to be a \emph{sparse graph} because each request is expected to be dependent from a small part of all requests. Therefore, the adjacent list representation is expected to be more space efficient than the matrix.
 
 The three main implementations of a adjacent list graph are: an indexed array, object oriented and a hash table. The vertex keys are expected to be a sparse numeric sequence with irregular number of edges. Therefore an indexed array implementation would not be space efficient. Insert operations in object oriented graphs requires searching for objects to create new edges. However, a graph search algorithm, for instance breadth-first search (BFS), has a time complexity of \O{|Vertix|+|Edges|} in the worst case.
-Hash table implementations use a hash table to associate each vertex in a graph with an array of adjacent vertices. To clarify, each hash table object represents a vertex. The object has list of keys that represents the edges. \\
+Hash table implementations use a hash table to associate each vertex in a graph with an array of adjacent vertexes. To clarify, each hash table object represents a vertex. The object has list of keys that represents the edges. \\
 
 We implemented the dependency graph as a hash table. Doing so, insert operations have \O{1} complexity. Operations to obtain the first level of dependencies of a certain requests has also have \O{1} complexity. Even so, we also take in consideration that the performance of these operations is influenced by constant factors and by the hashing function and data distribution.
 
@@ -466,7 +468,7 @@ The hash table keys are the \acf{RID}, which is also the start timestamp of the 
 
 
 %how it stores the dependencies
-The manager updates the dependency graph when a new table of dependencies is retrieved from a database node (Algorithm \ref{code:add_dependency_graph}). The retrieved hash table associates each \acf{RID} with the \ac{RID} of the requests from which the request depends from. The algorithm creates two graphs: the first representing the dependencies from; the seconds the dependencies two. In other words, the graphs are symmetric: one graph can be generated inverting the directions of the edges of the other graph.
+The manager updates the dependency graph when a new table of dependencies is retrieved from a database node (Algorithm \ref{code:add_dependency_graph}). The retrieved hash table associates each \acf{RID} with the \ac{RID} of the requests from which the request depends from. The algorithm creates an undirected graph, which can be considered as two directed graphs: the first representing the dependencies from; the seconds the dependencies two. In other words, the graphs are symmetric: one graph can be generated inverting the directions of the edges of the other graph.\\
 
  \begin{algorithm}[H]
  \DontPrintSemicolon\SetKwProg{fn}{Function}{}{}
@@ -503,7 +505,7 @@ Shuttle's manager prototype retrieves tenants commands via command line. Each mo
 %overview
 In this section, we introduce the implementation of the recovery process in Shuttle.\\
 
-The recovery process begins when the tenant selects a non-tampered snapshot. The manager creates a new branch and sends its \emph{BranchPath} to all database proxies. The proxies set the new BranchPath as \emph{replay branch} (Chapter \ref{sec:impl:normal:database}). After, the manager generates the sequence of requests to replay, named \emph{execution list}. The replay instances are allocated and retrieve this list (Figure \ref{fig:messaging_replay}). Then, the replay instances are notified to start replaying the requests. After replaying all the requests, each replay instance notifies the manager. The manager sets the proxy state to \emph{restraining mode} and commands the replay instances to replay the incoming requests retrieved during the recovery period. After replaying the remaining requests, the database nodes are notified to disable the restrain and \emph{replay branch} becomes the \emph{current branch}. At end, the proxy \emph{restraining mode} is disabled and the following new requests are done in the new branch.
+The recovery process begins when the tenant selects a non-tampered snapshot. The manager creates a new branch and sends its \emph{BranchPath} to all database proxies. The proxies set the new BranchPath as \emph{replay branch} (Chapter \ref{sec:impl:normal:database}). After, the manager generates the sequence of requests to replay, named \emph{execution list}. The replay instances are launched and retrieve this list (Figure \ref{fig:messaging_replay}). Then, the replay instances are notified to start replaying the requests. After replaying all the requests, each replay instance notifies the manager. The manager sets the proxy state to \emph{restraining mode} and commands the replay instances to replay the incoming requests retrieved during the recovery period. After replaying the remaining requests, the database nodes are notified to disable the restrain and \emph{replay branch} becomes the \emph{current branch}. At end, the proxy \emph{restraining mode} is disabled and the following new requests are done in the new branch.
 
 \begin{figure}
   \centering
@@ -546,10 +548,13 @@ Shuttle uses the Algorithm \ref{code:start_end_full_replay} to generate a reques
 
 
 %clustering
-The clustering mechanism identifies the connected subgraphs of the dependency graph. The algorithm traverses the vertex marking all nodes adjacent that are reachable from a node. The set of nodes reachable from a node, defines a cluster. Then, we choose a non-marked node and repeat the procedure.\\
+The clustering mechanism identifies the connected subgraphs of the dependency graph. The algorithm traverses the vertex marking all nodes adjacent that are reachable from a node. The set of nodes reachable from a node defines a cluster. Then, we choose a non-marked node and repeat the procedure.\\
 
 %selective-replay
-When the tenants provide a set of malicious actions, $A_{intrusion}$, Shuttle performs selective replay instead of replaying every request. The selective replay uses the dependencies between requests to expand a provided set of malicious requests, $A_{intrusion}$,  to get which requests are needed to be replayed. Set of malicious requests is expanded adding all requests dependent from the initial malicious request set. The traversed nodes are the tainted requests, $A_{tainted}$. Then, the set $A_{tainted}$ is expanded transversing the nodes of the set on the opposite direction: visit requests from which the traversed node depends from and that are posterior to the selected snapshot (Figure \ref{fig:selectiveGraph}). The list of data items read by the requests in $A_{replay}$ is obtained querying the Shuttle storage. The storage contains the keys accessed per request, which was logged by the application servers (Section \ref{sec:impl:normal:compute}). The snapshot versions of these items is loaded and the requests in $A_{replay}$ are replayed. The modified data items are merged with the current database data without: the \emph{branchPath} of a selective replay branch wraps the current \emph{branchPath}. This mechanism avoids tainting the modified data items and copying them into the current database state. This mechanism does not support runtime recovery but the recovery period is considerably smaller than using full-replay. \hl{figura para ajudar? codigo? ou está bem perceptivel?} \\
+When the tenants provide a set of malicious actions, $A_{intrusion}$, Shuttle performs selective replay instead of replaying every request. The selective replay uses the dependencies between requests to expand a provided set of malicious requests, $A_{intrusion}$,  to get which requests are needed to be replayed. Set of malicious requests is expanded adding all requests dependent from the initial malicious request set. The traversed nodes are the tainted requests, $A_{tainted}$. Then, the set $A_{tainted}$ is expanded transversing the nodes of the set on the opposite direction: visit requests from which the traversed node depends from and that are posterior to the selected snapshot (Figure \ref{fig:selectiveGraph}). 
+
+
+The list of data items read by the requests in $A_{replay}$ is obtained querying the Shuttle storage. The storage contains the keys accessed per request, which was logged by the application servers (Section \ref{sec:impl:normal:compute}). The snapshot versions of these items is loaded and the requests in $A_{replay}$ are replayed. The modified data items are merged with the current database values without copying data values. To do so, the \emph{branchPath} of a selective replay branch contains the current \emph{branchPath}. This mechanism avoids tainting the modified data items and copying them into the current database state. This mechanism does not support runtime recovery but the recovery period is considerably smaller than using full-replay. \hl{figura para ajudar? codigo? ou está bem perceptivel?} \\
 
 %\item \textit{If a replayed request operation a different entry, then the requests which access the entry are also replayed.}
 %During the replay phase, requests may access different data items than the ones during the first execution. If the value of the data item is not-updated because non of the tainted requests accessed the entry before, then, every request that access the entry is also tainted and replayed before the current access proceed.
@@ -557,12 +562,11 @@ When the tenants provide a set of malicious actions, $A_{intrusion}$, Shuttle pe
 
 
 \subsection{Replay Instances}\label{sec:impl:recovery:replay}
-
 %How they can work?
-The Shuttle manager requires the \ac{PaaS} controller to launch a set of \textit{replay instances}. If the \ac{PaaS} system does not support auto-scaling, the manager can request the \ac{PaaS} controller to add new database and web-server containers to attend the flow of replayed requests. Otherwise, the auto-scaling mechanism will detect the overload of the web-servers and database and trigger the creation of new instances. In the first, the number of web-servers is changeless during the replay phase, so the instances send the requests directly to the web-server instances, avoiding the overhead of load-balancer. In the later, the requests are sent to the load-balancer that distributes the requests through the instances. In current implementation, requests are sent to the load-balancer because AppScale supports auto-scalling and the number of instances during the replay phase is unknown.\\
+The Shuttle manager requires the \ac{PaaS} controller to launch a set of \textit{replay instances}. If the \ac{PaaS} system does not support auto-scaling, the manager requests the \ac{PaaS} controller to add new database and web-server instances to attend the flow of replayed requests. Otherwise, the auto-scaling mechanism will detect the overload of the web-servers and database and trigger the creation of new instances. In the first, the number of web-servers is changeless during the replay phase, so the instances send the requests directly to the web-server instances, avoiding the overhead of load-balancer. In the later, the requests are sent to the load-balancer that distributes the requests through the instances. In current implementation, requests are sent to the load-balancer because AppScale supports auto-scalling and the number of instances during the replay phase is unknown.\\
 
 %How they they are implemented to work
-Each replay instance retrieves various list of \acf{RID} to execute and the branch in which they shall be executed. They have a main thread to schedule the execution and a thread pool to execute requests asynchronously. Each thread fetches the \ac{HTTP} requests from the \emph{Shuttle storage}, modifies their header setting the \ac{SRD} field \emph{branch}, sends them to the load-balancer. Each response is compared against the response during first execution. An alternative approach can compute the hash of responses in background and compare their values.
+Each replay instance retrieves a set of lists of \acf{RID} to execute and the branch in which they shall be executed. Replay instances have a main thread to schedule the execution and a thread pool to execute requests asynchronously. Each thread fetches the \acs{HTTP} requests from the \emph{Shuttle storage}, modifies their header setting the \ac{SRD} field \emph{branch} and sends them to the load-balancer. Each response is compared against the response during first execution. An alternative approach can compute the hash of responses in background and compare their values.
 
 If a request has been removed, for instance if it is a malicious request, the replay instance fetches the keys accessed by the malicious request during its first execution and invokes the database proxy to unlock the execution.\\ %An alternative approach using a distributed lock per data item does not require to store the accessed keys but requires to store the replayed requests and share a lock, which can be a bottleneck. 
 
@@ -582,16 +586,22 @@ The start-end algorithm (Algorithm \ref{code:start_end_full_replay}) groups the 
 %A alternativa tem de ser um client baseado em callbacks. Envia o pedido, continua para outros pedidos e quando vier a resposta, associa-a ao pedido e prosseegue... problema: isto não existe em voldemort. o cassandra faz mas o voldemort não.
 
 
-As requests are replayed asynchronous, the replay instances must use an end-to-end flow control protocol to avoid the sender send requests too fast for the application servers to receive and process. We implemented a simple flow control protocol, which does not have to lead with message ordering and retransmission (\ac{TCP} handles transmission failures). We established two thresholds for the number of pendent responses that define 3 steps to change the number of requests per unit of time. Consequently, the request throughput of each replay instance is dynamic to avoid the servers overload. One of main challenges to evaluate the Shuttle's prototype is to tune the threshold parameters. Future implementations shall access the \ac{PaaS} controller in order to watch the instances' metrics and do flow control based on it.\\
+As requests are replayed asynchronous, the replay instances must use an end-to-end flow control protocol to avoid the sender send requests too fast for the application servers to receive and process. We implemented a simple flow control protocol, which does not have to lead with message ordering and retransmission because the underlying \ac{TCP} protocol handles transmission failures. We established two thresholds for the number of pendent responses that define 3 deltas on the request rates. Consequently, the request throughput of each replay instance is dynamic to avoid the servers overload. One of main challenges to evaluate the Shuttle's prototype is to tune the threshold parameters. Future implementations shall access the \ac{PaaS} controller in order to watch the instances' metrics and do flow control based on it.\\
 
 
 \subsection{Database}\label{sec:impl:recovery:database}
 %how it does replay?
-In Section \ref{sec:impl:normal:database}, we introduced the implementation of \emph{newScheduler}, which defines the order and logs the new operations. In this Section, we introduce the \emph{replayScheduler}, which constrains the replayed operations per data item to an order equivalent to the one during their first execution.
+In Section \ref{sec:impl:normal:database}, we introduced the implementation of \emph{newScheduler}, which defines the order and logs the new operations. In this Section, we introduce the \emph{replayScheduler}. This scheduler constrains the replayed operations, per data item, to an order consistent with the original execution of the application. \hl{frase manhosa? fica uma entrada de sub-seccao um bocado à bruta?}
 
-Database operations are processed by the replayScheduler if the \emph{branch} field of the operation \ac{SRD} is the same of \emph{replayBranch}. The replaySchedule gets the KeyMapEntry of the accessed key. Each KeyMapEntry contains the list of operations logged during the execution phase. When the first operation, which is being replayed in current replay branch, accesses the data item, Shuttle creates an operation list iterator and associates it with the key.
+Database operations are processed by the replayScheduler if the \emph{branch} field of the operation \ac{SRD} is the same than \emph{replayBranch}. The replaySchedule gets the KeyMapEntry of the accessed key, which contains the list of operations logged during the execution phase. When the first operation, which is being replayed in current replay branch, accesses the data item, Shuttle creates an operation list iterator and associates it with the key.
 
-Operation list iterators control the replay process: it allows or blocks operations (Algorithm \ref{code:operation_iterator}). The iterator keeps a list of operations allowed, executing, waiting or to be ignored. The first allowed operation is the first operation after the snapshot selected by the tenant, i.e., the smallest \acf{RID} that matches the condition $\acf{RID} >= snapshot$ (line \ref{line:iterator:next}). If no executing and the allowed set is empty, then the iterator transverses more operations (line \ref{line:iterator:fetch}). The algorithm fetches the following consecutive read operations or one write operation. Operations previous to the selected snapshot or unlocked are ignored. If an operation is not the following operation, i.e., allowed, then the operation is delayed (line \ref{line:iterator:sleep}). The operation is removed from the \emph{executing} list after its execution and blocked operations are unlocked to check if they can access. For sake of simplicity, the concurrency control is not included in the pseudo-code. \\
+Operation list iterators control the replay process: they allow or block operations (Algorithm \ref{code:operation_iterator}). Each iterator keeps a list of operations allowed, executing, waiting or to be ignored. The first allowed operation is the first operation after the snapshot selected by the tenant, i.e., the smallest \acf{RID} that matches the condition $\acf{RID} >= snapshot$ (line \ref{line:iterator:next}). 
+
+When a new operation is retrieved, the iterator checks if there are operations executing or allowed to execute. If not, then the iterator transverses more operations of the list and adds them to the \emph{allowed list} (line \ref{line:iterator:fetch}). The algorithm fetches the following consecutive read operations or one write operation. Operations previous to the selected snapshot are not considered.
+
+If an operation is not the following operation, i.e., operation $\notin$ allowed, then the operation is delayed and added to the \emph{waiting} list (line \ref{line:iterator:sleep}). Otherwise, the operation is allowed to proceed and is added to the \emph{executing} list.
+
+After its execution, the operation is removed from the \emph{executing} list and blocked operations (in \emph{waiting list}) are unlocked to check if they can access. For sake of simplicity, the concurrency control is not included in the pseudo-code. \\
 
 \begin{algorithm}[H]
 \DontPrintSemicolon\SetKwProg{fn}{Function}{}{}
@@ -606,7 +616,7 @@ Operation list iterators control the replay process: it allows or blocks operati
 	 	\textit{allowed}: list of operations allowed to execute \;
 	 	\textit{executing}: list of operations executing \;
 	 	\textit{waiting}: list of operations waiting to execute \;
-	 	\textit{ignore}: set of operations to ignore \;
+	 	\textit{ignoring}: set of operations to ignore \;
 	 	\textit{nextOperation} $\leftarrow$ first operation after the snapshot\;
 	}
  	\BlankLine
@@ -666,18 +676,14 @@ Operation list iterators control the replay process: it allows or blocks operati
 
 
 %unblock keys
-The iterator ignores operations that belong to previous snapshot, i.e., $operation.rid < snapshot$, or to the \emph{ignoring} list. The \emph{ignoring} list contains the operations that will not be executed. If a request is malicious, the replay instances invoke the database \ac{API} method: $ignoreOperation(\ac{RID},keys)$ to ignore operations in all keys accessed by the request. 
-
-When application servers retrieve requests and their replay flag is set, the database client library fetches the keys accessed by the requests during their first execution (Chapter \ref{sec:impl:normal:compute}). At the end of the request re-execution, the process compares the keys accessed during the replay phase against the ones accessed during the first execution. The database client library invokes the method $ignoreOperation(\ac{RID},keys)$ to ignore the operations it did not perform during the replay phase. This mechanism allows the blocked operations to proceed.
+The iterator ignores operations that belong to previous snapshot (line \ref{line:iterator:next}), i.e., $operation.rid < snapshot$, or to the \emph{ignoring} list. The \emph{ignoring} list contains the operations that will not be executed. If a request is malicious, the replay instances invoke the database \ac{API} method: $ignoreOperation(\ac{RID},keys)$ to ignore operations in all keys accessed by the request. In addition, when application servers retrieve requests and their replay flag is set, at the end of the request re-execution, the post-process interceptor of the database client library fetches the keys accessed by the requests during their first execution (Chapter \ref{sec:impl:normal:compute}). \hl{frase má?} The process compares the keys accessed during the replay phase against the ones accessed during the first execution. The database client library invokes the method $ignoreOperation(\ac{RID},keys)$ to ignore the database operations that the request did not perform during the replay phase. This mechanism allows the blocked operations to proceed.
 
 %If the request does not access all the keys than during its first execution, then the database client proxy invokes the same API. 
-
 \hl{justifica colocar o seguinte?:} An alternative approach could be: if a request locks, then it invokes a lock, which is shared between all database servers, informing which request should execute before it and waiting. When the request ends, the lock notifies the blocked processes. This approach does not require to store the accessed keys but requires to share a lock, which can be a bottleneck, and to store which requests have been replayed. 
 
 
 %runtime recovery and change branch
 Shuttle supports runtime recovery, i.e., the application remains online during the recovery process (Section \ref{sec:arch:runtime_recovery}). The field \emph{branch} contained in every request allows the database proxy to separate the operations of new incoming requests from the operations of requests being replayed. The first use the \emph{current branch} while the later use the \emph{replay branch}. As introduced above, the \emph{branchPaths} and the scheduler algorithms define the versions which these operations read/write. This allows the new incoming requests to proceed during the recovery process.
-
 
 At the end of the recovery process, the incoming requests must be switched to the application with fixed state, i.e., the requests should access the data items versions of the \emph{replay branch}. When all requests are replayed, the manager interact with the proxy to set the \ac{SRD} subfield \emph{restrain} in every following incoming request. The \emph{newScheduler} blocks the execution of new operations that have the \emph{restrain} flat set. Requests performed after the beginning of the replay process are replayed. After, the manager broadcasts a message to every database node to set the \emph{replay branch} as \emph{current branch} and ignore the restrain flag. The proxy is notified to stop setting the restrain flag. Consequently, the blocked requests and further new incoming requests are processed. This mechanism causes a delay on the request process in exchange for a simplicity and low communication overhead. 
 
@@ -693,8 +699,9 @@ We developed a \acf{QA} web application, named \emph{Ask}, to evaluate Shuttle p
    \label{fig:DataStructure}
  \end{figure}
 
-The data is stored in four Voldemort stores: questions, answers, comments and tags. For example, insert a new answer requires to add an entry to the \textit{answers store} and modify the entry of the corresponding question in \textit{questions store} to update the answer list. 
-Independent user sessions would be trivial to replay in parallel. The application semantics implies the following dependencies: a) questions are independent; b) a new answer depends from previous answers and votes to the same question; c) a new comment depends from the commented answer; d) a new vote depends from the voted answer (Table \ref{tab:dependencyTable}). In Chapter \ref{sec:eval:accuracy}, we compare the number of clusters considering or not dependencies between questions with the same tag.
+The data is stored in four Voldemort stores (database schemas): questions, answers, comments and tags. For example, insert a new answer requires to add an entry to the \textit{answers store} and modify the entry of the corresponding question in \textit{questions store} to update the answer list. 
+
+Independent user sessions would be trivial to replay in parallel. Therefore, the application semantics implies the following dependencies: a) questions are independent; b) a new answer depends from previous answers and votes to the same question; c) a new comment depends from the commented answer; d) a new vote depends from the voted answer (Table \ref{tab:dependencyTable}). In Chapter \ref{sec:eval:accuracy}, we compare the number of clusters considering or not dependencies between questions with the same tag.
 \begin{table}
   \centering
    \begin{tabular}{|l|l|l|l|}
@@ -720,8 +727,6 @@ Figure \ref{fig:dependencyGraph} represents the application dependencies graph g
 
 The application is implemented using Java Spring \cite{spring}, which is one of the most used Java enterprise web systems and it is compatible with most of the current \ac{PaaS} systems (Section \ref{sec:impl:adopted_technologies}). The implementation is independent of Shuttle. Shuttle does not require the application to be modified, except adding the Spring interceptor (Section \ref{sec:impl:normal:compute}). 
 
-
-In order to use real-world data, we selected subsets of a dump of the Stack Exchange database \cite{stackexchange_data}. StackExchange is ranked 57th for traffic in the world \cite{websiteRanking}. A 24 hours window has: 36 million page loads, 148 million \ac{HTTP} requests (1712 requests per second), 267GB retrieved, 1TB sent, 334 million \ac{SQL} queries \cite{stackStatistics}. A question takes, in average, 28ms to be rendered. The architecture encompasses 1 load balancer, 2 \ac{SQL} servers, a Redis \cite{redis} (a key-value cache and store) server and 3 web servers. Their architecture scales vertically, for instance the \ac{SQL} servers have 384 GB of memory with 1.8TB of SSD storage. Since 98,82\% of the requests are read requests, the StackExchange infrastructure relies on caching.
 
 \section{Chapter Summary}\label{sec:impl:summary}
 We presented the main implementation details of Shuttle prototype in Java. The total number of lines of code, except the unit tests, is summarized in Table \ref{tab:lines_of_code}.
