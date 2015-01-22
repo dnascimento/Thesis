@@ -399,6 +399,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "Chapters/5.evaluation.tex",
+			"settings":
+			{
+				"buffer_size": 19191,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "paper.tex",
+			"settings":
+			{
+				"buffer_size": 4391,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -513,9 +529,11 @@
 	],
 	"file_history":
 	[
+		"/Users/darionascimento/Tese/Shuttle_Paper/paper.aux",
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/proxy/throughput.eps",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/1.introduction.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/5.evaluation.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/4.recovery.tex",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/1.introduction.tex",
 		"/Volumes/ABBYY FineReader Pro 1/SN.txt",
 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/2.formalization.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/paper.tex",
@@ -546,7 +564,6 @@
 		"/Users/darionascimento/Downloads/IEEEtran2/bare_adv.tex",
 		"/Users/darionascimento/Downloads/IEEEtran2/bare_conf.tex",
 		"/Users/darionascimento/Downloads/ccece06sample.tex",
-		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/proxy/throughput.eps",
 		"/Users/darionascimento/Desktop/mae/receipts/sopas.tex",
 		"/Users/darionascimento/Desktop/mae/receipts/entradas.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/images/replayExecution.graffle",
@@ -639,8 +656,7 @@
 		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/save/Saver.java",
 		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/ProxyWorker.java",
 		"/Users/darionascimento/git/testKit/setupTestServers.sh",
-		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/clustering_time/2.txt",
-		"/Users/darionascimento/Tese/Shuttle_Paper/refs/before_compression/ALL.bib"
+		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/clustering_time/2.txt"
 	],
 	"find":
 	{
@@ -956,8 +972,181 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "Chapters/5.evaluation.tex",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 19191,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11233,
+								11233
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "latex",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2381.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "paper.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4391,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1263,
+								1263
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "latex",
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sublime_auto_complete": true,
+							"synced": false,
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 198.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1015,6 +1204,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"paper",
+				"paper.tex"
+			],
 			[
 				"5",
 				"Chapters/5.evaluation.tex"
@@ -1106,10 +1299,6 @@
 			[
 				"abs",
 				"Chapters/0.abstract.tex"
-			],
-			[
-				"paper",
-				"paper.tex"
 			],
 			[
 				"5.",
