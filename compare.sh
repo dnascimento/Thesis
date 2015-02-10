@@ -1,4 +1,4 @@
 #!/bin/bash
 
-scm-latexdiff $1:Shuttle_Paper/paper.tex
+scm-latexdiff $1:Dissertacao/tese.tex
 
