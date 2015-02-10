@@ -10,7 +10,7 @@
             <plist version="1.0">
                 <dict>
                     <key>NSPersistenceFrameworkVersion</key>
-                    <integer>481</integer>
+                    <integer>526</integer>
                     <key>NSStoreModelVersionHashes</key>
                     <dict>
                         <key>Bookmark</key>
@@ -61,10 +61,10 @@
         </metadata>
     </databaseInfo>
     <object type="UISETTINGS" id="z102">
-        <attribute name="showlogwarningitems" type="bool">0</attribute>
+        <attribute name="showlogwarningitems" type="bool">1</attribute>
         <attribute name="showloginfoitems" type="bool">0</attribute>
         <attribute name="showlogerroritems" type="bool">1</attribute>
-        <attribute name="pdfviewscrollrect" type="string">{{0, 0}, {0, 0}}</attribute>
+        <attribute name="pdfviewscrollrect" type="string">{{0, 116726.54830286365}, {604, 769.58746623793559}}</attribute>
         <attribute name="showpdfthumbnails" type="bool">0</attribute>
         <attribute name="selectedcontrolstab" type="int16">0</attribute>
         <attribute name="maxoutlinedepth" type="int16">7</attribute>
@@ -79,10 +79,10 @@
         <attribute name="name" type="string">tese</attribute>
         <attribute name="folder" type="string">/Users/darionascimento/Tese/Dissertacao</attribute>
         <relationship name="mainfile" type="1/1" destination="FILE" idrefs="z114"></relationship>
-        <relationship name="selected" type="1/1" destination="FILE"></relationship>
+        <relationship name="selected" type="1/1" destination="FILE" idrefs="z114"></relationship>
         <relationship name="settings" type="1/1" destination="SETTINGS" idrefs="z104"></relationship>
         <relationship name="uisettings" type="1/1" destination="UISETTINGS" idrefs="z102"></relationship>
-        <relationship name="items" type="0/0" destination="PROJECTITEM" idrefs="z108 z119 z124 z123 z121 z126 z122 z106 z111 z120 z113 z105 z115 z107 z110 z116 z125 z117 z114 z118 z109 z112"></relationship>
+        <relationship name="items" type="0/0" destination="PROJECTITEM" idrefs="z111 z113 z106 z120 z119 z115 z125 z123 z126 z112 z118 z107 z105 z114 z116 z108 z117 z124 z110 z122 z121 z109"></relationship>
     </object>
     <object type="SETTINGS" id="z104">
         <attribute name="stoponerror" type="bool">1</attribute>
@@ -211,13 +211,13 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="TEXFILE" id="z114">
-        <attribute name="wasopen" type="bool">-1</attribute>
-        <attribute name="visiblerect" type="string">{{0, 0}, {929, 323}}</attribute>
-        <attribute name="lasteditdate" type="date">430840107.71145397424697875977</attribute>
+        <attribute name="wasopen" type="bool">0</attribute>
+        <attribute name="visiblerect" type="string">{{0, 5}, {1082, 291}}</attribute>
+        <attribute name="lasteditdate" type="date">445278855.25146698951721191406</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">430840107.88231897354125976562</attribute>
+        <attribute name="fileloaddate" type="date">445278450.66299498081207275391</attribute>
         <attribute name="extension" type="string">tex</attribute>
-        <attribute name="cursor" type="string">{237, 0}</attribute>
+        <attribute name="cursor" type="string">{233, 25}</attribute>
         <attribute name="sortindex" type="int32">3</attribute>
         <attribute name="name" type="string">tese.tex</attribute>
         <attribute name="isexpanded" type="bool">0</attribute>

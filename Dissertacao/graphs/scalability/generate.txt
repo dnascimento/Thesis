@@ -26,8 +26,8 @@ set xrange [0:7]
 set terminal epslatex solid
 set output 'recovery_time.tex'
 
-plot "1client.txt" using 1:3 with linespoints title '1 replay and 1 DB instance' ls 1,\
-"2clients.txt" using 1:3 with linespoints title '2 replay and 2 DB instances' ls 2,
+plot "1client.txt" using 1:3 with linespoints title '1 replay and 1 DB instance' ls 1
+#"2clients.txt" using 1:3 with linespoints title '2 replay and 2 DB instances' ls 2,
 
 
 set terminal pdf font "Klavika,17"
@@ -39,7 +39,7 @@ set terminal epslatex solid
 #####################################################################################################
 
 set output 'serial.tex'
-set yrange [0:2000]
+set yrange [0:3000]
 set xlabel "Number of servers"
 plot "serial.txt" using 3:xticlabels(stringcolumn(1) ." App \n" . stringcolumn(2) . " DB") with linespoints title '1 replay instance' ls 1
 

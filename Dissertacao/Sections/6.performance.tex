@@ -4,7 +4,7 @@
 
 The performance evaluation aims to prove Shuttle scalability and capability to support small and enterprise applications (Section \ref{sec:eval:test_description}). Its results should match the evaluation metrics bounds that allow to use Shuttle in real environments. We evaluate Shuttle's performance considering the throughput of the application, the size of the logs and the recovery time. We also estimate the cost of deployment of Shuttle on a public cloud provider (AWS \cite{aws}). \\
 
-We run Shuttle in \acf{AWS}. All instances are connected by gigabit ethernet (780Mbps measured with \emph{iperf}, 0.176ms round-trip time measured with \emph{ping}) and have the \emph{Java 1.7 HotSpot} 64-Bit Server \ac{VM} version installed. Even when the Java \ac{JVM} performance increases as the bytecode is compile by the \ac{JIT} compiler, we run every test on new \ac{JVM} instances. They have a 32GB local general purpose \ac{SSD}. We used the local \ac{SSD} since its performance on read is better than a 500 Provisioned \ac{IOPS} \ac{SSD} of 25GB \ref{tab:disk_throughput}. \hl{isto é um pequeno extra} We allocated 5GB of heap to the \ac{JVM} and we disabled database replication. 
+We run Shuttle in \acf{AWS}. All instances are connected by gigabit ethernet (780Mbps measured with \emph{iperf}, 0.176ms round-trip time measured with \emph{ping}) and have the \emph{Java 1.7 HotSpot} 64-Bit Server \ac{VM} version installed. Even when the \ac{JVM} performance increases as the bytecode is compiled by the \ac{JIT} compiler, we run every test on new \ac{JVM} instances. They have a 32GB local general purpose \ac{SSD}. We used the local \ac{SSD} since its performance on read is better than a 500 Provisioned \ac{IOPS} \ac{SSD} of 25GB \ref{tab:disk_throughput}. We allocated 5GB of heap to the \ac{JVM} and we disabled database replication (each data item is stored in one data node). \hl{o sistema de replicacao de base de dados foi desactivado}
 
 \begin{table}[ht]
 \centering
@@ -30,7 +30,7 @@ We measured the overhead of Shuttle on database instances. We expected it to be 
 We used 6 \textit{m3.large} instances (7 \ac{ECU}s, 2 vCPUs, 2.8 GHz, Intel Xeon E5-2680v2, 3.75 GiB memory, 2 x 16 GiB Storage Capacity) to run each database node. The database service was accessed by two \textit{c3.xlarge} instances (14 \ac{ECU}s, 4 vCPUs, 2.8 GHz, Intel Xeon E5-2680v2, 7.5 GB of memory, 2 x 40 GB Storage Capacity).\\
 
 
-We ran 4 out of 5 proposed workloads (Table \ref{tab:workload_description}) proposed \emph{in} \cite{ycsb}, Workload E (Short ranges) is not supported by Voldemort. \hl{descrevo os workload ou deixo a referencia ao paper? coloco os mesmos application examples? tenho de justificar o zipfian? tudo isso está no paper com excelente qualidade} Our database consisted of 60 million 1KB record (total database size: 60GB). Each instance thus had an average of 10GB of data, more than it could cache entirely in memory. Read operations retrieve entire records, while update operations modify one of the ten record fields \cite{ycsb}. \hl{copia do ultimo paragrafo do 6.1, prepositadamente mantive as condioes de teste o mais semelhantes possivel}.  \hl{os application examples sao os mesmos do paper}
+We ran 4 out of 5 workloads (Table \ref{tab:workload_description}) proposed \emph{in} \cite{ycsb}. Workload E (Short ranges) is not supported by Voldemort. \hl{deixei apenas na tabela, iria estar a ler a tabela...} Our database consisted of 60 million 1KB record (total database size: 60GB). Each instance thus had an average of 10GB of data, more than it could cache entirely in memory. Read operations retrieve entire records, while update operations modify one of the ten record fields \cite{ycsb}.
 
 \begin{table}[ht]
 \centering
@@ -64,7 +64,7 @@ D - Read latest         & Read: 95\% \newline Insert: 5\%                & Lates
   \label{fig:database_overhead_workloads}
 \end{figure}
 
-We expected the major Shuttle impact on database to be the read-write lock. Shuttle serializes the requests per-key using a read-write lock. In addition, the underlying \acf{BDB}, which is used by Voldemort as persistent-storage, also uses a read-write lock. However, the results in Figure \ref{fig:database_overhead_workloads} prove that Shuttle imposes a negligible latency overhead for the various types of workload and request rate.  \hl{vale a pena estar a analizar em detalhe?}
+We expected the major Shuttle impact on database to be the read-write lock. Shuttle serializes the requests per-key using a read-write lock. In addition, the underlying \acf{BDB}, which is used by Voldemort as persistent-storage, also uses a read-write lock. However, the results in Figure \ref{fig:database_overhead_workloads} prove that Shuttle imposes a negligible latency overhead for the various types of workload and request rate.  
 
 Shuttle also iterates over the \emph{operation lists} to determine the dependencies and sends them to the \emph{manager}. The instance's CPU usage was 10\% in average and the throughput did not reveal any variation when the dependencies are being collected. 
 
@@ -77,25 +77,25 @@ We conclude that Shuttle database proxy does not represent a significant perform
 \subsubsection{Proxy}\label{sec:eval:performance:proxy}
 We setup an environment with 3 \ac{AWS} \textit{c3.xlarge} instances to measure the proxy overhead. The first runs a \ac{HTTP} benchmark tool \emph{weighttp} \cite{weighttp}. The second runs a HAProxy (v1.5.3) as load balancer and the Shuttle's proxy. The third runs a WildFly serving a 1KB static file. The benchmark tool performed 2 million requests using 8 threads and 200 clients.
 
-\begin{figure}[!htb]
-  \subfloat[b][Proxy overhead]{\resizebox{0.48\linewidth}{!}{\input{graphs/proxy/throughput}}}
-
-  \subfloat[b][description of graph of \textbf{(a)} and request latency \hl{average and 95th percentile}]{
-        \begin{tabular}[b]{l|l|l|r}
-              & \bf{Load Balancer} & \bf{Proxy}  & \bf{Latency (ms)}    \\ \hline
-            a &                    &             & 1.08 (1.17)          \\
-            b & \cmark             &             & 1.08 (1.25)          \\
-            c &                    & \cmark      & 1.11 (1.28)          \\
-            d & \cmark             & No log      & 1.10 (1.27)          \\
-            e & \cmark             & \cmark      & 1.11 (1.29)          
-        \end{tabular}
-        \label{tab:proxy:overhead_latency}
-  }
-  \caption[Proxy Overhead]{Proxy Overhead: From left to right: direct to the server; only with the load balancer (HAProxy); Shuttle logging but without load balancer; overhead of Shuttle with load balancer when not logging and logging.}
-  \label{fig:overhead_proxy}
+\begin{figure}
+  \begin{minipage}[t][][b]{0.55\linewidth}
+    \resizebox{8cm}{!} {\input{graphs/proxy/throughput}}
+  \end{minipage}%
+  \begin{minipage}[t][][b]{0.30\linewidth}
+      \begin{tabular}{l|l|l|r}
+            & \bf{Load Balancer} & \bf{Proxy}  & \bf{Latency (ms)}    \\ \hline
+          a &                    &             & 1.08 (1.17)          \\
+          b & \cmark             &             & 1.08 (1.25)          \\
+          c &                    & \cmark      & 1.11 (1.28)          \\
+          d & \cmark             & No log      & 1.10 (1.27)          \\
+          e & \cmark             & \cmark      & 1.11 (1.29)          
+      \end{tabular}
+  \end{minipage}
+\caption[Proxy Overhead]{Proxy Overhead: From left to right: direct to the server; only with the load balancer (HAProxy); Shuttle logging but without load balancer; overhead of Shuttle with load balancer when not logging and logging. The table describes the scenarios of the graph and the request latency (average and 95th percentile) in them. \hl{por favor, verifique a legenda. A tabela basicamente descreve o que o grafico tem e dá as latencias. É um bacoado manhoso}}
+\label{fig:overhead_proxy}
 \end{figure}
 
-Figure \ref{fig:overhead_proxy} represents the throughput limit imposed by Shuttle's proxy. Shuttle's proxy imposes a considerable performance limitation (c) comparing with the load balancer (b). However, the logging mechanism has a negligible influence on the maximum request throughput (column \emph{d} comparing with column \emph{e}). In addition, Table \ref{tab:proxy:overhead_latency} shows that Shuttle imposes a negligible overhead on requests latency considering a constant request income rate of 2500 requests per second. \hl{este parágrafo está bem escrito?}
+Figure \ref{fig:overhead_proxy} represents the throughput limit imposed by Shuttle's proxy. Shuttle's proxy imposes a considerable performance limitation (c) comparing with the load balancer (b). However, the logging mechanism has a negligible influence on the maximum request throughput (column \emph{d} comparing with column \emph{e}). In addition, the table in Figure \ref{fig:overhead_proxy} shows that Shuttle imposes a negligible overhead on requests latency considering a constant request income rate of 2500 requests per second. \hl{este parágrafo está bem escrito?}
 
 We conclude that the performance overhead due to logging is negligible but the proxy is a considerable throughput limitation. The main cause is its implementation: while HAProxy is implemented using C and it is heavily optimized, Shuttle's proxy is a prototype implemented in Java. Therefore, we expect a C implementation of proxy can overcome the performance overhead. However, we claim that our prototype implementation is enough for most of small and enterprise services deployed in \ac{PaaS} because the throughput limit imposed by the proxy is lower than the request rates presented in Table \ref{tab:base_throughputs}. Moreover, the recovery time is dependent from the application performance but independent from the proxy's performance. \\  
 
@@ -105,6 +105,7 @@ The overhead of Shuttle on each application server is database client intercepto
 
 %---------------------------------- total ----------------------------------
 \subsubsection{Total}\label{sec:eval:performance:total}
+\hl{pois, total é uma marca de produtos petroquimicos. Eu não consegui arranjar um nome. Até aqui temos estado a ver parte a parte qual o overhead, aqui é do sistema completo, com tudo a funcionar}
 We evaluate the overhead of Shuttle by measuring the throughput of the \textit{Ask} application with and without Shuttle (Table \ref{tab:throughput}). We do not consider a particular scenario or replay scheme (full/selective) but define instead the number of requests recovered per experiment. We run 6 \ac{AWS} \textit{c3.xlarge} instances. We use one client, one instance with Shuttle proxy and a load balancer (HAProxy), three WildFly application servers and one Voldemort database.
 
 We considered two workloads: (A) has 50\% reads, 50\% inserts and (B) has 95\% reads, 5\% inserts. Insert operations adds questions, answers, comments and votes of the data sample, while read operations access the latest inserted questions. The insert operations insert the questions, answers, comments and votes of the data sample, while the read operations access the latest inserted questions. We consider a large data sample from \textit{StackExchange Data Dump} \cite{stackexchange_data} with 3 million requests (250812 questions, 335312 answers, 717937 comments, 1695939 votes).
@@ -139,15 +140,15 @@ We measured the performance of the recovery process. We do not consider a partic
 The recovery process can be summarized in the following points:
 
 \begin{itemize}
-  \item Generate the list of requests to replay
-  \item Launch replay instances. Launch new application servers and database instances, if instance rejuvenation is used
-  \item Replay the requests
+  \item Generate the list of requests to replay;
+  \item Launch replay instances; Launch new application servers and database instances, if instance rejuvenation is used;
+  \item Replay the requests.
 \end{itemize}
 
-The main factors of influence on recovery performance are: 1) the number of requests to replay, which depends from the request arrival rate; 2) the detection delay; 3) the number and type of database operations of each request.
+The main factors of influence on recovery performance are: 1) the number of requests to replay, which depends on the request arrival rate; 2) the detection delay; 3) the number and type of database operations of each request.
 
 
-We setup a test environment with 6 \emph{c3.xlarge} instances in an \ac{AWS} \acf{VPC}, sharing the same placement group (Figure \ref{fig:aws_diagram}). The first instance runs the \emph{TryOut} testing application. The second runs Shuttle's manager, replay and Shuttle Storage (Cassandra). The third contains the application server WildFly with the application \emph{Ask}. The latest instance runs the database.
+We setup a test environment with 6 \emph{c3.xlarge} instances in an \ac{AWS} \acf{VPC}, sharing the same placement group (Figure \ref{fig:aws_diagram}). The first instance runs the \emph{TryOut} testing application. The second runs Shuttle's manager, replay and Shuttle Storage (Cassandra). The third contains the application server WildFly with the application \emph{Ask}. The last instance runs the database.
 
 \begin{figure}[!htb]
   \centering
@@ -165,27 +166,27 @@ TryOut performed the 1 million requests in 672 seconds on average (1486 requests
 
 \subsubsection{Graph}\label{sec:eval:recovery:graph}
 %---------------------------- Graph overhead --------------------------------------------
-The list of requests to replay is generated using the dependency graph. A \emph{c3.xlarge} instance can insert 1 million requests, each depending from other 10 requests, in the graph in 6 seconds (166 000 requests per second). If each request depends from 2 other requests, then the same process takes 2 seconds. Each new request is represented as a novel entry in a Hash Table and each dependency requires modifying other entry (as the graph implementation is undirected). For web-scale applications, the dependency graph shall be implemented on a distributed hash table because of the graph storage requirements.\\
+The list of requests to replay is generated using the dependency graph. A \emph{c3.xlarge} instance can insert 1 million requests, each depending from other 10 requests, in the graph in 6 seconds (166 000 requests per second). If each request depends on 2 other requests, then the same process takes 2 seconds. Each new request is represented as a novel entry in a Hash Table and each dependency requires modifying other entry (as the graph implementation is undirected). For web-scale applications, the dependency graph shall be implemented on a distributed hash table because of the graph storage requirements.\\
 
 
 %sorting the execution list
-The period to generate the execution list is defined by the time to sort the keys of the dependency graph hash table and copy the list. We sort the keys using Java's sorting algorithm, dual-Pivot Quicksort, which has a asymptotic complexity of \O{n \log{} n} for most of the data sets. On serial replay mode, the algorithm takes 150\ms (standard deviation of 31ms) to sort a dependency graph with 1 million entries and 279\ms (standard deviation of 24ms) to copy the sorted list. On clustered replay mode, the clustering algorithm takes on average 2218 \ms (standard deviation of 1869\ms) to determine the 1432 independent clusters of the graph. Then, it takes 533\ms (std. dev. of 165\ms) to sort the clusters and copy the list. \hl{deveria ter explorado qual complexidade com que estes tempos crescem mas é dificil de dar garantias}  \hl{To determine the dependencies of selective replay takes....  o tempo que demora a achar as dependencias de selective replay é relevante? depende do numero de entradas tainted, da sua localizacao no grafo, das dependencias e da localizacao do snapshot}\\
+The period to generate the execution list is defined by the time to sort the keys of the dependency graph hash table and copy the list. We sort the keys using Java's sorting algorithm, dual-Pivot Quicksort, which has a asymptotic complexity of \O{n \log{} n} for most of the data sets. On serial replay mode, the algorithm takes 150\ms (standard deviation of 31ms) to sort a dependency graph with 1 million entries and 279\ms (standard deviation of 24ms) to copy the sorted list. On clustered replay mode, the clustering algorithm takes on average 2218 \ms (standard deviation of 1869\ms) to determine the 1432 independent clusters of the graph. Then, it takes 533\ms (std. dev. of 165\ms) to sort the clusters and copy the list. %\hl{deveria ter explorado qual complexidade com que estes tempos crescem mas é dificil de dar garantias}  \hl{To determine the dependencies of selective replay takes....  o tempo que demora a achar as dependencias de selective replay é relevante? depende do numero de entradas tainted, da sua localizacao no grafo, das dependencias e da localizacao do snapshot}\\
 
 
 
 \subsubsection{Instance Rejuvenation}\label{sec:eval:recovery:rejunation}
 %---------------------------------- Image-recovery delay ----------------------------------
-The time elapsed to launch a novel \emph{c3.xlarge} instance in \ac{AWS} depends on the current load of EC2. We measured 25 launches. The average time elapsed is 25 seconds (95th percentile of 40 sec). The time to deploy and launch the application depends on the application itself. The \emph{Ask} application is launched in less than 1 minute. The process is done by the \ac{PaaS} controller. We consider these delays negligible comparing with the total recovery period.\\
+The time elapsed to launch a novel \emph{c3.xlarge} instance in \ac{AWS} depends on the current load of EC2. We measured 25 launches. The average time elapsed is 25 seconds (95th percentile of 40 sec) \hl{não :( não encontro onde é que deixei os valores das samples :(}. The time to deploy and launch the application depends on the application itself. The \emph{Ask} application is launched in less than 1 minute. The process is done by the \ac{PaaS} controller. We consider these delays negligible comparing with the total recovery period.\\
 
   
 \subsubsection{Request Replay}\label{sec:eval:recovery:replay}
 %---------------------------------- Recovery ----------------------------------
-We performed full-replay considering a single-cluster of 1 million requests in 30 minutes (1717s or 584 requests per second) (Figure \ref{fig:recovery_period}). The average request rate is 726 requests per second (std. dev. 72). \hl{ou seja, a amostra da figura faz a 584 mas a media e 726}. 
+We performed full-replay considering a single-cluster of 1 million requests in 30 minutes (1717s or 584 requests per second) (Figure \ref{fig:recovery_period}). The average request rate is 726 requests per second (std. dev. 72). %\hl{ou seja, a amostra da figura faz a 584 mas a media e 726}. 
 
 The performance is improved when considering 1432 independent clusters: 9 minutes (544s or 1795 requests per second) (Figure \ref{fig:recovery_period}). Despite the fact that independent clusters can be replayed concurrently, we consider the maximum of 30 clusters being replayed concurrently. The average throughput is 1966 requests per second (std. dev 224).
 
 %discuss
-The serial replay mode is not capable of fully exploring the application servers. While first execution is performed using 25 client-threads and clustered replay using 30 client-threads, the serial replays uses one client-thread. We expect to solve this performance issue on future implementations. \hl{há problema? devo explicar como? sei que a performance é má mas é mesmo da implementação. Os pedidos mesmo que serial, deviam ser feitos em paralelo de modo coordenado.}
+The serial replay mode is not capable of fully exploring the application servers. While the first execution is performed using 25 client-threads and clustered replay using 30 client-threads, the serial replays uses one client-thread. We expect to solve this performance issue on future implementations. 
     
 \begin{figure*}[!htb] 
     \centering
@@ -203,47 +204,57 @@ The serial replay mode is not capable of fully exploring the application servers
 We measured the duration of the restrain period considering two clients with a constant throughput of 400 requests/sec (Figure \ref{fig:restrain:serial}). 
 
 Considering serial replay, the average response time of new incoming requests is 3.94\ms (95th percentile of 10.34\ms, 90th of 7.53\ms). Since the serial replay mode is not capable of fully exploring the application servers, the new incoming requests are not affected by the replay process. The replay process takes on average 30 minutes (1850\ms). Since the Shuttle takes 30 minutes to replay 1 million requests, the new flow generates 298 thousand new requests. Shuttle takes 18 minutes to replay these new requests. The user requests are suspended until the new requests are replayed and the branch is changed. This delay is considerable because the throughput of new requests is close to the throughput of the requests being replayed. The delay can be reduced by replaying the new requests and then block to replay the newer requests, i.e., creating several phases of replay. fazer varias fases, cada vez mais curtas porque vai compensando a diferenca. In addition, if the replay rate is bigger than the rate of new incoming requests, then the restrain phase is shorter.\\
-%The serial replay mode is not capable of fully exploring the application servers so it takes almost one hour to recover (2953s total, 1100s in restrain mode) (Fig. \ref{fig:restrain:serial})
+%The serial replay mode is not capable of fully exploring the application servers so it takes almost one hour to recover (2953s total, 1100s in restrain mode) (Figure \ref{fig:restrain:serial})
 
 %parallel
 If Shuttle performs clustered replay, the application servers are overloaded. Consequently, the average response time of new incoming requests is 5.51\ms (95th percentile of 13.56\ms, 90th of 10.60\ms) and the throughput of the new incoming requests drops from 200 to 95 requests per second. On other hand, the throughput of requests being replayed drops from 1795 to 1686 req./sec. The recovery process takes a total 10 minutes (635 seconds). Therefore, the customers perform 56 000 requests. These requests are replayed in 46 seconds (Figure \ref{fig:restrain:clustered}). 
 
-\begin{figure*}[!htb]
-  \centering
-  \subfloat[][Serial Recovery]{\resizebox{0.5\linewidth}{!}{\input{graphs/restrain/serial}\label{fig:restrain:serial}}} 
-  \subfloat[][Clustered Recovery]{\resizebox{0.5\linewidth}{!}{\input{graphs/restrain/clustered}\label{fig:restrain:clustered}}} 
-  \caption{Requests throughput during the recovery period}
-  \label{fig:restrain}
+
+
+    
+\begin{figure*}[!htb] 
+    \centering
+    \resizebox{0.7\linewidth}{!}{\input{graphs/restrain/serial_restrain}}
+    \caption{Serial Recovery: Requests throughput during the recovery period}
+    \label{fig:restrain:serial}
 \end{figure*}
+    
+\begin{figure*}[!htb] 
+    \centering
+    \resizebox{0.7\linewidth}{!}{\input{graphs/restrain/clustered_restrain}}
+    \caption{Clustered Recovery: Requests throughput during the recovery period}
+    \label{fig:restrain:clustered}
+\end{figure*}
+
 
 When a new application server is added, the throughput of the requests being replayed rises from 1686 to 2517 requests per second (397 seconds to recover), while the response latency to new requests is 4.61\ms. Therefore, we prove that adding more servers to perform replay allows to keep the quality of service for the customers.
 
 
 %---------------------------------- replay instance ----------------------------------
-%Qual o throughput maximo que uma replay instance consegue obter quando invoca directamente o web-server? Dificil de medir porque o web-server acaba por ser a limitacao quase sempre.
+%Qual o throughput maximo que uma replay instance consegue obter quando invoca directamente o application instance? Dificil de medir porque o application instance acaba por ser a limitacao quase sempre.
 %The new requests are performed on new compute nodes. The \ac{HTTP} clients of each \textit{replay node} can perform \hl{XXX} request per second, using \hl{XXX} threads. (grafico a comparar com o numero de threads?)
 
 
 
 %----------------------------------  scalability -------------------------------------
 \subsubsection{Scalability}\label{sec:eval:recovery:scalability}
-We measured the Shuttle capability to scale horizontally, i.e. adding more instances. We added \emph{c3.large} instances c3.large (7 \ac{ECU}s, 2 vCPUs, 2.8 GHz, Intel Xeon E5-2680v2, 3.75 GiB memory, 2 x 16 GiB Storage Capacity). The application server \emph{c3.xlarge} instance was downgraded to \emph{c3.large}. 
+We measured how Shuttle leverages the horizontal scalability (adding more instances) of \ac{PaaS} to reduce the recovery period. We added \emph{c3.large} instances c3.large (7 \ac{ECU}s, 2 vCPUs, 2.8 GHz, Intel Xeon E5-2680v2, 3.75 GiB memory, 2 x 16 GiB Storage Capacity). The application server \emph{c3.xlarge} instance was downgraded to \emph{c3.large}. 
 
 %serial
 The serial replay with 2 application servers and 1 database takes 1347 seconds, while with 2 application servers an 2 database instances takes 1303 seconds (Figure \ref{fig:scalability:serial}). At larger scale, considering 2 databases, 6 application servers and 2 Shuttle storage instances, the process takes 1745\ms. Therefore, due to its implementation, the serial replay does not scale well. All instances remain with low resource usage. We expect to do much better by rewriting the implementation of the serial replay in the replay instances.
 
 \begin{figure*}[!htb] 
     \centering
-    \resizebox{0.5\linewidth}{!}{\input{graphs/scalability/serial}}
+    \resizebox{0.6\linewidth}{!}{\input{graphs/scalability/serial}}
     \caption{Shuttle Scalability Serial}
     \label{fig:scalability:serial}
 \end{figure*}
 
 
 %parallel
-The Figure \ref{fig:scalability} (detailed values in Appendix \ref{appendix:results}) shows the recovery time using clustered replay. The figure demonstrates that Shuttle is scalable, in the sense that adding more servers allow reducing the time of recovery. Three application servers allowed recovery in half the time of 1, \~750 versus ~417 s. If the application runs on 5 or more application servers, then the single Shuttle Storage (Cassandra) instance becomes the bottleneck because Shuttle database client interceptor fetches the keys accessed by every request. We added another \emph{c3.xlarge} instance to the Cassandra cluster. 
-
-The latency of the requests during their first execution remains approximately constant when 3 servers are added (Figure \ref{fig:recovery_scalability:latency}). This means that a single \emph{TryOut} instance performing 2000 requests per second is not capable of overstrain the resources of the application servers.
+The Figure \ref{fig:scalability} (detailed values in Appendix \ref{appendix:results}) shows the recovery time using clustered replay. The figure demonstrates that Shuttle is scalable, in the sense that adding more servers allow reducing the time of recovery. Three application servers allowed recovery in half the time of one (750 versus 417 seconds). If the application runs on 5 or more application servers, then the single Shuttle Storage (Cassandra) instance becomes the bottleneck because Shuttle database client interceptor fetches the keys accessed by every request. We added another \emph{c3.xlarge} instance to the Cassandra cluster. 
+\hl{reler esta seccao toda}
+The latency of the requests during their first execution remains approximately constant when 3 servers are added (Figure \ref{fig:recovery_scalability:latency}). This means that a single \emph{TryOut} instance performing 2000 requests per second is not capable of overstraining the resources of the application servers.
 
 \begin{figure*}[!htb]
   \centering
@@ -257,7 +268,7 @@ The latency of the requests during their first execution remains approximately c
   \label{fig:scalability}
 \end{figure*}
 
-When using less than 6 application servers, adding more database instances or clients does not improve the performance. When supporting 3 application servers, the \ac{CPU} usage of Voldemort database remains at 10\% on average. The \ac{CPU} usage of the instances that contain Shuttle's modules remains low (Figure \ref{fig:scalability:cpu:shuttle}). The bottleneck is the \ac{CPU} usage on application servers (Figure \ref{fig:scalability:cpu:app}).
+When using less than 6 application servers, adding more database instances or clients does not improve the performance. When supporting 3 application servers, the \ac{CPU} usage of Voldemort database remains at 10\% on average. The \ac{CPU} usage of the instances that contain Shuttle's modules remains low (Figure \ref{fig:scalability:cpu:shuttle}). The bottleneck is the \ac{CPU} usage on the application servers (Figure \ref{fig:scalability:cpu:app}).
 
 \begin{figure*}[!htb]
   \centering
@@ -273,8 +284,8 @@ When using less than 6 application servers, adding more database instances or cl
 
 %In \emph{Ask}, the voting requests represent 4\% of the total number of requests. These requests only increment a variable. Incrementar uma variavel ate 1000 implica 1000 requests enquanto que saber o seu valor e fazer set a 1000 implicaria apenas 1 request.
 
-We conclude the application servers to be the main performance harm. The performance of the application servers can be improved. We did not optimize their implementation. If application developers for \ac{PaaS} optimize their applications to execute more requests per unit of time, then the recovery period is reduced. %Shuttle's scalability depends on its algorithms and implementation
-Most of \ac{PaaS} controller watch the load of the instances. One area of future development is to dynamically adapt the throughput of the replay instances to the load of the application and database instances. \hl{Que mais comentarios poderei fazer?}
+We conclude the application servers to be the main performance harm. The performance of the application servers can be improved. If application developers for \ac{PaaS} optimize their applications to execute more requests per unit of time, then the recovery period is reduced. %Shuttle's scalability depends on its algorithms and implementation
+Most of \ac{PaaS} controller watch the load of the instances. One area of future development is to dynamically adapt the throughput of the replay instances to the load of the application and database instances.
 
 
 
@@ -289,12 +300,12 @@ Most of \ac{PaaS} controller watch the load of the instances. One area of future
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Space Overhead}\label{sec:eval:storage}
-The memory and storage overhead is relevant because every request is stored. The space overhead is defined by:
+The storage overhead is relevant because it is a payed cloud resource and Shuttle stores every user request. The space overhead is defined by the variables in Table \ref{tab:storage_variables}.
 
 \begin{table}[ht]
 \centering
 \begin{tabular}{l|ll}
-\textbf{Module}          & \textbf{Contains}      & \textbf{Depends from}    \\ \hline
+\textbf{Module}          & \textbf{Contains}      & \textbf{Depends on}    \\ \hline
 \textbf{Shuttle Storage} &                        &                          \\
                          & Request                & request content          \\
                          & Response (optional)    & response content         \\
@@ -310,10 +321,10 @@ The memory and storage overhead is relevant because every request is stored. The
 \label{tab:storage_variables}
 \end{table}
 
-Requests to static contents, e.g. images, are ignored. For instance, a question page of StackOverflow \cite{stackoverflow} implies 30 static content requests. Shuttle is not implemented for web-services with large requests, such has file hosting services, because the data would be duplicated in the requests and storage. Shuttle architecture would remain similar on those services but would require an algorithm to reduce the storage overhead by detecting duplicated data.\\
+Requests to static contents, e.g., images, are ignored. For instance, a question page of StackOverflow \cite{stackoverflow} implies 30 static content requests. Shuttle is not implemented for web-services with large requests, such has file hosting services, because the data would be duplicated in the requests and storage. Shuttle architecture would remain similar on those services but would require an algorithm to reduce the storage overhead by detecting duplicated data.\\
 
 %define request size
-Most of applications' requests, including headers, vary in size from 200 bytes to over 2KB, depending on the number of application cookies \cite{spdy}. As applications use more cookies and user agents expand features, typical header sizes of 700-800 bytes is common \cite{spdy}. \hl{white paper em url, conhece algum estudo alternativo ou não há problema?}. Shuttle adds the \ac{SRD}, which has 35 bytes, to every request. Requests of \emph{Ask} based on the StackExchange Network have an average size of 216 bytes (std. def of 124 bytes, 95th percentile of 274 bytes,  99th of 494 bytes in a sample of 200 thousand requests, in which 95\% are read requests).
+Most of applications' requests, including headers, vary in size from 200 bytes to over 2KB, depending on the number of application cookies \cite{spdy}. As applications use more cookies and user agents expand features, typical header sizes of 700-800 bytes are common \cite{spdy}. Shuttle adds the \ac{SRD}, which has 35 bytes, to every request. Requests of \emph{Ask} based on the StackExchange Network have an average size of 216 bytes (std. def of 124 bytes, 95th percentile of 274 bytes,  99th of 494 bytes in a sample of 200 thousand requests, in which 95\% are read requests).
 
 %shuttle storage
 Requests and keys are stored in the \emph{Shuttle storage} (Cassandra) while the dependency graph and database operations are kept in  manager and database instances. Values at Table \ref{tab:storage_overhead} represent the size of each component in memory \footnote{https://code.google.com/p/memory-measurer} to store the workload, defined above (1 million requests, from which 95\% are requests to read a question). No snapshot has been taken and the data is not compressed.
@@ -343,7 +354,7 @@ Requests and keys are stored in the \emph{Shuttle storage} (Cassandra) while the
 %Cassandra
 The start/end instants have a constant size of 16 bytes because each timestamp is a long. The size of the list of keys accessed by the request depends on the key length and the number of accesses. The request of the workload defined above represent 212 MBytes. The main overhead are the requests, as we are storing them complete (the full \ac{HTTP} pages). Notice that Shuttle has to store the responses only if the tenants use the \ac{API} to solve inconsistencies (Section \ref{sec:arch:consistency}). In addition, the size of the responses can be reduced if applications fetch only data using a \ac{REST} \ac{API} instead of the entire page.
 
-Since \ac{HTTP} packages are similar, we evaluated how a compression technique can reduce the storage usage. While Cassandra stores 9GB of data, the compression algorithm of Cassandra, \emph{lz4} \cite{lz4}, reduces the size in disk to 4.9 GB (including Cassandra's metadata). For instance, considering an arrival rate of 1000 requests per second (86 million per day), a half-year (15.638 billion requests) requires 3.3 TB. 
+Since \ac{HTTP} messages are similar, we evaluated how a compression technique can reduce the storage usage. While Cassandra stores 9GB of data, the compression algorithm of Cassandra, \emph{lz4} \cite{lz4}, reduces the size in disk to 4.9 GB (including Cassandra's metadata). For instance, considering an arrival rate of 1000 requests per second (86 million per day), a half-year (15.638 billion requests) requires 3.3 TB. 
 
 %For instance, the algorithm \emph{lz4} can compress a text file with 1 million requests by \hl{xxxx} \% and \hl{xxxx} \% in \hl{xxxx} seconds. A ideia era colocar tudo em ficheiros e depois usar o algoritmo para comprimir e ver quanto da}\\
 
@@ -352,14 +363,13 @@ Since \ac{HTTP} packages are similar, we evaluated how a compression technique c
 The snapshot mechanism requires to track a new version when a data item is written by the first time after a snapshot. Each version has 10 bytes. The overhead can be reduced implementing the version list as a bitmap. In addition, each database operation implies to store 13 bytes to record its \acf{RID} and type in the \emph{operation list}. The total database storage overhead encompasses synchronization mechanisms and object references. Notice that the storage and performance overhead can be distributed by several instances because the data items are independent. \\
 
 %graph
-The dependency graph is a double-linked graph implemented as a Hash Table. Each of its entries represents a request. It contains the start and end instants of the requests and two lists of \ac{RID}: requests to execute before, requests to execute after. Each entry in the Hash Table has, on average, 718 bytes bytes, and depends from 1 requests and 5 requests depend from it (Table \ref{tab:memory:depgrah}). The start and end instants has 32 bytes. Each dependency has 16 bytes. 
+The dependency graph is a double-linked graph implemented as a Hash Table. Each of its entries represents a request. It contains the start and end instants of the requests and two lists of \ac{RID}: requests to execute before, requests to execute after. Each entry in the Hash Table has, on average, 718 bytes bytes, and depends on 1 requests and 5 requests depend on it (Table \ref{tab:memory:depgrah}). The start and end instants has 32 bytes. Each dependency has 16 bytes. 
 
 For the sake of performance in selective replay, the dependency graph is doubly-linked, a single-linked graph requires, on average, 458 bytes per entry. In order to reduce the storage overhead, a doubly-linked graph can be generated from a single-linked graph.
 
 
 \begin{table}[ht]
 \centering   
-\footnotesize
   \begin{tabular}{l|rr}     
            & \# objects & size (bytes) \\ \hline  
   Start    & 1          & 16           \\
@@ -372,7 +382,7 @@ For the sake of performance in selective replay, the dependency graph is doubly-
 \label{tab:memory:depgrah}
 \end{table}
 
-\hl{na tabela da memoria por entrada há erro porque o array é alocado em excesso}
+%\hl{na tabela da memoria por entrada há erro porque o array é alocado em excesso}
 
 
 Tenants can reduce the storage overhead removing old snapshots, operations and requests. However, they shall take into account that Shuttle needs a snapshot previous to the intrusion instant to recover the application.
@@ -383,7 +393,7 @@ In conclusion, the main storage overhead are the \ac{HTTP} responses. We propose
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Monetary Cost}\label{sec:eval:cost}
-We measured the monetary cost of the intrusion recovery process using a public cloud providers. The intrusion recovery costs are come from two sources: storage and computation resources. The following prices represent the current cost of \acf{AWS} in North Virgina.
+We measured the monetary cost of the intrusion recovery process using a public cloud provider. The intrusion recovery costs are come from two sources: storage and computation resources. The following prices represent the current cost of \acf{AWS} in North Virgina.
 
 We consider an execution of \emph{Ask} application with a constant arrival rate of 250 requests per second (20 million per day) and the storage usage defined in Section \ref{sec:eval:storage}. This is a common rate for an enterprise application, for instance the Portuguese Ministry of Finances (Table \ref{tab:base_throughputs}). We also define that Shuttle shall allow to recover from attacks that have occurred during the last 3 months. Therefore, Shuttle needs to store 2 billion requests. We assume that the recovery process re-executes 50 million requests, independent of the schema (full/serial replay). \\
 
@@ -435,7 +445,7 @@ The user requests can be stored in \acf{AWS} \ac{S3}, DynamoDB, Glacier and \acf
 \end{table}
 
 
-Glacier has the lowest cost to store data for long period but highest per insert operation. In contrast, DynamoDB provides the lowest cost per insert operation, lower latency but the highest per stored gigabyte. The best storage model depends on the application usage pattern. We propose to store the most recent data in \emph{DynamoDB} and archive the data in periodically in \emph{Glacier}. We assume that the data in DynamoDB is archived every day, i.e., each batch stores a day.
+Glacier has the lowest cost to store data for long period but the highest per insert operation. In contrast, DynamoDB provides the lowest cost per insert operation, lower latency but the highest per stored gigabyte. The best storage model depends on the application usage pattern. We propose to store the most recent data in \emph{DynamoDB} and archive the data in periodically in \emph{Glacier}. We assume that the data in DynamoDB is archived every day, i.e., each batch stores a day.
 
 %DynamoDB
 Shuttle generates an average of 35 GB per day, which costs \$8.75 per month to store in DynamoDB. Considering a provisioned capacity of 36,000 writes per hour and 180,000 strongly consistent reads per hour, the DynamoDB usage costs \$4.83 per-month.
@@ -443,8 +453,7 @@ Shuttle generates an average of 35 GB per day, which costs \$8.75 per month to s
 %Glacier
 The Glacier stores 3.433 TB, which represents the archives of the latest quarter, so it costs \$34.33 per month. Since the daily backup can be compressed in a single file, the number of put requests per month is lower than 1 thousand so it costs less than \$0.05. Tenants can retrieve up to 5\% of average monthly storage for free. Since we consider an attack that taint 1 million requests, the required download of 2 GB is free. This data is loaded in DynamoDB to perform the replay process. 
 
-In total, the storage overhead of Shuttle costs \$47 per month.\\
-
+In total, the storage overhead of Shuttle costs \$47 per month if the application retrieves 20 million requests per day.\\
 
 
 % The DynamoDB pricing \cite{dynamoDB}, which Voldemort is based-on, is \$0.00735 per hour for every 10 units of Write Capacity (enough capacity to do up to 36,000 writes per hour) and \$0.00735 per hour for every 50 units of Read Capacity (enough capacity to do up to 180,000 strongly consistent reads, or 360,000 eventually consistent reads, per hour). The storage costs \$0.283 per GB-month, excluding the cost of a per-item storage overhead of 100 bytes to account for indexing. The data transfered to DynamoDB is free, while the data transfer out of Dynamo has the following cost (Table \ref{tab:dynamoCost}).
@@ -514,8 +523,6 @@ The evaluated metrics depend on several aspects of the application. Taking into 
   \item Number of operations per request
 \end{enumerate}                              
 
-\hl{aqui não explorei muito em como é que estes factores são relevantes... é suposto ser um sumário}
-
 Clearly, much future research and development will be needed to create a version of Shuttle for web-scale applications. The performance of Shuttle modules can be optimized and tunned to archive better performance and lower storage footprint, reducing the costs and recovery period.
 
 Nevertheless, we validated our single proxy architecture. The proxy imposes a throughput limitation but this limitation is acceptable for most of applications. Moreover, this limitation does not affect the recovery period.
@@ -525,8 +532,14 @@ We presented a cost estimation for Shuttle usage. In future, we expect to provid
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Summary}\label{sec:eval:performance:summary}
-\hl{é obrigatório? Eu fiz 2 discussions/summary separados....}
-
+The main conclusions of the Shuttle evaluation presented in this chapter are:
+\begin{enumerate}
+  \item The full replay has lower precision than selective replay but the recovery time is acceptable and allows to remove malicious actions not logged by the proxy.
+  \item The prototype accuracy and performance is acceptable for small and enterprise applications.
+  \item It is possible to duplicate the number of requests replayed per second by increasing the number of application servers from 1 to 3. 
+  \item The main storage overhead is the response storage but the data can be compressed. 
+  \item The usage cost of Shuttle is low considering its advantages.
+\end{enumerate}          
 
 
 %-------------------------------- EXCLUIDOS ---------------------------------------------------

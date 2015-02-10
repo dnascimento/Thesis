@@ -25,16 +25,16 @@ public void unlockRead();
 public boolean isLocked();
 public synchronized int updateDependencies(HashMultimap<Long, Long> dependencyMap); //explicar algoritmo
 public synchronized ArrayList<Op> getAccesses(long baseRid);
-public synchronized StsBranchPair getVersionToPut(RUD rud, BranchPath path); //explicar algoritmo
-public synchronized StsBranchPair trackReadAccess(RUD rud, BranchPath path); //explicar algoritmo
-public synchronized StsBranchPair trackWriteAccess(OpType type, RUD rud, BranchPath path); //explicar algoritmo
+public synchronized StsBranchPair getVersionToPut(RUD rud, branch path path); //explicar algoritmo
+public synchronized StsBranchPair trackReadAccess(RUD rud, branch path path); //explicar algoritmo
+public synchronized StsBranchPair trackWriteAccess(OpType type, RUD rud, branch path path); //explicar algoritmo
 public synchronized boolean isModified(short redoBranch); //
 private synchronized void startRedoOp(Op op, RUD rud, long baseCommit) //Explicar
-public synchronized void endRedoOp(OpType type, RUD rud, BranchPath path) //Explicar
-public synchronized boolean ignore(RUD rud, BranchPath path) //Explicar
+public synchronized void endRedoOp(OpType type, RUD rud, branch path path) //Explicar
+public synchronized boolean ignore(RUD rud, branch path path) //Explicar
 
-public StsBranchPair redoRead(RUD rud, BranchPath path);
-public StsBranchPair redoWrite(OpType opType, RUD rud, BranchPath path);
+public StsBranchPair redoRead(RUD rud, branch path path);
+public StsBranchPair redoWrite(OpType opType, RUD rud, branch path path);
 public synchronized void addLast(Op op);
 
 

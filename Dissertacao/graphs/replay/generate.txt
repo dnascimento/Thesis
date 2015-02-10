@@ -26,7 +26,7 @@ set style line 4 lw 3 lt 1 ps 2 pt 3 lc rgb "#42443C" pointinterval 10
 plot 'data.txt' using 1:4 with line notitle ls 1, \
 	 '' using 1:4 smooth bezier title "serial replay" ls 2, \
 	 '' using 1:3 with line title 'clustered replay' ls 3, \
-	 'data.txt' using 1:2 with line title 'original execution' ls 4
+	 'data.txt' using 1:2 with line title 'first execution' ls 4
 
 set xtics 300
 

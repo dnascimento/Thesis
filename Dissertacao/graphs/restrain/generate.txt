@@ -11,6 +11,7 @@ set format x "%M:%S"
 
 set key top right box  height 0.8 width 2.5 spacing 1.3
 
+set autoscale xfixmax
 
 set style function linespoints
 set style line 1 lw 3 lt 1 ps 2 pt 3 lc rgb "#42443C" pointinterval 10
@@ -22,14 +23,14 @@ set label "Restrain"  at '1850', 2000
 set arrow 1 from first '1850',0 to '1850', 2000 nohead ls 3 lw 2 front size 30, 15 
 
 
-
-set output 'serial.tex'
+set xtics 300
+set output 'serial_restrain.tex'
 plot 'data_serial.txt' using 1:2 with line title 'serial replay' ls 1 , \
 	 '' using 1:3 with line title 'concurrent client' ls 2
 
 
-
-set output 'clustered.tex'
+set xtics 120	
+set output 'clustered_restrain.tex'
 plot 'data_clustered.txt' using 1:2 with line title 'clustered replay' ls 1 , \
 	 '' using 1:3 with line title 'concurrent client' ls 2	 
 

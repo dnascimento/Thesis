@@ -2,11 +2,11 @@
 %!TEX encoding = UTF-8 Unicode
 
 \begin{resumo}
-O número de aplicações instaladas usando o modelo Plataforma como Serviço (PaaS) tem aumentado. Apesar dos mecanismos de controlo de segurança implementados pelos operadores de serviços de computação em nuvem, é expectável que estas aplicações sejam afectadas por intrusões. Neste documento introduzimos um novo serviço de recuperação de intrusões designado de Shuttle. O Shuttle permite que os operadores ofereçam um serviço através do qual os seus clientes podem recuperar de intrusões às suas aplicações.
+O número de aplicações instaladas usando o modelo Plataforma como Serviço (PaaS) tem aumentado. Apesar dos mecanismos de controlo de segurança implementados pelos operadores de serviços de computação em nuvem é expectável que estas aplicações sejam afectadas por intrusões. Neste documento introduzimos um novo serviço de recuperação de intrusões designado por Shuttle. O Shuttle permite que os operadores ofereçam um serviço através do qual os seus clientes podem recuperar de intrusões às suas aplicações.
 
-A nossa abordagem permite inverter as alterações ao estado da aplicação provocadas por intrusões, sem comprometer o efeito de operações legitimas que ocorram após a intrusão. Nós combinamos a abordagem de gravar e repetir com a elasticidade oferecida pelo modelo de computação em nuvem para recuperar de intrusões a aplicações instaladas em várias instâncias e suportadas por uma base de dados distribuída. Para realizar a recuperação, o serviço carrega uma cópia da base de dados, gravada antes da intrusão ocorrer, e repete os pedidos posteriores, tão em paralelo quanto possível, enquanto processa novos pedidos.
+A nossa abordagem permite inverter as alterações ao estado da aplicação provocadas por intrusões, sem comprometer o efeito de operações legítimas que ocorram após a intrusão. A abordagem de gravar e re-executar é combinada com a elasticidade oferecida pelo modelo de computação em nuvem para recuperar de intrusões a aplicações instaladas em várias instâncias e suportadas por uma base de dados distribuída. Para realizar a recuperação, o serviço carrega uma cópia da base de dados, gravada antes da intrusão ocorrer, e repete os pedidos posteriores, tão em paralelo quanto possível, enquanto processa novos pedidos.
 
-A avaliação experimental realizada no serviços web da Amazon (AWS) demonstra que o Shuttle é capaz de repetir 1 milhões de pedidos em aproximadamente 10 minutos e que é possível duplicar o número de pedidos repetidos por segundo aumentando o número de servidores de 1 para 3.
+A avaliação experimental realizada no serviços de computação na nuvem da Amazon (AWS) demonstra que o Shuttle é capaz de repetir 1 milhões de pedidos em aproximadamente 10 minutos e que é possível duplicar o número de pedidos repetidos por segundo aumentando o número de servidores de 1 para 3.
 
 %Neste documento introduzimos um novo serviço para plataforma como serviço (Platform as a Service - PaaS). Através deste serviço, os fornecedores de serviços de computação em núvem permitem que os seus clientes recuperem de intrusões realizadas às suas aplicações. A motivaçã deste trabalho é o número crescente de intrusões e de aplicações criticas nos sistemas de computação em núvem e o desenvolvimento do modelo PaaS. O serviço proposto, designado de Shuttle, remove as intrusões a aplicações instaladas em PaaS. O serviço recupera de intrusões devido a vulnerabilidades de software, pedidos corrompidos dos utilizadores e suporta a actualização do sistema para correcção de vulnerabilidades.
 
@@ -20,7 +20,7 @@ A avaliação experimental realizada no serviços web da Amazon (AWS) demonstra 
 \item Recuperação de Intrusões
 \item Tolerância de Intrusões
 \item Dependência
-\item Computação em Núvem
+\item Computação em Nuvem
 \item Platforma como Serviço
 \item Sistemas de Bases de Dados Distribuídas
 \end{itemize}

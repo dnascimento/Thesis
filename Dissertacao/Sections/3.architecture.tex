@@ -3,15 +3,15 @@
 
 \chapter{The Shuttle Architecture}
 \label{chapter:architecture}
-This chapter describes the overall system architecture of Shuttle and outlines its central functional components. The main design goal is to help \acf{CSP} customers to recover from intrusions in their applications deployed in \acf{PaaS}. We consider three actors: the \acf{CSP}, which provide the platform, the \emph{tenants}, whose often are also known as system administrators, that deploy their applications in the platform and the \emph{users}, which access the applications. Shuttle is a service designed to be offered by \ac{CSP}.
+This chapter describes the overall system architecture of Shuttle and outlines its central functional components. The main design goal is to help \acf{CSP} customers to recover from intrusions in their applications deployed in \acf{PaaS}. We consider three actors: the \acf{CSP}, which provides the platform, the \emph{tenants}, whose deploy their applications in the platform, and the \emph{users}, whose access the applications. Shuttle is a service designed to be offered by a \ac{CSP}.
 
 We introduce the main requirements in Section \ref{sec:arch:requirements} and describe a generic \acf{PaaS} architecture in Section \ref{sec:arch:paas}. The remaining sections describe the architecture of Shuttle and discuss the main design choices. \hl{mais info aqui?}\\
 
 \section{Requirements}
 \label{sec:arch:requirements}
-This thesis addresses the problem of providing an intrusion recovery service for applications deployed in \acf{PaaS}. Our overall goal is to \textit{make \ac{PaaS} applications operational despite intrusions}. More precisely, we aim to create a service, named Shuttle, to help \ac{PaaS} tenants to recover from the following problems in their applications:
+This thesis addresses the problem of providing an intrusion recovery service for applications deployed in \acf{PaaS}. Our overall goal is to \textit{make \ac{PaaS} applications operational despite intrusions}. \hl{também me dá essa ideia mas é porque saltamos o capitulo 2, o paragrafo ficou aqui para relembrar e re-introduzir o leitor ao objectivo} More precisely, we aim to create a service, named Shuttle, to help \ac{PaaS} tenants to recover from the following problems in their applications:
 \begin{itemize}
-\item \textit{Software vulnerabilities:} non-authorized users compromise state by exploiting software vulnerabilities, e.g., allow invalid requests to be executed.
+\item \textit{Software vulnerabilities:} non-authorized users compromise state by exploiting software vulnerabilities that allow invalid requests to be executed.
 \item \textit{Malicious or accidentally corrupted requests:} users, authorized or not, compromise the application state accidentally or intentionally issuing valid requests.
 \end{itemize} 
 
@@ -23,10 +23,10 @@ For instance, two common attacks that can be used to compromise application stat
 
 In order to achieve the above goals, the service shall meet the following requirements: 
 \begin{itemize}
-\item \textit{Remove intrusion effects:} Remove corrupted data at operating system, database and application levels in the application containers and update affected legitimate actions.
+\item \textit{Remove intrusion effects:} Remove corrupted data at file system, database and application levels in the application containers and update affected legitimate actions. \hl{exacto, consigo lidar com o sistema de ficheiro, que é o estado persistente do sistema operativo porque re-instacio a aplicação.}
 \item \textit{Remove selected malicious actions:} Help tenant to track the intrusion producing the set of actions affected by an externally provided list of malicious actions.
 \item \textit{Support software update:} After recovery, the application state has to be compliant with the new version of the software.
-\item \textit{Recover without stopping the application:} Recover the application without exposing users to application downtime.
+\item \textit{Recover without stopping the application:} Recover the application without exposing users to application downtime. \hl{ na prática este objectivo não foi conseguido a 100\% mas, mesmo que o juri me dê nas orelhas, acho que aqui devo ter os objectivos ideais do projecto sem ajustá-los ao que consegui}
 \item \textit{Determinism:} Despite concurrent re-execution of requests, the result of re-execution is the same as the result of first execution if the application source code and requests remain equal.
 \item \textit{Low runtime overhead:} The recording of operations or state for recovery purposes should have a negligible impact in the runtime performance.
 \item \textit{\acs{NoSQL} database snapshot:} \acs{NoSQL} databases will have to be extended to support database snapshots, in order to reduce the recovery time.
@@ -41,10 +41,10 @@ Shuttle shall \textit{support software updates} to prevent future intrusions and
 \acf{PaaS} is a cloud computing model for automated configuration and deployment of applications onto the cloud infrastructure \cite{Vaquero2008,Vaquero2011,Armbrust,Mell}. \ac{PaaS} enables developers to develop and deploy web applications into production fast by abstracting many details of the underlying infrastructure. Developers access the infrastructure resources, such as storage, through a set of services. These services are often pay-per-usage. \ac{PaaS} provides a deployment environment for a set of languages. 
 
 %Bottom-layer: IaaS, VMs
-Applications are deployed in one or more application servers, e.g., Java Tomcat or Javascript NodeJS. \emph{Containers} \cite{Lenk2009} hold these application servers and provide the required isolation level between the various applications. The word container is often used to refer to lightweight in-kernel resource (CPU, memory and device) accounting, allocation and isolation mechanisms like the \textit{Linux control groups} \cite{Menage2007}. These mechanisms isolate the process, network and file system used by applications that share the same operating system. They can run either directly on the host operating system or in a virtual machine. In this document, we use the word \textit{container or instance} to describe an isolated deployment unit that can be allocated from a resource pool by orchestration engine. The deployment unit is created using an image and has storage attached. Therefore, our concept of container includes not only \textit{Linux control groups} like systems but also bare metal servers and guest operating systems running on top of hyper-visors, e.g., Xen \cite{xen}, KVM \cite{kvm}. Containers are managed directly or through an orchestration or IaaS system (e.g., OpenStack \cite{openstack}, \ac{AWS} \ac{EC2} \cite{aws}, Eucalyptus \cite{eucalyptus}, Omega \cite{omega}). Containers have one or more associated storage. When the container loads up, it loads an image onto its storage. The image contains, at least, the operating system and the \ac{PaaS} system in order to deploy the application in the container. 
+Applications are deployed in one or more application servers, e.g., Java Tomcat or Javascript NodeJS. \emph{Containers} \cite{Lenk2009} hold these application servers and provide the required isolation level between the various applications. The word container is often used to refer to lightweight in-kernel resource (CPU, memory and device) accounting, allocation and isolation mechanisms like the \textit{Linux control groups} \cite{Menage2007}. These mechanisms isolate the process, network and file system used by applications that share the same operating system. They can run either directly on the host operating system or in a virtual machine. In this document, we use the word \textit{container or instance} to describe an isolated deployment unit that can be allocated from a resource pool by an orchestration engine. The deployment unit is created using an image and has storage attached. Therefore, our concept of container includes not only \textit{Linux control groups} like systems but also bare metal servers and guest operating systems running on top of hyper-visors, e.g., Xen \cite{xen}, KVM \cite{kvm}. Containers are managed directly or through an orchestration or IaaS system (e.g., OpenStack \cite{openstack}, \ac{AWS} \ac{EC2} \cite{aws}, Eucalyptus \cite{eucalyptus}, Omega \cite{omega}). Containers have one or more associated storage. When the container loads up, it loads an image onto its storage. The image contains, at least, the operating system and the \ac{PaaS} system in order to deploy the application in the container. 
 
 %Components
-In order to let Shuttle as generic as possible, we consider the following components of a minimal \ac{PaaS} architecture (Fig. \ref{fig:paasArchitecture}):
+In order to let Shuttle as generic as possible, we consider the following components of a minimal \ac{PaaS} architecture (Figure \ref{fig:paasArchitecture}):
 \begin{itemize}
 \item \textbf{Load balancer:} Routes user requests based on application location and container load.
 \item \textbf{Instance controller:} Collects the container metering data and performs the configuration, tear-up and tear-down of containers in the instance.
@@ -53,7 +53,7 @@ In order to let Shuttle as generic as possible, we consider the following compon
 \item \textbf{Containers:} The isolated environment where applications run.
 \item \textbf{Cloud Instances:} The guest operating systems or bare-metal machine where the containers run.
 \item \textbf{Authentication manager:} Provides user and system authentication.
-\item \textbf{Database instance:} A single \ac{DBMS} shared, or not, between multiple applications. Most of database middleware are built-on multiple containers to provide scalability and replication.
+\item \textbf{Database instance:} A single \ac{DBMS} shared, or not, between multiple applications. Most database middleware are built-on multiple containers to provide scalability and replication.
 \item \textbf{Authentication manager:} Provides user and system authentication.
 \end{itemize}
 
@@ -64,7 +64,7 @@ In order to let Shuttle as generic as possible, we consider the following compon
 \label{fig:paasArchitecture}
 \end{figure}
 
-\acf{CSP} also deploy the database management systems in containers. Their data is accessed as a service by the developers. Most of the applications deployed in \ac{PaaS} are designed to scale horizontally, i.e., to scale adding more containers. Therefore, the database and/or the session cookies often maintain the application state. The \ac{PaaS} systems are often integrated with code repositories and software development tools reducing the time deploy of applications in cloud environments. Users may access the website connecting to the load balancer via \ac{HTTPS}, which will decrypt the \ac{SSL} session and forwards the unencrypted requests to application containers. As the traffic increases, the load balancer may become a performance bottleneck if the system does not provide enough resources to handle the user traffic.\\
+\acf{CSP} also deploy the database management systems in containers. Their data is accessed as a service by the developers. Most of the applications deployed in \ac{PaaS} are designed to scale horizontally, i.e., to scale adding more containers. Therefore, the database and/or the session cookies often maintain the application state. The \ac{PaaS} systems are often integrated with code repositories and software development tools reducing the time deploy of applications in cloud environments. Users may access the website connecting to the load balancer via \ac{HTTPS}, which will decrypt the \ac{SSL} session and forward the unencrypted requests to application containers. As the traffic increases, the load balancer may become a performance bottleneck if the system does not provide enough resources to handle the user traffic.\\
 
 We assume applications to store their persistent state only in databases. Shuttle's architecture can be extended to encompass object storage, for instance \acf{AWS} \ac{S3}. We do not consider a possible state stored in the filesystem because \ac{PaaS} applications are supposed to be scalable, thus the instances file system is frequently destroyed.
 
@@ -72,19 +72,19 @@ We assume applications to store their persistent state only in databases. Shuttl
 \FloatBarrier
 \section{Shuttle Overview}
 \label{sec:arch:overview}
-Shuttle is an intrusion recovery service for \ac{PaaS}. It recovers from intrusions on software domain due to software flaws, corrupted requests, input mistakes, corrupted data and suspicious intrusions in \ac{PaaS} containers \ref{sec:arch:paas}. While previous works (Chapter \ref{chapter:related_work}) aimed to recover applications supported by a single database, Shuttle targets \ac{PaaS} applications deployed in multiple instances and backed by \acs{NoSQL} databases. Since typical \ac{PaaS} applications are designed to support high usage loads, our main contribution is a scalable intrusion recovery service that is transparent for application developers. 
+Shuttle is an intrusion recovery service for \ac{PaaS}. It recovers from intrusions on software domain due to software flaws, corrupted requests, input mistakes and corrupted data in \ac{PaaS} containers (Section \ref{sec:arch:paas}). While previous works (Chapter \ref{chapter:related_work}) aimed to recover applications supported by a single database, Shuttle targets \ac{PaaS} applications deployed in multiple instances and backed by \acs{NoSQL} databases. Since typical \ac{PaaS} applications are designed to support high usage loads, our main contribution is a scalable intrusion recovery service that is transparent for application developers. 
 
 %Summary
 Shuttle is an automatic recovery mechanism based on the record-and-replay approach. Applications supported by Shuttle can operate in one of two states: \textit{normal execution} and \textit{recovery}. During \emph{normal execution}, Shuttle records the data required to recover the application afterward: it does periodic database snapshots, logs user requests and database operations. When an intrusion is identified, tenants use Shuttle to recover their applications staring the recovery phase.
 
-Processes described in Section \ref{chapter:related_work} lead us to define \textit{how to remove the intrusion effects} and \textit{how to recover a consistent state}. During the \emph{recovery phase}, Shuttle removes the intrusion effects creating a branch of the system execution in which it loads a snapshot that contains an application state before the intrusion began. It builds a consistent state replaying (re-executing), in the new branch, the legitimate requests logged during the \emph{normal execution}, performing either full or selective replay (Section \ref{sec:arch:selective_replay}). In the meantime, the incoming requests are executed in the previous branch. When ready, it sets the new branch as the single execution branch. \hl{este parágrafo está fraquinho}\\
+The processes described in Section \ref{chapter:related_work} lead us to define \textit{how to remove the intrusion effects} and \textit{how to recover a consistent state}. During the \emph{recovery phase}, Shuttle removes the intrusion effects creating a branch of the system execution in which it loads a snapshot that contains an application state before the intrusion began. It builds a consistent state replaying (re-executing), in the new branch, the legitimate requests logged during the \emph{normal execution}, performing either full or selective replay (Section \ref{sec:arch:selective_replay}). In the meantime, the incoming requests are executed in the previous branch. When ready, it sets the new branch as the single execution branch. \\
 
 
 
 %PaaS
-Shuttle aims to be integrated by \acf{CSP} into their \ac{PaaS} architecture as a novel service. Services provided in \ac{PaaS} are expected to be well-tested and available without setup because they are offered by \ac{CSP} and shared by multiple tenants. Our approach hides the Shuttle implementation and operation within the database and load-balancing \ac{PaaS} services. Shuttle components can be shared by multiple clients but the data of each client remains isolated. For sake of simplicity, we consider a single tenant implementation.
+Shuttle aims to be integrated by \acf{CSP} into their \ac{PaaS} architecture as a novel service. Services provided in \ac{PaaS} are expected to be well-tested and available without setup because they are offered by \ac{CSP} and shared by multiple tenants. Our approach hides the Shuttle implementation and operation within the database and load-balancing \ac{PaaS} services. Shuttle components can be shared by multiple clients but the data of each client remains isolated. For sake of simplicity, we present Shuttle considering a single tenant implementation.
 
-We consider a minimal \ac{PaaS} architecture to let Shuttle as generic as possible. We consider a client-server model in which clients access applications using the \ac{HTTP} protocol \footnote{Shuttle also supports HTTPS by ending the connections at the proxy}. \ac{HTTP} requests are received by a load balancer that forwards them to web/application servers, which access a shared database. {PaaS} components are represented with solid line in Figure \ref{fig:shuttle_architecture}, while Shuttle components are represented with dashed line. \ac{PaaS} platforms with Shuttle have the following components:
+We consider a minimal \ac{PaaS} architecture to let Shuttle as generic as possible. We consider a client-server model in which clients access applications using the \ac{HTTP} protocol \footnote{Shuttle also supports HTTPS by ending the connections at the proxy.}. \ac{HTTP} requests are received by a load balancer that forwards them to web/application servers, which access a shared database. {PaaS} components are represented with solid line in Figure \ref{fig:shuttle_architecture}, while Shuttle components are represented with dashed line. \ac{PaaS} platforms with Shuttle have the following components:
 
 \begin{itemize}
   \item \textit{Proxy:} Logs every \ac{HTTP} user requests, adds an unique mark to its header and forwards it to the load balancer. The proxy functionality might be part of the load balancer but conceptually it is a different component.% and currently it is also implemented separately.
@@ -96,19 +96,27 @@ We consider a minimal \ac{PaaS} architecture to let Shuttle as generic as possib
   \item \textit{Replay instances:} A set of \ac{HTTP} clients that read previously executed requests from the Shuttle storage and invoke the application servers to re-execute the requests during the recovery process. The manager coordinates the worker instances.
   \end{itemize}
 
-  \begin{figure}
-  \centering
-  \includegraphics[width=90mm]{images/architectureTiers}
-  \caption[Shuttle service architecture]{Shuttle service architecture: The dashed line components are part of the \ac{PaaS} architecture. The proxy logs the user requests into the Shuttle storage. The manager coordinates the recovery process where the replay instances replay the user requests.}
-  \label{fig:shuttle_architecture}
-  \end{figure}
+
+\begin{figure}[]
+\centering
+\subfloat[b][without Shuttle]{
+    \includegraphics[width=0.35\linewidth]{images/architectureWithout}
+}
+\subfloat[b][with Shuttle]{
+    \includegraphics[width=0.55\linewidth]{images/architectureTiers}
+}
+
+\caption{Shuttle service architecture:The dashed line components are part of the \ac{PaaS} architecture. The proxy logs the user requests into the Shuttle storage. The manager coordinates the recovery process where the replay instances replay the user requests.}
+\label{fig:shuttle_architecture}
+\end{figure}
+  
 
 %Shuttle Storage
 The \emph{Shuttle storage} keeps the content of the user requests and responses. Although we do not consider this aspect in the architecture, this store can be replicated to a remote site to allow tolerating catastrophic failures in a datacenter.
 
 
 %trusted computing base
-We consider the Shuttle components to be part of the trusted computing base since their integrity and availability are critical to recover the application. We assume that intrusions tamper the application data, which is stored in the database, not the snapshots nether the stored requests. 
+We consider the Shuttle components to be part of the trusted computing base since their integrity and availability are critical to recover the application state. We assume that intrusions tamper the application data, which is stored in the database, not the snapshots nether the stored requests. 
 
 %Database
 Unlike previous works, our design encompasses distributed databases (\acs{NoSQL}). These databases are designed to scale horizontally. Therefore, Shuttle can also be scaled by adding more database instances.
@@ -124,7 +132,7 @@ Shuttle logs the data it needs to recover applications during the normal executi
 
 \begin{figure}
 \centering
-\includegraphics[width=110mm]{images/normalExecution}
+\includegraphics[width=130mm]{images/normalExecution}
 \caption{Interaction between components during the normal execution}
 \label{fig:normal_execution}
 \end{figure}
@@ -146,7 +154,7 @@ On each database instance, the database proxy logs the operations' \ac{RID} and 
 
 
 %Summary
-In summary, every request-response pair is timestamped and logged by the proxy, the application instances the accessed data items per request, the database logs the sequence of operations per data item. The sequence of operations of each data item is kept in the database instance in which the data item is stored. The remaining data is stored in the \emph{Shuttle Storage}, which can be located, or replicated, in a remote site to prevent catastrophic disasters rebuilding the application state using the requests and a previous snapshot. The manager retrieves, asynchronously, the requests' start and end timestamps, which are sent by the proxy, and their dependencies, which are collected by the database instances. Shuttle uses the information retrieved to generate the request dependency graph (Section \ref{sec:arch:dependencies}).
+In summary, every request-response pair is timestamped and logged by the proxy, the application instances the accessed data items per request, the database logs the sequence of operations per data item. The sequence of operations of each data item is kept in the database instance in which the data item is stored. The remaining data is stored in the \emph{Shuttle Storage}, which can be located, or replicated, in a remote site to prevent catastrophic disasters rebuilding the application state using the requests and a previous snapshot. The manager retrieves, asynchronously, the requests' start and end timestamps, which are sent by the proxy, and their dependencies, which are collected by the database instances. Shuttle uses the information retrieved to generate the request dependency graph (Section \ref{sec:arch:dependencies}). \hl{vou deixar as respostas }
 
 
 
@@ -157,20 +165,20 @@ In summary, every request-response pair is timestamped and logged by the proxy, 
 \section{Recovery}
 \label{sec:arch:recovery}
 %how we will recover?
-The intrusion recovery process consists of three steps. The first step concerns the intrusion detection, in which tenants detect intrusions, suspicious behaviors or software flaws. Tenants may use automated tools as \acf{IDS} \cite{itdb} to detect intrusions. The second step is vulnerability management in which vulnerabilities are identified, classified and mitigated. This work assumes that tenants identify the malicious requests (the subsequence of actions $A_{intrusion}$ whereby the attacker compromises the application) correctly and modify or remove them. Alternatively, tenants can provide an updated and vulnerability-free software version (Section \ref{sec:arch:detection}).
-In addition, Shuttle provides several methods to help tenants to identify the malicious requests: determine set of requests that accessed a set of affected database entries  after an estimated intrusion moment; group requests by user-session; compare database versions to check if the vulnerabilities are correctly mitigated (Section \ref{sec:arch:system_admin_support}). 
+The intrusion recovery process consists of three steps. The first step concerns the intrusion detection, in which tenants detect intrusions, suspicious behaviors or software flaws. Tenants may use automated tools such as \acf{IDS} \cite{itdb} to detect intrusions. The second step is vulnerability management in which vulnerabilities are identified, classified and mitigated. This work assumes that tenants identify the malicious requests (the subsequence of actions $A_{intrusion}$ whereby the attacker compromises the application) correctly and modify or remove them. Alternatively, tenants can provide an updated and vulnerability-free software version (Section \ref{sec:arch:detection}).
+In addition, Shuttle provides several methods to help tenants to identify the malicious requests: determine the set of requests that accessed a set of affected database entries  after an estimated intrusion moment; group requests by user-session; compare database versions to check if the vulnerabilities are correctly mitigated (Section \ref{sec:arch:system_admin_support}). 
 
-The third step consists in removing the intrusion effects. Intrusions affect the application integrity, confidentiality and/or availability (Section \ref{sec:related:recovery}). To recover from confidentiality violations is out of the scope of this document. However, we argue that the design of the applications should encompass cryptography techniques which may reduce data relevance and protect the data secrecy \cite{Maheshwari2000}.
-Shuttle aims to recover applications from integrity violations, which often harm the availability. Shuttle can accomplish some of the goals of intrusion tolerance, keeping the application availability. Applications can keep providing a, possibly degraded but adequate, service during the intrusion recovery. Incoming requests are executed while the recovery process occurs without externalization to users (Section \ref{sec:arch:runtime_recovery}). In addition, Shuttle reduces the system downtime by reducing the time to recover when intrusions happen. Shuttle does not replaces the intrusion prevention, detection and tolerance mechanisms, which are the lines of defense against attacks. \hl{este paragrafo secalhar deveria ir para o overview} \\
+The third step consists in removing the intrusion effects. Intrusions affect the application integrity, confidentiality and/or availability (Section \ref{sec:related:recovery}). Recovery from confidentiality violations is out of the scope of this document. However, we argue that the design of the applications should encompass cryptography techniques which may reduce data relevance and protect the data secrecy \cite{Maheshwari2000}.
+Shuttle aims to recover applications from integrity violations, which often harm the availability. Shuttle can accomplish some of the goals of intrusion tolerance, keeping the application availability. Applications can keep providing a, possibly degraded but adequate, service during the intrusion recovery. Incoming requests are executed while the recovery process occurs without externalization to users (Section \ref{sec:arch:runtime_recovery}). In addition, Shuttle reduces the system downtime by reducing the time to recover when intrusions happen. Shuttle does not replace the intrusion prevention, detection and tolerance mechanisms, which are the primary lines of defense against attacks. \hl{este paragrafo secalhar deveria ir para o overview} \\
 
 In order to remove the intrusion effects, Shuttle loads a database snapshot, which is selected by the tenant. The selected snapshot shall be previous to the intrusion moment in order to replace the value of every data item by a non-tampered value. Shuttle \textit{manager} orders the \ac{PaaS} controller to launch a new set of application instances and deploys an updated source code version, which may include code fixes. Then, the manager orders the database instances to load the selected snapshot (Section \ref{sec:arch:image_rejuvenation}). The application is intrusion-less now that the snapshot is previous to the intrusion and the application is redeployed on new instances. 
 
-After, the manager initiates a set of \textit{replay instances} to replay the legitimate requests of the sequence of legitimate actions that happen after the snapshot, $A-A_{snapshot}-A_{intrusion}$. The replay instances retrieve a list of requests to replay and get the requests \ac{HTTP} package from the \emph{Shuttle Storage} (Figure \ref{fig:replay_execution}). Most of \ac{PaaS} systems scale automatically and horizontally, i.e., they increment or decrement the number of containers based on the measurements of the containers usage. Therefore, the application-logic and data tiers scale to attend the requests from the replay instances, increasing the recovery speed.
+After, the manager initiates a set of \textit{replay instances} to replay the legitimate requests of the sequence of legitimate actions that happen after the snapshot, $A-A_{snapshot}-A_{intrusion}$. The replay instances retrieve a list of requests to replay and get the requests \ac{HTTP} package from the \emph{Shuttle Storage} (Figure \ref{fig:replay_execution}). Most \ac{PaaS} systems scale automatically and horizontally, i.e., they increment or decrement the number of containers based on the measurements of the containers usage. Therefore, the application-logic and data tiers scale to attend the requests from the replay instances, increasing the recovery speed.
 
-The database separates the versions used by the replayed requests and the new requests, preventing the application from exposing a downtime. After the recovery process, the new requests are also forward to the recovered database version (Section \ref{sec:arch:runtime_recovery}).\\
+The database separates the versions used by the replayed requests and the new requests, preventing the application from exposing a downtime. After the recovery process, the new requests are also forwarded to the recovered database version (Section \ref{sec:arch:runtime_recovery}).\\
 
 
-The main version of Shuttle loads a previous database snapshot and replays every legitimate user request. An algorithm concerning selective replay using taint via replay is introduced in Section \ref{sec:arch:selective_replay}. \\
+The main version of Shuttle loads a previous database snapshot and replays every legitimate user request. An algorithm concerning selective replay is introduced in Section \ref{sec:arch:selective_replay}. \\
 
 In the following sections, we discuss each of key process of the recovery phase in further detail.
 
@@ -219,7 +227,7 @@ Shuttle removes these effects of malicious actions redeploying the application i
 Attackers may use external actions to perform the intrusion, for instance gaining control of the instance to modify the database files. These actions are not recorded by Shuttle therefore they are not replayed and the application recovers a consistent state. We analyze several intrusion scenarios in Section \ref{sec:eval:accuracy}.\\
 
 
-If tenants update the application software, they have to ensure that the application's interface remains compatible with the requests that will be replayed. Alternatively, tenants may update the database data items and provide a script to modify the requests make them compatible with the new \ac{API}. 
+If tenants update the application software, they have to ensure that the application's interface remains compatible with the requests that will be replayed. Alternatively, tenants may update the entries in the database and provide a script to modify the requests make them compatible with the new \ac{API}. 
 
 If the database is tampered using user requests, the tenant has to identify the malicious user requests. In addition,tenants can provide the set of suspicious database entries to Shuttle and it will resolve the set of requests that accessed the suspicious items after the estimated intrusion moment. Knowing the suspicious requests, the tenants shall use Shuttle to add, modify or remove the past requests to remove accidental or malicious behaves. \\
 
@@ -237,27 +245,27 @@ In summary, at the beginning of the intrusion recovery process, tenants shall en
 \hl{professor, pode enviar pelo menos esta parte do trabalho ao seu colega do brazil para que ele a reveja? quase todos os conceitos deste capitulo estao ligados ao trabalho dele...}
 
 %Why I need a snapshot? To reduce the work during replay.
-Shuttle needs to remove intrusions effects. In Section \ref{sec:related:recovery}, we presented two mechanisms to do so: record the data item values or compensate the malicious actions. The first makes a copy of the data item value at a certain instant $t$, implying more storage resources. The further applies compensating actions to each action over the data item value after the instant $t$, which requires more computation resources to invert every action after $t$. However, the compensation mechanism requires the knowledge of the actions that revert the effects of the malicious actions. Moreover, if a malicious action is not recorded, then compensation mechanisms do not revert its effects. Since the set of operations is unknown and Shuttle aims to remove all intrusion effects, we perform snapshots by recording the value of the database items at a certain instant $t$.\\
+Shuttle needs to remove intrusion effects. In Section \ref{sec:related:recovery}, we presented two mechanisms to do so: record the data item values or compensate the malicious actions. The first makes a copy of the data item value at a certain instant $t$, implying more storage resources. The second applies compensating actions to each action over the data item value after the instant $t$, which requires more computation resources to invert every action after $t$. However, the compensation mechanism requires the knowledge of the actions that revert the effects of the malicious actions. Moreover, if a malicious action is not recorded, then compensation mechanisms do not revert its effects. Since the set of operations is unknown and Shuttle aims to remove all intrusion effects, we perform snapshots by recording the value of the database items at a certain instant $t$ (first mechanism).\\
 
 %What is a snapshot
-A snapshot is a complete set of versions of every data item in the system from which data values can be read but to which updates are not made. Like checkpoints, snapshots save the application persistent state at a certain moment. Unlike the selective undo approach, which only reverts the tainted data items (Section \ref{sec:arch:selective_replay}), the full replay approach loads a snapshot previous to the intrusion instant. This approach reverts every database item and removes the effects of any action that occurred after the snapshot creation. \\
+A snapshot is a complete set of versions of every data item in the system from which data values can be read but to which updates are not made \hl{será que a 2ª parte da frase (a partir de “from which” inclusive) faz sentido? : fui buscar a definicao com base na dissertacao de doutoramento mas acaba por ser irrelavante}. Like checkpoints, snapshots save the application persistent state at a certain moment \hl{tenho medo que algum purista diga que um checkpoint é apenas uma marca num log e que o snapshot é a cópia dos dados... não sei, é um pouco ambiguo e discutivel}. Unlike the selective undo approach, which only reverts the tainted data items (Section \ref{sec:arch:selective_replay}), the full replay approach loads a snapshot previous to the intrusion instant. This approach reverts every database item and removes the effects of any action that occurred after the snapshot creation. \\
 
 %How it is useful?
-The duration of the recovery process is mainly defined by the number of requests previous to the intrusion of the set, $A_{before}$. The snapshot mechanism avoids to replay every request from the beginning of the application, which can take too long. Shuttle requires not only a snapshot but also every action posterior to the snapshotting instant. Therefore, Shuttle keeps every user request posterior to the oldest stored snapshotting instant. The snapshot period defines the usage of storage and computation resources. We argue that tenants can balance the costs of storage and computation resources by specifying a policy to perform the snapshot. The policy shall consider the rate of requests, the data written per request, the expected time to detect the failure and the application capability to provide an possible degraded service during the recovery period. \\
+The duration of the recovery process is mainly defined by the number of requests previous to the intrusion of the set, $A_{before}$. The snapshot mechanism avoids to replay every request from the beginning of the application, which can take too long. Shuttle requires not only a snapshot but also every action posterior to the snapshot instant. Therefore, Shuttle keeps every user request posterior to the oldest stored snapshot instant. The snapshot period defines the usage of storage and computation resources. We argue that tenants can balance the costs of storage and computation resources by specifying a policy to perform the snapshot. The policy shall consider the rate of requests, the data written per request, the expected time to detect the failure and the application capability to provide an possible degraded service during the recovery period. \\
 
 %What Shuttle needs to do?
-Shuttle takes checkpoints automatically and according to specified policies. It records the persistent state of the application, i.e., the database values, at a certain instant. The volatile state of the application, e.g. program stack, is not stored as we consider the web servers to be state-less. \\
+Shuttle takes checkpoints automatically and according to specified policies. It records the persistent state of the application, i.e., the database values, at a certain instant. The volatile state of the application, for instance its stack, is not stored as we consider the web servers to be stateless. \\
 
 
 %Request consistent snapshots
-Performing snapshots in distributed databases is not trivial since snapshots have to be consistent with the user requests.  We consider each user request may include multiple database operations, each of them to multiple database servers, without using transactions. Consequently, the sets of database operations of each user request cannot be aborted and do not have a global order. If Shuttle replays requests on a snapshot that contains part of the persistent state written by a request during its first execution, the replay will be inconsistent. The database must reflect the effects of a set of completed requests and not the results of partially executed requests. Therefore each snapshot shall be \emph{global request-consistent} containing either all or none of the database updates made by every request.
+Performing snapshots in distributed databases is not trivial since snapshots have to be consistent with the user requests.  We consider each user request may include multiple database operations, each of them to multiple database servers, without using transactions. Consequently, the sets of database operations of each user request cannot be aborted and do not have a global order. If Shuttle replays requests on a snapshot that contains part of the persistent state written by a request during its first execution, the replay will be inconsistent. The database must reflect the effects of a set of completed requests and not the results of partially executed requests. Therefore each snapshot shall be \emph{global request consistent} \hl{na dissertação estava global...} containing either all or none of the database updates made by every request.
 
-We define \textit{request-consistent global snapshot}: a snapshot is global request-consistent if it records a state of the database which reflects the effect of a set of completed requests and not the results of any partially executed request. This concept extends the definition of \emph{transaction-consistent global checkpoint}: a checkpoint is a transaction-consistent global checkpoint if it contains all or none of the updates made by a transaction \cite{global-checkpoint}. Since most of \acs{NoSQL} databases do not support transactions, we extend the concept of transaction to \textit{request-transaction}. A request-transaction embraces all database operations performed due to the execution of a request. Unlike \ac{ACID} transactions, a request-transaction may be not possible to abort.\\ 
+We define \textit{request consistent global snapshot}: a snapshot is global request consistent if it records a state of the database which reflects the effect of a set of completed requests and not the results of any partially executed request. This concept derives from the notion of \emph{transaction consistent global checkpoint}: a checkpoint is a transaction-consistent global checkpoint if it contains all or none of the updates made by a transaction \cite{global-checkpoint}. Since most \acs{NoSQL} databases do not support transactions, we extend the concept of transaction to \textit{request transaction}. A request-transaction embraces all database operations performed due to the execution of a request. Unlike \ac{ACID} transactions, a request-transaction may be not possible to abort. \hl{esta nocao serve para dizer que o snapshot não é apenas consistente por transacao, é consistente por request. Não há meios requests. Como não há transactions em NoSQL, a sequencia de operacoes feitas por um pedido, acaba por ser uma transaccao sob o ponto de vista do snapshot}\\ 
 
 
 
 %Log-oriented vs dump-oriented vs Fuzzy
-\hl{Justifica fazer aqui uma especie de related work com o log-oriented vs dump-oriented vs fuzzy e explicar protocolos que ja existam? - acho que este paragrafo pode ir para o lixo...} Checkpoint algorithms for distributed databases can be classified as log-oriented and dump-oriented \cite{checkpoint-survey}. In the dump-oriented approach, the checkpoint is referred to as the process of saving the state of all data items in the database. In the log-oriented approach, periodically a dump of the database is taken and also a marker is saved at appropriate places in the log. When a failure occurs, the latest dump is restored and the operations on the log after the dump was taken is applied to the dump until the marker is reached to restore the database to a consistent state \cite{global-checkpoint}.\\
+Checkpoint algorithms for distributed databases can be classified as log-oriented and dump-oriented \cite{checkpoint-survey}. In the dump-oriented approach, the checkpoint is referred to as the process of saving the state of all data items in the database. In the log-oriented approach, periodically a dump of the database is taken and also a marker is saved at appropriate places in the log. When a failure occurs, the latest dump is restored and the operations on the log after the dump was taken is applied to the dump until the marker is reached to restore the database to a consistent state \cite{global-checkpoint}. We take the latest approach.\\
 
 
 In addition, the snapshot mechanism shall be non-blocking: the processes shall not stop their execution while taking snapshots.  
@@ -266,7 +274,7 @@ In addition, the snapshot mechanism shall be non-blocking: the processes shall n
 A straightforward way to take a request-consistent global snapshot is to stop processing new requests, waiting until the currently executing requests finish, then making a copy of each data item. However, this solution incurs on communication overhead to reach a globally inactive state and causes application downtime. Yet, this approach may fit applications that can be unavailable during a certain period, for instance, during a certain period of the night. \\
 
 
-Kim and Park \cite{kim_checkpoint} propose an approach in which a coordinator broadcasts a checkpoint-request message to every database node. Each database node divides the transactions into two groups: before the checkpoint-request $T_p$ and after $T_f$. Updates of transactions in $T_p$ are flushed to the current database, while the ones in $T_f$ are flushed in a \emph{checkpoint area}. When all transactions of $T_p$ are done, the checkpoint area is updated with items updated by transactions in $T_p$ but not by $T_f$. After, the rules of current database and checkpoint area are exchanged. The major drawback of this approach comes from updating the checkpoint area.
+Kim and Park \cite{kim_checkpoint} propose an approach in which a coordinator broadcasts a checkpoint-request message to every database node. Each database node divides the transactions into two groups: before the checkpoint-request $T_p$ and after $T_f$. Updates of transactions in $T_p$ are flushed to the current database, while the ones in $T_f$ are flushed in a \emph{checkpoint area} (a temporary allocated storage area). When all transactions of $T_p$ are done, the checkpoint area is updated with items updated by transactions in $T_p$ but not by $T_f$. After, the rules of current database and checkpoint area are exchanged. The major drawback of this approach comes from updating the checkpoint area: the database is unavailable during the updating process.
 
 
 %Our solution
@@ -279,11 +287,12 @@ Database proxies use the \ac{SID} to define the version of the data item used by
 \begin{figure}
 \centering
   \includegraphics[width=130mm]{images/snapshots}
-  \caption[Snapshot versions stored in the database]{Versions stored in the database during a sequence of 7 operations and 3 snapshots. The final values of the stored versions are contained in filled squares.}
+  \caption[Snapshot versions stored in the database]{Versions stored in the database during a sequence of 7 operations and 3 snapshots. The final values of the stored versions are contained in filled squares. The tenant schedules 3 snapshots on SID: 100, 200, 300.}
 \label{fig:snapshots}
 \end{figure}
 
-In order to avoid to replay every database operation to obtain the snapshot, the snapshot mechanism shall create a database copy (dump). We avoid blocking the application to copy the versions using a copy-on-write and incremental method: a new version is created only when the data is written for the first time in each snapshot. Since a data item may not be written in every snapshot, for instance $SID=200$ in Figure \ref{fig:snapshots}, we associate a \emph{version list} to every data item. A \emph{version list} tracks on which snapshots the data item has been written. In conclusion, the snapshot is incremental mechanism because it does not require to duplicate data.\\
+\hl{o schedule é para indicar que, nesses momentos, o tentant diz ao Shuttle que quer um snapshot no SID 100, 200 ou 300}
+In order to avoid to replay every database operation to obtain the snapshot, the snapshot mechanism shall create a database copy (dump). We avoid blocking the application to copy values using a copy-on-write and incremental method. When a data item is written for the first time in each snapshot, Shuttle creates a new version of the data item. Since a data item may not be written in every snapshot, e.g., $SID=200$ in Figure \ref{fig:snapshots}, we associate a \emph{version list} to every data item. A \emph{version list} tracks on which snapshots the data item has been written. In conclusion, the snapshot is an incremental mechanism because it does not require to duplicate data.\\
 %The version list also contains read requests that did not succeeded, for instance when the data item does not exists, to avoid false positives. 
 
 
@@ -291,9 +300,7 @@ In order to avoid to replay every database operation to obtain the snapshot, the
 A snapshot might become inconsistent. For instance, Table \ref{tab:snapshot_caso_bicudo} represents the execution of two concurrent requests. Their normal execution is consistent. A snapshot with \ac{SID}=5 would contain [A1 = 11] and be a global request-consistent. However, if Shuttle loads the snapshot and replays the request 20, its first read operation reads A1 == 11 instead of A1 == 10. 
 
 
-This particular case happens when a request with \ac{RID} greater than the snapshot instant \ac{SID} read a version belonging to the snapshot \ac{SID} and, after, a request with \ac{RID} lower than \ac{SID} overwritten that version. 
-
-Storing a new version and adding a flag on the version list solve the problem. Nevertheless, we expect this to happen only in rare occasions.
+This particular case happens when a request with \ac{RID} greater than the snapshot instant \ac{SID} read a version belonging to the snapshot \ac{SID} and, after, a request with \ac{RID} lower than \ac{SID} overwritten that version. Storing a new version and adding a flag on the version list solves the problem. Nevertheless, we expect this to happen only in rare occasions. \hl{o texto abaixo desapareceu porque ficou resumido}
 
 %the  and every operation with \ac{RID} > \ac{SID} reads/writes the new version. Operations of requests with \ac{RID} > \ac{SID} that read the original value, for instance A = 10, are marked and read the old version during the replay. 
 %in parallel during the transition period, i.e., when a request accesses the previous snapshot and other accesses the current snapshot. 
@@ -319,24 +326,24 @@ Write A=11                    & \textit{Completed}         & A1=11, A15=20 \\
 %Discussion
 Unlike the approach proposed by Kim and Park, our approach allows to record multiple snapshots keeping various data item versions and does not require to to copy the transactions.
 
-The value of \acf{SID} must be known by every database instance before the execution of any request with $RID > SID$. If the \ac{RID} was determined by incremental request counter, then Shuttle would need to analyze the request rate and estimate the \ac{SID} value. However, the request rate can vary and the snapshot would fail. Notice that our mechanism does not require any clock synchronization because the \ac{RID} is defined by the proxy timestamp and tenants can schedule a snapshot defining a future time instant. The period between the scheduled moment and the present must be bigger than the communication delay between the manager and the database instances. Consequently, we assume the communication between the manager and database proxies is synchronous. 
+The value of \acf{SID} must be known by every database instance before the execution of any request with $RID > SID$. If the \ac{RID} was determined by incremental request counter, then Shuttle would need to analyze the request rate and estimate the \ac{SID} value. However, the request rate can vary and the snapshot would fail. Notice that our mechanism does not require clock synchronization because the \ac{RID} is defined by the proxy timestamp and tenants can schedule a snapshot defining a future time instant. The period between the scheduled moment and the present must be bigger than the communication delay between the manager and the database instances. Consequently, we assume the communication between the manager and database proxies is synchronous: the messages are delivered within a fixed time.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Dependency Graph}
 \label{sec:arch:dependencies}
 %Dependency definitions
-An application execution can be modeled as a set of actions and a set of objects. Actions read and write the shared set of objects. An action $A$ is dependent from an action $B$ if $A$ reads an object's version written by $B$.
+An application execution can be modeled as a set of actions and a set of objects. Actions read and write objects. An action $A$ is dependent from an action $B$ if $A$ reads an object's version written by $B$.
 
 %why is relevant in general
-Requests must be replayed in a consistent manner to obtain a consistent application after the replay phase. The request replay order must ensure that if the requests, application semantics and initial database values are the same, then the final database values are equal. For this propose, the dependencies between actions shall remain consistent: if during the first execution an action $A$ becomes depends from an action $B$ by an object $O$, then, during the replay phase, $A$ shall read the object $O$ only after $B$ updates the object $O$. Otherwise, $A$ may read a version different than the original version.
+Requests must be replayed in a consistent manner to obtain a consistent application after the replay phase. The request replay order must ensure that if the requests, application semantics and initial database values are the same, then the final database values are equal. For this propose, the dependencies between actions shall remain consistent: if during the first execution an action $A$ becomes depends on an action $B$ by an object $O$, then during the replay phase $A$ shall read the object $O$ only after $B$ updates the object $O$. Otherwise, $A$ may read a version different than the original version.
 
 %related work and why it does not work in PaaS
-Previous proposals, for instance \emph{in} \cite{goel}, leverage the request serialization provided by snapshot isolation in relational \ac{DBMS} to order the operations to replay. In contrast, \textit{Undo for Operators} \cite{undoForOperators} uses the application protocol knowledge to establish the dependency between requests and order the requests. However, accesses to \acs{NoSQL} databases are not globally serialized. Moreover, the data items accessed during the replay phase may change due to updates to the application semantic, request modification or multi-threaded execution. At last, the application semantics is unknown in advance since we want to support any application deployed on \ac{PaaS}. Taking that into account, we propose a novel approach.\\
+Previous proposals, for instance \emph{in} \cite{goel}, leverage the request serialization provided by snapshot isolation in relational \ac{DBMS} to order the operations to replay. In contrast, \textit{Undo for Operators} \cite{undoForOperators} uses the application protocol knowledge to establish the dependency between requests and order them. However, accesses to \acs{NoSQL} databases are not globally serialized. Moreover, the data items accessed during the replay phase may change due to updates to the application semantics, request modification or multi-threaded execution. At last, the application semantics is unknown in advance since we want to support any application deployed on \ac{PaaS}. Taking that into account, we propose a novel approach.\\
 
 
 %Rules
-Shuttle tracks the dependencies between actions in a \textit{dependency graph}. A \emph{dependency graph} consists of nodes that represent requests and edges that establish dependencies between them (Figure \ref{fig:selectiveGraph}).  Dependencies between requests are established using the following rules: a request $R_A$ is dependent upon request $R_B$ if there is a data item $x$ such that $R_A$ reads $x$ and $R_B$ performs the latest update on $x$ before the read operation by $R_A$. Dependencies are transitive except when requests perform blind writes, i.e., requests write items without read them first \cite{Ammann2002}. Therefore, the dependency graph is a mixed graph, if there is a dependency between $A$ to $B$, then there may be a dependency between $B$ and $A$.
+Shuttle tracks the dependencies between actions in a \textit{dependency graph}. A \emph{dependency graph} consists of nodes that represent requests and edges that establish dependencies between them (Figure \ref{fig:selectiveGraph}).  Dependencies between requests are established using the following rules: a request $R_A$ is dependent upon request $R_B$ if there is a data item $x$ such that $R_A$ reads $x$ and $R_B$ performs the latest update on $x$ before the read operation by $R_A$. Dependencies are transitive except when requests perform blind writes, i.e., requests write items without reading them first \cite{Ammann2002}. Therefore, the dependency graph is a mixed graph, if there is a dependency between $A$ to $B$, then there may be a dependency between $B$ and $A$.
 
 
 %How Shuttle creates the dependency graph?
@@ -353,20 +360,20 @@ The above method may lead to \emph{false positives}, i.e., to flag dependencies 
 When tenants use the dependency graph to determine the set of malicious requests, $A_{malicious}$, they shall take into account that false dependencies may lead to consider legitimate operations as malicious and, consequently, cause data loss.
 
 %false negatives: not detected but exist
-Complex queries on a relational database may lead to \emph{false negatives}, i.e. a dependency exists but is not detected. For instance when a read operation would have been executed on a deleted data item if this data item had not been deleted before the request execution \cite{Xie2008}. Therefore, legitimate transactions may have different output even when they were not affected by malicious execution during their original execution. Since user mistakes are often deletes due to wrong query arguments, this is a relevant issue. 
+Complex queries on a relational database may lead to \emph{false negatives}, i.e. a dependency exists but is not detected. For instance when a read operation would have been executed on a deleted data item if this data item had not been deleted before the request execution \cite{Xie2008}. Therefore, legitimate transactions may have different output even when they were not affected by malicious execution during their original execution. Since user mistakes are often delete operations due to wrong query arguments, this is a relevant issue. 
 
 In contrast with SQL queries that access the data items that match a query, the \ac{CRUD} interface of most key-value stores specifies, in a deterministic and apriori manner, the data item that will be accessed. Shuttle logs every access, even when the data items do not exist, keeping the \emph{operation list} of the deleted data items to track further operations.\\
 
 
 %Cycles
 %Each request may perform multiple database operations, each of them to multiple database servers, without defining a global \ac{ACID} transaction. 
-Shuttle can not replay requests synchronously, i.e., waiting for the response to the previous request before sending the next. To replay the requests synchronously would not have only performance degradation but also lock the replay phase because requests, which have been originally executed in concurrently during the normal phase, may be depend from each other. Therefore, Shuttle replays requests asynchronously and, hence, concurrently. Two requests are executed concurrently if they are dependent from each other. For instance, Figure \ref{fig:inconsistency_db_order} represents the first execution of two requests that increment the variable $A$. The $Request 1$ depends from $Request 2$ and vice versa. 
+Shuttle can not replay requests synchronously, i.e., waiting for the response to the previous request before sending the next. To replay the requests synchronously would not have only performance degradation but also lock the replay phase because requests, which have been originally executed in concurrently during the normal phase, may be depend on each other. Therefore, Shuttle replays requests asynchronously and, hence, concurrently. Two requests are executed concurrently if they are dependent from each other. For instance, Figure \ref{fig:inconsistency_db_order} represents the first execution of two requests that increment the variable $A$. The $Request 1$ depends on $Request 2$ and vice versa. 
 
 %Ordering using operation list
-Yet, re-execution of concurrent requests is not deterministic. User requests are processed concurrently using multi-threaded servers and the system messages, including database requests, do not have a delivering order. Therefore, the execution order of two concurrent requests is unknown. Our novel approach uses the \emph{operation list} to turn the re-execution of concurrent requests deterministic. An \emph{operation list} is a sorted list that records the operations to a data item. During the replay phase, the operations to a data item must follow the order established by is operation list. For instance, in Figure \ref{fig:inconsistency_db_order}, the operation list of the data item $A$ is: $[Req1:Get, Req1:Put, Req2:Get, Req2:Put, Req1:Get, Req1:Put, Req2:Get, Req2:Put]$. {Req.~1} and {req.~2} are replayed concurrently but the result is consistent because the order is established by the operation list.
+Yet, re-execution of concurrent requests is not deterministic. User requests are processed concurrently using multi-threaded servers and the system messages, including database requests, do not have a delivering order. Therefore, the execution order of two concurrent requests is unknown. To deal with this issue, our novel approach uses the \emph{operation list} to turn the re-execution of concurrent requests deterministic. An \emph{operation list} is a sorted list that records the operations to a data item. During the replay phase, the operations to a data item must follow the order established by is operation list. For instance, in Figure \ref{fig:inconsistency_db_order}, the operation list of the data item $A$ is: $[Req1:Get, Req1:Put, Req2:Get, Req2:Put, Req1:Get, Req1:Put, Req2:Get, Req2:Put]$. {Req.~1} and {req.~2} are replayed concurrently but the result is consistent because the order is established by the operation list.
 
 %Unlocking
-During the recovery period, intrusions are removed and the application code is updated. This may cause requests to access different data items than in the first execution. Requests may not access the same sequence of data items or read/write the same content. If an operation contained in the operation list is not performed, the following operations to the data item are blocked and the request fails. To address this problem, at the end of each request execution, the \textit{database client interceptor} fetches the list of data items accessed by the request on its first execution and compares them against the ones accessed during the replay process. The database client library invokes the \emph{database proxy} with the keys that have not been accessed to unlock the operations of the remaining requests. 
+During the recovery period, intrusions are removed and the application code is updated. This may cause requests to access different data items than in the first execution. Requests may not access the same sequence of data items or read/write the same content. If an operation contained in the operation list is not performed, the following operations to the data item are blocked and the request fails. To address this problem, at the end of each request execution, the \textit{database client interceptor} fetches the list of data items accessed by the request on its first execution and compares them against the ones accessed during the replay process. The database client library invokes the \emph{database proxy} with the data items that have not been accessed to unlock the operations of the remaining requests. 
 
 For instance in Figure \ref{fig:inconsistency_unlock}, the $Request 1$ has a different replay execution performing $B = B \times 5$ instead of incrementing $A$. The second operation of {req.~2} is delayed until the end of the {req.~1} because it succeed the second operation of {req.~1} in the operation list. After the execution of {req.~1}, the database client interceptor unlocks the second operation of {req.~2}.\\
 
@@ -402,7 +409,7 @@ During replay there may be non-deterministic situations, whenever an access is n
 A naive solution would be to detect the new dependency during the replay process, stop the process and start a new replay process in a new snapshot, including the new dependency.
 
 %brown
-Brown \textit{et al.} \cite{undoForOperators} proposes the concept of \textit{verb} (Section \ref{sec:related:recovery_app}). A verb object encapsulates a single interaction (request/response) of the user and exposes an interface to establish the order between requests and their dependencies. However, tenants shall know the applications' operations to create the verbs defining: a commutativity test, an independence test, a preferred-ordering-test and an application-defined action to handle a inconsistency if the operation fails. Since Shuttle shall support any \ac{PaaS} application, the applications' semantics are unknown in advance. Therefore, this solution is not adequate.
+Brown \textit{et al.} \cite{undoForOperators} propose the concept of \textit{verb} (Section \ref{sec:related:recovery_app}). A verb object encapsulates a single interaction (request/response) of the user and exposes an interface to establish the order between requests and their dependencies. However, tenants shall know the applications' operations to create the verbs defining: a commutativity test, an independence test, a preferred-ordering-test and an application-defined action to handle a inconsistency if the operation fails. Since Shuttle shall support any \ac{PaaS} application, the applications' semantics are unknown in advance. Therefore, this solution is not adequate.
 
 %sorted log
 A sorted-log, in which the accesses are sorted, for instance by \acf{RID}, would establish that operations must have a strict incremental order. However, operations with smaller \ac{RID} than the previous are aborted. For instance, the second operation of {req.~2} in Figure \ref{fig:inconsistency_db_order} would be aborted.
@@ -410,11 +417,11 @@ A sorted-log, in which the accesses are sorted, for instance by \acf{RID}, would
 %sorting per start-end
 An alternative solution consists on sorting the requests per \emph{start-end order}, instead of using the dependency graph. A request starts only after all requests with end lower than it ends. Dependencies between requests remain correct, since they are constrained by the \emph{operation list}. Thus the parallel requests are ordered and replayed in a similar manner to the first execution. Two serial requests can have distinct re-executions: if a request starts after the end of the previous. For instance in Figure \ref{fig:inconsistency_serial}, {req.~1} and {req.~2} can have distinct re-executions.
 
-If two new operations are re-executed concurrently, then their order is as deterministic as if they happen during the first execution. For instance in Figure \ref{fig:inconsistency_conflict}, the operation of {req.~1} $B = B \times 5$ is executed in parallel with the operations $B++$ of {req.~2}. The order of these requests is as deterministic as if during the first execution: the operation of {req.~1} can execute before, between or after {req.~2}.
+If two operations are re-executed concurrently, then their order is as deterministic as if they happen during the first execution. For instance in Figure \ref{fig:inconsistency_conflict}, the operation of {req.~1} $B = B \times 5$ is executed in parallel with the operations $B++$ of {req.~2}. The order of these requests is as deterministic as if during the first execution: the operation of {req.~1} can execute before, between or after {req.~2}.
 
 
 %version and semantic reconciling
-In order to turn the replay process more consistent with the first execution, we can leverage the semantic reconciliation, as \textit{in} Dynamo \cite{Decandia2007}. The case represented in Figure \ref{fig:inconsistency_conflict} is equivalent to a concurrent update where two parallel writes are performed on distinct database instances. Each request writes a distinct version resulting in conflicting versions of an item. Developers use the application-assisted conflict resolution interface to merge the versions (reconciliation) \cite{Decandia2007}. In this case, the following read operation would access the values written by the latest operation. For instance, if the latest is {req.~1}, then it choose between $1$ and $2$. If the latest is {req.~2}, then it choose between $1$ and $5$. This solution can produce a consistent output.\\
+In order to turn more operations of the replay process consistent with the first execution \hl{exacto, cada operacao ou é consistente ou não é. A consistencia do processo poderia ser vista como a média da consistencia ou não de todos - uma binomial - mas fica ambigo. Assim fica explicito}, we can leverage semantic reconciliation, as \textit{in} Dynamo \cite{Decandia2007}. The case represented in Figure \ref{fig:inconsistency_conflict} is equivalent to a concurrent update where two parallel writes are performed on distinct database instances. Each request writes a distinct version resulting in conflicting versions of an item. Developers use the application-assisted conflict resolution interface to merge the versions (reconciliation) \cite{Decandia2007}. In this case, the following read operation would access the values written by the latest operation. For instance, if the latest is {req.~1}, then it choose between $1$ and $2$. If the latest is {req.~2}, then it choose between $1$ and $5$. This solution can produce a consistent output.\\
 
 In summary, unlike previous solutions, Shuttle orders the requests using their start and end instants and constraining the operations to the order established on the \textit{operation lists}. This approach allows requests to access new data items during the recovery process and to replay concurrent requests.
 
@@ -430,7 +437,7 @@ Despite Shuttle's capability to replay concurrent requests, one of the main chal
 
 We address this problem grouping the requests into \emph{clusters}. A cluster is a set of requests that have dependencies between them but not from/to requests in other clusters. Clusters are created when the recovery is about to start by inspecting the dependency graph. Since clusters are independent, they are executed concurrently by different \emph{replay instance} without synchronization. Requests within the same cluster, are performed in start-end order (Section \ref{sec:arch:dependencies}). Given that more requests are executed concurrently, Shuttle launches more application servers and database instances to process the replayed requests. Therefore, the replay phase throughput is bigger than the during first execution and the recovery time is minimized. This mechanism is applicable if the graph dependencies remain unchanged during the recovery phase, i.e,. every replayed operation is contained in the operation list but not all operations in the list must be replayed.
 
-Taking the above in account, we define two replay approaches: \emph{serial replay} and \emph{parallel replay}. The first considers every request in the same cluster. The later uses the dependency graph to group the requests in independent clusters. Both approaches replay the requests in a start-end order, supporting concurrent requests \ref{sec:arch:runtime_recovery}. In contrast to \emph{serial replay}, \emph{parallel replay} allows to perform more requests in parallel but it does not support new dependencies during the replay phase. Therefore, \emph{parallel replay} requires that tenants ensure that the dependencies between requests do not change during the replay process. Since the dependencies between requests often remain constant and novel dependencies are easily detected, we consider \emph{parallel replay} represents a significant advantage for \acf{CSP}. These approaches are compared in Chapter \ref{chapter:evaluation}.
+Taking the above in account, we define two replay approaches: \emph{serial replay} and \emph{parallel replay}. The first considers every request in the same cluster. The later uses the dependency graph to group the requests in independent clusters. Both approaches replay the requests in start-end order, supporting concurrent requests \ref{sec:arch:runtime_recovery}. In contrast to \emph{serial replay}, \emph{parallel replay} allows to perform more requests in parallel but it does not support new dependencies during the replay phase. Therefore, \emph{parallel replay} requires that tenants ensure that the dependencies between requests do not change during the replay process. Since the dependencies between requests often remain constant and novel dependencies are easily detected, we consider \emph{parallel replay} represents a significant advantage for \acf{CSP}. These approaches are compared in Chapter \ref{chapter:evaluation}.
 
 
 
@@ -440,10 +447,10 @@ Taking the above in account, we define two replay approaches: \emph{serial repla
 \label{sec:arch:image_rejuvenation}
 
 % Why? Instances can be corrupted
-\ac{PaaS} systems launch instances/containers and deploy applications or databases on them. Attackers may exploit vulnerabilities in the instances configuration to affect the service integrity, confidentiality or availability. For instance, an attacker may explore the shellshock vulnerability in the GNU's bash shell of an out of date instances.
+\ac{PaaS} systems launch instances/containers and deploy applications or databases on them. Attackers may exploit vulnerabilities in the instances configuration to affect the service integrity, confidentiality or availability. For instance, an attacker may explore the shellshock vulnerability in the GNU's bash shell of out of date instances.
 
 %Related work
-An effective technique to remove intrusion effects and restore the application availability is to terminate compromised containers and launch new containers. We name this approach as \textit{instance rejuvenation}. A similar approach is used in proactive recovery systems for byzantine fault tolerance. Castro \textit{et al.} \cite{Castro2002} proposes a mechanism that recovers the replicas of a system periodically even if there is no reason to suspect that they are faulty. This mechanism aims to prevent an attacker from compromising the service by corrupting a quorum of the replicas without being detected. We extend this approach to \ac{PaaS} to remove possible intrusion effects in containers, even if there is no reason to suspect that they are affected by the intrusion.\\
+An effective technique to remove intrusion effects and restore the application availability is to terminate compromised containers and launch new containers. We name this approach as \textit{instance rejuvenation}. A similar approach is used in proactive recovery systems for Byzantine fault tolerance. Castro \textit{et al.} \cite{Castro2002} propose a mechanism that recovers the replicas of a system periodically even if there is no reason to suspect that they are faulty. This mechanism aims to prevent an attacker from compromising the service by corrupting a quorum of the replicas without being detected. We extend this approach to \ac{PaaS} to remove possible intrusion effects in containers, even if there is no reason to suspect that they are affected by the intrusion.\\
 
 
 
@@ -451,7 +458,7 @@ An effective technique to remove intrusion effects and restore the application a
 Shuttle interacts with the \ac{PaaS} controller rejuvenate instances when they are compromised and a new recovery process begins. This process launches new instances. The \ac{PaaS} controller initializes the new instances with updated container images and deploys an updated version of the application code or database, which may include updates to fix discovered flaws or prevent future intrusions. Shuttle copies the snapshot selected by the tenant to new database instances. Requests are replayed on the novel instances while the incoming requests are processed by the old instances, perhaps with a degraded integrity constrains. This mechanism keeps the application available during the recovery process. After the recovery process, the old instances are terminated.\\
 
 %Why its good?
-We assume new instances to be intrusion-free since tenants or \acf{CSP} can update the image and the image is installed on an empty persistent-state. This approach fits the concept of automatic deployment applications in \ac{PaaS}. Applications for \ac{PaaS} platforms are designed to scale horizontally so the number of application instances can be dynamic.
+We assume new instances to be intrusion-free since tenants or CSPs can update the image and the image is installed on an empty persistent-state. This approach fits the concept of automatic deployment applications in \ac{PaaS}. Applications for \ac{PaaS} platforms are designed to scale horizontally so the number of application instances can be dynamic.
 
 %remote replication
 In addition, the instances can be instantiated in a remote site to recover from catastrophic disasters \cite{cloud-disaster}. Snapshots, database operation lists, application code and requests can be replicated to a remote site. If they are available, then Shuttle can launch new instances on a remote datacenter, deploy the application code, load the snapshot and operation lists in the database instances and replay the requests. This is a log-based recovery process \cite{Wang2010} that allows to recover the  application integrity and availability.
@@ -472,11 +479,47 @@ Tenants are responsible for ensuring that request dependencies are correct and t
 Applications shall remain available during the recovery process, perhaps with a degraded behavior, without exposing downtime to users. To do so, Shuttle considers each recovery process defines a new branch, a model inspired in versioning systems such as git \cite{git}.
 
 %How
-A \emph{branch} is a sequence of snapshots. Snapshots are analogous to \textit{commits} in git. Each snapshot represents a set of versions of every data item in the database at a certain instant. Each recovery process creates a new branch forking a previous snapshot chosen by the tenant, either explicitly or implicitly (by indicating the initial intrusion instant, selecting implicitly the preceding snapshot). When a new branch is created, a new snapshot is also created.Incoming user requests access only the data of the previous branch keeping the application available, while replayed requests access the created branch without compromising the availability of the application. 
+A \emph{branch} is a sequence of snapshots. Snapshots are analogous to \textit{commits} in git. Each snapshot represents a set of versions of every data item in the database at a certain instant. Each recovery process creates a new branch forking a previous branch on a snapshot chosen by the tenant \hl{é fork da branch mas pode ser num snapshot que não o seu ultimo snapshot, bem visto}, either explicitly or implicitly (by indicating the initial intrusion instant, selecting implicitly the preceding snapshot). When a new branch is created, a new snapshot is also created on the new branch \hl{sim, para fazer de snapshot base, eu tinha um mecanismo mais complicado em que não era preciso criar esse snapshot mas assim: cada snapshot existe numa e só uma branch}. Incoming user requests access only the data of the previous branch keeping the application available, while replayed requests access the created branch without compromising the availability of the application. If Shuttle launches new database instances, then the new branch is created in the new instances and write operations occur in the new instances. Read operations occur in the previous instances until the first write operation of the accessed data item in the new instances.
+
+\begin{figure}
+\centering
+\includegraphics[width=55mm]{images/branches_paper}
+\caption[Tree model]{Tree model: 2 branches and 4 snapshots: branch 1 contains the snapshots $A, B, C$; branch 2 contains the snapshot $D$;}
+\label{fig:branches_simple}
+\end{figure}
+
+
+%Architecture details
+A branch contains a sequence of snapshots but a snapshot can only belong to a single branch (Figure \ref{fig:branches_simple}). Each snapshot represents a possible version of the data item. A novel data item version is created only when the data item is written for the first time during each snapshot. Consequently, the data item may not have a version for each snapshot. Shuttle keeps a list of the versions in which each database item has been written (Section \ref{sec:arch:snapshot}).
+
+%Problem of lack of versions:
+For instance, in Figure \ref{fig:branches}, a data item $x$ may have the following sequence of versions on its version list: $[A,B,C,D,E]$. If $x$ has not been written in snapshot $E$, the version $E$ would not exists and the latest version of $x$ would be $D$. However, the snapshot $D$ has been compromised so it is not part of the current branch (branch 3). The latest non-tampered version of $x$ is the version $B$. If version $B$ does not exists, then the latest version is $A$.
+
+%branch path
+We define the concept of \emph{Branch Bath} \hl{bem visto, foi mesmo copy-past do nome da variavel :P }:  a Branch Path of a certain branch is the sequence of snapshots between the current snapshot and the root snapshot \hl{bem visto, o snapshot pode ser tampered}. A Branch Path of a certain branch defines the versions available to operations that belong to that branch. The branch path of branch $3$ in Figure \ref{fig:branches} is \{E, B, A\}. The one of branch $2$ is: \{D, C, B, A\}. When a branch is created, its branch path contains the its initial snapshot and the sub-sequence of snapshots in the branch path of the branch of the forked snapshot that are equal or previous to the forked snapshot.
+
+%Version to read
+The version accessed by an operation is defined using the branch path of the operation's branch and the version list of the accessed data item: operations read the latest version present in the \emph{version list} and in the \emph{branch path} and write the latest version in the branch path. Therefore, a new version, referring the initial snapshot of the new branch, is added to the version list on the first write operation to each data item during the replay.
+
+%Isolation
+This mechanism maps the operations to the correct versions and isolates the multiple, perhaps simultaneous, attempts to recovery the application without compromising the exposed application behavior. During the recovery process, users access the, perhaps corrupted, old branch loaded in the current computation and database instances. Therefore, the application remains online, perhaps with a degraded behavior, without exposing downtime to users.
+
+%Working explanation and switching
+At recovery time, the manager sends the new \emph{branch path} to every database instance. The new incoming users access the, perhaps corrupted, old branch while the requests being replace access the new branch. Therefore, the application remains online, perhaps with a degraded behavior, without exposing downtime to users. 
+
+At some point, when the recovery is finishing, the user requests have to start being issued to the new branch. To do so, after replaying the requests, the proxy flag \emph{restraining} is set and every new request is marked with the \emph{restrain} flag. Database accesses marked with \emph{restrain} are delayed. After replaying the requests retrieved during the recovery process, the proxy sets the new branch in the subfield \emph{branch} of \ac{SRD} of the new requests, the \emph{restrain} flag is disabled and the database nodes are notified to proceed the accesses. This mechanism delays the processing of some requests, but this has typically a duration of seconds, compared with a recovery process that may take many minutes or even hours. 
+
+This mechanism ensures the recovery phase to be finite. However, if the rate of requests being replayed is much higher than the rate of new requests, then the restrain phase can be shorter. The requests retrieved during the replay phase are also replayed without restraining new requests. Consequently, the restrain phase is required only to change branch. 
+
+\hl{podemos fazer replay dos pedidos recebidos durante o recovery process sem o restrain. O restrain apenas tem de acontecer apenas no final ao mudar de branch. É um erro. Nada impede que esses pedidos executem mas simplifica porque senao o processo poderia nunca acabar... - é verdade, mas diversos pontos:
+1- o restrain não aparece só aqui, ms logo quando defines o SRD
+2- tens sempre uma espécie de restrain mas pode ser muito mais curto do que é agora
+3- se retiras o restrain o que fazes com os experimentos que o medem? acho que podes deixar fora
+}
+
 
 %Related work, advantages and example
-While Aire \cite{retro} used a branching mechanism to perform a recovery process in various systems simultaneously, we propose the mechanism to isolate user accesses from the recovery process. This model allows the tenants to select any snapshot as base to a new recovery process and create snapshots in different branches. Applications can contain multiple branches simultaneously. Figure \ref{fig:branches} represents an application with 3 branches: the branch 1 is the initial application branch where the tenant made three snapshots ($A$, $B$ and $C$). After detecting an intrusion, the tenant considered that snapshot $C$ is non-tampered and initiated a recovery process based on it creating the branch 2. Afterwards, the tenant made one snapshot ($D$) on branch 2. However, the snapshot $C$ is tampered. So the tenant initialized a novel recovery process based on snapshot $B$ creating the branch 3. In this scenario, the tenant would be unable to recover its application without the branching model.\\
-
+While Aire \cite{retro} used a branching mechanism to perform a recovery process in various systems simultaneously, we propose the mechanism to isolate user accesses from the recovery process. Our model allows the tenants to select any snapshot as base to a new recovery process and create snapshots in different branches. Applications can contain multiple branches simultaneously. Figure \ref{fig:branches} represents an application with 3 branches: the branch 1 is the initial application branch where the tenant made three snapshots ($A$, $B$ and $C$). After detecting an intrusion, the tenant considered that snapshot $C$ is non-tampered and initiated a recovery process based on it creating the branch 2. Afterwards, the tenant made one snapshot ($D$) on branch 2. However, the snapshot $C$ is tampered. So the tenant initialized a novel recovery process based on snapshot $B$ creating the branch 3. In this scenario, the tenant would be unable to recover its application without the branching model. Since tenants may fork a new branch not only from the most recent snapshot. Therefore, the latest non-tampered version of a data item may not be its latest version.
 
 \begin{figure}
 \centering
@@ -485,34 +528,13 @@ While Aire \cite{retro} used a branching mechanism to perform a recovery process
 \label{fig:branches}
 \end{figure}
 
-%Architecture details
-A branch contains sequence of multiple snapshots but a snapshot can only belong to a single branch. Each snapshot represents a possible version of the data item. A novel data item version is created only when the data item is written for the first time during each snapshot. Consequently, the data item may not have a version for each snapshot. Shuttle keeps a list of the versions in which each database item has been written (Section \ref{sec:arch:snapshot}).
-In addition, tenants may fork a new branch not only from the most recent snapshot. Therefore, the latest non-tampered version of a data item may not be its latest version.
 
-%Problem of lack of versions:
-For instance, in Figure \ref{fig:branches}, a data item $x$ may have the following sequence of versions on its version list: $[A,B,C,D,E]$. If $x$ has not been written in snapshot $E$, the version $E$ would not exists and the latest version of $x$ would be $D$. However, the snapshot $D$ has been compromised so it is not part of the current branch (branch 3). The latest non-tampered version of $x$ is the version $B$. If version $B$ does not exists, then the latest version is $A$.
-
-%BranchPath
-We define the concept of \emph{BranchPath}: a BranchPath of a certain branch is the sequence of non-tampered snapshots between the current snapshot and the root snapshot. A BranchPath of a certain branch defines the versions available to operations that belong to that branch. The BranchPath of branch $3$ in Figure \ref{fig:branches} is \{E, B, A\}. The one of branch $2$ is: \{D, C, B, A\}. When a branch is created, its BranchPath contains the its initial snapshot and the sub-sequence of snapshots in the BranchPath of the branch of the forked snapshot that are equal or previous to the forked snapshot.
-
-%Version to read
-The version accessed by an operation is defined using the BranchPath of the operation's branch and the version list of the accessed data item: operations read the latest version present in the \emph{version list} and in the \emph{branch path} and write the latest version in the branch path. Therefore, a new version, referring the initial snapshot of the new branch, is added to the version list on the first write operation to each data item during the replay.
-
-%Isolation
-This mechanism maps the operations to the correct versions and isolates the multiple, perhaps simultaneous, attempts to recovery the application without compromising the exposed application behavior. During the recovery process, users access the, perhaps corrupted, old branch loaded in the current computation and database instances. Therefore, the application remains online, perhaps with a degraded behavior, without exposing downtime to users.
-
-%Working explanation and switching
-At recovery time, the manager sends the new \emph{branch path} to every database instance. The new incoming users access the, perhaps corrupted, old branch while the requests being replace access the new branch. Therefore, the application remains online, perhaps with a degraded behavior, without exposing downtime to users. 
-
-At some point, when the recovery is finishing, the user requests have to start being issued to the new branch. To do so, after replaying the requests, the proxy flag \emph{restraining} is set and every new request is marked with the \emph{restrain} flag. Database accesses marked with \emph{restrain} are delayed. After replaying the requests retrieved during the recovery process, the proxy sets the new branch in the subfield \emph{branch} of \ac{SRD} of the new requests, the \emph{restrain} flag is disabled and the database nodes are notified to proceed the accesses. This mechanism delays the processing of some requests, but this has typically a duration of seconds, compared with a recovery process that may take many minutes or even hours. \hl{são detalhes a mais que deviam estar no implementation?}
-
-\hl{podemos fazer replay dos pedidos recebidos durante o recovery process sem o restrain. O restrain apenas tem de acontecer apenas no final ao mudar de branch. É um erro. Nada impede que esses pedidos executem mas simplifica porque senao o processo poderia nunca acabar...}
 
 Inactive snapshots and branches, for instance snapshot $D$ and branch 2 in Figure \ref{fig:branches}, can be deleted to reduce the used storage resources. In addiction, tenants can use the branching mechanism to test their intrusion recovery procedures in background, i.e, without exposing users to test issues.\\
 
 If an intrusion happens during the replay phase, then its effects are stored in the branch of incoming requests. If the intrusion is detected before the restraining flag is set, then the malicious requests are not replayed in the new branch. Otherwise, tenants shall start another recovery process.\\
 
-If Shuttle launches new database instances, then the new branch is created in the new instances and write operations occur in the new instances. Read operations occur in the previous instances until the first write operation of the accessed data item in the new instances.
+
 
 
 
@@ -520,21 +542,21 @@ If Shuttle launches new database instances, then the new branch is created in th
 \subsection{Non-determinism and consistency}
 \label{sec:arch:consistency}
 
-Shuttle provides an \ac{API} to handle the nondeterminism and inconsistency cases.
+Shuttle provides an \ac{API} to handle nondeterminism and inconsistency cases.
 
 %non-determinism: definition
 An application is called nondeterministic if two subsequent executions with the same user input cannot be guaranteed to have the same have the same final state and outputs. Five of the main sources of non-determinism in \ac{PaaS} applications are: shared memory, thread concurrency, random number generation, timestamps and message exchanging.
 
 %how non-determinism is handled
-We assume requests to be independent thus they do not share memory and concurrent threads are independent. The \ac{API} provided by Shuttle provides deterministic random number generation and timestamps using the \acf{RID}, which is a timestamp set by the proxy, as timestamp and pseudo-random number seed, so the replay of a request will use the same random numbers and timestamp. We consider a single timestamp per request to be enough for most applications. This mechanism is language independent. User requests and database accesses are ordered in a deterministic way using the operation list. \\
+We assume requests to be independent thus they do not share memory and concurrent threads are independent. The \ac{API} of Shuttle provides a deterministic random number generation and a timestamp. It uses the \acf{RID}, which is a timestamp set by the proxy, as timestamp and pseudo-random number seed, so the replay of a request will use the same random numbers and timestamp. We consider a single timestamp per request to be enough for most applications. This mechanism is language independent. User requests and database accesses are ordered in a deterministic way using the operation list. \hl{devo colocar aqui a assinatura da API? como era só getTimeStamp() return long; e getRandom() return randomNumberGenerator(); não coloquei...} \\
 
 %User consistency
-An important aspect of a recovery system like Shuttle is the application consistency seen by users. For instance, if an user does an action based on data written by a malicious action, which result of the user action replay is consistent. Since users have a non-deterministic behavior, they may have to be notified if a recovery took place and their data was modified. \hl{caso do gmail, vale a pena referenciar?}. \\
+An important aspect of a recovery system like Shuttle is the application consistency seen by users. For instance, if an user does an action based on data written by a malicious action, which result of the user action replay is consistent. Since users have a non-deterministic behavior, they may have to be notified if a recovery took place and their data was modified. \\
 
 
 %Related work
 %In Undo for Operators \cite{undoForOperators}, operators must specify a compensation action for each request type. 
-Since Shuttle unknowns the application semantics, the actions to compensate the recovery process changes are unknown. In addition, the application may contain client-side code, e.g., Javascript, that processes the application response. For instance, a recover process reorders a list of items. The client-side code may sort the items so the list is seen ordered by users. A replay process taking into account the client-side consistency is proposed in \cite{warp}.
+Since Shuttle is not tied to the application semantics, the actions to compensate the recovery process changes are unknown before the application is created. In addition, the application may contain client-side code, e.g., Javascript, that processes the application responses. For instance, a recover process reorders a list of items. The client-side code may sort the items so the list is seen ordered by users. A replay process taking into account the client-side consistency is proposed in \cite{warp}.
 
 
 % Compensation API
@@ -542,7 +564,7 @@ Shuttle does not execute requests that returned an error in the first execution.
 
 \begin{enumerate}
   \item \textit{preRecover():} invoked before the beginning of the recovery process.
-  \item \textit{handleInconstency(request, previous response, new response, previous keys, new keys, action):} invoked when there is an inconsistency.
+  \item \textit{handleInconstency(request, previous response, new response, previous data items, new data items, action):} invoked when there is an inconsistency.
   \item \textit{postRecover(statistics, old version, new version):} invoked after the end of the recovery process.
 \end{enumerate}
 
@@ -557,39 +579,40 @@ Besides its users, an application may also interact with external services. We s
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{System Administrator Support}
-\label{sec:arch:system_admin_support}
+% \subsection{System Administrator Support}
+% \label{sec:arch:system_admin_support}
 
-Shuttle aims to facilitate the recovery process aiding the tenants to recover their applications from intrusions. Shuttle helps the tenant to identify the malicious requests based on: 
-\begin{enumerate}
-\item tainted responses;
-\item the requests that accessed a set of data items;
-\item per user, per user session, per ip-range
-\end{enumerate}
-%    \hl{a maquina que foi afectada, tracking do codigo que foi actualizado, etc ha muitos criterios possiveis}.
+% Shuttle aims to facilitate the recovery process aiding the tenants to recover their applications from intrusions. Shuttle helps the tenant to identify the malicious requests based on: 
+% \begin{enumerate}
+% \item tainted responses;
+% \item the requests that accessed a set of data items;
+% \item per user, per user session, per ip-range
+% \end{enumerate}
+% %    \hl{a maquina que foi afectada, tracking do codigo que foi actualizado, etc ha muitos criterios possiveis}.
 
- It also displays the requests dependency graph. It allows the tenant to preview the results of the recovery process without exposing them to the users. It provides a database version compare tool to check if the vulnerability is correctly mitigated.
-\hl{apago esta secção?}
+%  It also displays the requests dependency graph. It allows the tenant to preview the results of the recovery process without exposing them to the users. It provides a database version compare tool to check if the vulnerability is correctly mitigated.
+% \hl{apago esta secção?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Selective Replay}
+\subsection{Full and Selective Replay}
 \label{sec:arch:selective_replay}
 
 %Full vs selective goals
-We propose two approaches for intrusion recovery: full replay and selective replay. Full replay consists in replaying every request done after the selected snapshot. Executing many requests can take considerable time, so this approach is adequate for issues detected reasonably fast after they happen, e.g. a few days or weeks.
+We propose two approaches for intrusion recovery: full replay and selective replay. Full replay consists in replaying every request done after the  snapshot. Executing many requests takes considerable time, so this approach is adequate for intrusions detected reasonably fast after they happen, e.g., a few days. 
+
 
 %Explain
-Selective replay (Section \ref{sec:related:recovery_models}) re-executes only part of the requests so it is faster but requires that tenants or intrusion detection mechanisms provide a set of malicious requests, $A_{intrusion}$. This set is used to deduce the set of tainted requests $A_{tainted}$. A request is said to be tainted if it is one of the attacker’s requests or if it reads objects written by tainted request \cite{taser,itdb,phoenix}. 
+Selective replay (Section \ref{sec:related:recovery_models})  re-executes only part of the requests so it is faster than full-replay. However, it requires tenants to provide a set of malicious actions (i.e., requests) $A_{intrusion}$. This set is used to deduce the set of tainted requests $A_{tainted}$. A request is said to be tainted if it is one of the attacker’s requests or if it reads objects written by tainted request \cite{taser,itdb,phoenix}.  
 
 %Tait
 Tainted requests can also be determined by Shuttle considering the tampered data items and an estimated intrusion moment. Selective replay approach loads only the previous versions of the tainted objects, $O_{tainted}$, and replays only the legitimate operations, which were tainted, $A_{tainted} \notin A_{intrusion}$, to update the application persistent state. Selective replay, as compensating actions, does not remove the effects of unlogged actions because their dependencies are unknown. 
 
 %related work
-In \cite{goel,retro}, the set of tainted operations, $A_{tainted}$, is determined using \textit{taint propagation via replay}. To do so, they load a previous version, from a snapshot, of the objects in $O_{intrusion}$. Then, the actions, which are dependent from the restored objects, are replayed and their output objects are updated. The forward actions, which depend from the updated objects, are also replayed while their inputs are different from the first execution. The propagation is done thought the output of actions with different execution.
+In \cite{goel,retro}, the set of tainted operations, $A_{tainted}$, is determined using \textit{taint propagation via replay}. To do so, they load a previous version, from a snapshot, of the objects in $O_{intrusion}$. Then, the actions, which are dependent from the restored objects, are replayed and their output objects are updated. The forward actions, which depend on the updated objects, are also replayed while their inputs are different from the first execution. The propagation is done thought the output of actions with different execution.
 Unlike these approaches, Shuttle does not store the input and output of every action, i.e., database operation. Shuttle proposes an approach in which the requests are replayed, at least, until the first snapshot after the selected snapshot. Consequently, the application semantic must remain unchanged, i.e., the same request and same input must perform the same write operations. Otherwise, the dependencies between requests are unpredictable and the tainted requests can not be determined. An approach that allows to update the application semantics is proposed in \cite{warp}. We consider storing all versions of a data item has prohibitive storage costs for enterprise applications.\\
 
 %Which requests are replayed?
-For instance, consider the dependency graph of Fig. \ref{fig:selectiveGraph}, in which every request reads a data item and writes a new value on the same data item. The request $4$ was identified as a malicious request. Therefore, requests $5,6,7,8$ are tainted. Since Shuttle does not keep every version of the entries, the value read by request 4 is unknown. In order to get this value, Shuttle must replay the {req.~2}, which wrote the value read by {req.~4}. The value read by request 2 is known because Shuttle performed the checkpoint A. Since the application semantics remains the same and its input is known, {req.~3} does not need to be replayed. Requests $5,6,7$ are replayed since they depend from the malicious {req.~4}. Values read by request 8 are known due to checkpoint B. Therefore, {req.~8} may not be executed if the value of the data items remains the same. Shuttle performs \textit{taint via-replay}: if a request writes in a data item which were not written previously, then the requests which read or write that data item, are also replayed. For instance, the {req.~9} may read a data item written by the {req.~4} during the replay but not during its first execution.\\
+For instance, consider the dependency graph of Figure \ref{fig:selectiveGraph}, in which every request reads a data item and writes a new value on the same data item. The request $4$ was identified as a malicious request. Therefore, requests $5,6,7,8$ are tainted. Since Shuttle does not keep every version of the entries, the value read by request 4 is unknown. In order to get this value, Shuttle must replay the {req.~2}, which wrote the value read by {req.~4}. The value read by request 2 is known because Shuttle performed the checkpoint A. Since the application semantics remains the same and its input is known, {req.~3} does not need to be replayed. Requests $5,6,7$ are replayed since they depend on the malicious {req.~4}. Values read by request 8 are known due to checkpoint B. Therefore, {req.~8} may not be executed if the value of the data items remains the same. Shuttle performs \textit{taint via-replay}: if a request writes in a data item which were not written previously, then the requests which read or write that data item, are also replayed. For instance, the {req.~9} may read a data item written by the {req.~4} during the replay but not during its first execution.\\
 
 
 \begin{figure}
@@ -599,13 +622,13 @@ For instance, consider the dependency graph of Fig. \ref{fig:selectiveGraph}, in
 \label{fig:selectiveGraph}
 \end{figure}
 
-The selective replay process is as follows:
+The selective replay process is as follows (full replay is simpler so we skip it):
 \begin{enumerate}
 \item \textit{Determine the malicious requests $A_{intrusion}$.}
 Based on initial data such as user session compromised or data items accessed or other criteria, the tenant determines the requests $A_{intrusion}$ used by the attacker to compromise the application. For instance, $A_{intrusion} = \{R.4\} $ in Figure \ref{fig:selectiveGraph}.
 
 \item \textit{Use $A_{intrusion}$ to determine the set of tainted requests $A_{tainted}$.}
-For each request in $A_{intrusion}$, traverse the dependency graph in causality order and add these nodes to $A_{tainted}$ (in the figure: $A_{tainted} = \{R.5,R.6,R.7,R.8\}$).
+For each request in $A_{intrusion}$, traverse the dependency graph in causality order and add these nodes to $A_{tainted}$ (in the figure $A_{tainted} = \{R.5,R.6,R.7,R.8\}$).
 
 
 \item \textit{Get the requests needed to obtain the values read by $A_{tainted}$ and their effects.} 
@@ -642,7 +665,9 @@ Requests in $A_{replay}$ are replayed. If an access is not contained in operatio
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Chapter Summary}
 \label{sec:arch:summary}
-Shuttle recovers from security intrusions loading a previous snapshot and replaying the legitimate requests. It uses database snapshot and clustering to reduce the recovery time. Shuttle leverages the pay-per-usage model of \ac{PaaS} to provide a cost-efficient and fast recovery service instantiating the replay instances and more application containers on demand during the recovery process. Shuttle proposes two approaches to perform replay: selective replay and full replay. 
+Shuttle recovers from security intrusions loading a previous snapshot and replaying the legitimate requests. It uses database snapshot and clustering to reduce the recovery time. Shuttle leverages the pay-per-usage model of \ac{PaaS} to provide a cost-efficient and fast recovery service instantiating the replay instances and more application containers on demand during the recovery process. \\
+
+Shuttle proposes two approaches to perform replay: selective replay and full replay. 
 
 \begin{table}[h]
 \centering
@@ -655,5 +680,6 @@ Shuttle recovers from security intrusions loading a previous snapshot and replay
 \label{tab:operation_types}
 \end{table}
 
-The full replay approach supports parallel re-execution of requests that belong to independent clusters. \hl{que mais devo falar aqui?}
+The full replay approach supports parallel re-execution of requests that belong to independent clusters (clustering). Clustering is not supported on selective replay because the \textit{taint propagation via replay} defines the set of requests to replay at running time. \hl{não sei como explicar... o selective replay vai descobrindo quais são os pedidos a repetir enquanto executa. Se os pedidos já tiverem sido executados, em paralelo, teriam de ser undo, etc. não é impossivel mas é mais complexo.}
+
 The decentralized applications are more vulnerable to failures because of the single proxy architecture. However, we argue that future architectures can consider replication of the proxy, load balancer, Shuttle Storage and database. 
