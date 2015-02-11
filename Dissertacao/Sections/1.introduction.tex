@@ -47,7 +47,7 @@ We introduce a novel approach to remove the intrusion effects in which the \ac{P
 
 
 %why PaaS?
-Unlike previous intrusion recovery systems, Shuttle is provided as a service to developers and tenants of \ac{PaaS} applications. Consequently, it can be well tested and available without depending on being correctly setup by the application developers. We also leverage the elasticity of \ac{PaaS} infrastructures to reduce the service costs and the recovery period. Specifically, Shuttle is designed to allocate more servers during the recovery period to accommodate the throughput of requests being replayed, and release them at the end, with a proportional impact on service costs. The decline \hl{retirei continuo e rápido, faz mais sentido e é mais seguro} in computation and storage costs in public cloud providers makes affordable to store user requests, to use database snapshots and to replay previous user requests.
+Unlike previous intrusion recovery systems, Shuttle is provided as a service to developers and tenants of \ac{PaaS} applications. Consequently, it can be well tested and available without depending on being correctly setup by the application developers. We also leverage the elasticity of \ac{PaaS} infrastructures to reduce the service costs and the recovery period. Specifically, Shuttle is designed to allocate more servers during the recovery period to accommodate the throughput of requests being replayed, and release them at the end, with a proportional impact on service costs. The decline in computation and storage costs in public cloud providers makes affordable to store user requests, to use database snapshots and to replay previous user requests.
 
 %Contributions
 We propose, to the best of our knowledge, the first intrusion recovery service for \ac{PaaS} applications. The main contributions of this dissertation are the following:
@@ -57,7 +57,7 @@ We propose, to the best of our knowledge, the first intrusion recovery service f
 \item accomplishing intrusion recovery without service downtime using a branching mechanism;
 \item leveraging the resource elasticity and pay-per-use model in \ac{PaaS} environments to record and launch multiple clients to replay previous non-malicious user requests as concurrently as possible to reduce the recovery time and costs;
 \item a mechanism to do a globally transaction-consistent snapshot of \acs{NoSQL} databases;
-\item an approach to remove intrusions redeploying the applications; \hl{este é o que está em excesso mas acho-o relevante para a tese...}
+\item an approach to remove intrusions redeploying the applications;
 \end{itemize}
 
 \section{Thesis Structure}\label{sec:introduction:structure}

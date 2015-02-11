@@ -6,17 +6,11 @@ In order to evaluate the developed solution, we performed several tests to measu
 The following sections detail the steps and decisions towards evaluating the proposed solution, starting by the definition of the developed prototype application and performed tests. The recovery accuracy and performance are evaluated on a set of intrusion scenarios. Finally, we present a cost estimation for Shuttle in \ac{AWS} \cite{aws}. The success of Shuttle is determined by its capability to recover from the intrusion scenarios in a correct, timely and scalable way.
 
 
-\section{Prototype Application}
-\hl{pois, concordo com o que diz... deixei aqui porque era o levantamento de requisitos da aplicacao para fazer o teste}
- We considered several application types to evaluate Shuttle. The selected application shall represent a generic web application, retrieve \ac{HTTP} requests and be deployable on AppScale. It should also fit the \acs{NoSQL} key-value store model and store its state in Shuttle version of Voldemort \cite{Kreps}. The selected application should imply dependencies between requests but unlike some web applications shall not imply external consistence issues. Accordingly, the application shall read only static data from other services, except the database.\\
-
-We consider real-world applications such as office productivity, gaming, media content, data aggregation, wikis, diagramming and e-commerce applications (with shopping cart). For sake of simplicity, we developed \textit{Ask} instead of using real-world applications (Section \ref{sec:impl:application}). Even \textit{Ask} implementation is based on the real-world application StackExchange, its implementation is simpler than it. This allows to analyze the dependencies and reason about the results. We expect to evaluate the dependencies created by different types of application in future.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tests Description}\label{sec:eval:test_description}
 
 %TryOut
-We developed a \ac{HTTP} load testing and benchmarking tool, named \emph{TryOut}, to evaluate Shuttle and measure its overhead simulating a real application load from multiple clients. \emph{TryOut} consists on multiple \ac{HTTP} clients, which are deployed in various nodes, coordinated by a master node. It measures the average, minimum and maximum response time, the request rate and the throughput of each \ac{HTTP} client. \emph{TryOut} also compares the database entries and the user responses with the expected values to measure the precision and recall of our solution. TryOut allows to measure the latency for a given throughput and number of concurrent clients. Requests can be issued asynchronously or synchronously. It also allows to measure the maximum throughput supported by the service. Its main feature, comparing with tools such as Jmeter \cite{jmeter}, ab \cite{ab} and weighttp \cite{Machado2012} is the capability to perform \ac{HTTP} requests based on data contained in files. This feature allows us to easily test Shuttle with a data set extracted from an application in production.
+We developed a \ac{HTTP} load testing and benchmarking tool, named \emph{TryOut}, to evaluate Shuttle and measure its overhead simulating a real application load from multiple clients. \emph{TryOut} consists on multiple \ac{HTTP} clients, which are deployed in various nodes, coordinated by a master node. It measures the average, minimum and maximum response time, the request rate and the throughput of each \ac{HTTP} client. \emph{TryOut} also compares the database entries and the user responses with the expected values to measure the precision and recall of our solution. TryOut allows to measure the latency for a given throughput and number of concurrent clients. Requests can be issued asynchronously or synchronously. It also allows to measure the maximum throughput supported by the service. Its main feature, comparing with tools such as Jmeter \cite{jmeter}, ab \cite{ab} and weighttp \cite{weighttp} is the capability to perform \ac{HTTP} requests based on data contained in files. This feature allows us to easily test Shuttle with a data set extracted from an application in production.
 
 In order to use real-world data, \emph{TryOut} performs requests to the developed \acf{QA} application (Chapter \ref{sec:impl:application}) with data extracted from the \textit{Stack Exchange Data Dump} \cite{stackexchange_data}. StackExchange, which is one of the largest \ac{QA} applications and includes \textit{StackOverflow.com} \cite{stackoverflow}, is ranked 57th for traffic in the world \cite{websiteRanking}. A 24 hours window has: 36 million page loads, 148 million \ac{HTTP} requests (1712 requests per second), 267GB retrieved, 1TB sent, 334 million \ac{SQL} queries \cite{stackStatistics}. A question takes, in average, 28ms to be rendered. The architecture encompasses 1 load balancer, 2 \ac{SQL} servers, a Redis \cite{redis} (a key-value cache and store) server and 3 web servers. Their architecture scales vertically, for instance the \ac{SQL} servers have 384 GB of memory with 1.8TB of SSD storage. Since 98,82\% of the requests are read requests, the StackExchange infrastructure relies on caching.
 
@@ -71,8 +65,7 @@ StackExchange provides a \ac{SQL} database dump of each portal of StackExchange.
   \label{fig:stackNetworkRequestRate}
 \end{figure} 
 
-\hl{bem visto... eu tinha deixado como borrao para dar para ver a variacao ao longo dos dias. Mudei para umar curva benziana}
-The figure \ref{fig:stackNetworkRequestRate} shows the number of new questions, answers and comments per day in the collected data. Considering the collected data, we can set a supremum limit of 182 000 \emph{write requests} per day (2 per second if we consider a constant request rate). 
+The Figure \ref{fig:stackNetworkRequestRate} shows the number of new questions, answers and comments per day in the collected data during sampling period. Considering the collected data, we can set a supreme limit of 182 000 \emph{write requests} per day (2 per second if we consider a constant request rate). 
 
 In order to set the throughput expectation for Shuttle, we assume the following request rate ranges for each category of application (Table \ref{tab:base_throughputs}). We consider small-scale applications to retrieve less than 5 million requests per day, enterprise scale retrieve between 5 and 100 million and web scale process from 100 million to billions of requests per day.
 For instance, the maximum request arrival rate of one of the Portuguese Ministry of Finances web applications in 2013 was 836 requests per second and 16 million requests in total \cite{opensoft}. In contrast, the total number of requests per day of StackExchange is 148 million (1712 requests per second). We aim that Shuttle fits on current requirements for small and enterprise services. 
@@ -108,20 +101,20 @@ We deployed all Shuttle modules, application instance and database on a single n
 
 We considered that intrusions happen at 2nd of September, when the database contains 4338 questions, 18286 answers, 422 comments and 38334 votes (61380 requests). The attack is detected in Sep.~12th, assuming a pessimistic delay of 10 days. During this period, the application retrieved 38 620 requests.\\
 
-Table \ref{tab:accuracy} presents a summary of the accuracy tests. It contains the number of data items tampered by the intrusion (\emph{\#intrusion}) and the number of user requests that read data items written by  tainted requests or malicious requests (without considering the intrusion requests). Recovery using \textit{full replay} requires to replay every request from the latest snapshot before the intrusion instant until the detection instant: in this example at least 38 620 requests (\emph{\#replayed (fr)}). Selective replay only re-executes tainted requests, unless some data item versions need to be recreated. On the worst case, the system does not contain any snapshot and every data read by the tainted requests shall be recreated (\emph{\#replayed (sr)}).
+Table \ref{tab:accuracy} presents a summary of the accuracy tests. It contains the number of data items tampered by the intrusion (\emph{\#intrusion}) and the number of user requests that read data items written by  tainted requests or malicious requests (without considering the intrusion requests). Recovery using \textit{full replay} requires to replay every request from the latest snapshot before the intrusion instant until the detection instant: in this example at least 38 620 requests (\emph{\#replayed (fr)}). Selective replay only re-executes tainted requests, unless some data item versions need to be recreated. On the worst case, the system does not contain any snapshot and every data read by the tainted requests shall be recreated (\emph{\#replayed (sr)}). Since Shuttle removes all the malicious actions and recovers all the legitimate requests, it has 100\% recall. The selective replay has better precision than full replay because it replays less legitimate requests.
 
 \begin{table}
 \centering
 \begin{tabular}{l|rrrr}
-    & \#intrusion & \#tainted & \#replayed (sr)               & \#replayed (fr)     \\ \hline
-1a       & 110          & 0          & $[0, 605] (18.18\%)$   & $> 38 620 (00.28\%)$  \\
-1b       & 58           & 14         & $[0, 379] (18.99\%)$   & $> 38 620 (00.18\%)$          \\
-1c       & 48           & 52         & $[0, 253] (39.52\%)$   & $> 38 620 (00.25\%)$          \\
-2a       & 4 338        & 0          &  -                     & $> 38 620 (11.23\%)$      \\
-2b       & 18 286       & 1 278      &  -                     & $> 38 620 (50.67\%)$  \\
-3        & 2 000        & -          &  -                     & $> 38 620 (05.17\%)$  \\
+    & \#intrusion & \#tainted & \#replayed (sr)               & \#replayed (fr)   \\ \hline
+1a       & 110          & 0          & [0, 605] (18.18\%)   & > 38 620 (00.28\%)  \\
+1b       & 58           & 14         & [0, 379] (18.99\%)   & > 38 620 (00.18\%)  \\
+1c       & 48           & 52         & [0, 253] (39.52\%)   & > 38 620 (00.25\%)  \\
+2a       & 4 338        & 0          &  -                   & > 38 620 (11.23\%)  \\
+2b       & 18 286       & 1 278      &  -                   & > 38 620 (50.67\%)  \\
+3        & 2 000        & -          &  -                   & > 38 620 (05.17\%)  \\
 \end{tabular}
-  \caption{Number of requests replayed during the recovery process and its precision.}
+  \caption{Number of requests replayed during the recovery process and its precision within parenthesis.}
   \label{tab:accuracy}
   \vspace{-5mm}
 \end{table}
@@ -133,7 +126,6 @@ Table \ref{tab:accuracy} presents a summary of the accuracy tests. It contains t
 %Total: 16 questions, 192 answers, 29 comments, 0 votes, 62704 views 
 
 
-\hl{deveria pegar no recall e precision? O Recall é 1 porque todos os maliciosos e tainted foram replayed. A precision é que é diferente. Coloquei a precision entre parenteses. }
 
 
 \subsection{Result consistency}\label{sec:eval:accuracy:consistency}
@@ -142,11 +134,10 @@ Shuttle aims to support various \ac{PaaS} applications. Unlike previous works th
 
 For instance, if an attacker created a new question and a legitimate user attempts to create a question with the same title. During the replay, the attacker action will be removed. Should the legitimate request be replayed and create the question? On one hand, the user may have created a question with another title but same content. On the other hand, the request contains the title that the user pretended and he may have not created another question. 
 
-Therefore, we argue that developers should consider the application recovery during the design of the application. For instance, if questions are identified by the hash of their text instead of their title, then the legitimate users create a new question only if the text is not equal to the one of other questions. Shuttle does not replay actions which fail during their first execution. \hl{Alem de termos a API de consistencia, queria argumentar que a consistencia do recovery process é definida pelos developers. São os developers que devem ter em conta que os pedidos poderao ser repetidos e como é que a aplicacao ira reagir a isso. No exemplo o resultado depende de como é que eles identificam as questoes: hash do conteudo ou titulo. A 1a nao permite conteudos iguais, a segunda nao permite titulos iguais}\\
+Therefore, we argue that developers should consider the application recovery during the design of the application. For instance, if questions are identified by the hash of their text instead of their title, then the legitimate users create a new question only if the text is not equal to the one of other questions. Shuttle does not replay actions which fail during their first execution. In summary, despite Shuttle's consistency \ac{API} (Section \ref{sec:arch:consistency}), developers shall take into consideration the replay process in order to obtain the expected results.\\
 
 
-\hl{1o discuti o que é a consistencia dos resultados, aqui vou fazer o papel de developer/tenant e dizer o que espero do sistema quando ele recupera. Para haver resultados errados, tenho de definir o que é o correcto/esperado.}
-Considering the semantics of our \ac{QA} prototype, we identified the following most likely attack actions:
+Considering the semantics of our \ac{QA} prototype, we identify the expected results on the following most likely attack actions:
 
 \begin{enumerate}
   \item \textbf{Create new question:} The attacker created a new question with a specific title. The following legitimate user requests, which try to create a question with the same title, fail. When the attacker request is removed, the legitimate user requests will perform correctly and create the question. Answers to the removed question will be included in the new question.
@@ -169,7 +160,6 @@ We consider attackers:
 \end{enumerate}
 
 
-\hl{o paper tem o mesmo conteudo mas melhor compactado e }
 \textit{1a)} 
 %attack
 The attacker deletes the user's 4 questions, performing 4 delete requests that remove 106 associated comments and answers. 
@@ -178,7 +168,7 @@ The tenant identifies the malicious requests through the user session and select
 %Recover using selective replay
 If Shuttle has a snapshot containing the deleted questions, then \textit{selective replay} does not need to replay any request and merges the deleted questions on the current system state. If the latest snapshot is previous to the creation of the 4 questions, then \textit{selective replay} replays 605 requests to recreate the deleted questions, their answers and votes. The result is merged with the current branch, rebuilding the deleted questions. 
 
-To clarify consider the Figure \ref{fig:attack_1_graph} in which the \emph{Req. 4} deletes a question with one answer and one comment. \emph{Req. 4} is a malicious request and the values written by it ($Q1, A1, C1$) need to be removed. If tenant selects the \emph{snapshot B}, then the items $Q1, A1, C1$ are restored to the version before the delete operation and no operation is replayed. If the tenant selects the \emph{snapshot A}, then \emph{Req.1, Req.2, Req.3} are replayed to obtain the value of the $Q1, A1, C1$. \hl{ficou perceptivel? devo pegar no algoritmo da Section arquitectura selective replay e explicar melhor? }
+To clarify consider the Figure \ref{fig:attack_1_graph} in which the \emph{Req. 4} deletes a question with one answer and one comment. \emph{Req. 4} is a malicious request and the values written by it ($Q1, A1, C1$) need to be removed. If tenant selects the \emph{snapshot B}, then the items $Q1, A1, C1$ are restored to the version before the delete operation and no operation is replayed. If the tenant selects the \emph{snapshot A}, then \emph{Req.1, Req.2, Req.3} are replayed to obtain the value of the $Q1, A1, C1$. 
 
 \begin{figure}
   \centering
@@ -216,7 +206,7 @@ Instead of identifying the requests that explored the vulnerability, the tenant 
 Shuttle can also be used to perform preventive updates. Consider the following case: the security team considered that: a) every answer shall be ciphered using the username; b) users without weak-passwords shall not be allowed to answer questions. The development team can rapidly develop a new software version fixing these vulnerabilities. Without Shuttle the system administrator would need to create a script to make the database consistent with the new software version. Shuttle can remove these steps, which require extensive human intervention, by replaying every user request.
 
 \subsection{External Channels}\label{sec:eval:accuracy:external}
-On the third class of intrusion scenarios, we consider a case where the proxy does not log the attacker actions. In this section, we propose how to recover from a shellshock attack using Shuttle \hl{coloco ref?}. 
+On the third class of intrusion scenarios, we consider a case where the proxy does not log the attacker actions. In this section, we propose how to recover from a shellshock attack using Shuttle.
 
 %Shellshock resume
 Shellsock vulnerability allows an attacker to execute commands that are interpreted by the bash, i.e., perform code injection. When an attacker sends a \ac{HTTP} request containing the header \emph{User-Agent: () \{ :; \}; <malicious command>} and the web server passes this header field as a bash variable, the bash interprets the malicious command. For sake of clarity, we omit further details. In summary, this vulnerability allows a \ac{HTTP} request to run bash commands.
@@ -228,12 +218,12 @@ We consider a case in which an attacker used an \ac{HTTP} request to create a ne
 Tenants can use Shuttle as a request logger to detect the string that exploits the shellshock vulnerability: \emph{() \{:;\};}. If an intrusion is detected, the tenant selects a snapshot previous to the request creation, which does not contain data tampered by the intrusion. Since the application instances can be tampered, Shuttle uses the instance rejuvenation mechanism to terminate these instances and redeploy the application in new instances, in which the shellshock vulnerability is fixed.
 
 %Requests are not logged
-Shuttle removes the attack effects and recovers the application consistency performing \emph{full replay}. It loads a full database snapshot instead of undoing operations. As consequence, even non-logged operations are undo. Then it replays every HTTP request posterior to the snapshot instant. Since malicious actions were not logged, they are not replayed. \hl{fica demasiado seco, sem conclusao?}
+Shuttle removes the attack effects and recovers the application consistency performing \emph{full replay}. It loads a full database snapshot instead of undoing operations. As consequence, even non-logged operations are undo. Then it replays every HTTP request posterior to the snapshot instant. Since malicious actions were not logged, they are not replayed.\\
 
 The described scenario assumes that Shuttle's trusted computing base is not compromised.
 
 \subsection{Discussion}\label{sec:eval:accuracy:discussion}
-The number of requests to replay is defined by the snapshot instant: on \textit{full replay} Shuttle replays all requests performed after the intrusion instant, while on \textit{selective replay} Shuttle replays the requests necessary to read the values of the entries before the intrusion and the tainted requests. While \textit{selective replay} seems to have a big advantage comparing with  \textit{full replay}, which performs, in these scenarios, at least 38 620 requests, most real applications have more dependencies thus the number of tainted requests is bigger. For instance, if the order between questions with the same tag is considered as a dependency,  the number of dependencies rises from 92 939 to 109 118 and the number of independent clusters decreases from 6992 to 56. We plan to further analyze the dependencies established by different applications. \hl{há o risco do arguente dizer: então mas porque é que tiveste de simplificar os testes? não funciona em aplicações complexas?}
+The number of requests to replay is defined by the snapshot instant: on \textit{full replay} Shuttle replays all requests performed after the intrusion instant, while on \textit{selective replay} Shuttle replays the requests necessary to read the values of the entries before the intrusion and the tainted requests. While \textit{selective replay} seems to have a big advantage comparing with  \textit{full replay}, which performs, in these scenarios, at least 38 620 requests, most real applications have more dependencies thus the number of tainted requests is bigger. For instance, if the order between questions with the same tag is considered as a dependency,  the number of dependencies rises from 92 939 to 109 118 and the number of independent clusters decreases from 6992 to 56. We plan to further analyze the dependencies established by different types of applications.
 
 
 

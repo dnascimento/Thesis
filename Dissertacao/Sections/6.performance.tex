@@ -4,7 +4,7 @@
 
 The performance evaluation aims to prove Shuttle scalability and capability to support small and enterprise applications (Section \ref{sec:eval:test_description}). Its results should match the evaluation metrics bounds that allow to use Shuttle in real environments. We evaluate Shuttle's performance considering the throughput of the application, the size of the logs and the recovery time. We also estimate the cost of deployment of Shuttle on a public cloud provider (AWS \cite{aws}). \\
 
-We run Shuttle in \acf{AWS}. All instances are connected by gigabit ethernet (780Mbps measured with \emph{iperf}, 0.176ms round-trip time measured with \emph{ping}) and have the \emph{Java 1.7 HotSpot} 64-Bit Server \ac{VM} version installed. Even when the \ac{JVM} performance increases as the bytecode is compiled by the \ac{JIT} compiler, we run every test on new \ac{JVM} instances. They have a 32GB local general purpose \ac{SSD}. We used the local \ac{SSD} since its performance on read is better than a 500 Provisioned \ac{IOPS} \ac{SSD} of 25GB \ref{tab:disk_throughput}. We allocated 5GB of heap to the \ac{JVM} and we disabled database replication (each data item is stored in one data node). \hl{o sistema de replicacao de base de dados foi desactivado}
+We run Shuttle in \acf{AWS}. All instances are connected by gigabit ethernet (780Mbps measured with \emph{iperf}, 0.176ms round-trip time measured with \emph{ping}) and have the \emph{Java 1.7 HotSpot} 64-Bit Server \ac{VM} version installed. Even when the \ac{JVM} performance increases as the bytecode is compiled by the \ac{JIT} compiler, we run every test on new \ac{JVM} instances. They have a 32GB local general purpose \ac{SSD}. We used the local \ac{SSD} since its performance on read is better than a 500 Provisioned \ac{IOPS} \ac{SSD} of 25GB \ref{tab:disk_throughput}. We allocated 5GB of heap to the \ac{JVM} and we disabled database replication (each data item is stored in one data node).
 
 \begin{table}[ht]
 \centering
@@ -30,7 +30,7 @@ We measured the overhead of Shuttle on database instances. We expected it to be 
 We used 6 \textit{m3.large} instances (7 \ac{ECU}s, 2 vCPUs, 2.8 GHz, Intel Xeon E5-2680v2, 3.75 GiB memory, 2 x 16 GiB Storage Capacity) to run each database node. The database service was accessed by two \textit{c3.xlarge} instances (14 \ac{ECU}s, 4 vCPUs, 2.8 GHz, Intel Xeon E5-2680v2, 7.5 GB of memory, 2 x 40 GB Storage Capacity).\\
 
 
-We ran 4 out of 5 workloads (Table \ref{tab:workload_description}) proposed \emph{in} \cite{ycsb}. Workload E (Short ranges) is not supported by Voldemort. \hl{deixei apenas na tabela, iria estar a ler a tabela...} Our database consisted of 60 million 1KB record (total database size: 60GB). Each instance thus had an average of 10GB of data, more than it could cache entirely in memory. Read operations retrieve entire records, while update operations modify one of the ten record fields \cite{ycsb}.
+We ran 4 out of 5 workloads (Table \ref{tab:workload_description}) proposed \emph{in} \cite{ycsb}. Workload E (Short ranges) is not supported by Voldemort. Our database consisted of 60 million 1KB record (total database size: 60GB). Each instance thus had an average of 10GB of data, more than it could cache entirely in memory. Read operations retrieve entire records, while update operations modify one of the ten record fields \cite{ycsb}.
 
 \begin{table}[ht]
 \centering
@@ -91,22 +91,22 @@ We setup an environment with 3 \ac{AWS} \textit{c3.xlarge} instances to measure 
           e & \cmark             & \cmark      & 1.11 (1.29)          
       \end{tabular}
   \end{minipage}
-\caption[Proxy Overhead]{Proxy Overhead: From left to right: direct to the server; only with the load balancer (HAProxy); Shuttle logging but without load balancer; overhead of Shuttle with load balancer when not logging and logging. The table describes the scenarios of the graph and the request latency (average and 95th percentile) in them. \hl{por favor, verifique a legenda. A tabela basicamente descreve o que o grafico tem e dá as latencias. É um bacoado manhoso}}
+\caption[Proxy Overhead]{Proxy Overhead: \textit{a)} direct to the server; \textit{b)} only with the load balancer (HAProxy); \textit{c)} Shuttle logging but without load balancer; \textit{d)} overhead of Shuttle with load balancer when not logging and logging. The table describes the scenarios of the graph and the request latency (average and 95th percentile) in them.}
 \label{fig:overhead_proxy}
 \end{figure}
 
-Figure \ref{fig:overhead_proxy} represents the throughput limit imposed by Shuttle's proxy. Shuttle's proxy imposes a considerable performance limitation (c) comparing with the load balancer (b). However, the logging mechanism has a negligible influence on the maximum request throughput (column \emph{d} comparing with column \emph{e}). In addition, the table in Figure \ref{fig:overhead_proxy} shows that Shuttle imposes a negligible overhead on requests latency considering a constant request income rate of 2500 requests per second. \hl{este parágrafo está bem escrito?}
+Figure \ref{fig:overhead_proxy} represents the throughput limit imposed by Shuttle's proxy. Shuttle's proxy imposes a considerable performance limitation (c) comparing with the load balancer (b). On the contrary, the logging mechanism has a negligible influence on the maximum request throughput (column \emph{d} comparing with column \emph{e}). In addition, the table in Figure \ref{fig:overhead_proxy} shows that Shuttle imposes a negligible overhead on requests latency considering a constant request income rate of 2500 requests per second.
 
 We conclude that the performance overhead due to logging is negligible but the proxy is a considerable throughput limitation. The main cause is its implementation: while HAProxy is implemented using C and it is heavily optimized, Shuttle's proxy is a prototype implemented in Java. Therefore, we expect a C implementation of proxy can overcome the performance overhead. However, we claim that our prototype implementation is enough for most of small and enterprise services deployed in \ac{PaaS} because the throughput limit imposed by the proxy is lower than the request rates presented in Table \ref{tab:base_throughputs}. Moreover, the recovery time is dependent from the application performance but independent from the proxy's performance. \\  
 
 %---------------------------------- webserver ----------------------------------
-The overhead of Shuttle on each application server is database client interceptor that logs the accessed keys per request. Our experiments demonstrated that logging and storing the accessed keys implies a negligible overhead on the response latency.  \hl{este parágrafo fica um pouco deslocado certo? é só para não ter ficado nada por avaliar}
+The overhead of Shuttle on each application server is the database client interceptor that logs the accessed keys per request. Our experiments demonstrated that logging and storing the accessed keys implies a negligible overhead on the response latency. 
 
 
 %---------------------------------- total ----------------------------------
-\subsubsection{Total}\label{sec:eval:performance:total}
-\hl{pois, total é uma marca de produtos petroquimicos. Eu não consegui arranjar um nome. Até aqui temos estado a ver parte a parte qual o overhead, aqui é do sistema completo, com tudo a funcionar}
-We evaluate the overhead of Shuttle by measuring the throughput of the \textit{Ask} application with and without Shuttle (Table \ref{tab:throughput}). We do not consider a particular scenario or replay scheme (full/selective) but define instead the number of requests recovered per experiment. We run 6 \ac{AWS} \textit{c3.xlarge} instances. We use one client, one instance with Shuttle proxy and a load balancer (HAProxy), three WildFly application servers and one Voldemort database.
+\subsubsection{General Overhead}\label{sec:eval:performance:total}
+
+The previous sections assessed the overhead in the database and of the proxy. In this Section, we assess the general overhead of Shuttle by measuring the throughput of the \textit{Ask} application with and without Shuttle (Table \ref{tab:throughput}). We do not consider a particular scenario or replay scheme (full/selective) but define instead the number of requests recovered per experiment. We run 6 \ac{AWS} \textit{c3.xlarge} instances. We use one client, one instance with Shuttle proxy and a load balancer (HAProxy), three WildFly application servers and one Voldemort database.
 
 We considered two workloads: (A) has 50\% reads, 50\% inserts and (B) has 95\% reads, 5\% inserts. Insert operations adds questions, answers, comments and votes of the data sample, while read operations access the latest inserted questions. The insert operations insert the questions, answers, comments and votes of the data sample, while the read operations access the latest inserted questions. We consider a large data sample from \textit{StackExchange Data Dump} \cite{stackexchange_data} with 3 million requests (250812 questions, 335312 answers, 717937 comments, 1695939 votes).
 
@@ -176,7 +176,7 @@ The period to generate the execution list is defined by the time to sort the key
 
 \subsubsection{Instance Rejuvenation}\label{sec:eval:recovery:rejunation}
 %---------------------------------- Image-recovery delay ----------------------------------
-The time elapsed to launch a novel \emph{c3.xlarge} instance in \ac{AWS} depends on the current load of EC2. We measured 25 launches. The average time elapsed is 25 seconds (95th percentile of 40 sec) \hl{não :( não encontro onde é que deixei os valores das samples :(}. The time to deploy and launch the application depends on the application itself. The \emph{Ask} application is launched in less than 1 minute. The process is done by the \ac{PaaS} controller. We consider these delays negligible comparing with the total recovery period.\\
+The time elapsed to launch a novel \emph{c3.xlarge} instance in \ac{AWS} depends on the current load of EC2. We measured 25 launches. The average time elapsed is 25 seconds (95th percentile of 40 sec). The time to deploy and launch the application depends on the application itself. The \emph{Ask} application is launched in less than 1 minute. The process is done by the \ac{PaaS} controller. We consider these delays negligible comparing with the total recovery period.\\
 
   
 \subsubsection{Request Replay}\label{sec:eval:recovery:replay}
@@ -253,7 +253,7 @@ The serial replay with 2 application servers and 1 database takes 1347 seconds, 
 
 %parallel
 The Figure \ref{fig:scalability} (detailed values in Appendix \ref{appendix:results}) shows the recovery time using clustered replay. The figure demonstrates that Shuttle is scalable, in the sense that adding more servers allow reducing the time of recovery. Three application servers allowed recovery in half the time of one (750 versus 417 seconds). If the application runs on 5 or more application servers, then the single Shuttle Storage (Cassandra) instance becomes the bottleneck because Shuttle database client interceptor fetches the keys accessed by every request. We added another \emph{c3.xlarge} instance to the Cassandra cluster. 
-\hl{reler esta seccao toda}
+
 The latency of the requests during their first execution remains approximately constant when 3 servers are added (Figure \ref{fig:recovery_scalability:latency}). This means that a single \emph{TryOut} instance performing 2000 requests per second is not capable of overstraining the resources of the application servers.
 
 \begin{figure*}[!htb]
