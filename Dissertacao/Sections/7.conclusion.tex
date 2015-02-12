@@ -28,30 +28,25 @@ Thus, we have achieved the goal we set out at the beginning of this dissertation
 \section{Future Work}\label{sec:conclusion:future_work}
 The following directions are proposed as a development of the present research:
 \begin{itemize}
-\item Consider the dependencies and result on client's browser: a considerable trend in web-application development is moving the application code to the client's browser. How this will affect the dependencies between requests? How will be the consistency of the replay process?
-\item Consider more database schemas and operations operations: several operations such as \emph{scan} and \emph{append}. What applications can be build using idempotent operations? How the replay algorithms can encompass them?
-\item Consider the user sessions in the dependency algorithms.
-\item Fault-tolerance: how to handle when the recovery process fails when instances fail? How to handle database replication?
-\item Research about how the instance rejuvenation can be used in \ac{PaaS} to prevent attackers from compromise a quorum of replicas.
-\item Extend the evaluation scenarios tests to more complex intrusions.
-\item Evaluate the dependencies created by several types of applications.
 \item Propose mechanisms to prevent intrusions from spreading.
-\item Propose a pricing model to deliver a intrusion recovery system on a pay-per-usage manner.
+\item Take into account client side applications' code and user sessions. How an intrusion recovery system can leverage them to establish dependencies between requests? 
+\item Consider more database schema and complex operations, e.g., scan and append, and idempotent operations.  How the replay algorithms can encompass them?
+\item Fault-tolerance: how to handle instance failures during the recovery process? How to handle database replication?
+\item Propose a pricing model to deliver a intrusion recovery system on a pay-per-usage manner. 
+\item How the instance rejuvenation can be used in PaaS to prevent attackers from compromise a quorum of replicas.
 \end{itemize}
 
-
-\hl{Exacto, há aqui ideias que são apenas prolongamentos ou requisitos para colocar em producao. Queria falar consigo para seleccionarmos apenas 80\% delas no máximo. }
 In addition, we propose to develop an user interface for tenants and evaluate their experience. A distinct research direction can evaluate how intrusion recover system for cloud, such as Shuttle, can be integrated and affect the recovery procedures of companies. In particular, how these systems can be integrated and used by the practices, for instance, defined in the Service Design and Service Operation aspects of \ac{ITIL}. By doing so, we expect to analyze the advantages and disadvantages of using these services.
 
 The major challenges to implement the current prototype were: concurrent and consistent database snapshot, establish accurate requests dependencies, perform parallel actions replay, repair the system state in time, avoid application downtime and keep the application source code unmodified as much as possible.
 
 As future work, we would like to improve the implementation by:
 \begin{itemize}
-\item Optimize the concurrency mechanisms serial replay in the replay instances
-\item Migrate the dependency graph to a distributed database
-\item Improve the clustering algorithm
-\item Integrate the proxy in a load-balancer implementation
-\item Analyze compression mechanisms to reduce the memory and storage footprint
+\item Optimize the concurrency mechanisms serial replay in the replay instances.
+\item Migrate the dependency graph to a distributed database.
+\item Improve the clustering algorithm.
+\item Integrate the proxy in a load-balancer implementation.
+\item Analyze compression mechanisms to reduce the memory and storage footprint.
 \end{itemize}
 
 

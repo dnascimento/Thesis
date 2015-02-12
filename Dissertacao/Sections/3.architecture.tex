@@ -375,7 +375,7 @@ During the recovery period, intrusions are removed and the application code is u
 For instance in Figure \ref{fig:inconsistency_unlock}, the $Request 1$ has a different replay execution performing $B = B \times 5$ instead of incrementing $A$. The second operation of {req.~2} is delayed until the end of the {req.~1} because it succeed the second operation of {req.~1} in the operation list. After the execution of {req.~1}, the database client interceptor unlocks the second operation of {req.~2}.\\
 
 \begin{figure}[!htb]
-\hspace*{-1cm}
+\hspace*{-3mm}
 \mbox{
   \subfloat[][Ordered by the operation list \label{fig:inconsistency_db_order}]{
       \includegraphics[width=0.25\linewidth]{images/inconsistency_db_order}

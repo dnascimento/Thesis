@@ -348,7 +348,7 @@ Shuttle	\newline (this work)							& User requests, session and read/write set \
 \begin{center}
 \rowcolors{1}{}{lightgray}
 \begin{table}[ht]
-\begin{tabular}{|m{2.5cm}|m{2.3cm}|m{2.7cm}|m{2.5cm}|C{1.5cm}|C{1.8cm}|}
+\begin{tabular}{|m{2.5cm}|m{2.4cm}|m{2.7cm}|m{2.5cm}|C{1.5cm}|C{1.8cm}|}
 \hline
 \textbf{System} & \textbf{Previous state recovery}		& \textbf{Effect removal} & \textbf{Replay phase} & \textbf{Runtime recovery} & \textbf{Externally consistent} \\ \hline
 \cite{taser}Taser			  		& Snapshot 	& load legitimate entries value from a snapshot & No &  &  \\ \hline
@@ -365,7 +365,7 @@ Shuttle	\newline  (this work)								& Snapshot & Load snapshot & Replay tainted
 \label{tab:recovery}
 \end{table}
 \end{center} 
-
+\vskip-7mm
 
 At recovery phase, the intrusion recovery services remove the intrusion effects and recover a consistent state  (Table \ref{tab:recovery}). Three of the possible options to remove the intrusion are: snapshot, compensating and versioning. Versioning is a per-entry and per-write snapshot. This mechanism is finer-grained than snapshot and allows the reading of previous versions without replay the actions after the snapshot. However, the storage requirements to keep the versions of every entry in a large application can be an economic barrier. The usage of actions compensation requires the knowledge of the actions that revert the original actions.
 

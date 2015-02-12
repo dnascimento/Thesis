@@ -332,7 +332,7 @@ Requests and keys are stored in the \emph{Shuttle storage} (Cassandra) while the
 \begin{table}[ht]
 \centering
   \begin{tabular}{l|rr}   
-              & \# objects   & size (total) (MB) \\ \hline
+              & \textbf{\# objects}   & \textbf{size (total) (MB)} \\ \hline
   \textbf{Shuttle Storage: }             \\
   Request     & 1 million    & 212       \\  %1000000 - 212 162 883
   Response    & 1 million    & 8 967     \\  %1000000 - 8 967 233 474 
@@ -371,11 +371,11 @@ For the sake of performance in selective replay, the dependency graph is doubly-
 \begin{table}[ht]
 \centering   
   \begin{tabular}{l|rr}     
-           & \# objects & size (bytes) \\ \hline  
+           & \textbf{\# objects} & \textbf{size (bytes)} \\ \hline  
   Start    & 1          & 16           \\
   End      & 1          & 16           \\                        
   Before   & 1          & 61           \\     %   1 199 305 - 40 487 088 bytes for sample of 663 105 entries
-  After    & 5          & 162          \\     % 153 356 416 -  3 527 873 bytes for sample of 663 105 entries
+  After    & 5          & 162          \\ \hline    % 153 356 416 -  3 527 873 bytes for sample of 663 105 entries
   Total    & -          & 718 MB       \\     % 718 486 432 -  1 000 000 entries
   \end{tabular}            
 \caption{Memory used by each entry of dependency graph}
@@ -402,10 +402,10 @@ Table \ref{tab:storageScale} represents the estimated storage overhead based on 
 \begin{table}[ht]
 \centering
 \begin{tabular}{l|rrr}
-                  & 1 million   & 20 million (day)    & 2 billion (quarter) \\ \hline
-Shuttle Storage   & 716 MB      & 14.32 GB            & 1.432 TB \\
-Graph             & 718 MB      & 14.36 GB            & 1.436 TB \\
-Database Nodes    & 282 MB      &  5.64 GB            & 564 GB   \\
+                  & \textbf{1 million}   & \textbf{20 million (day)}    & \textbf{2 billion (quarter)} \\ \hline
+Shuttle Storage   & 716 MB               & 14.32 GB                     & 1.432 TB \\
+Graph             & 718 MB               & 14.36 GB                     & 1.436 TB \\
+Database Nodes    & 282 MB               &  5.64 GB                     & 564 GB   \\
 \end{tabular}
 \caption{Storage overhead considering different number of stored requests}
 \label{tab:storageScale}
@@ -418,14 +418,14 @@ The user requests can be stored in \ac{AWS} \ac{S3}, DynamoDB, Glacier and \ac{E
  \begin{table}[h]
  \centering
  \begin{tabular}{l|rrrr}
- \multirow{2}{*}{Data per month} & \multicolumn{4}{c}{Cost  per GB-month} \\
-                                 & S3         & Glacier   & EBS     & DynamoDB   \\ \hline
-    First 1 TB                   & \$0.0300   & 0.0100    & 0.05    & 0.25 \\
-    Next 49 TB                   & \$0.0295   & 0.0100    & 0.05    & 0.25 \\
-    Next 450 TB                  & \$0.0290   & 0.0100    & 0.05    & 0.25 \\
-    Next 500 TB                  & \$0.0285   & 0.0100    & 0.05    & 0.25 \\
-    Next 4000 TB                 & \$0.0280   & 0.0100    & 0.05    & 0.25 \\
-    Next 5000 TB                 & \$0.0275   & 0.0100    & 0.05    & 0.25 \\
+ \multirow{2}{*}{\textbf{Data per month}} & \multicolumn{4}{c}{\textbf{Cost  per GB-month}} \\
+                    & \textbf{S3}    & \textbf{Glacier}    & \textbf{EBS}     & \textbf{DynamoDB}   \\ \hline
+    First 1 TB      & \$0.0300       & 0.0100              & 0.05             & 0.25 \\
+    Next 49 TB      & \$0.0295       & 0.0100              & 0.05             & 0.25 \\
+    Next 450 TB     & \$0.0290       & 0.0100              & 0.05             & 0.25 \\
+    Next 500 TB     & \$0.0285       & 0.0100              & 0.05             & 0.25 \\
+    Next 4000 TB    & \$0.0280       & 0.0100              & 0.05             & 0.25 \\
+    Next 5000 TB    & \$0.0275       & 0.0100              & 0.05             & 0.25 \\
     \end{tabular}
     \caption{Pricing of Amazon Web Services S3, Glacier, EBS and DynamoDB}
     \label{tab:s3Cost}

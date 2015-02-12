@@ -18,9 +18,9 @@ StackExchange provides a \ac{SQL} database dump of each portal of StackExchange.
 %We estimate the number of views per day considering the period between the question creation and the dump creation (4 of May 2014).
 
 \begin{table}[ht]
+\hspace*{-5mm}
 \begin{minipage}[b]{0.45\linewidth}\centering
-      \begin{tabular}{|p{3.3cm}|r|}
-      \hline
+      \begin{tabular}{p{3.3cm}|r}
       		                                      & \textbf{Total}  \\ \hline
           Questions                             & 8 860 649       \\ \hline
           Answers                               & 15 475 157      \\ \hline
@@ -29,15 +29,14 @@ StackExchange provides a \ac{SQL} database dump of each portal of StackExchange.
           Tags                                  & 74 205          \\ \hline
           Views                                 & 11 097 152 219  \\ \hline
           Text of questions and answers (UTF-8) & 26.76 GB        \\ \hline  
-          Text of comments (UTF-8)              & 5.61 GB         \\ \hline
+          Text of comments (UTF-8)              & 5.61 GB         \\ 
       \end{tabular}
     \caption{Data description}
     \label{tab:totalData}
 \end{minipage}
-\hspace{0.5cm}
+\hspace{2mm}
 \begin{minipage}[b]{0.45\linewidth}	\centering
-      \begin{tabular}{|l|r|r|}
-        \hline
+      \begin{tabular}{l|r|r}
           				                    & \textbf{Average} & \textbf{Std. Deviation} \\ \hline 
           Views per question          & 1252             & 6216                    \\ \hline
           Tags per question           & 1                & 1.41                    \\ \hline
@@ -46,7 +45,7 @@ StackExchange provides a \ac{SQL} database dump of each portal of StackExchange.
           Votes per answer            & 4                & 17.11                   \\ \hline
           Text per answer (UTF-8)     & 883 B        & 1133.9 B            \\ \hline
           Text per comment (UTF-8)    & 153 B       & 122.5 B           \\ \hline
-          Text per question (UTF-8)   & 1477 B       & 1951.1 B            \\ \hline
+          Text per question (UTF-8)   & 1477 B       & 1951.1 B            \\ 
       \end{tabular}
     \caption{Data description per question}
     \label{tab:totalPerTopic}
@@ -88,9 +87,7 @@ For instance, the maximum request arrival rate of one of the Portuguese Ministry
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Precision and Recall}\label{sec:eval:accuracy}
 
-In this Section, we evaluate Shuttle's ability to correctly recover applications by measuring its precision and recall in three categories of intrusion scenarios. \hl{alterei para precision and recall e defini o que significam... é mais lógico do que accuracy}\\
-
-We define precision as the fraction of replayed requests that are legitimate and tainted requests: 
+In this Section, we evaluate Shuttle's ability to correctly recover applications by measuring its precision and recall in three categories of intrusion scenarios. We define precision as the fraction of replayed requests that are legitimate and tainted requests: 
 
 \begin{gather*} 
 precision = \frac{ \{tainted \quad requests\} \cap \{replayed \quad requests\}}{\{replayed \quad requests\}}
@@ -122,7 +119,7 @@ Table \ref{tab:accuracy} presents a summary of the precision and recall tests. I
 \begin{table}
 \centering
 \begin{tabular}{l|rrrr}
-    & \#intrusion & \#tainted & \#replayed (sr)               & \#replayed (fr)   \\ \hline
+    & \textbf{\#intrusion} & \textbf{\#tainted} & \textbf{\#replayed (sr)}  & \textbf{\#replayed (fr)}   \\ \hline
 1a       & 110          & 0          & [0, 605] (18.18\%)   & > 38 620 (00.28\%)  \\
 1b       & 58           & 14         & [0, 379] (18.99\%)   & > 38 620 (00.18\%)  \\
 1c       & 48           & 52         & [0, 253] (39.52\%)   & > 38 620 (00.25\%)  \\
