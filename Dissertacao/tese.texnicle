@@ -64,13 +64,13 @@
         <attribute name="showlogwarningitems" type="bool">1</attribute>
         <attribute name="showloginfoitems" type="bool">0</attribute>
         <attribute name="showlogerroritems" type="bool">1</attribute>
-        <attribute name="pdfviewscrollrect" type="string">{{0, 116726.54830286365}, {604, 769.58746623793559}}</attribute>
+        <attribute name="pdfviewscrollrect" type="string">{{0, 0}, {604, 858.56544384019003}}</attribute>
         <attribute name="showpdfthumbnails" type="bool">0</attribute>
         <attribute name="selectedcontrolstab" type="int16">0</attribute>
         <attribute name="maxoutlinedepth" type="int16">7</attribute>
         <attribute name="logoutputlevel" type="int16">0</attribute>
-        <attribute name="editorwidth" type="float">1124</attribute>
-        <attribute name="controlswidth" type="float">254</attribute>
+        <attribute name="editorwidth" type="float">479</attribute>
+        <attribute name="controlswidth" type="float">220</attribute>
         <attribute name="consoleview" type="int16">1</attribute>
         <relationship name="project" type="1/1" destination="PROJECT" idrefs="z103"></relationship>
     </object>
@@ -82,7 +82,7 @@
         <relationship name="selected" type="1/1" destination="FILE" idrefs="z114"></relationship>
         <relationship name="settings" type="1/1" destination="SETTINGS" idrefs="z104"></relationship>
         <relationship name="uisettings" type="1/1" destination="UISETTINGS" idrefs="z102"></relationship>
-        <relationship name="items" type="0/0" destination="PROJECTITEM" idrefs="z111 z113 z106 z120 z119 z115 z125 z123 z126 z112 z118 z107 z105 z114 z116 z108 z117 z124 z110 z122 z121 z109"></relationship>
+        <relationship name="items" type="0/0" destination="PROJECTITEM" idrefs="z111 z106 z124 z121 z122 z120 z112 z119 z107 z117 z109 z105 z110 z113 z115 z114 z118 z125 z116 z126 z123 z108"></relationship>
     </object>
     <object type="SETTINGS" id="z104">
         <attribute name="stoponerror" type="bool">1</attribute>
@@ -212,10 +212,10 @@
     </object>
     <object type="TEXFILE" id="z114">
         <attribute name="wasopen" type="bool">0</attribute>
-        <attribute name="visiblerect" type="string">{{0, 5}, {1082, 291}}</attribute>
-        <attribute name="lasteditdate" type="date">445278855.25146698951721191406</attribute>
+        <attribute name="visiblerect" type="string">{{0, 0}, {437, 328}}</attribute>
+        <attribute name="lasteditdate" type="date">445437477.15620297193527221680</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">445278450.66299498081207275391</attribute>
+        <attribute name="fileloaddate" type="date">445437476.99885797500610351562</attribute>
         <attribute name="extension" type="string">tex</attribute>
         <attribute name="cursor" type="string">{233, 25}</attribute>
         <attribute name="sortindex" type="int32">3</attribute>

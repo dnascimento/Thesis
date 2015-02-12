@@ -1,12 +1,12 @@
 %!TEX root = ../tese.tex
 %!TEX encoding = UTF-8 Unicode
 \chapter{Implementation}\label{chapter:implementation}
-This chapter addresses the main decisions adopted regarding the implementation of the intrusion recovery system Shuttle. Shuttle is supposed to be implemented by the \acf{PaaS} providers since it requires modifications to the \ac{PaaS} system and database service.
+This chapter addresses the main decisions adopted regarding the implementation of the intrusion recovery system Shuttle. Shuttle is supposed to be implemented by the \ac{PaaS} providers since it requires modifications to the \ac{PaaS} system and database service.
 
 %button-up approach. What are the base technologies?
 \section{Adopted Technologies}\label{sec:impl:adopted_technologies}
 %Criteria
-In order to implement the proposed work, we evaluated several technologies taking in account the requirements of the problem and the performance, scalability and easiness of implementation in a production mode \acf{PaaS} provider service.
+In order to implement the proposed work, we evaluated several technologies taking in account the requirements of the problem and the performance, scalability and easiness of implementation in a production mode \ac{PaaS} provider service.
 %Python
 The first Shuttle prototype was implemented in Python. The prototype of a simple application and the proxy allowed to analyze the requirements of Shuttle. The compact code of Python was great for code readability and rapid prototyping. However, despite the stackless variants of Python, the global interpreter lock limits Python to a single active thread per process. Since all modules of Shuttle are multi-threaded and their performance is critical to support medium and large-scale systems, Python was not appropriated. The selected language needs to be likely to run faster than Python and to have better concurrency and network libraries.
 
@@ -18,7 +18,7 @@ Java has a higher abstraction level than C but lower than Python. To argue about
 Shuttle has a distributed architecture and each module shall process various requests concurrently. Therefore, we also considered languages, such as \emph{Erlang}, \emph{Go Lang} and \emph{Scala}. They facilitate the writing of concurrent programs that share the state by communicating. Moreover, the actors model \cite{actors}, native in Erland and available through frameworks as Akka \cite{akka} to Scala, could simplify the implementation and improve the performance. 
 
 %Java
-Java is still the most used language in enterprise environments and it is compatible with most of \ac{PaaS}. The selected database is implemented in Java (Chapter \ref{sec:impl:database_options}). In addition, Java has the \acf{NIO} library that provides event-driven and asynchronous communication via network. %Due to its broad usage, Java is more likely to have client libraries for distributed databases than other languages, for instance C.
+Java is still the most used language in enterprise environments and it is compatible with most of \ac{PaaS}. The selected database is implemented in Java (Chapter \ref{sec:impl:database_options}). In addition, Java has the \ac{NIO} library that provides event-driven and asynchronous communication via network. %Due to its broad usage, Java is more likely to have client libraries for distributed databases than other languages, for instance C.
 
 %Why not Java?
 We chose to implement the Shuttle prototype in Java. However, the large number of concurrent tasks and asynchronous message passing communications turned the development of the prototype using Java extremely complex. Moreover, its concurrency model and network libraries have an abstraction level lower than desired to archive a fast development and good performance.
@@ -26,11 +26,11 @@ We chose to implement the Shuttle prototype in Java. However, the large number o
 Therefore, during the development of the prototype, we concluded that \emph{Scala} with \emph{Akka} could be a better option than Java. It would be likely to simplify the development of the distributed system and improve the performance. However, rebuilding the prototype in a different language would also take too long. Therefore, we kept Java.
 In addition, the proxy performance could be improved using a C or C++ implementation, such as HAProxy \cite{haproxy}. \\
 
-Shuttle is built of several modules that communicate and coordinate their actions. We choose to use a messaging protocol instead of \acf{RPC} (such as Java \acf{RMI}). The message passing protocol should emphasized simplicity, performance and low overhead. It should also define data structures and service interface easily. 
+Shuttle is built of several modules that communicate and coordinate their actions. We choose to use a messaging protocol instead of \ac{RPC} (such as Java \ac{RMI}). The message passing protocol should emphasized simplicity, performance and low overhead. It should also define data structures and service interface easily. 
 
-Plain text protocols are communication protocol whose content representation is intended to be read by humans. For instance, the \acf{SOAP} \cite{soap} specifies rules for using XML to package messages. Despite the heterogeneity and easiness of debug of plain text protocols, the text encoding and message structure has a significant overhead. As opposed, binary protocols are intended to be read by machines. The advantage of compactness translates into smaller messages and faster transmission and interpretation than plain text protocols. The capability of describe data structures using an \acf{IDL} and generate the source code in various programming languages to generate and parse the stream of bytes is also important to reduce the period of implementation and support transparent interaction between multiple programming languages. To cope with these requirements, we selected a binary protocol with \ac{IDL}. 
+Plain text protocols are communication protocol whose content representation is intended to be read by humans. For instance, the \ac{SOAP} \cite{soap} specifies rules for using XML to package messages. Despite the heterogeneity and easiness of debug of plain text protocols, the text encoding and message structure has a significant overhead. As opposed, binary protocols are intended to be read by machines. The advantage of compactness translates into smaller messages and faster transmission and interpretation than plain text protocols. The capability of describe data structures using an \ac{IDL} and generate the source code in various programming languages to generate and parse the stream of bytes is also important to reduce the period of implementation and support transparent interaction between multiple programming languages. To cope with these requirements, we selected a binary protocol with \ac{IDL}. 
 
-Apache Thrift \cite{Thrift} and Google's Protocol Buffer \cite{protobuffers} are two of the current binary communication protocol that fit these requirements. These protocols are similar, the main difference is the first offers a stack implementation for \acf{RPC} calls. The exact performance differences between them can only be measured benchmarking the two possible implementations. We choose Protocol Buffers to implement our prototype.
+Apache Thrift \cite{Thrift} and Google's Protocol Buffer \cite{protobuffers} are two of the current binary communication protocol that fit these requirements. These protocols are similar, the main difference is the first offers a stack implementation for \ac{RPC} calls. The exact performance differences between them can only be measured benchmarking the two possible implementations. We choose Protocol Buffers to implement our prototype.
 
 
 
@@ -43,13 +43,13 @@ Shuttle is implemented as a service in \ac{PaaS} framework. Since we can not mod
 	\item \textit{Support to add new containers:} to add new compute, database and replay instances.
 	\item \textit{Contain a load-balancer:} to distribute the requests after the proxy
 	\item Extensible to support a new database management system
-	\item Deployable on OpenStack and \acf{AWS}
+	\item Deployable on OpenStack and \ac{AWS}
 	\item Support for Java Applications
 \end{enumerate}
 
 We consider the auto-scaling capability as optional since Shuttle may invoke the \ac{PaaS} manager to create new application instances, database instances and replay instances. However, the capability to monitoring the containers usage during the recovery period turns the replay process faster and cost-efficient by adjusting dynamically the required resources (Chapter \ref{sec:eval:peformance}). 
 
-We require the \ac{PaaS} system to be deployable on OpenStack \cite{openstack} and \acf{AWS}. Due to the costs of a public cloud service, the prototype is tested in a local cloud supported by OpenStack and later on a public cloud \ac{AWS}.
+We require the \ac{PaaS} system to be deployable on OpenStack \cite{openstack} and \ac{AWS}. Due to the costs of a public cloud service, the prototype is tested in a local cloud supported by OpenStack and later on a public cloud \ac{AWS}.
 
 
 We chose AppScale \cite{Appscale} to implement our prototype. AppScale meets the requirements except it does not support OpenStack nether supports the required database (Chapter \ref{sec:impl:database_options}).  Therefore, we contributed for AppScale open-source project adding the support for both. AppScale supports auto-scaling monitoring the proxy and nodes: if one of the servers queue contains more than 5 requests or if the node usage exceeds the 90\%, then it creates a new container and deploys the application. There are many alternatives being actively developed. The main open-source systems are Openshift by RedHat \cite{OpenShift}, AppScale \cite{Appscale}, Apache Stratos \cite{ApacheStratos}, Cloud Foundry \cite{Cloudfoundry}, Cloudify \cite{cloudify} and Solum project of OpenStack \cite{solum}.  
@@ -63,7 +63,7 @@ Shuttle could be implemented in \ac{PaaS} supported by most of known databases, 
 \acs{NoSQL} databases are designed for extremely large data sets, hundreds or thousands of million entries. Most of the architectures of \acs{NoSQL} databases claim to scale horizontally near linearly, i.e., adding twice the data means to add twice the nodes. To do so, the data of \acs{NoSQL} storages is partitioned across multiple servers, for instance, by a range of keys or using consistent hashing \cite{Chang2008}. Therefore, \acs{NoSQL} stores can compensate the overhead imposed by Shuttle distributing the data across the nodes, scaling horizontally instead of vertically. 
 
 
-Unlike relational databases, \acs{NoSQL} databases do not guarantee \acf{ACID} properties. One of the main differences between the \acs{NoSQL} storages is their approach to preserve consistency or availability during the network partitions. The \acs{CAP} theorem states any networked shared-data system can have at most two of the three desirable properties: consistency, availability and tolerance to network partitions \cite{brewer2012cap}.
+Unlike relational databases, \acs{NoSQL} databases do not guarantee \ac{ACID} properties. One of the main differences between the \acs{NoSQL} storages is their approach to preserve consistency or availability during the network partitions. The \acs{CAP} theorem states any networked shared-data system can have at most two of the three desirable properties: consistency, availability and tolerance to network partitions \cite{brewer2012cap}.
 
 \acs{NoSQL} databases support new data structures, which are more flexible than the schema of relational databases:
  \begin{enumerate}
@@ -107,7 +107,7 @@ Graph
 
 HBase and Cassandra follow the Google Big Table column-oriented database \cite{Chang2008}. HBase has master-slave architecture and provides get, put, delete operations but also scan, server-side atomic operations and atomicity on row-level writes. Cassandra has a peer-to-peer architecture based on Dynamo \cite{Decandia2007}. The consistency of the operations is determined per-operation basis by the number of read and written replicas. Strong consistency requires to read/write a quorum while on eventual consistency the storage system guarantees that if no new updates are made to the object, eventually all accesses will return the last updated value. \cite{Decandia2007}. Cassandra resolves conflicts using the timestamp and a last-write-wins policy. 
 
-MongoDB and CouchDB are two of document-oriented stores. Their \ac{API} allows to \acf{CRUD} documents. MongoDB has master-slave architecture: one master per shard (a partition of the key-space) and the shard's slaves are eventual-consistent. Therefore, there are no conflicts. On other hand, CouchDB records any changes as a version of the document and allows conflict resolution via programmatic merge. 
+MongoDB and CouchDB are two of document-oriented stores. Their \ac{API} allows to \ac{CRUD} documents. MongoDB has master-slave architecture: one master per shard (a partition of the key-space) and the shard's slaves are eventual-consistent. Therefore, there are no conflicts. On other hand, CouchDB records any changes as a version of the document and allows conflict resolution via programmatic merge. 
 
 Graph stores such as Neo4J target a specific kind of applications.
 
@@ -140,7 +140,7 @@ The external storage should be protected, at least, against attacks to integrity
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Normal Execution}\label{sec:impl:normal}
 
-Shuttle can operate in one of two states: \textit{normal execution} and \textit{recovery}. During normal execution, Shuttle collects  dependencies between requests, stores the accessed data items, sets the correct branch to write the data item values and performs snapshots. Figure \ref{fig:normal:mensaging} summarizes the messages exchanged between Shuttle's modules during the normal phase. Shuttle identifies each user \ac{HTTP} request with an unique \acf{SRD} and identifies all database operations of each request with its \ac{SRD}. The database operations are logged and sent to the manager, which generates the dependency graph. 
+Shuttle can operate in one of two states: \textit{normal execution} and \textit{recovery}. During normal execution, Shuttle collects  dependencies between requests, stores the accessed data items, sets the correct branch to write the data item values and performs snapshots. Figure \ref{fig:normal:mensaging} summarizes the messages exchanged between Shuttle's modules during the normal phase. Shuttle identifies each user \ac{HTTP} request with an unique \ac{SRD} and identifies all database operations of each request with its \ac{SRD}. The database operations are logged and sent to the manager, which generates the dependency graph. 
 In this Section, we describe the normal execution phase following the path that a request takes to be processed.
 
 \begin{figure}
@@ -156,7 +156,7 @@ In this Section, we describe the normal execution phase following the path that 
 \subsection{Proxy}\label{sec:impl:normal:proxy}
 The proxy retrieves all \ac{HTTP} user requests and adds the \ac{SRD} to their headers. The \ac{SRD} contains the following fields:
 \begin{enumerate}
-	\item \acf{RID} (long).
+	\item \ac{RID} (long).
 	\item Branch: the branch accessed by the request (short).
 	\item Restraint: to support branch change during the recovery phase (boolean).
 \end{enumerate}
@@ -173,7 +173,7 @@ The proxy could be implemented by modifying an existing open-source proxy, e.g.,
 
 The proxy is made of three parts: the client-side module, the backend module and the asynchronous request saver (Figure \ref{fig:impl:proxy_modules}).
 
-The client side module retrieves \ac{HTTP} requests, parses their content and modifies their headers. We used the \ac{NIO} library of Java to implement a TCP server. The server retrieves user requests and modifies their header (Algorithm \ref{code:proxy_service}). The values of \emph{branch} and \emph{restrain} are defined by the Shuttle's manager while the \ac{RID} is a timestamp of the proxy instance. Java provides timestamps with a precision of millisecond. This precision limits the proxy performance to one thousand requests per second. Therefore, we used a counter to identify the same millisecond, up to 1000 requests per millisecond (1 million requests per second). The precision of the timestamp weights on the network and storage overhead. The \ac{RID} is also used as a timestamp for the application and as a pseudorandom number generator, so the request generates always the same sequence of non-repeating numbers. The fields of \acf{SRD} represent a fixed overhead of 35 ASCII characters, corresponding to 35 bytes, in every request header.
+The client side module retrieves \ac{HTTP} requests, parses their content and modifies their headers. We used the \ac{NIO} library of Java to implement a TCP server. The server retrieves user requests and modifies their header (Algorithm \ref{code:proxy_service}). The values of \emph{branch} and \emph{restrain} are defined by the Shuttle's manager while the \ac{RID} is a timestamp of the proxy instance. Java provides timestamps with a precision of millisecond. This precision limits the proxy performance to one thousand requests per second. Therefore, we used a counter to identify the same millisecond, up to 1000 requests per millisecond (1 million requests per second). The precision of the timestamp weights on the network and storage overhead. The \ac{RID} is also used as a timestamp for the application and as a pseudorandom number generator, so the request generates always the same sequence of non-repeating numbers. The fields of \ac{SRD} represent a fixed overhead of 35 ASCII characters, corresponding to 35 bytes, in every request header.
 
 Proxy's TCP client threads send the requests to the load balancer. We use a fixed size thread pool to associate each \ac{HTTP} response to the correct \ac{HTTP} request. The thread that retrieves, processes and forwards the request to the load balancer, blocks until its response is retrieved. When the response is retrieved, the Proxy associates a \emph{end-timestamp}. A future work shall implement the proxy as a fully asynchronous proxy. To do so, the application server shall include the \ac{SRD} in the responses. Since the delay of creating a new TCP connection to the load balancer is considerable, our implementation keeps the TCP session with the load balancer and implements the \ac{HTTP} keep-alive specification. \ac{HTTP} keep-alive is a standard that allows a single TCP connection to send and receive multiple \ac{HTTP} requests/responses, instead of opening a new connection for every request/response pair. 
 
@@ -212,7 +212,7 @@ The Shuttle implementation in application servers shall meet two architecture re
 
 
 %how to pass the ID?
-Shuttle architecture establishes that every database operation must include the \acf{SRD}. The first solution would implement directly the architecture in Figure \ref{fig:shuttle_architecture}, in which a proxy that modifies every database request or modify the database client \ac{API} to include the \ac{SRD} as an argument. However, for the sake of simplicity \hl{performance é argumentavel pois não comparámos}, we modified the Voldemort client to include the \ac{SRD} field on every database operation. We modified the Voldemort messages, which are described using \acf{protobuf} \acs{IDL} (Appendix \ref{appendix:voldemort_api}). The implemented \emph{interceptor} gets the \ac{SRD}, which is written in request header, tracks the access and invokes the modified Voldemort client (Algorithm \ref{code:database_client_interceptor}).
+Shuttle architecture establishes that every database operation must include the \ac{SRD}. The first solution would implement directly the architecture in Figure \ref{fig:shuttle_architecture}, in which a proxy that modifies every database request or modify the database client \ac{API} to include the \ac{SRD} as an argument. However, for the sake of simplicity, we modified the Voldemort client to include the \ac{SRD} field on every database operation. We modified the Voldemort messages, which are described using \ac{protobuf} \acs{IDL} (Appendix \ref{appendix:voldemort_api}). The implemented \emph{interceptor} gets the \ac{SRD}, which is written in request header, tracks the access and invokes the modified Voldemort client (Algorithm \ref{code:database_client_interceptor}).
 
 \begin{algorithm}
 \DontPrintSemicolon\SetKwProg{fn}{Function}{}{}
@@ -225,11 +225,11 @@ Shuttle architecture establishes that every database operation must include the 
 \caption{Voldemort \ac{API} interceptor (example of put operation)}\label{code:database_client_interceptor}
 \end{algorithm}
 
-In order to extract the \ac{SRD} from the requests' header, we took in account that \ac{PaaS} systems deploy applications in application engines. Specifically, AppScale deploys the Java applications on the servlet engine WildFly \cite{wildfly} (formerly known as JBoss). In addition, most of Web Service frameworks, e.g., \ac{JAX-WS}, and \acf{MVC} frameworks, such as Spring, encompass the concept of interceptor chain, also known as filters or handlers. An interceptor chain is a sequence of handlers that contain methods that are invoked before and after the request processing by the application controller.
+In order to extract the \ac{SRD} from the requests' header, we took in account that \ac{PaaS} systems deploy applications in application engines. Specifically, AppScale deploys the Java applications on the servlet engine WildFly \cite{wildfly} (formerly known as JBoss). In addition, most of Web Service frameworks, e.g., \ac{JAX-WS}, and \ac{MVC} frameworks, such as Spring, encompass the concept of interceptor chain, also known as filters or handlers. An interceptor chain is a sequence of handlers that contain methods that are invoked before and after the request processing by the application controller.
 
 We implemented a \emph{request interceptor} in Spring. Application developers only need to add a single line to their applications \emph{web.xml} file to add the developed interceptor to the interceptor chain. A future work may concern the implementation interceptor for other application engines.
 
-We also took into account that each request in Spring is binded to a single thread. Therefore, Shuttle keeps an hash table that associates the \acf{TID} with the \acf{SRD} and list of accessed keys of the request that it is processing. The \emph{request interceptor} parses the request header and creates an entry in the hash table (Algorithm \ref{code:interceptor_code_pre}).
+We also took into account that each request in Spring is binded to a single thread. Therefore, Shuttle keeps an hash table that associates the \ac{TID} with the \ac{SRD} and list of accessed keys of the request that it is processing. The \emph{request interceptor} parses the request header and creates an entry in the hash table (Algorithm \ref{code:interceptor_code_pre}).
 
 
 \begin{algorithm}
@@ -251,7 +251,7 @@ We also took into account that each request in Spring is binded to a single thre
 	\label{code:interceptor_code_pre}
 \end{algorithm}
 
-Before every database operation, the database client library invokes the client interceptor to log the access. The interceptor resolves the \acf{TID} into the request's \ac{SRD}, adds the new key to the set of accessed keys of the \ac{SRD} and returns the \ac{SRD} (Algorithm \ref{code:interceptor_code_access}). The client library appends the \ac{SRD} in the database operation request. 
+Before every database operation, the database client library invokes the client interceptor to log the access. The interceptor resolves the \ac{TID} into the request's \ac{SRD}, adds the new key to the set of accessed keys of the \ac{SRD} and returns the \ac{SRD} (Algorithm \ref{code:interceptor_code_access}). The client library appends the \ac{SRD} in the database operation request. 
 
 
 \begin{algorithm}
@@ -297,13 +297,13 @@ The post-process interceptor (Algorithm \ref{code:interceptor_code_pos}) accesse
 The Shuttle database proxy records database operations, selects the correct data item version to access according to the Shuttle state and performs snapshots. The proxy can be implemented in the database management system or as an external \ac{TCP} proxy that accesses the requests. In this work, we implemented the proxy as a new library in the database management system. The database management system invokes the library before the execution of every database request. The proxy tracks the operations order to each data item recording an ordered list of the \ac{RID} that accessed the data item. The operation sequence of each data item is sent to the \textit{manager} to generate the dependency graph (Chapter \ref{sec:impl:normal:manager}). \\
 
 
-We assume without loss of generality that applications store their state in distributed key-value stores, such as Dynamo \cite{Decandia2007}, where the values are often accessed using a \acf{CRUD} API. The simple \ac{API} reduces the performance overhead to track accesses while the independence between keys turns Shuttle into a scalable service. Shuttle can be extended to support other \acs{NoSQL} schemes, for instance column-oriented storage like Cassandra \cite{Lakshman2010a}.\\
+We assume without loss of generality that applications store their state in distributed key-value stores, such as Dynamo \cite{Decandia2007}, where the values are often accessed using a \ac{CRUD} API. The simple \ac{API} reduces the performance overhead to track accesses while the independence between keys turns Shuttle into a scalable service. Shuttle can be extended to support other \acs{NoSQL} schemes, for instance column-oriented storage like Cassandra \cite{Lakshman2010a}.\\
 
 %review/summary of Voldemort
-Voldemort is a distributed database store implemented in Java. We choose in-memory and \acf{BDB} as storage engines and Protocol Buffers as serialization and message passing protocol. Voldemort provides a \acf{CRUD} \ac{API} with 3 methods: get, put and delete. Voldemort accepts asynchronous concurrent writes and treats the result of each modification as a new and immutable version of the data. It detects version conflicts at read-time and handles them using vector clocks or semantic reconciliation. In this implementation, we assume the replication mechanisms to be disabled. 
+Voldemort is a distributed database store implemented in Java. We choose in-memory and \ac{BDB} as storage engines and Protocol Buffers as serialization and message passing protocol. Voldemort provides a \ac{CRUD} \ac{API} with 3 methods: get, put and delete. Voldemort accepts asynchronous concurrent writes and treats the result of each modification as a new and immutable version of the data. It detects version conflicts at read-time and handles them using vector clocks or semantic reconciliation. In this implementation, we assume the replication mechanisms to be disabled. 
 
 %Client side (review)
-In the previous section (Section \ref{sec:impl:normal:compute}), we introduced the modified version of the Voldemort client library, which encompasses the Shuttle interceptor. The interceptor adds the requests' \ac{SRD} to every database operation. We modified the format of the Voldemort messages, which are described using \acf{protobuf} \acs{IDL}, to encompass the \ac{SRD} (Appendix \ref{appendix:voldemort_api}). This technique makes Shuttle transparent for application developers.\\
+In the previous section (Section \ref{sec:impl:normal:compute}), we introduced the modified version of the Voldemort client library, which encompasses the Shuttle interceptor. The interceptor adds the requests' \ac{SRD} to every database operation. We modified the format of the Voldemort messages, which are described using \ac{protobuf} \acs{IDL}, to encompass the \ac{SRD} (Appendix \ref{appendix:voldemort_api}). This technique makes Shuttle transparent for application developers.\\
 
 
 %server side: general architecture
@@ -348,7 +348,7 @@ The \emph{operation list} contains the sequence of operations of a certain key (
 %Read/Write lock, add operation and get the correct version
 When \emph{newScheduler} is invoked by an operation from a new incoming request, it gets the \emph{keyMapEntry} of the key and attempts to gain the access to its \emph{read-write lock} (Algorithm \ref{code:snapshotAlgorithm}). Then, it adds the operation to the \emph{operation list}. At last, Shuttle gets the correct version to access based on the \emph{branch path} and the \emph{list of versions} of the key (Section \ref{sec:arch:runtime_recovery}). 
 
-If the request \ac{RID} is smaller than the current \acf{SID} (line \ref{line:snapshot:1}), then the request does not belong to the current snapshot and shall access the latest, but previous to the snapshot instant, version of the value that is in the  \textit{current branch path}. Otherwise, the request belongs to the current snapshot. Read operations access the latest version (line \ref{line:snapshot:2}) in the  \textit{current branch path}. A write request may create a new version if the version has yet not been written in the current snapshot (\ac{RID} is bigger than the \ac{SID} of the latest version) (line \ref{line:snapshot:3}). Versions are created with the current \acf{SID}. The key accessed by the request is the concatenation of the original key with the version returned by the Algorithm \ref{code:snapshotAlgorithm}. After the access, the \emph{read-write lock} is unlocked and the next operations proceed. \hl{isto é talvez o mais complexo e fundamental de toda a tese, tem de ficar perceptivel - discutir se mudamos para o capitulo anterior.} 
+If the request \ac{RID} is smaller than the current \ac{SID} (line \ref{line:snapshot:1}), then the request does not belong to the current snapshot and shall access the latest, but previous to the snapshot instant, version of the value that is in the  \textit{current branch path}. Otherwise, the request belongs to the current snapshot. Read operations access the latest version (line \ref{line:snapshot:2}) in the  \textit{current branch path}. A write request may create a new version if the version has yet not been written in the current snapshot (\ac{RID} is bigger than the \ac{SID} of the latest version) (line \ref{line:snapshot:3}). Versions are created with the current \ac{SID}. The key accessed by the request is the concatenation of the original key with the version returned by the Algorithm \ref{code:snapshotAlgorithm}. After the access, the \emph{read-write lock} is unlocked and the next operations proceed.
 
 
 \begin{algorithm}
@@ -455,7 +455,7 @@ Hash table implementations use a hash table to associate each vertex in a graph 
 
 We implemented the dependency graph as a hash table. Doing so, insert operations have \O{1} complexity. Operations to obtain the first level of dependencies of a certain requests has also have \O{1} complexity. Even so, we also take in consideration that the performance of these operations is influenced by constant factors and by the hashing function and data distribution.
 
-The hash table keys are the \acf{RID}, which is also the start timestamp of the request. The object associated with each key wraps: the end timestamp; the list of requests from which the request depends on (executed before); the list of requests dependent from the request (to execute after) (Figure \ref{fig:impl:manager:graph}). For sake of simplicity, the graph is kept in the memory of the manager. A production mode implementation, in which the memory limit can become a bottleneck, shall implement the dependency graph in a \acf{DHT} or a key-value \acs{NoSQL} store.
+The hash table keys are the \ac{RID}, which is also the start timestamp of the request. The object associated with each key wraps: the end timestamp; the list of requests from which the request depends on (executed before); the list of requests dependent from the request (to execute after) (Figure \ref{fig:impl:manager:graph}). For sake of simplicity, the graph is kept in the memory of the manager. A production mode implementation, in which the memory limit can become a bottleneck, shall implement the dependency graph in a \ac{DHT} or a key-value \acs{NoSQL} store.
 
 
 \begin{figure}
@@ -467,7 +467,7 @@ The hash table keys are the \acf{RID}, which is also the start timestamp of the 
 
 
 %how it stores the dependencies
-The manager updates the dependency graph when a new table of dependencies is retrieved from a database node (Algorithm \ref{code:add_dependency_graph}). The retrieved hash table associates each \acf{RID} with the \ac{RID} of the requests from which the request depends on. The algorithm creates an undirected graph, which can be considered as two directed graphs: the first representing the dependencies from; the seconds the dependencies two. In other words, the graphs are symmetric: one graph can be generated inverting the directions of the edges of the other graph.\\
+The manager updates the dependency graph when a new table of dependencies is retrieved from a database node (Algorithm \ref{code:add_dependency_graph}). The retrieved hash table associates each \ac{RID} with the \ac{RID} of the requests from which the request depends on. The algorithm creates an undirected graph, which can be considered as two directed graphs: the first representing the dependencies from; the seconds the dependencies two. In other words, the graphs are symmetric: one graph can be generated inverting the directions of the edges of the other graph.\\
 
  \begin{algorithm}[H]
  \DontPrintSemicolon\SetKwProg{fn}{Function}{}{}
@@ -490,7 +490,7 @@ The manager updates the dependency graph when a new table of dependencies is ret
 %Branching
 The manager maintains the \textit{BranchTree}. BranchTree is the implementation of the branching model introduced in Chapter \ref{sec:arch:runtime_recovery}. The BranchTree is implemented as a hash table that associates each branch and its snapshots. The tree model allows tenants to create new branches or snapshots.
 
-In order to create a snapshot, tenants define a future instant in time, $t$, when the snapshot will occur. The manager forwards the value of $t$, named \acf{SID}, to every database instance. Each database node adds a new snapshot with the retrieved \ac{SID} in the \emph{current branch path}. The manager insert the \ac{SID} in the entry of the current branch in the \emph{BranchTree}.
+In order to create a snapshot, tenants define a future instant in time, $t$, when the snapshot will occur. The manager forwards the value of $t$, named \ac{SID}, to every database instance. Each database node adds a new snapshot with the retrieved \ac{SID} in the \emph{current branch path}. The manager insert the \ac{SID} in the entry of the current branch in the \emph{BranchTree}.
 
 In order to create a new branch and start a new replay process, tenants shall specify a base snapshot. The branching algorithm finds the branch of the selected snapshot and copies the snapshots in the list, which are equal or previous to the selected snapshot, to create a new entry in the BranchTree for the new branch. Then, the algorithm creates a snapshot in the new branch. In other words, the new branch path is the concatenation of the new snapshot, in which the replay will be written, and the sequence of snapshots of the branch of the selected snapshots that are equal or previous to it. The new branch path is send to the database proxy of all database nodes.\\
 
@@ -526,7 +526,7 @@ Shuttle uses the Algorithm \ref{code:start_end_full_replay} to generate a reques
 \DontPrintSemicolon\SetKwProg{fn}{Function}{}{}
 \SetKwFunction{Max}{max}
 	  \KwIn{$graph$: dependency graph (Hash Table)}
-	  \KwIn{$snapshot$: non-tampered \acf{SID} selected by the tenant }
+	  \KwIn{$snapshot$: non-tampered \ac{SID} selected by the tenant }
 	  \KwOut{$executionList$: sorted list of \ac{RID} to replay}
 	  \BlankLine
 	  Sort $graph$ keys\;
@@ -565,7 +565,7 @@ The list of data items read by the requests in $A_{replay}$ is obtained querying
 The Shuttle manager requires the \ac{PaaS} controller to launch a set of \textit{replay instances}. If the \ac{PaaS} system does not support auto-scaling, the manager requests the \ac{PaaS} controller to add new database and application instances to attend the flow of replayed requests. Otherwise, the auto-scaling mechanism will detect the overload of the application and database instances and trigger the creation of new instances. In the first case, the number of application instances is constant during the replay phase, so the instances send the requests directly to the application instance instances, avoiding the overhead of the load-balancer. In the second case, the requests are sent to the load-balancer that distributes the requests through the instances. In the current implementation, requests are sent to the load-balancer because AppScale supports auto-scalling and the number of instances during the replay phase is unknown.\\
 
 %How they they are implemented to work
-Each replay instance retrieves a set of lists of \acf{RID} to execute and the branch in which they shall be executed. Replay instances have a main thread to schedule the execution and a thread pool to execute requests asynchronously. Each thread fetches the \acs{HTTP} requests from the \emph{Shuttle storage}, modifies their header setting the \ac{SRD} field \emph{branch} and sends them to the load-balancer. Each response is compared against the response during first execution. An alternative approach can compute the hash of responses in background and compare their values.
+Each replay instance retrieves a set of lists of \ac{RID} to execute and the branch in which they shall be executed. Replay instances have a main thread to schedule the execution and a thread pool to execute requests asynchronously. Each thread fetches the \acs{HTTP} requests from the \emph{Shuttle storage}, modifies their header setting the \ac{SRD} field \emph{branch} and sends them to the load-balancer. Each response is compared against the response during first execution. An alternative approach can compute the hash of responses in background and compare their values.
 
 If a request has been removed, for instance if it is a malicious request, the replay instance fetches the keys accessed by the malicious request during its first execution and invokes the database proxy to unlock the execution.\\ %An alternative approach using a distributed lock per data item does not require to store the accessed keys but requires to store the replayed requests and share a lock, which can be a bottleneck. 
 
@@ -594,7 +594,7 @@ In Section \ref{sec:impl:normal:database}, we introduced the \emph{newScheduler}
 
 Database operations are processed by the replayScheduler if the \emph{branch} field of the operation \ac{SRD} is the same than \emph{replayBranch}. The replaySchedule gets the KeyMapEntry of the accessed key, which contains the list of operations logged during the execution phase. When the first operation, which is being replayed in current replay branch, accesses the data item, Shuttle creates an operation list iterator and associates it with the key.
 
-The iterator of each operation list controls the replay process: it allows or blocks operations (Algorithm \ref{code:operation_iterator}). The iterator keeps a list of operations allowed, executing, waiting or to be ignored. The first allowed operation is the first operation after the snapshot selected by the tenant, i.e., the smallest \acf{RID} that matches the condition $\acf{RID} >= snapshot$ (line \ref{line:iterator:next}). 
+The iterator of each operation list controls the replay process: it allows or blocks operations (Algorithm \ref{code:operation_iterator}). The iterator keeps a list of operations allowed, executing, waiting or to be ignored. The first allowed operation is the first operation after the snapshot selected by the tenant, i.e., the smallest \ac{RID} that matches the condition $\ac{RID} >= snapshot$ (line \ref{line:iterator:next}). 
 
 When a new operation is retrieved, the iterator checks if there are operations executing or allowed to execute. If not, then the iterator transverses more operations of the list and adds them to the \emph{allowed list} (line \ref{line:iterator:fetch}). The algorithm fetches the following consecutive read operations or one write operation. Operations previous to the selected snapshot are not considered.
 
@@ -694,7 +694,7 @@ We considered several application types to evaluate Shuttle. The selected applic
 We consider real-world applications such as office productivity, gaming, media content, data aggregation, wikis, diagramming and e-commerce applications (with shopping cart). For sake of simplicity, we developed \textit{Ask} instead of using real-world applications (Section \ref{sec:impl:application}). Even \textit{Ask} implementation is based on the real-world application StackExchange, its implementation is simpler than it. This allows to analyze the dependencies and reason about the results. We expect to evaluate the dependencies created by different types of application in future.
 
 %explain the application
-We developed a \acf{QA} web application, named \emph{Ask}, to evaluate Shuttle prototype. \emph{Ask} is based on Stack Exchange \cite{stackexchange} and Yahoo! Answers \cite{yahooAnswers}. The application data structure is as follows (Figure \ref{fig:DataStructure}). A question has a title, a known number of views by clients, a set of tags, which represent the themes of the question, and a set of answers. Each answer has a text and a number of user votes. Each user can only do a single vote per answer, incrementing or decrementing one unit the number of votes. Each answer has a set of comments.
+We developed a \ac{QA} web application, named \emph{Ask}, to evaluate Shuttle prototype. \emph{Ask} is based on Stack Exchange \cite{stackexchange} and Yahoo! Answers \cite{yahooAnswers}. The application data structure is as follows (Figure \ref{fig:DataStructure}). A question has a title, a known number of views by clients, a set of tags, which represent the themes of the question, and a set of answers. Each answer has a text and a number of user votes. Each user can only do a single vote per answer, incrementing or decrementing one unit the number of votes. Each answer has a set of comments.
 
  \begin{figure}
    \centering

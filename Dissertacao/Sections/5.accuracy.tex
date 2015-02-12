@@ -1,7 +1,7 @@
 %!TEX root = ../tese.tex
 %!TEX encoding = UTF-8 Unicode
 \chapter{Evaluation}\label{chapter:evaluation}
-In order to evaluate the developed solution, we performed several tests to measure and evaluate the accuracy and performance of Shuttle. Due to public cloud costs, we performed a accuracy test prototype on a single machine and evaluate the prototype performance on a public \acf{CSP}.
+In order to evaluate the developed solution, we performed several tests to measure the accuracy and performance of Shuttle. Due to public cloud costs, we performed an accuracy test prototype on a single machine and evaluate the prototype performance on a public \ac{CSP}.
 
 The following sections detail the steps and decisions towards evaluating the proposed solution, starting by the definition of the developed prototype application and performed tests. The recovery accuracy and performance are evaluated on a set of intrusion scenarios. Finally, we present a cost estimation for Shuttle in \ac{AWS} \cite{aws}. The success of Shuttle is determined by its capability to recover from the intrusion scenarios in a correct, timely and scalable way.
 
@@ -12,7 +12,7 @@ The following sections detail the steps and decisions towards evaluating the pro
 %TryOut
 We developed a \ac{HTTP} load testing and benchmarking tool, named \emph{TryOut}, to evaluate Shuttle and measure its overhead simulating a real application load from multiple clients. \emph{TryOut} consists on multiple \ac{HTTP} clients, which are deployed in various nodes, coordinated by a master node. It measures the average, minimum and maximum response time, the request rate and the throughput of each \ac{HTTP} client. \emph{TryOut} also compares the database entries and the user responses with the expected values to measure the precision and recall of our solution. TryOut allows to measure the latency for a given throughput and number of concurrent clients. Requests can be issued asynchronously or synchronously. It also allows to measure the maximum throughput supported by the service. Its main feature, comparing with tools such as Jmeter \cite{jmeter}, ab \cite{ab} and weighttp \cite{weighttp} is the capability to perform \ac{HTTP} requests based on data contained in files. This feature allows us to easily test Shuttle with a data set extracted from an application in production.
 
-In order to use real-world data, \emph{TryOut} performs requests to the developed \acf{QA} application (Chapter \ref{sec:impl:application}) with data extracted from the \textit{Stack Exchange Data Dump} \cite{stackexchange_data}. StackExchange, which is one of the largest \ac{QA} applications and includes \textit{StackOverflow.com} \cite{stackoverflow}, is ranked 57th for traffic in the world \cite{websiteRanking}. A 24 hours window has: 36 million page loads, 148 million \ac{HTTP} requests (1712 requests per second), 267GB retrieved, 1TB sent, 334 million \ac{SQL} queries \cite{stackStatistics}. A question takes, in average, 28ms to be rendered. The architecture encompasses 1 load balancer, 2 \ac{SQL} servers, a Redis \cite{redis} (a key-value cache and store) server and 3 web servers. Their architecture scales vertically, for instance the \ac{SQL} servers have 384 GB of memory with 1.8TB of SSD storage. Since 98,82\% of the requests are read requests, the StackExchange infrastructure relies on caching.
+In order to use real-world data, \emph{TryOut} performs requests to the developed \ac{QA} application (Chapter \ref{sec:impl:application}) with data extracted from the \textit{Stack Exchange Data Dump} \cite{stackexchange_data}. StackExchange, which is one of the largest \ac{QA} applications and includes \textit{StackOverflow.com} \cite{stackoverflow}, is ranked 57th for traffic in the world \cite{websiteRanking}. A 24 hours window has: 36 million page loads, 148 million \ac{HTTP} requests (1712 requests per second), 267GB retrieved, 1TB sent, 334 million \ac{SQL} queries \cite{stackStatistics}. A question takes, in average, 28ms to be rendered. The architecture encompasses 1 load balancer, 2 \ac{SQL} servers, a Redis \cite{redis} (a key-value cache and store) server and 3 web servers. Their architecture scales vertically, for instance the \ac{SQL} servers have 384 GB of memory with 1.8TB of SSD storage. Since 98,82\% of the requests are read requests, the StackExchange infrastructure relies on caching.
 
 StackExchange provides a \ac{SQL} database dump of each portal of StackExchange. We processed all dump files, a total of 60GB of text files, using MapReduce \cite{mapreduce} to extracted the questions, answers, comments and votes. We used four MapReduce jobs to process the data: group comments per answer; group answers per question; output grouped by question; output grouped sorted by time. Doing so, we obtained two files: one grouped by question, the other sorted by they. Tables \ref{tab:totalData} and \ref{tab:totalPerTopic} describe the collected data. The original data was created between 1 August 2008 and 4 May 2014 (181565797230 milliseconds or 2102 days). 
 %We estimate the number of views per day considering the period between the question creation and the dump creation (4 of May 2014).
@@ -86,22 +86,38 @@ For instance, the maximum request arrival rate of one of the Portuguese Ministry
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Accuracy}\label{sec:eval:accuracy}
+\section{Precision and Recall}\label{sec:eval:accuracy}
 
-In this Section, we evaluate Shuttle's ability to correctly recover applications in three intrusion scenarios. \hl{diz aqui como é que fazemos essa avaliação, ou seja, resume aquilo que aparece a seguir ao longo da secção} These scenarios encompass five of the \acf{OWASP} Top 10 Application Security Risks: injection flaws, broken authentication, security misconfiguration, missing function level access control and using components with vulnerabilities \cite{Williams2013}. We consider three classes of intrusion scenarios:
+In this Section, we evaluate Shuttle's ability to correctly recover applications by measuring its precision and recall in three categories of intrusion scenarios. \hl{alterei para precision and recall e defini o que significam... é mais lógico do que accuracy}\\
+
+We define precision as the fraction of replayed requests that are legitimate and tainted requests: 
+
+\begin{gather*} 
+precision = \frac{ \{tainted \quad requests\} \cap \{replayed \quad requests\}}{\{replayed \quad requests\}}
+\end{gather*}
+
+We define recall as the fraction of legitimate and tainted requests that are replayed: 
+
+\begin{gather*} 
+recall = \frac{ \{tainted \quad requests\} \cap \{replayed \quad requests\}}{\{tainted \quad requests\}}
+\end{gather*}
+
+%Precision measures Shuttle's capability to replay only the tainted requests.
+We also may defined precision and recall in terms of malicious and tainted requests. \\
+
+We propose three intrusion scenarios encompass five of the \ac{OWASP} Top 10 Application Security Risks: injection flaws, broken authentication, security misconfiguration, missing function level access control and using components with vulnerabilities \cite{Williams2013}. We consider three classes of intrusion scenarios:
+
 \begin{itemize}
   \item Malicious requests that accidentally or maliciously compromise the application
   \item Software vulnerabilities
   \item External channels (e.g. \ac{SSH} connections)
 \end{itemize}
 
-\bigskip
-
-We deployed all Shuttle modules, application instance and database on a single node, a 2.9GHz dual-core Intel i7 with 8GB of memory running the Java 1.7 HotSpot \acf{VM}. This configuration handled, on average, 500 requests per second from a single-thread client. We selected a subset of the \textit{StackExchange Data Dump} \cite{stackexchange_data} containing 100 000 requests originally performed from 31 of July until 12 of September of 2008: 6992 questions, 28 993 questions, 2200 comments, 61 795 votes \LONG{and 3 062 tags}. Requests were sorted per date, establishing 92 939 dependencies. For the sake of simplicity, we ignored view-only requests because the responses to every write requests imply to read the modified question.  
+We deployed all Shuttle modules, application instance and database on a single node, a 2.9GHz dual-core Intel i7 with 8GB of memory running the Java 1.7 HotSpot \ac{VM}. This configuration handled, on average, 500 requests per second from a single-thread client. We selected a subset of the \textit{StackExchange Data Dump} \cite{stackexchange_data} containing 100 000 requests originally performed from 31 of July until 12 of September of 2008: 6992 questions, 28 993 questions, 2200 comments, 61 795 votes \LONG{and 3 062 tags}. Requests were sorted per date, establishing 92 939 dependencies. For the sake of simplicity, we ignored view-only requests because the responses to every write requests imply to read the modified question.  
 
 We considered that intrusions happen at 2nd of September, when the database contains 4338 questions, 18286 answers, 422 comments and 38334 votes (61380 requests). The attack is detected in Sep.~12th, assuming a pessimistic delay of 10 days. During this period, the application retrieved 38 620 requests.\\
 
-Table \ref{tab:accuracy} presents a summary of the accuracy tests. It contains the number of data items tampered by the intrusion (\emph{\#intrusion}) and the number of user requests that read data items written by  tainted requests or malicious requests (without considering the intrusion requests). Recovery using \textit{full replay} requires to replay every request from the latest snapshot before the intrusion instant until the detection instant: in this example at least 38 620 requests (\emph{\#replayed (fr)}). Selective replay only re-executes tainted requests, unless some data item versions need to be recreated. On the worst case, the system does not contain any snapshot and every data read by the tainted requests shall be recreated (\emph{\#replayed (sr)}). Since Shuttle removes all the malicious actions and recovers all the legitimate requests, it has 100\% recall. The selective replay has better precision than full replay because it replays less legitimate requests.
+Table \ref{tab:accuracy} presents a summary of the precision and recall tests. It contains the number of data items tampered by the intrusion (\emph{\#intrusion}) and the number of user requests that read data items written by  tainted requests or malicious requests (without considering the intrusion requests). Recovery using \textit{full replay} requires to replay every request from the latest snapshot before the intrusion instant until the detection instant: in this example at least 38 620 requests (\emph{\#replayed (fr)}). Selective replay only re-executes tainted requests, unless some data item versions need to be recreated. On the worst case, the system does not contain any snapshot and every data read by the tainted requests shall be recreated (\emph{\#replayed (sr)}). Since Shuttle removes all the malicious actions and recovers all the legitimate requests, it has 100\% recall. The selective replay has better precision than full replay because it replays less non tainted requests.
 
 \begin{table}
 \centering

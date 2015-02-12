@@ -4,7 +4,7 @@
 
 The performance evaluation aims to prove Shuttle scalability and capability to support small and enterprise applications (Section \ref{sec:eval:test_description}). Its results should match the evaluation metrics bounds that allow to use Shuttle in real environments. We evaluate Shuttle's performance considering the throughput of the application, the size of the logs and the recovery time. We also estimate the cost of deployment of Shuttle on a public cloud provider (AWS \cite{aws}). \\
 
-We run Shuttle in \acf{AWS}. All instances are connected by gigabit ethernet (780Mbps measured with \emph{iperf}, 0.176ms round-trip time measured with \emph{ping}) and have the \emph{Java 1.7 HotSpot} 64-Bit Server \ac{VM} version installed. Even when the \ac{JVM} performance increases as the bytecode is compiled by the \ac{JIT} compiler, we run every test on new \ac{JVM} instances. They have a 32GB local general purpose \ac{SSD}. We used the local \ac{SSD} since its performance on read is better than a 500 Provisioned \ac{IOPS} \ac{SSD} of 25GB \ref{tab:disk_throughput}. We allocated 5GB of heap to the \ac{JVM} and we disabled database replication (each data item is stored in one data node).
+We run Shuttle in \ac{AWS}. All instances are connected by gigabit ethernet (780Mbps measured with \emph{iperf}, 0.176ms round-trip time measured with \emph{ping}) and have the \emph{Java 1.7 HotSpot} 64-Bit Server \ac{VM} version installed. Even when the \ac{JVM} performance increases as the bytecode is compiled by the \ac{JIT} compiler, we run every test on new \ac{JVM} instances. They have a 32GB local general purpose \ac{SSD}. We used the local \ac{SSD} since its performance on read is better than a 500 Provisioned \ac{IOPS} \ac{SSD} of 25GB \ref{tab:disk_throughput}. We allocated 5GB of heap to the \ac{JVM} and we disabled database replication (each data item is stored in one data node).
 
 \begin{table}[ht]
 \centering
@@ -25,17 +25,17 @@ We run Shuttle in \acf{AWS}. All instances are connected by gigabit ethernet (78
 In this section, we quantify the overhead imposed by each component of Shuttle.
 
 \subsubsection{Database}\label{sec:eval:performance:database}
-We measured the overhead of Shuttle on database instances. We expected it to be the major impact of Shuttle because Shuttle logs every operation. We used \acf{YCSB} \cite{ycsb}. \ac{YCSB} was developed to measure the performance of the new generation of cloud data serving systems, such as Voldemort used in Shuttle. We extended \ac{YCSB} to support the latest version of Voldemort and to use \acf{protobuf} as request format.\\
+We measured the overhead of Shuttle on database instances. We expected it to be the major impact of Shuttle because Shuttle logs every operation. We used \ac{YCSB} \cite{ycsb}. \ac{YCSB} was developed to measure the performance of the new generation of cloud data serving systems, such as Voldemort used in Shuttle. We extended \ac{YCSB} to support the latest version of Voldemort and to use \ac{protobuf} as request format.\\
 
 We used 6 \textit{m3.large} instances (7 \ac{ECU}s, 2 vCPUs, 2.8 GHz, Intel Xeon E5-2680v2, 3.75 GiB memory, 2 x 16 GiB Storage Capacity) to run each database node. The database service was accessed by two \textit{c3.xlarge} instances (14 \ac{ECU}s, 4 vCPUs, 2.8 GHz, Intel Xeon E5-2680v2, 7.5 GB of memory, 2 x 40 GB Storage Capacity).\\
 
 
-We ran 4 out of 5 workloads (Table \ref{tab:workload_description}) proposed \emph{in} \cite{ycsb}. Workload E (Short ranges) is not supported by Voldemort. Our database consisted of 60 million 1KB record (total database size: 60GB). Each instance thus had an average of 10GB of data, more than it could cache entirely in memory. Read operations retrieve entire records, while update operations modify one of the ten record fields \cite{ycsb}.
+We ran 4 out of 5 workloads (Table \ref{tab:workload_description}) proposed \emph{in} \emph{YCSB} \cite{ycsb}. Workload E (Short ranges) is not supported by Voldemort. Our database consisted of 60 million 1KB record (total database size: 60GB). Each instance thus had an average of 10GB of data, more than it could cache entirely in memory. Read operations retrieve entire records, while update operations modify one of the ten record fields \cite{ycsb}. YCSB selects the record to read or write with a Zipfian or latest distribution. On zipfian distribuition some records will be extremely popular (head of distribution) while most of records will be unpopular (the tail). On latest distribution, the most recently inserted records are in the head of the zipfian distribution. 
 
-\begin{table}[ht]
+\begin{table}[ht] 
 \centering
 \begin{tabular}{p{0.18\linewidth}p{0.15\linewidth}p{0.09\linewidth}p{0.48\linewidth}}
-\textbf{Workload}       & \textbf{Operations}                   & \textbf{Key \newline Selection} & \textbf{Application Example} \\ \hline
+\textbf{Workload}       & \textbf{Operations}                   & \textbf{Record \newline Selection} & \textbf{Application Example} \\ \hline
 A - Update heavy        & Read: 50\% \newline Update: 50\%               & Zipfian                & Session store recording recent actions\\ \hline
 B - Read mostly         & Read: 95\% \newline Update: 5\%                & Zipfian                & Photo tagging; add a tag is an update, but most operations are to read tags\\ \hline
 C - Read only           & Read: 100\%                           & Zipfian                & User profile cache, where profiles are constructed elsewhere (e.g., Hadoop)\\ \hline
@@ -64,7 +64,7 @@ D - Read latest         & Read: 95\% \newline Insert: 5\%                & Lates
   \label{fig:database_overhead_workloads}
 \end{figure}
 
-We expected the major Shuttle impact on database to be the read-write lock. Shuttle serializes the requests per-key using a read-write lock. In addition, the underlying \acf{BDB}, which is used by Voldemort as persistent-storage, also uses a read-write lock. However, the results in Figure \ref{fig:database_overhead_workloads} prove that Shuttle imposes a negligible latency overhead for the various types of workload and request rate.  
+We expected the major Shuttle impact on database to be the read-write lock. Shuttle serializes the requests per-key using a read-write lock. In addition, the underlying \ac{BDB}, which is used by Voldemort as persistent-storage, also uses a read-write lock. However, the results in Figure \ref{fig:database_overhead_workloads} prove that Shuttle imposes a negligible latency overhead for the various types of workload and request rate.  
 
 Shuttle also iterates over the \emph{operation lists} to determine the dependencies and sends them to the \emph{manager}. The instance's CPU usage was 10\% in average and the throughput did not reveal any variation when the dependencies are being collected. 
 
@@ -148,7 +148,7 @@ The recovery process can be summarized in the following points:
 The main factors of influence on recovery performance are: 1) the number of requests to replay, which depends on the request arrival rate; 2) the detection delay; 3) the number and type of database operations of each request.
 
 
-We setup a test environment with 6 \emph{c3.xlarge} instances in an \ac{AWS} \acf{VPC}, sharing the same placement group (Figure \ref{fig:aws_diagram}). The first instance runs the \emph{TryOut} testing application. The second runs Shuttle's manager, replay and Shuttle Storage (Cassandra). The third contains the application server WildFly with the application \emph{Ask}. The last instance runs the database.
+We setup a test environment with 6 \emph{c3.xlarge} instances in an \ac{AWS} \ac{VPC}, sharing the same placement group (Figure \ref{fig:aws_diagram}). The first instance runs the \emph{TryOut} testing application. The second runs Shuttle's manager, replay and Shuttle Storage (Cassandra). The third contains the application server WildFly with the application \emph{Ask}. The last instance runs the database.
 
 \begin{figure}[!htb]
   \centering
@@ -360,7 +360,7 @@ Since \ac{HTTP} messages are similar, we evaluated how a compression technique c
 
 
 %database node
-The snapshot mechanism requires to track a new version when a data item is written by the first time after a snapshot. Each version has 10 bytes. The overhead can be reduced implementing the version list as a bitmap. In addition, each database operation implies to store 13 bytes to record its \acf{RID} and type in the \emph{operation list}. The total database storage overhead encompasses synchronization mechanisms and object references. Notice that the storage and performance overhead can be distributed by several instances because the data items are independent. \\
+The snapshot mechanism requires to track a new version when a data item is written by the first time after a snapshot. Each version has 10 bytes. The overhead can be reduced implementing the version list as a bitmap. In addition, each database operation implies to store 13 bytes to record its \ac{RID} and type in the \emph{operation list}. The total database storage overhead encompasses synchronization mechanisms and object references. Notice that the storage and performance overhead can be distributed by several instances because the data items are independent. \\
 
 %graph
 The dependency graph is a double-linked graph implemented as a Hash Table. Each of its entries represents a request. It contains the start and end instants of the requests and two lists of \ac{RID}: requests to execute before, requests to execute after. Each entry in the Hash Table has, on average, 718 bytes bytes, and depends on 1 requests and 5 requests depend on it (Table \ref{tab:memory:depgrah}). The start and end instants has 32 bytes. Each dependency has 16 bytes. 
@@ -393,7 +393,7 @@ In conclusion, the main storage overhead are the \ac{HTTP} responses. We propose
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Monetary Cost}\label{sec:eval:cost}
-We measured the monetary cost of the intrusion recovery process using a public cloud provider. The intrusion recovery costs are come from two sources: storage and computation resources. The following prices represent the current cost of \acf{AWS} in North Virgina.
+We measured the monetary cost of the intrusion recovery process using a public cloud provider. The intrusion recovery costs are come from two sources: storage and computation resources. The following prices represent the current cost of \ac{AWS} in North Virgina.
 
 We consider an execution of \emph{Ask} application with a constant arrival rate of 250 requests per second (20 million per day) and the storage usage defined in Section \ref{sec:eval:storage}. This is a common rate for an enterprise application, for instance the Portuguese Ministry of Finances (Table \ref{tab:base_throughputs}). We also define that Shuttle shall allow to recover from attacks that have occurred during the last 3 months. Therefore, Shuttle needs to store 2 billion requests. We assume that the recovery process re-executes 50 million requests, independent of the schema (full/serial replay). \\
 
@@ -413,7 +413,7 @@ Database Nodes    & 282 MB      &  5.64 GB            & 564 GB   \\
 
 
 %cost of request storage
-The user requests can be stored in \acf{AWS} \ac{S3}, DynamoDB, Glacier and \acf{EBS} (Table \ref{tab:s3Cost}). \emph{S3} is a scalable object storage, \emph{EBS} block level storage, \emph{Glacier} low-cost storage service for data archiving and online backup, \emph{DynamoDB} low-latency \acs{NoSQL} database. Their usage costs are also distinct (Table \ref{tab:s3Cost:usage}).
+The user requests can be stored in \ac{AWS} \ac{S3}, DynamoDB, Glacier and \ac{EBS} (Table \ref{tab:s3Cost}). \emph{S3} is a scalable object storage, \emph{EBS} block level storage, \emph{Glacier} low-cost storage service for data archiving and online backup, \emph{DynamoDB} low-latency \acs{NoSQL} database. Their usage costs are also distinct (Table \ref{tab:s3Cost:usage}).
 
  \begin{table}[h]
  \centering
@@ -508,7 +508,7 @@ c3.8xlarge  & 32        & 108         & 60                 & 2x320 SSD          
 
 In conclusion, the cost of Shuttle is dominated by the storage because the replay instances are allocated on demand and paid-per usage.\\
 
-Notice that the costs are estimations for the application prototype and vary with the type and usage of the tenants applications. In addition, Shuttle aims to be integrated as a service in the public \acf{CSP} infrastructure: the proxy is integrated into the load-balancer and the database proxy is integrated in the database instances. Each manager and Shuttle storage can be shared by several tenants. Therefore, we expect providers to define a pay-per-usage model of Shuttle service. In addition, providers can reduce the costs because the data stored by several tenants is similar thus can be compressed. We do not address the creation of a pay-per-usage model in this document but we would like to address it in our future research.
+Notice that the costs are estimations for the application prototype and vary with the type and usage of the tenants applications. In addition, Shuttle aims to be integrated as a service in the public \ac{CSP} infrastructure: the proxy is integrated into the load-balancer and the database proxy is integrated in the database instances. Each manager and Shuttle storage can be shared by several tenants. Therefore, we expect providers to define a pay-per-usage model of Shuttle service. In addition, providers can reduce the costs because the data stored by several tenants is similar thus can be compressed. We do not address the creation of a pay-per-usage model in this document but we would like to address it in our future research.
 
 \subsection{Discussion}\label{sec:eval:performance:discussion}
 In this section we measured the performance overhead, the duration and scalability of the recovery process, the storage requirements and the cost of the used resources. We evaluated Shuttle usage for the prototype application \emph{Ask}. Shuttle is designed to support various \ac{PaaS} applications with distinct semantics.
@@ -527,7 +527,7 @@ Clearly, much future research and development will be needed to create a version
 
 Nevertheless, we validated our single proxy architecture. The proxy imposes a throughput limitation but this limitation is acceptable for most of applications. Moreover, this limitation does not affect the recovery period.
 
-We presented a cost estimation for Shuttle usage. In future, we expect to provide a generic pricing model that \acf{CSP} can use to provide Shuttle on a pay-per-usage manner.
+We presented a cost estimation for Shuttle usage. In future, we expect to provide a generic pricing model that \ac{CSP} can use to provide Shuttle on a pay-per-usage manner.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
