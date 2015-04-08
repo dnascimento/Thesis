@@ -11,3 +11,6 @@ Our evaluation shows that Shuttle can replay 1 million requests in 10 minutes, w
 %In future, we aim to explore the dependencies established by various applications and asset their impact on the recovery process.
 
 % We propose a new approach in which requests are sorted by their start-end (Section \ref{sec:recovery:dependencies}). Shuttle does not require generating a dependency graph in non-clustered full replay mode. The dependency graph is required in the case of clustered full replay to identify the independent clusters of requests and on selective replay to determine the tainted requests. We use the database operation lists to create the dependency graph and to order the execution of parallel requests without knowledge of the application protocol.
+
+\section{Acknowledgements}
+This work was supported by national funds through Funda\c{c}\~ao para a Ci\^encia e a Tecnologia (FCT) with reference UID/CEC/50021/2013 and PTDC/EIA- EIA/115211/2009 (RC-Clouds), and by the  European Commission through the contract no. 610713 (PCAS).

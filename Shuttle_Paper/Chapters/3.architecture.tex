@@ -25,7 +25,7 @@ The processes described in Section \ref{sec:background} lead us to define \texti
 We assume a minimal \ac{PaaS} architecture to let Shuttle as generic as possible. We consider a client-server model in which clients access applications using the HTTP protocol\footnote{Shuttle also supports HTTPS by ending the connections at the proxy.}. HTTP requests are received by a load balancer that forwards them to web/application servers, which access a shared database. {PaaS} components are represented with solid line in Figure \ref{fig:shuttle_architecture}, while Shuttle components are represented with dashed line. The components of a \ac{PaaS} platform with Shuttle are:
 
 \begin{itemize}
-  \item \textit{Proxy:} Logs every HTTP user requests, adds a new field to its header, and forwards it to the load balancer. The proxy functionality might be part of the load balancer but conceptually it is a different component.% and currently it is also implemented separately.
+  \item \textit{Proxy:} Logs every HTTP user request, adds a new field to its header, and forwards it to the load balancer. The proxy functionality might be part of the load balancer but conceptually it is a different component.% and currently it is also implemented separately.
   \item \textit{Load balancer:} Routes requests to different application servers taking into account their load (part of the \ac{PaaS} platform).
   \item \textit{Application servers:} The application (or web) servers are the components of the \ac{PaaS} platform that run the application logic. This logic uses a library to access the database service. Shuttle uses a \textit{database client interceptor} mechanism in this library to log the data items accessed per request.
   \item \textit{Database instances:} A set of database servers used to store the application persistent state. Shuttle includes in each instance  a \textit{database proxy} that logs the requests that accessed each data item and determines the dependencies between requests.
@@ -104,7 +104,7 @@ Periodically, each database instance iterates the operation list of every data i
 A \emph{snapshot} is a set of versions of every data item in the database. Our service loads a snapshot to remove the intrusion effects and replays the later requests to recover an updated application state. 
 
 Performing snapshots in distributed key-value NoSQL databases like Dynamo is not trivial since snapshots have to be consistent with the user requests. We consider each user request may include multiple database accesses, each of them to multiple database servers, without using transactions. 
-If Shuttle replays a requests on a snapshot that contains part of the persistent state written by a request during its first execution, the replay will be inconsistent. Therefore each snapshot shall be \emph{global request-consistent} containing either all or none of the database updates made by every request \cite{checkpoint-survey}. 
+If Shuttle replays a request on a snapshot that contains part of the persistent state written by a request during its first execution, the replay will be inconsistent. Therefore each snapshot shall be \emph{global request-consistent} containing either all or none of the database updates made by every request \cite{checkpoint-survey}. 
 
 The snapshot shall be non-blocking: applications shall not stop their execution while taking snapshots. For instance, a straightforward way to take a request-consistent global snapshot is to stop processing new requests, waiting until the currently executing requests finish, and then making a copy of each data item. However, this solution causes application downtime.
 
@@ -115,7 +115,7 @@ Database proxies use the \ac{SID} to define the version of the data item used by
 
 We avoid blocking the application to copy the versions using a copy-on-write and incremental method: a new version is created only when the data is written for the first time in each snapshot. Since a data item may not be written in every snapshot, we associate a \emph{version list} to every data item. This list tracks in which snapshots the data item has been written.
 
-A snapshot might become inconsistent if a request with \ac{RID} greater than the snapshot instant \ac{SID} read a version belonging to the snapshot \ac{SID} and a concurrent request with \ac{RID} lower than \ac{SID} overwritten that version. Storing a new version and adding a flag on the version list solves the problem. Nevertheless, we expect this to happen only in rare occasions.
+A snapshot might become inconsistent if a request with \ac{RID} greater than the snapshot instant \ac{SID} reads a version belonging to the snapshot \ac{SID} and a concurrent request with \ac{RID} lower than \ac{SID} overwritten that version. Storing a new version and adding a flag on the version list solves the problem. Nevertheless, we expect this to happen only in rare occasions.
 
 
 
