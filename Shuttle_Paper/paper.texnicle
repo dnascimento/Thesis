@@ -68,7 +68,7 @@
         <relationship name="selected" type="1/1" destination="FILE" idrefs="z125"></relationship>
         <relationship name="settings" type="1/1" destination="SETTINGS" idrefs="z104"></relationship>
         <relationship name="uisettings" type="1/1" destination="UISETTINGS" idrefs="z112"></relationship>
-        <relationship name="items" type="0/0" destination="PROJECTITEM" idrefs="z116 z121 z117 z115 z118 z120 z125 z107 z124 z122 z114 z119 z123"></relationship>
+        <relationship name="items" type="0/0" destination="PROJECTITEM" idrefs="z121 z118 z122 z116 z120 z114 z119 z123 z117 z124 z107 z115 z125"></relationship>
     </object>
     <object type="SETTINGS" id="z104">
         <attribute name="outputdirectory" type="string"></attribute>
@@ -85,11 +85,11 @@
         <relationship name="project" type="1/1" destination="PROJECT" idrefs="z103"></relationship>
     </object>
     <object type="TEXFILE" id="z107">
-        <attribute name="wasopen" type="bool">1</attribute>
+        <attribute name="wasopen" type="bool">0</attribute>
         <attribute name="visiblerect" type="string">{{0, 2}, {982, 405}}</attribute>
         <attribute name="lasteditdate" type="date">450948073.07454800605773925781</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">450948072.81892800331115722656</attribute>
+        <attribute name="fileloaddate" type="date">450949874.20634299516677856445</attribute>
         <attribute name="extension" type="string">tex</attribute>
         <attribute name="cursor" type="string">{458, 28}</attribute>
         <attribute name="sortindex" type="int32">0</attribute>
@@ -108,7 +108,7 @@
         <attribute name="showlogerroritems" type="bool">1</attribute>
         <attribute name="showpdfthumbnails" type="bool">0</attribute>
         <attribute name="selectedcontrolstab" type="int16">0</attribute>
-        <attribute name="pdfviewscrollrect" type="string">{{0, 0.47258484377119014}, {620, 1099.164490861607}}</attribute>
+        <attribute name="pdfviewscrollrect" type="string">{{0, 0}, {0, 0}}</attribute>
         <attribute name="maxoutlinedepth" type="int16">7</attribute>
         <attribute name="logoutputlevel" type="int16">0</attribute>
         <attribute name="editorwidth" type="float">1024</attribute>
@@ -304,13 +304,13 @@
         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
     </object>
     <object type="TEXFILE" id="z125">
-        <attribute name="wasopen" type="bool">0</attribute>
+        <attribute name="wasopen" type="bool">1</attribute>
         <attribute name="visiblerect" type="string">{{0, 77}, {982, 417}}</attribute>
-        <attribute name="lasteditdate" type="date">445435912.94346499443054199219</attribute>
+        <attribute name="lasteditdate" type="date">450949904.10711699724197387695</attribute>
         <attribute name="istext" type="bool">1</attribute>
-        <attribute name="fileloaddate" type="date">450948072.84707397222518920898</attribute>
+        <attribute name="fileloaddate" type="date">450949904.55584901571273803711</attribute>
         <attribute name="extension" type="string">tex</attribute>
-        <attribute name="cursor" type="string">{13546, 0}</attribute>
+        <attribute name="cursor" type="string">{855, 0}</attribute>
         <attribute name="sortindex" type="int32">8</attribute>
         <attribute name="name" type="string">3.architecture.tex</attribute>
         <attribute name="isexpanded" type="bool">0</attribute>

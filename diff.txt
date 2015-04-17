@@ -1,0 +1,683 @@
+diff --git a/Dissertacao/images/architectureTiers.graffle b/Dissertacao/images/architectureTiers.graffle
+index 2ce7da4..b0b14a5 100755
+--- a/Dissertacao/images/architectureTiers.graffle
++++ b/Dissertacao/images/architectureTiers.graffle
+@@ -14,7 +14,7 @@
+ 	<key>BackgroundGraphic</key>
+ 	<dict>
+ 		<key>Bounds</key>
+-		<string>{{0, 0}, {805.8900146484375, 536.28997802734375}}</string>
++		<string>{{0, 0}, {806, 536}}</string>
+ 		<key>Class</key>
+ 		<string>SolidGraphic</string>
+ 		<key>ID</key>
+@@ -47,6 +47,150 @@
+ 	<key>GraphicsList</key>
+ 	<array>
+ 		<dict>
++			<key>AllowLabelDrop</key>
++			<false/>
++			<key>Class</key>
++			<string>LineGraphic</string>
++			<key>FontInfo</key>
++			<dict>
++				<key>Font</key>
++				<string>Helvetica</string>
++				<key>Size</key>
++				<real>12</real>
++			</dict>
++			<key>Head</key>
++			<dict>
++				<key>ID</key>
++				<integer>270</integer>
++			</dict>
++			<key>ID</key>
++			<integer>410</integer>
++			<key>Points</key>
++			<array>
++				<string>{218.30364214647088, 158.49137327335438}</string>
++				<string>{221.25, 155.1120654348457}</string>
++				<string>{246.66120740089022, 148.47827046010531}</string>
++			</array>
++			<key>Style</key>
++			<dict>
++				<key>shadow</key>
++				<dict>
++					<key>Draws</key>
++					<string>NO</string>
++				</dict>
++				<key>stroke</key>
++				<dict>
++					<key>HeadArrow</key>
++					<string>FilledArrow</string>
++					<key>Legacy</key>
++					<true/>
++					<key>Pattern</key>
++					<integer>2</integer>
++					<key>TailArrow</key>
++					<string>FilledArrow</string>
++				</dict>
++			</dict>
++			<key>Tail</key>
++			<dict>
++				<key>ID</key>
++				<integer>306</integer>
++			</dict>
++		</dict>
++		<dict>
++			<key>Bounds</key>
++			<string>{{176.625, 158.86824336340374}, {55.017856597900391, 31.75}}</string>
++			<key>Class</key>
++			<string>ShapedGraphic</string>
++			<key>ID</key>
++			<integer>306</integer>
++			<key>Text</key>
++			<dict>
++				<key>Text</key>
++				<string>{\rtf1\ansi\ansicpg1252\cocoartf1344\cocoasubrtf720
++{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
++{\colortbl;\red255\green255\blue255;}
++\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
++
++\f0\fs20 \cf0 Shuttle Storage}</string>
++			</dict>
++		</dict>
++		<dict>
++			<key>Bounds</key>
++			<string>{{146.93261747486383, 164.99324336340374}, {109.75576579387527, 24}}</string>
++			<key>Class</key>
++			<string>ShapedGraphic</string>
++			<key>FontInfo</key>
++			<dict>
++				<key>Font</key>
++				<string>Helvetica</string>
++				<key>Size</key>
++				<real>12</real>
++			</dict>
++			<key>ID</key>
++			<integer>408</integer>
++			<key>Rotation</key>
++			<real>0.58729379935772386</real>
++			<key>Shape</key>
++			<string>AdjustableDoubleArrow</string>
++			<key>ShapeData</key>
++			<dict>
++				<key>ratio</key>
++				<real>0.50724875926971436</real>
++				<key>width</key>
++				<real>20.053150177001953</real>
++			</dict>
++			<key>Style</key>
++			<dict>
++				<key>fill</key>
++				<dict>
++					<key>Color</key>
++					<dict>
++						<key>b</key>
++						<string>1</string>
++						<key>g</key>
++						<string>0.650309</string>
++						<key>r</key>
++						<string>0.727291</string>
++					</dict>
++					<key>Draws</key>
++					<string>NO</string>
++					<key>FillType</key>
++					<integer>2</integer>
++					<key>GradientAngle</key>
++					<real>90</real>
++					<key>GradientColor</key>
++					<dict>
++						<key>b</key>
++						<string>0.727062</string>
++						<key>g</key>
++						<string>0.290394</string>
++						<key>r</key>
++						<string>0.384375</string>
++					</dict>
++					<key>MiddleFraction</key>
++					<real>0.4523809552192688</real>
++				</dict>
++				<key>shadow</key>
++				<dict>
++					<key>Color</key>
++					<dict>
++						<key>a</key>
++						<string>0.4</string>
++						<key>b</key>
++						<string>0</string>
++						<key>g</key>
++						<string>0</string>
++						<key>r</key>
++						<string>0</string>
++					</dict>
++				</dict>
++			</dict>
++			<key>TextRelativeArea</key>
++			<string>{{0.125, 0.25}, {0.75, 0.5}}</string>
++			<key>isConnectedShape</key>
++			<true/>
++		</dict>
++		<dict>
+ 			<key>Bounds</key>
+ 			<string>{{176.75, 267.25}, {54, 11.430086929132585}}</string>
+ 			<key>Class</key>
+@@ -831,16 +975,13 @@
+ 				<key>Size</key>
+ 				<real>12</real>
+ 			</dict>
+-			<key>Head</key>
+-			<dict>
+-				<key>ID</key>
+-				<integer>404</integer>
+-			</dict>
+ 			<key>ID</key>
+ 			<integer>407</integer>
+ 			<key>Points</key>
+ 			<array>
+-				<string>{266.73211008386625, 155.49279032787905}</string>
++				<string>{279.23327573152841, 193.02110200011438}</string>
++				<string>{278, 195}</string>
++				<string>{217.75, 195}</string>
+ 				<string>{218.08853487731494, 212.63298523407624}</string>
+ 			</array>
+ 			<key>Style</key>
+@@ -859,13 +1000,15 @@
+ 					<key>Pattern</key>
+ 					<integer>2</integer>
+ 					<key>TailArrow</key>
+-					<string>FilledArrow</string>
++					<string>0</string>
+ 				</dict>
+ 			</dict>
+ 			<key>Tail</key>
+ 			<dict>
+ 				<key>ID</key>
+-				<integer>395</integer>
++				<integer>397</integer>
++				<key>Position</key>
++				<real>0.78784073048640313</real>
+ 			</dict>
+ 		</dict>
+ 		<dict>
+@@ -880,16 +1023,11 @@
+ 				<key>Size</key>
+ 				<real>12</real>
+ 			</dict>
+-			<key>Head</key>
+-			<dict>
+-				<key>ID</key>
+-				<integer>404</integer>
+-			</dict>
+ 			<key>ID</key>
+ 			<integer>405</integer>
+ 			<key>Points</key>
+ 			<array>
+-				<string>{206.34542600277277, 185.37442129196174}</string>
++				<string>{204.52609486035348, 191.11810003266473}</string>
+ 				<string>{205.03851887532429, 212.51428885868049}</string>
+ 			</array>
+ 			<key>Style</key>
+@@ -922,7 +1060,7 @@
+ 			<key>Tail</key>
+ 			<dict>
+ 				<key>ID</key>
+-				<integer>393</integer>
++				<integer>306</integer>
+ 			</dict>
+ 		</dict>
+ 		<dict>
+@@ -1209,24 +1347,6 @@
+ 			<true/>
+ 		</dict>
+ 		<dict>
+-			<key>Bounds</key>
+-			<string>{{179.625, 153.125}, {55.017856597900391, 31.75}}</string>
+-			<key>Class</key>
+-			<string>ShapedGraphic</string>
+-			<key>ID</key>
+-			<integer>306</integer>
+-			<key>Text</key>
+-			<dict>
+-				<key>Text</key>
+-				<string>{\rtf1\ansi\ansicpg1252\cocoartf1344\cocoasubrtf720
+-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+-{\colortbl;\red255\green255\blue255;}
+-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
+-
+-\f0\fs20 \cf0 Shuttle Storage}</string>
+-			</dict>
+-		</dict>
+-		<dict>
+ 			<key>Class</key>
+ 			<string>LineGraphic</string>
+ 			<key>FontInfo</key>
+@@ -1950,7 +2070,7 @@ Instance}</string>
+ 	<key>MasterSheets</key>
+ 	<array/>
+ 	<key>ModificationDate</key>
+-	<string>2015-02-23 01:44:25 +0000</string>
++	<string>2015-04-08 03:28:40 +0000</string>
+ 	<key>Modifier</key>
+ 	<string>Dário Nascimento</string>
+ 	<key>NotesVisible</key>
+@@ -1986,7 +2106,7 @@ Instance}</string>
+ 		<key>NSPaperSize</key>
+ 		<array>
+ 			<string>size</string>
+-			<string>{841.8900146484375, 595.28997802734375}</string>
++			<string>{842, 595}</string>
+ 		</array>
+ 		<key>NSPrintReverseOrientation</key>
+ 		<array>
+@@ -2031,7 +2151,7 @@ Instance}</string>
+ 		<key>Expanded_Canvases</key>
+ 		<array/>
+ 		<key>Frame</key>
+-		<string>{{0, 68}, {1280, 709}}</string>
++		<string>{{0, 74}, {1280, 703}}</string>
+ 		<key>ShowInfo</key>
+ 		<true/>
+ 		<key>ShowRuler</key>
+@@ -2043,7 +2163,7 @@ Instance}</string>
+ 		<key>TopSlabHeight</key>
+ 		<real>250</real>
+ 		<key>VisibleRegion</key>
+-		<string>{{0, -13}, {736, 564}}</string>
++		<string>{{0, -11}, {736, 558}}</string>
+ 		<key>Zoom</key>
+ 		<real>1</real>
+ 		<key>ZoomValues</key>
+@@ -2051,7 +2171,7 @@ Instance}</string>
+ 			<array>
+ 				<string>Canvas 1</string>
+ 				<real>1</real>
+-				<real>2</real>
++				<real>4</real>
+ 			</array>
+ 		</array>
+ 	</dict>
+diff --git a/Dissertacao/images/architectureTiers.pdf b/Dissertacao/images/architectureTiers.pdf
+index 06f6d23..705b556 100644
+Binary files a/Dissertacao/images/architectureTiers.pdf and b/Dissertacao/images/architectureTiers.pdf differ
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..3ba2889
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,34 @@
++
++Shuttle: Intrusion Recovery in Platform as a Service (PaaS) and Cloud Computing
++====
++**Master's degree thesis**
++
++**INESC-ID Research**
++
++
++
++Shuttle is an intrusion recovey system that logs the user's HTTP requests, creates request-consistent snapshots of NoSQL databases. When an intrusion happens, Shuttle loads a snapshot previous to the intrusion instant and replays the legitimate user requests.
++
++The dissertation and paper are available at:
++
++https://github.com/dnascimento/Thesis
++
++The core/manager is available at:
++
++https://github.com/dnascimento/undo
++
++A modified voldemort implementation that supports snapshots:
++
++https://github.com/dnascimento/voldemort
++
++A demo application for PaaS:
++
++https://github.com/dnascimento/askJava
++
++A distributed (master-slave) HTTP benchmark tool that reads HTTP requests from files and have a simplified API:
++
++https://github.com/dnascimento/AppEvaluation
++
++Feel free to ask questions about it
++
++
+diff --git a/Shuttle_Paper/Chapters/3.architecture.tex b/Shuttle_Paper/Chapters/3.architecture.tex
+index c233bea..d7c7266 100644
+--- a/Shuttle_Paper/Chapters/3.architecture.tex
++++ b/Shuttle_Paper/Chapters/3.architecture.tex
+@@ -113,7 +113,7 @@ Our solution leverages the existence of a single load balancer and, consequently
+ 
+ Database proxies use the \ac{SID} to define the version of the data item used by the operations. Operations with \acf{RID} lower than the scheduled snapshot instant (\ac{RID} $<$ \ac{SID}) access the version before the snapshot. Otherwise, the operations access the latest data item version. This mechanism splits requests to accomplish a request-consistent global snapshot, and allows tenants to schedule snapshots without application downtime. 
+ 
+-We avoid blocking the application to copy the versions using a copy-on-write and incremental method: a new version is created only when the data is written for the first time in each snapshot. Since a data item may not be written in every snapshot, we associate a \emph{version list} to every data item. This list tracks in which snapshots the data item has been written.
++We avoid blocking the application to copy the versions using a copy-on-write and incremental method: a new version is created only when the data is written for the first time in each snapshot. Since a data item may not be written in every snapshot, we associate a \emph{version list} to every data item. This list tracks in which snapshots the data item has been written. Shuttle provides such capability to any key-value database by using the concatenation of the key with the \ac{SID} as key to store the data. Checkpoints are stored locally and may be replicated to a remote site.
+ 
+ A snapshot might become inconsistent if a request with \ac{RID} greater than the snapshot instant \ac{SID} reads a version belonging to the snapshot \ac{SID} and a concurrent request with \ac{RID} lower than \ac{SID} overwritten that version. Storing a new version and adding a flag on the version list solves the problem. Nevertheless, we expect this to happen only in rare occasions.
+ 
+diff --git a/Shuttle_Paper/Chapters/4.recovery.tex b/Shuttle_Paper/Chapters/4.recovery.tex
+index ccf7f5e..ce2946b 100644
+--- a/Shuttle_Paper/Chapters/4.recovery.tex
++++ b/Shuttle_Paper/Chapters/4.recovery.tex
+@@ -3,7 +3,7 @@
+ \section{Recovery}
+ \label{sec:recovery}
+ 
+-Tenants initiate a recovery when they detect intrusions. When Shuttle enters recovery mode, it generates a list of requests to replay and asks for the \ac{PaaS} controller to launch a set of \textit{replay instances}. Shuttle may also ask for additional database and application server instances, or they may be launched automatically by the \ac{PaaS} platform when it detects additional load, in case auto-scaling is supported. The non-tampered snapshot that precedes the intrusion instant is selected. The multi-thread HTTP client of each replay instance fetches requests from \emph{Shuttle Storage} and sends them to the application servers, concurrently whenever possible. After replaying all requests issued before the beginning of the recovery, the manager sets the proxy state to \emph{restraining mode} and commands the replay instances to reexecute the remaining requests (those issued after recovery began). Then, \emph{restraining mode} is disabled. 
++Tenants initiate a recovery when they detect intrusions. The process can be triggered by an external service, e.g., intrusion detection system, or by the human operator. When Shuttle enters recovery mode, it generates a list of requests to replay and asks for the \ac{PaaS} controller to launch a set of \textit{replay instances}. Shuttle may also ask for additional database and application server instances, or they may be launched automatically by the \ac{PaaS} platform when it detects additional load, in case auto-scaling is supported. The non-tampered snapshot that precedes the intrusion instant is selected. The multi-thread HTTP client of each replay instance fetches requests from \emph{Shuttle Storage} and sends them to the application servers, concurrently whenever possible. After replaying all requests issued before the beginning of the recovery, the manager sets the proxy state to \emph{restraining mode} and commands the replay instances to reexecute the remaining requests (those issued after recovery began). Then, \emph{restraining mode} is disabled. 
+ The following sections explain this process in detail.
+ 
+ 
+@@ -21,16 +21,16 @@ If tenants update the application software, they have to ensure that the applica
+ \label{sec:recovery:dependencies}
+ 
+ %What is it? how it is generated?
+-A \emph{dependency graph} consists of nodes that represent requests and edges that establish dependencies between them (Figure \ref{fig:selectiveGraph}). Dependencies between requests are established using the following rules: 1) a request $R_A$ is dependent upon request $R_B$ if there is a data item $x$ such that $R_A$ read $x$ and $R_B$ performed the latest update on $x$; 2) dependencies are transitive except when requests perform blind writes (i.e., when requests write items without reading them first \cite{itdb}). \LONG{cite{Ammann2002}}
++A \emph{dependency graph} consists of nodes that represent requests and edges that establish dependencies between them (Figure \ref{fig:selectiveGraph}). Dependencies between requests are established using the following rules: 1) a request $R_B$ is dependent upon request $R_A$ if there is a data item $x$ such that $R_B$ read $x$ and $R_A$ performed the latest update on $x$; 2) dependencies are transitive except when requests perform blind writes (i.e., when requests write items without reading them first \cite{itdb}). \LONG{cite{Ammann2002}}
+ 
+-Previous solutions for relational databases extract the dependencies using a pre-defined, manually-created, per-transaction type template \cite{itdb}\LONG{cite{Ammann2002}}, or change the relational database management system code to extract read dependencies \cite{phoenix}. In contrast, Shuttle uses the database proxy to log the database accesses. Periodically, each database proxy traverses, in background, the \emph{operation list} of each data item to collect the new accesses and to generate the dependencies between requests. The Shuttle manager processes the dependencies to update the dependency graph. An alternative approach is to pull the dependencies from each database node only before the recovery process and generate the dependency graph when needed. The dependency graph is implemented as a hash table. The keys of the hash table are the \ac{RID}. Each value of the hash table contains the requests that depend on the associated request, i.e., the requests that execute after this one. A scalable implementation can use a distributed hash table or a graph-oriented database.
++Previous solutions for relational databases extract the dependencies using a pre-defined, manually-created, per-transaction type template \cite{itdb}\LONG{cite{Ammann2002}}, or change the relational database management system code to extract read dependencies \cite{phoenix}. In contrast, Shuttle uses the database proxy to log the database accesses. Periodically, each database proxy traverses, in background, the \emph{operation list} of each data item to collect the new accesses and to generate the dependencies between requests. The Shuttle manager processes the dependencies to update the dependency graph. An alternative approach is to pull the dependencies from each database node only before the recovery process and generate the dependency graph when needed. The dependency graph is implemented as a hash table. The keys of the hash table are the \ac{RID}. Each value of the hash table contains the requests that depend on the associated request, i.e., the requests that execute after this one. A scalable implementation can use a distributed hash table or a graph-oriented database. Operations previous to the oldest snapshot available are garbage collected.
+ %type template: Um template que é pré-definido para cada transacção possivel. Na prática, deve ser uma classe para cada tipo de transacção que faz parsing da transacção para conseguir perceber que entradas é que vai ler ou escrever.
+ 
+ %false positives: detected but not exist
+ The above method may lead to \emph{false positives}, i.e., to flag dependencies that do not exist. For instance, a request may read a data item but not use it to compute the written value, so there is no real dependency. Although tracking variables used by each request during its execution might solve this particular case \cite{Akkus2010}, it would require modifying the code interpreter (e.g., Zend Engine for PHP), which would constrain Shuttle to a set of specific languages. As our approach uses dependencies just to group the requests that can be executed concurrently, false dependencies imply a performance penalty but do not cause data loss or inconsistent state.
+ 
+ %false negatives: not detected but exist
+-Complex queries on a relational database may lead to \emph{false negatives}, for instance when a read operation would have been executed on a deleted data item if this data item had not been deleted before the request execution \cite{Xie2008}. In contrast with SQL queries that access the data items that match a query, the \ac{CRUD} interface of most key-value stores specifies, in a deterministic and apriori manner, the data item that will be accessed. Shuttle logs every access, even when the data items do not exist, keeping the \emph{operation list} of the deleted data items to track further operations.
++Complex queries on a relational database may lead to \emph{false negatives}. For instance, a read operation would have read a deleted data item if the data item had not been deleted before \cite{Xie2008}. In contrast with SQL queries that access the data items that match a query, the \ac{CRUD} interface of most key-value stores specifies, in a deterministic and apriori manner, the data item that will be accessed. Shuttle logs every access, even when the data items do not exist, keeping the \emph{operation list} of the deleted data items to track further operations.
+ 
+ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+@@ -112,8 +112,7 @@ We propose two approaches for intrusion recovery: full replay and selective repl
+   For each request in $A_{intrusion}$, traverse the dependency graph in causality order and add these nodes to $A_{tainted}$ (in the figure $A_{tainted} = \{R.5,R.6,R.7\}$).
+ 
+ {3)} \textit{Get the requests needed to obtain the values read by $A_{tainted}$.} %and their effects 
+-  Instead of storing the input and output of every action or versions of every data item, Shuttle replays the actions which $A_{tainted}$ depends on. The data item value is known at the snapshot instant so the algorithm transverses the graph in inverse causality order from each request in $A_{tainted}$ and stores the requests in $A_{replay}$ ($A_{replay} = \{R.2\} \cup A_{tainted}$). $A_{replay}$ is expanded by traversing the graph from each of its elements in causality order to determine the requests which can be affected by the re-execution of $A_{replay} = A_{replay} \cup \{R.3\}$. 
+-%Requests subsequent to the first snapshot after the latest malicious request may not be repeated if all their read operations read the value contained in the snapshot (version read by $R.8$ is stored in snapshot B).
++  Instead of storing the input and output of every action or versions of every data item, Shuttle replays the actions which $A_{tainted}$ depends on. The data item value is known at the snapshot instant so the algorithm transverses the graph in inverse causality order from each request in $A_{tainted}$ and stores the requests in $A_{replay}$ ($A_{replay} = \{R.2\} \cup A_{tainted}$). $A_{replay}$ is expanded by traversing the graph from each of its elements in causality order to determine the requests which can be affected by the re-execution of $A_{replay} = A_{replay} \cup \{R.3\}$. Requests subsequent to the snapshots posterior to the latest malicious request may not be repeated if all their read operations read values contained in the snapshot. %(version read by $R.8$ is stored in snapshot B).
+ 
+ {4)} \textit{Determine the replay order.} 
+   The set $A_{replay}$ is sorted in \emph{start-end order} (no clustering possible).
+@@ -122,7 +121,8 @@ We propose two approaches for intrusion recovery: full replay and selective repl
+   Loads the version in the selected snapshot of the data items read by the requests in $A_{replay}$ and written by $A_{malicious}$.
+ 
+ {6)} \textit{Replay the requests.}
+-  Requests in $A_{replay}$ are replayed. If an access is not contained in an operation list, then a new dependency is established and the requests that accessed the data item during the first execution are also replayed as in \cite{retro}. For instance, $R.9$ is replayed if it reads an item written during recovery process but not during normal execution. 
++  Requests in $A_{replay}$ are replayed. If an access is not contained in an operation list, then a new dependency is established and the requests that accessed the data item during the first execution are also replayed as in \cite{retro}. 
++%For instance, $R.9$ is replayed if it reads an item written during recovery process but not during normal execution.
+ 
+ \begin{figure}
+   \centering
+@@ -138,7 +138,7 @@ We propose two approaches for intrusion recovery: full replay and selective repl
+ 
+ An important aspect of a recovery system like Shuttle is the application consistency seen by users. For instance, if a user does an action based on data written by a malicious action, which result of the user action replay is consistent? Since users have a non-deterministic behavior, they may have to be notified if a recovery took place and their data was modified.
+ 
+-Shuttle does not execute requests that returned an error in the first execution. Similarly to other works in the area \cite{undoForOperators}, we assume that these cases were compensated by the user when they happened. As only requests that did not return an error are replayed, Shuttle considers an inconsistency when a request returns an error or a response is different during replay. Shuttle provides the following API for the application programmer to define how inconsistencies are dealt with (Shuttle calls these functions in case they are defined by the tenant):
++Shuttle does not execute requests that returned an error in the first execution. Similarly to other works in the area \cite{undoForOperators}, we assume that these cases were compensated by the user when they happened. As only requests that did not return an error are replayed, Shuttle considers an inconsistency when a request returns an error (e.g. a status code from the range 400-499) or a response is different during replay. Shuttle provides the following API for the application programmer to define how inconsistencies are dealt with (Shuttle calls these functions in case they are defined by the tenant):
+ 
+ \begin{enumerate}
+   \item \textit{preRecover():} invoked before the beginning of the recovery process.
+@@ -147,7 +147,7 @@ Shuttle does not execute requests that returned an error in the first execution.
+ \end{enumerate}
+ 
+ The first function allows tenants to perform a set of actions before the beginning of the recovery process, such as notifying the operations team or taking a new snapshot. 
+-The second function takes as input the operation that caused the inconsistency as well as the response and keys accessed during the normal execution and during the recovery process. It also takes as argument the action to take. Currently we consider three possible actions: 1) ignore the inconsistency; 2) notify the user of the inconsistency; 3) execute another request. 
++The second function takes as input the operation that caused the inconsistency as well as the response and keys accessed during the normal execution and during the recovery process. It also takes as argument the action to take. Currently we consider three possible actions: 1) ignore the inconsistency; 2) notify the user of the inconsistency; 3) execute another request. This method allows tenants to reduce the impact of undoing actions with external visibility. For instance, tenants may send an automatic email to the touched customers.
+ Using the \textit{postRecover} function, the tenant has access not only to the statistics of the recovery process but also to an interface to compare the database values before and after the recovery process and the application responses, before exposing the data to the users. 
+ 
+ %mpc: isto faz sentido mas como nao se percebia nem qual era o problema nem o que o Shuttle fazia, preferi comentar
+diff --git a/Shuttle_Paper/Chapters/5.evaluation.tex b/Shuttle_Paper/Chapters/5.evaluation.tex
+index 0d54c10..29d7fc6 100644
+--- a/Shuttle_Paper/Chapters/5.evaluation.tex
++++ b/Shuttle_Paper/Chapters/5.evaluation.tex
+@@ -59,7 +59,7 @@ Instead of identifying the requests that explored the vulnerability, the tenant
+ 
+ 
+ \textbf{External channel.}
+-On the third class, we consider a case where the proxy does not log the attacker actions. The attacker might use, for example, a SSH account created exploiting the ShellShock vulnerability. The attacker stolen the database credentials and modified at least 2000 data items. Since these database operations are not logged, the dependencies are not established and the number of tainted requests is unknown. However, even without logging the malicious actions, Shuttle recovers the application by loading a database snapshot previous to the estimated intrusion instant (Sep.~2nd) and performing \textit{full replay}. The attack effects are removed because Shuttle loads a database snapshot instead of undoing every operation. As the malicious actions were not logged, they are not replayed and Shuttle recovers the application consistency.
++On the third class, we consider a case where the proxy does not log the attacker actions. The attacker might use, for example, a SSH account created exploiting the ShellShock vulnerability. The attacker stolen the database credentials and modified at least 2000 data items. Since these database operations are not logged, the dependencies are not established and the number of tainted requests is unknown. However, even without logging the malicious actions, Shuttle recovers the application by loading a database snapshot previous to the estimated intrusion instant (Sep.~2nd) and performing \textit{full replay}. The attack effects are removed because Shuttle loads a database snapshot instead of undoing every operation. As the malicious actions were not logged, they are not replayed and Shuttle recovers the application consistency. In addition, Shuttle can recover from attacks that delete all database data by storing the snapshots and requests in a remote location. This mechanism could prevent intrusions such as Code Spaces \cite{McAllister:14}.
+ 
+ 
+ The number of requests to replay is defined by the snapshot instant: on \textit{full replay} Shuttle replays all requests performed after the intrusion instant, while on \textit{selective replay} Shuttle replays the requests necessary to read the values of the entries before the intrusion and the tainted requests. While  \textit{selective replay} seems to have a big advantage comparing with  \textit{full replay}, which performs, in these scenarios, at least 38 620 requests, some applications have more dependencies thus the number of tainted requests is bigger. For instance, if the order between questions with the same tag is considered as a dependency, the number of dependencies rises from 92 939 to 109 118 and the number of independent clusters decreases from 6992 to 56. %We plan to further analyze the dependencies established by different applications. %mpc: o comentario estava ok mas como fomos criticados por a aplicacao poder nao ser representativa...
+diff --git a/Shuttle_Paper/Chapters/7.conclusion.tex b/Shuttle_Paper/Chapters/7.conclusion.tex
+index aba4966..2256866 100644
+--- a/Shuttle_Paper/Chapters/7.conclusion.tex
++++ b/Shuttle_Paper/Chapters/7.conclusion.tex
+@@ -8,7 +8,7 @@ The paper presented Shuttle, an intrusion recovery service for PaaS, with severa
+ Shuttle uses a branching mechanism to avoid service downtime during the recovery phase and permits to undo a recovery process.  
+ Our evaluation shows that Shuttle can replay 1 million requests in 10 minutes, with a cost of less than \$1. 
+ 
+-%In future, we aim to explore the dependencies established by various applications and asset their impact on the recovery process.
++%In future, we aim to explore the dependencies established by various applications and asset their impact on the recovery process. In addition, we also aim to support elasticity of the underlying database.
+ 
+ % We propose a new approach in which requests are sorted by their start-end (Section \ref{sec:recovery:dependencies}). Shuttle does not require generating a dependency graph in non-clustered full replay mode. The dependency graph is required in the case of clustered full replay to identify the independent clusters of requests and on selective replay to determine the tainted requests. We use the database operation lists to create the dependency graph and to order the execution of parallel requests without knowledge of the application protocol.
+ 
+diff --git a/Shuttle_Paper/paper.pdf b/Shuttle_Paper/paper.pdf
+index dac7675..bc24e8b 100644
+Binary files a/Shuttle_Paper/paper.pdf and b/Shuttle_Paper/paper.pdf differ
+diff --git a/Shuttle_Paper/paper.sublime-workspace b/Shuttle_Paper/paper.sublime-workspace
+index 389d77f..0ce33f6 100644
+--- a/Shuttle_Paper/paper.sublime-workspace
++++ b/Shuttle_Paper/paper.sublime-workspace
+@@ -401,9 +401,14 @@
+ 	[
+ 	],
+ 	"build_system": "",
++	"build_system_choices":
++	[
++	],
++	"build_varint": "",
+ 	"command_palette":
+ 	{
+ 		"height": 375.0,
++		"last_filter": "",
+ 		"selected_items":
+ 		[
+ 			[
+@@ -513,16 +518,23 @@
+ 	],
+ 	"file_history":
+ 	[
+-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/5.evaluation.tex",
+-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/6.related_work.tex",
+-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/4.recovery.tex",
++		"/Volumes/DataDisk/Torrents/Adobe CS6 Master Collection (Mac)/Serials.txt",
+ 		"/Users/darionascimento/Tese/Shuttle_Paper/paper.tex",
+ 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/3.architecture.tex",
++		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/2.formalization.tex",
++		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/4.recovery.tex",
++		"/Volumes/DataDisk/Torrents/Adobe Photoshop Lightroom 5.6 Final Mac OS X [ChingLiu]/ChingLiu.Install.Notes.txt",
++		"/Volumes/DataDisk/Torrents/Adobe Photoshop Lightroom 5.6 Final [for Mac OS.X]/Adobe Photoshop Lightroom 5.6 Final Mac OS X/PASSWORD.txt",
++		"/Volumes/DataDisk/Torrents/Adobe Photoshop Lightroom 5.6 Final [for Mac OS.X]/Adobe Photoshop Lightroom 5.6 Final Mac OS X/info.txt",
++		"/Volumes/DataDisk/Torrents/Adobe CS6 Master Collection (Mac)/IMPORTANT - READ BEFORE INSTALLING.txt",
++		"/Users/darionascimento/Desktop/malas.txt",
++		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/5.evaluation.tex",
++		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/7.conclusion.tex",
++		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/6.related_work.tex",
+ 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/1.introduction.tex",
+ 		"/Users/darionascimento/Tese/Shuttle_Paper/paper.aux",
+ 		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/proxy/throughput.eps",
+ 		"/Volumes/ABBYY FineReader Pro 1/SN.txt",
+-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/2.formalization.tex",
+ 		"/Volumes/ABBYY FineReader Pro/SN.txt",
+ 		"/Users/darionascimento/Downloads/gunny_rewritten/gunnyrew.txt",
+ 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/0.abstract.tex",
+@@ -559,7 +571,6 @@
+ 		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/restrain/serial.eps",
+ 		"/Users/darionascimento/Tese/Shuttle_Paper/images/sets.graffle",
+ 		"/Users/darionascimento/Tese/Shuttle_Paper/sigplanconf.cls",
+-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/7.conclusion.tex",
+ 		"/Users/darionascimento/Tese/Shuttle_Paper/refs/ALL.bib",
+ 		"/Users/darionascimento/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
+ 		"/Users/darionascimento/Tese/Dissertacao/Sections/4.implementation.tex",
+@@ -634,13 +645,7 @@
+ 		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/dock/undo/src/main/java/pt/inesc/proxy/save/Saver.java",
+ 		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/dock/undo/src/main/java/pt/inesc/proxy/ProxyWorker.java",
+ 		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/8f0f6134-7535-4f84-9f7e-3a677f4bf0da/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/map/RedoIterator.java",
+-		"/Users/darionascimento/Desktop/remote.java",
+-		"/Users/darionascimento/Desktop/local.java",
+-		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/DirectBufferPool.java",
+-		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/save/Saver.java",
+-		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/ProxyWorker.java",
+-		"/Users/darionascimento/git/testKit/setupTestServers.sh",
+-		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/clustering_time/2.txt"
++		"/Users/darionascimento/Desktop/remote.java"
+ 	],
+ 	"find":
+ 	{
+@@ -683,6 +688,9 @@
+ 		"case_sensitive": false,
+ 		"find_history":
+ 		[
++			"replay the request",
++			"replay the rquest",
++			"Shellsock",
+ 			"subfloat",
+ 			"selective",
+ 			"attack_",
+@@ -807,10 +815,7 @@
+ 			"algorithmic",
+ 			"algorithm2e",
+ 			"graphicx",
+-			"  ",
+-			"total: ",
+-			":rate: ",
+-			"pendent: "
++			"  "
+ 		],
+ 		"highlight": true,
+ 		"in_selection": false,
+@@ -1004,6 +1009,7 @@
+ 	{
+ 		"height": 0.0
+ 	},
++	"pinned_build_system": "",
+ 	"project": "paper.sublime-project",
+ 	"replace":
+ 	{
+@@ -1013,15 +1019,12 @@
+ 	"select_file":
+ 	{
+ 		"height": 0.0,
++		"last_filter": "",
+ 		"selected_items":
+ 		[
+ 			[
+-				"5",
+-				"Chapters/5.evaluation.tex"
+-			],
+-			[
+-				"6",
+-				"Chapters/6.related_work.tex"
++				"2",
++				"Chapters/2.formalization.tex"
+ 			],
+ 			[
+ 				"4",
+@@ -1032,6 +1035,14 @@
+ 				"Chapters/3.architecture.tex"
+ 			],
+ 			[
++				"5",
++				"Chapters/5.evaluation.tex"
++			],
++			[
++				"6",
++				"Chapters/6.related_work.tex"
++			],
++			[
+ 				"1",
+ 				"Chapters/1.introduction.tex"
+ 			],
+@@ -1044,10 +1055,6 @@
+ 				"Chapters/0.abstract.tex"
+ 			],
+ 			[
+-				"2",
+-				"Chapters/2.formalization.tex"
+-			],
+-			[
+ 				"pap",
+ 				"paper.tex"
+ 			],
+@@ -1533,6 +1540,7 @@
+ 	"select_project":
+ 	{
+ 		"height": 500.0,
++		"last_filter": "",
+ 		"selected_items":
+ 		[
+ 			[
+@@ -1577,6 +1585,7 @@
+ 	"select_symbol":
+ 	{
+ 		"height": 375.0,
++		"last_filter": "",
+ 		"selected_items":
+ 		[
+ 		],
+diff --git a/Shuttle_Paper/paper.texnicle b/Shuttle_Paper/paper.texnicle
+index 164ba39..73b56c0 100644
+--- a/Shuttle_Paper/paper.texnicle
++++ b/Shuttle_Paper/paper.texnicle
+@@ -68,7 +68,7 @@
+         <relationship name="selected" type="1/1" destination="FILE" idrefs="z125"></relationship>
+         <relationship name="settings" type="1/1" destination="SETTINGS" idrefs="z104"></relationship>
+         <relationship name="uisettings" type="1/1" destination="UISETTINGS" idrefs="z112"></relationship>
+-        <relationship name="items" type="0/0" destination="PROJECTITEM" idrefs="z120 z117 z124 z114 z107 z122 z115 z125 z121 z118 z123 z116 z119"></relationship>
++        <relationship name="items" type="0/0" destination="PROJECTITEM" idrefs="z116 z121 z117 z115 z118 z120 z125 z107 z124 z122 z114 z119 z123"></relationship>
+     </object>
+     <object type="SETTINGS" id="z104">
+         <attribute name="outputdirectory" type="string"></attribute>
+@@ -85,11 +85,11 @@
+         <relationship name="project" type="1/1" destination="PROJECT" idrefs="z103"></relationship>
+     </object>
+     <object type="TEXFILE" id="z107">
+-        <attribute name="wasopen" type="bool">0</attribute>
+-        <attribute name="visiblerect" type="string">{{0, 0}, {1108, 405}}</attribute>
+-        <attribute name="lasteditdate" type="date">439735631.27932697534561157227</attribute>
++        <attribute name="wasopen" type="bool">1</attribute>
++        <attribute name="visiblerect" type="string">{{0, 2}, {982, 405}}</attribute>
++        <attribute name="lasteditdate" type="date">450948073.07454800605773925781</attribute>
+         <attribute name="istext" type="bool">1</attribute>
+-        <attribute name="fileloaddate" type="date">445435912.72925800085067749023</attribute>
++        <attribute name="fileloaddate" type="date">450948072.81892800331115722656</attribute>
+         <attribute name="extension" type="string">tex</attribute>
+         <attribute name="cursor" type="string">{458, 28}</attribute>
+         <attribute name="sortindex" type="int32">0</attribute>
+@@ -108,10 +108,10 @@
+         <attribute name="showlogerroritems" type="bool">1</attribute>
+         <attribute name="showpdfthumbnails" type="bool">0</attribute>
+         <attribute name="selectedcontrolstab" type="int16">0</attribute>
+-        <attribute name="pdfviewscrollrect" type="string">{{0, 0}, {0, 0}}</attribute>
++        <attribute name="pdfviewscrollrect" type="string">{{0, 0.47258484377119014}, {620, 1099.164490861607}}</attribute>
+         <attribute name="maxoutlinedepth" type="int16">7</attribute>
+         <attribute name="logoutputlevel" type="int16">0</attribute>
+-        <attribute name="editorwidth" type="float">1124</attribute>
++        <attribute name="editorwidth" type="float">1024</attribute>
+         <attribute name="controlswidth" type="float">254</attribute>
+         <attribute name="consoleview" type="int16">1</attribute>
+         <relationship name="project" type="1/1" destination="PROJECT" idrefs="z103"></relationship>
+@@ -304,11 +304,11 @@
+         <relationship name="bookmarks" type="0/0" destination="BOOKMARK"></relationship>
+     </object>
+     <object type="TEXFILE" id="z125">
+-        <attribute name="wasopen" type="bool">1</attribute>
+-        <attribute name="visiblerect" type="string">{{0, 77}, {1082, 417}}</attribute>
++        <attribute name="wasopen" type="bool">0</attribute>
++        <attribute name="visiblerect" type="string">{{0, 77}, {982, 417}}</attribute>
+         <attribute name="lasteditdate" type="date">445435912.94346499443054199219</attribute>
+         <attribute name="istext" type="bool">1</attribute>
+-        <attribute name="fileloaddate" type="date">445435912.75177299976348876953</attribute>
++        <attribute name="fileloaddate" type="date">450948072.84707397222518920898</attribute>
+         <attribute name="extension" type="string">tex</attribute>
+         <attribute name="cursor" type="string">{13546, 0}</attribute>
+         <attribute name="sortindex" type="int32">8</attribute>
+diff --git a/compare.sh b/compare.sh
+index 53e684e..0ca816d 100755
+--- a/compare.sh
++++ b/compare.sh
+@@ -1,4 +1,4 @@
+ #!/bin/bash
+ 
+-scm-latexdiff $1:Dissertacao/tese.tex
++scm-latexdiff $1:Shuttle_Paper/paper.tex
+ 
