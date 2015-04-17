@@ -8,7 +8,7 @@ The paper presented Shuttle, an intrusion recovery service for PaaS, with severa
 Shuttle uses a branching mechanism to avoid service downtime during the recovery phase and permits to undo a recovery process.  
 Our evaluation shows that Shuttle can replay 1 million requests in 10 minutes, with a cost of less than \$1. 
 
-%In future, we aim to explore the dependencies established by various applications and asset their impact on the recovery process.
+%In future, we aim to explore the dependencies established by various applications and asset their impact on the recovery process. In addition, we also aim to support elasticity of the underlying database.
 
 % We propose a new approach in which requests are sorted by their start-end (Section \ref{sec:recovery:dependencies}). Shuttle does not require generating a dependency graph in non-clustered full replay mode. The dependency graph is required in the case of clustered full replay to identify the independent clusters of requests and on selective replay to determine the tainted requests. We use the database operation lists to create the dependency graph and to order the execution of parallel requests without knowledge of the application protocol.
 

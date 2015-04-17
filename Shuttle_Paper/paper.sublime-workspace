@@ -401,9 +401,14 @@
 	[
 	],
 	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 375.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -513,16 +518,23 @@
 	],
 	"file_history":
 	[
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/5.evaluation.tex",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/6.related_work.tex",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/4.recovery.tex",
+		"/Volumes/DataDisk/Torrents/Adobe CS6 Master Collection (Mac)/Serials.txt",
 		"/Users/darionascimento/Tese/Shuttle_Paper/paper.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/3.architecture.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/2.formalization.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/4.recovery.tex",
+		"/Volumes/DataDisk/Torrents/Adobe Photoshop Lightroom 5.6 Final Mac OS X [ChingLiu]/ChingLiu.Install.Notes.txt",
+		"/Volumes/DataDisk/Torrents/Adobe Photoshop Lightroom 5.6 Final [for Mac OS.X]/Adobe Photoshop Lightroom 5.6 Final Mac OS X/PASSWORD.txt",
+		"/Volumes/DataDisk/Torrents/Adobe Photoshop Lightroom 5.6 Final [for Mac OS.X]/Adobe Photoshop Lightroom 5.6 Final Mac OS X/info.txt",
+		"/Volumes/DataDisk/Torrents/Adobe CS6 Master Collection (Mac)/IMPORTANT - READ BEFORE INSTALLING.txt",
+		"/Users/darionascimento/Desktop/malas.txt",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/5.evaluation.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/7.conclusion.tex",
+		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/6.related_work.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/1.introduction.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/paper.aux",
 		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/proxy/throughput.eps",
 		"/Volumes/ABBYY FineReader Pro 1/SN.txt",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/2.formalization.tex",
 		"/Volumes/ABBYY FineReader Pro/SN.txt",
 		"/Users/darionascimento/Downloads/gunny_rewritten/gunnyrew.txt",
 		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/0.abstract.tex",
@@ -559,7 +571,6 @@
 		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/restrain/serial.eps",
 		"/Users/darionascimento/Tese/Shuttle_Paper/images/sets.graffle",
 		"/Users/darionascimento/Tese/Shuttle_Paper/sigplanconf.cls",
-		"/Users/darionascimento/Tese/Shuttle_Paper/Chapters/7.conclusion.tex",
 		"/Users/darionascimento/Tese/Shuttle_Paper/refs/ALL.bib",
 		"/Users/darionascimento/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
 		"/Users/darionascimento/Tese/Dissertacao/Sections/4.implementation.tex",
@@ -634,13 +645,7 @@
 		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/dock/undo/src/main/java/pt/inesc/proxy/save/Saver.java",
 		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/dock/undo/src/main/java/pt/inesc/proxy/ProxyWorker.java",
 		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/8f0f6134-7535-4f84-9f7e-3a677f4bf0da/home/ubuntu/data/data/dock/voldemort/src/java/voldemort/undoTracker/map/RedoIterator.java",
-		"/Users/darionascimento/Desktop/remote.java",
-		"/Users/darionascimento/Desktop/local.java",
-		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/DirectBufferPool.java",
-		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/save/Saver.java",
-		"/private/var/folders/z8/lmgttxs12b74grxkqw39yg5m0000gn/T/a2ef6251-6cc7-49ab-a6c0-e3bdf011a0d2/home/ubuntu/data/data/dock/undo/src/main/java/pt/inesc/proxy/ProxyWorker.java",
-		"/Users/darionascimento/git/testKit/setupTestServers.sh",
-		"/Users/darionascimento/Tese/Shuttle_Paper/graphs/clustering_time/2.txt"
+		"/Users/darionascimento/Desktop/remote.java"
 	],
 	"find":
 	{
@@ -683,6 +688,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"replay the request",
+			"replay the rquest",
+			"Shellsock",
 			"subfloat",
 			"selective",
 			"attack_",
@@ -807,10 +815,7 @@
 			"algorithmic",
 			"algorithm2e",
 			"graphicx",
-			"  ",
-			"total: ",
-			":rate: ",
-			"pendent: "
+			"  "
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1004,6 +1009,7 @@
 	{
 		"height": 0.0
 	},
+	"pinned_build_system": "",
 	"project": "paper.sublime-project",
 	"replace":
 	{
@@ -1013,15 +1019,12 @@
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
-				"5",
-				"Chapters/5.evaluation.tex"
-			],
-			[
-				"6",
-				"Chapters/6.related_work.tex"
+				"2",
+				"Chapters/2.formalization.tex"
 			],
 			[
 				"4",
@@ -1030,6 +1033,14 @@
 			[
 				"3",
 				"Chapters/3.architecture.tex"
+			],
+			[
+				"5",
+				"Chapters/5.evaluation.tex"
+			],
+			[
+				"6",
+				"Chapters/6.related_work.tex"
 			],
 			[
 				"1",
@@ -1042,10 +1053,6 @@
 			[
 				"abst",
 				"Chapters/0.abstract.tex"
-			],
-			[
-				"2",
-				"Chapters/2.formalization.tex"
 			],
 			[
 				"pap",
@@ -1533,6 +1540,7 @@
 	"select_project":
 	{
 		"height": 500.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -1577,6 +1585,7 @@
 	"select_symbol":
 	{
 		"height": 375.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
