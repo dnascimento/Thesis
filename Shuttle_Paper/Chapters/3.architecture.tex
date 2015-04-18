@@ -36,7 +36,7 @@ We assume a minimal \ac{PaaS} architecture to let Shuttle as generic as possible
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\columnwidth]{images/architectureTiers}
+  \includegraphics[width=0.8\columnwidth]{images/architectureTiers.pdf}
   \caption{Shuttle architecture (dashed components are original from \ac{PaaS}). %The proxy logs the user requests into the Shuttle storage. The manager coordinates the recovery process where the replay instances replay the user requests.
   }
   \label{fig:shuttle_architecture}
@@ -113,7 +113,7 @@ Our solution leverages the existence of a single load balancer and, consequently
 
 Database proxies use the \ac{SID} to define the version of the data item used by the operations. Operations with \acf{RID} lower than the scheduled snapshot instant (\ac{RID} $<$ \ac{SID}) access the version before the snapshot. Otherwise, the operations access the latest data item version. This mechanism splits requests to accomplish a request-consistent global snapshot, and allows tenants to schedule snapshots without application downtime. 
 
-We avoid blocking the application to copy the versions using a copy-on-write and incremental method: a new version is created only when the data is written for the first time in each snapshot. Since a data item may not be written in every snapshot, we associate a \emph{version list} to every data item. This list tracks in which snapshots the data item has been written. \hl{Shuttle provides such capability to any key-value database by using the concatenation of the key with the \ac{SID} as key to store the data. Checkpoints are stored locally and may be replicated to a remote site.}
+We avoid blocking the application to copy the versions using a copy-on-write and incremental method: a new version is created only when the data is written for the first time in each snapshot. Since a data item may not be written in every snapshot, we associate a \emph{version list} to every data item. This list tracks in which snapshots the data item has been written. \hl{Shuttle provides such capability to any key-value database by using the concatenation of the key with the} \ac{SID} \hl{as key to store the data. Checkpoints are stored locally and may be replicated to a remote site.}
 
 A snapshot might become inconsistent if a request with \ac{RID} greater than the snapshot instant \ac{SID} reads a version belonging to the snapshot \ac{SID} and a concurrent request with \ac{RID} lower than \ac{SID} overwritten that version. Storing a new version and adding a flag on the version list solves the problem. Nevertheless, we expect this to happen only in rare occasions.
 
